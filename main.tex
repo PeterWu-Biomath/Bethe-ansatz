@@ -367,11 +367,12 @@ The map from ordered roots to their elementary symmetric functions is
 Using $e_1,\ldots,e_n$ as coordinates on the target, define
 \[
  Q(t;e)=\sum_{j=0}^n(-1)^je_jt^{n-j},
- \qquad Q(t;e(x))=\prod_{i=1}^n(t-x_i).
 \]
 Write $Z^{\mathrm{dep}}$ for the depermutation sum of this system.
 
-We construct a polynomial $\Phi(t;e)$ whose divisibility by $Q(t;e)$
+The $TQ$ relation transforms equations in the roots $x$ into equations
+in their elementary symmetric functions $e$. We construct a polynomial
+$\Phi(t;e)$ whose divisibility by $Q(t;e)$
 encodes the equations at distinct roots. By symmetry, there is a
 polynomial $g$ such that
 \[
@@ -382,208 +383,72 @@ Set
 	E_j(t;e)&=\sum_{k=0}^j(-t)^ke_{j-k},\qquad 1\le j<n,\\
 	\Phi(t;e)&=g\bigl(t;E_1(t;e),\ldots,E_{n-1}(t;e)\bigr).
 \end{align*}
+
+The elementary symmetric identities give
+$E_j(x_1;e(x))=\hat e_j$, hence
+\[
+ \Phi(x_1;e(x))=g(x_1;\hat e_1,\ldots,\hat e_{n-1})=F_1(x).
+\]
+If the coordinates are distinct, the equations $F_i(x)=0$ therefore
+give $\Phi(x_i;e(x))=0$ for every $i$, by symmetry. Thus they are
+equivalent to $Q\mid\Phi$ on this locus.
+
 Since $Q$ is monic, polynomial division gives unique polynomials $U,R$
 with coefficients in $\C[e_1,\ldots,e_n]$ such that
 \begin{equation}\label{eq:general-tq-division}
- \Phi(t;e)=U(t;e)Q(t;e)+R(t;e),\qquad
- R(t;e)=\sum_{j=0}^{n-1}\rho_j(e)t^j.
+	\Phi(t;e)=U(t;e)Q(t;e)+R(t;e),\qquad
+	R(t;e)=\sum_{j=0}^{n-1}\rho_j(e)t^j.
 \end{equation}
-The elementary symmetric identities give
-$E_j(x_i;e(x))=e_j(x_1,\ldots,\widehat{x_i},\ldots,x_n)$, hence
-\[
- \Phi(x_i;e(x))=R(x_i;e(x))=F_i(x).
-\]
-If the coordinates are distinct, the equations $F_i(x)=0$ therefore
-force $R(t;e(x))=0$, since $R$ has degree less than $n$ and vanishes
-at all $n$ roots. Thus they are equivalent to $Q\mid\Phi$ on this
-locus. At repeated roots, divisibility requires additional vanishing
-conditions, described below.
 
 Define the \emph{generalized $TQ$ ideal}
 \begin{equation}\label{eq:general-tq-ideal}
  J=(\rho_0,\ldots,\rho_{n-1})\subseteq\C[e_1,\ldots,e_n].
 \end{equation}
-The \emph{generalized $TQ$ relation} is the polynomial identity
-\begin{equation}\label{eq:general-tq-relation}
- \boxed{T(t)Q(t)=\Phi(t;e)
- =g\bigl(t;E_1(t;e),\ldots,E_{n-1}(t;e)\bigr),
- \qquad T\in\C[t].}
-\end{equation}
-The equations of $J$ are exactly the conditions for such a polynomial
-$T$ to exist. Pulling the ideal back to the ordered variables gives
-\[
- K=q^*J
- :=\bigl(\rho_0(e(x)),\ldots,\rho_{n-1}(e(x))\bigr)
- \subseteq\C[x_1,\ldots,x_n].
-\]
-The evaluation identities give $(F_1,\ldots,F_n)\subseteq K$.
-For distinct coordinates the two systems are equivalent. If a root
-$a$ of $Q$ has multiplicity $s$, the equations of $J$ additionally
-impose
-\[
- R(a;e)=\partial_tR(a;e)=\cdots=
- \partial_t^{s-1}R(a;e)=0.
-\]
 
-\begin{example}[$f(x,y,z)=x^2+xy+xz$]
-\label{ex:general-tq-quadratic}
-Write $e_1=x+y+z$, $e_2=xy+xz+yz$, and $e_3=xyz$. Since
-$f(x,y,z)=x(x+y+z)$, the three equations are simply
+The formal sum associated to the $TQ$ ideal is the pushforward of the
+depermutation sum to $\Sym^n(\A^1)$:
 \[
- F_1=e_1x,\qquad F_2=e_1y,\qquad F_3=e_1z.
+ q_*Z^{\mathrm{dep}}=Z(J).
 \]
-We seek one polynomial in $t$ whose values at $x,y,z$ give these
-three expressions. It is immediately $R(t;e)=e_1t$.
-The construction above gives the same answer: here
-$g(t;s_1,s_2)=t^2+ts_1$ and $E_1(t;e)=e_1-t$, so
-\[
- \Phi(t;e)=t^2+t(e_1-t)=e_1t.
-\]
-Its degree in $t$ is already less than three. Division by
-\[
- Q(t)=t^3-e_1t^2+e_2t-e_3
-\]
-therefore gives $U=0$ and $R=e_1t$. The generalized $TQ$ relation is
-\[
- T(t)\bigl(t^3-e_1t^2+e_2t-e_3\bigr)=e_1t.
-\]
-Because $Q$ is monic of degree three, this identity forces
-$T=0$ and $e_1=0$. Hence
-\[
- \boxed{J=(e_1),\qquad K=(x+y+z).}
-\]
-Thus the allowed unordered configurations are precisely the monic
-cubics $Q(t)=t^3+e_2t-e_3$, whose three roots sum to zero.
-In the ordered variables the original ideal is
-\[
- (F_1,F_2,F_3)=(x+y+z)(x,y,z).
-\]
-Its zero set is also the plane $x+y+z=0$, although the ideal differs
-from $K$. This example illustrates the construction of $R,J,K$; its
-solution set is positive-dimensional, so the finite-length
-depermutation proposition below does not apply.
-\end{example}
+Here we assume the relevant ideals are zero-dimensional. Informally,
+one can see this by perturbing all equations coherently as
+$F_i\mapsto F_i+h(x_i)$, where $h$ is a generic small polynomial of
+degree less than $n$. The local intersection lengths are conserved
+under this perturbation. For generic $h$, the nearby solutions are
+simple, and M\"obius inversion cancels those with repeated coordinates.
+Each remaining unordered configuration corresponds to one solution of
+the perturbed $TQ$ ideal and has $n!$ ordered representatives, each of
+weight $1/n!$. This proves the identity for the perturbed systems;
+specializing back recovers the local multiplicities on both sides.
 
-\begin{proposition}[Depermutation and the remainder ideal]
-\label{prop:general-depermutation-tq}
-Assume $(F_1,\ldots,F_n)$ has finite-dimensional quotient. Then $J$
-and $K$ also have finite-dimensional quotients, and
-\begin{equation}\label{eq:depermutation-tq-correspondence}
- \boxed{Z^{\mathrm{dep}}=\frac1{n!}Z(K),\qquad
-        q_*Z^{\mathrm{dep}}=Z(J).}
-\end{equation}
-More explicitly, if the distinct coordinate values of $p$ occur with
-multiplicities $s_1,\ldots,s_m$, then
-\begin{equation}\label{eq:tq-local-multiplicity}
- \operatorname{coeff}_p Z^{\mathrm{dep}}
- =\frac{\prod_{\alpha=1}^m s_\alpha!}{n!}\,
-   \ell_{q(p)}(J).
-\end{equation}
-Here the right side is zero if $q(p)\notin V(J)$.
-\end{proposition}
+For the XXX system, we use the following additional input.
 
-\begin{proof}
-Since $(F_1,\ldots,F_n)\subseteq K$, the quotient by $K$ is
-finite-dimensional. The map $q$ is finite and surjective, so the same
-holds for $J$.
-
-Perturb every equation by the same polynomial
-$h_a(t)=\sum_{j=0}^{n-1}a_jt^j$:
-\[
- F_i^a(x)=F_i(x)+h_a(x_i).
-\]
-The corresponding remainder is $R+h_a$, so the perturbed remainder
-ideal is $(\rho_0+a_0,\ldots,\rho_{n-1}+a_{n-1})$. At any isolated
-point of the original system, the full, partition, and pulled-back
-remainder ideals are generated by $n$ equations with finite local
-quotients. Their local lengths are therefore conserved under a
-sufficiently small generic perturbation.
-
-The generic parameters can be chosen simultaneously for all
-partitions. On a stratum with $m$ distinct coordinate values,
-evaluation of $h_a$ at those values is surjective. The block equations
-thus have simple solutions for generic parameters. At a repeated value,
-the extra condition $\partial_t(R+h_a)=0$ can be avoided by Hermite
-interpolation: specifying the $m$ values and one derivative gives
-$m+1\le n$ independent conditions. Splitting a repeated cluster while
-keeping its coordinate sum zero does not change the elementary
-symmetric functions to first order. The full Jacobian on these
-directions is consequently multiplication by the nonzero derivative
-$\partial_t(R+h_a)$. Thus the nearby full solutions, and all their
-compatible partition solutions, are simple.
-
-At such a nearby solution with equality partition $\sigma$, the
-unnormalized M\"obius sum contributes
-\[
- \sum_{\pi\le\sigma}\mu(\hat0,\pi)
- =\begin{cases}1,&\sigma=\hat0,\\0,&\sigma\ne\hat0.\end{cases}
-\]
-Hence only distinct-coordinate solutions remain. These are exactly the
-solutions of the perturbed pulled-back remainder ideal: evaluation at
-the $n$ roots is invertible by the Vandermonde determinant. Conversely,
-a repeated root of a perturbed remainder solution would impose the
-derivative condition excluded above. Both sides therefore count the
-same nearby simple points. Conservation of local lengths proves the
-first equality in \eqref{eq:depermutation-tq-correspondence}.
-
-The polynomial ring $\C[x_1,\ldots,x_n]$ is free of rank $n!$ over
-$\C[e_1,\ldots,e_n]$, so $q$ is finite flat of degree $n!$. Near $p$,
-its local degree is $\prod_\alpha s_\alpha!$: factoring $Q$ into
-coprime factors near its distinct root values reduces the root map to
-one symmetric quotient for each cluster. Thus
-\[
- \ell_p(K)=\left(\prod_\alpha s_\alpha!\right)\ell_{q(p)}(J).
-\]
-There are $n!/\prod_\alpha s_\alpha!$ ordered points over $q(p)$.
-This gives \eqref{eq:tq-local-multiplicity} and the pushforward equality.
-\end{proof}
-
-\paragraph{Consequences and references.}
-The universal interpolation construction uses elementary symmetric
-polynomial identities. Divided differences for symmetric-group
-equivariant systems, and related resultant decompositions, are studied
-by Bus\'e and Karasoulou~\cite[Sections~2--3]{BK2016}. The local-length
-identity~\eqref{eq:depermutation-tq-correspondence} is established by
-the preceding proof; the cited paper treats the related resultant
-decomposition.
-It shows that the depermutation sum has nonnegative coefficients and
-that its support is exactly the pullback of the remainder solution set.
-It does not assert equality between the original Bethe ideal and $K$.
-
-For the XXX polynomial $f=P$, the canonical remainder satisfies
-\[
- R(t;e)\equiv-\frac12\bigl((t+1)^LQ(t-2)
-                         +(t-1)^LQ(t+2)\bigr)\pmod{Q(t)}.
-\]
-Thus $J$ is exactly the remainder ideal of Baxter's $TQ$ relation
+\paragraph{Distinct-root assumption away from the singular values.}
+Let $L\ge2n$, and suppose a monic polynomial $Q$ of degree $n$ admits
+a polynomial $T$ satisfying Baxter's relation
 \begin{equation}\label{eq:xxx-tq-relation}
- \boxed{T(t)Q(t)=(t+1)^LQ(t-2)+(t-1)^LQ(t+2),
- \qquad T\in\C[t].}
+ T(t)Q(t)=(t+1)^LQ(t-2)+(t-1)^LQ(t+2).
 \end{equation}
-Here $T$ has the standard XXX normalization; it need not equal the
-quotient in \eqref{eq:general-tq-relation}. See~\cite[eq.~(3)]{GJ2020}
-for the relation in the unscaled variables.
-For arbitrary $f$, collision vanishing need not hold. For example,
-$f(x,y)=x^2$ gives
+Write
 \[
- R(t;e)=e_1t-e_2,\qquad J=(e_1,e_2),\qquad
- K=(x+y,xy).
+ Q(t)=(t-1)^a(t+1)^bQ_{\mathrm{reg}}(t),
+ \qquad Q_{\mathrm{reg}}(1)Q_{\mathrm{reg}}(-1)\ne0.
 \]
-The full local length at $(0,0)$ is four and the diagonal length is
-two, so $Z^{\mathrm{dep}}=[(0,0)]$. The generalized $TQ$ equations
-retain this double root.
+We assume that $Q_{\mathrm{reg}}$ is squarefree. Equivalently, every
+root of $Q$ outside $\{1,-1\}$ is simple; repetitions at the singular
+values are allowed.
 
-For XXX, exclusion of repeated roots away from $\pm1$ is therefore an
-additional input, not a consequence of equivariance. The discussion
-following~\cite[eq.~(3)]{GJ2020} describes the role of polynomiality in
-excluding coincident roots. However,
-\cite[Introduction, eq.~(1.3) and footnote~2]{HJJ2024} explicitly
-reports numerical evidence and the absence of a rigorous exclusion
-proof known to those authors. A version allowing repeated roots at
-$\pm1$ must accordingly be stated as an assumption if used in our
-general argument. The same remainder construction and depermutation
-identity apply to each reduced fixed-pair system, with its free
-variables in place of $x_1,\ldots,x_n$.
+The exclusion of repeated roots through polynomiality of $T$ is
+discussed in \cite[Introduction, eq.~(1.3) and footnote~2]{HJJ2024},
+where numerical evidence is reported and a rigorous proof for the
+spin-$1/2$ XXX chain is stated to be unavailable to the authors.
+We use the precise version above, including configurations with
+singular roots, as an assumption rather than a proved result.
+Together with the pushforward identity, it rules out collisions away
+from $\pm1$ in the support of $Z^{\mathrm{dep}}$. The same conclusion
+holds for the reduced balanced fixed-pair systems: if $H$ satisfies
+their $TQ$ relation after fixing $k$ pairs, then
+$Q=(t^2-1)^kH$ satisfies~\eqref{eq:xxx-tq-relation}.
 
 \subsection{Virtual degrees and the combinatorial identity}
 
