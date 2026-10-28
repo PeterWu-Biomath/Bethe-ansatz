@@ -353,6 +353,89 @@ Moreover,
 \]
 \end{conjecture}
 
+\subsection{Virtual degrees and the combinatorial identity}
+
+To study the degree assertion in
+Conjecture~\ref{conj:alternating-completeness}, put
+$r=n-|A|-|B|$ and $D=L+r-2$. For $r\ge1$, each reduced equation
+has degree at most $D$: its two summands have degree $L+r-1$, and
+their top homogeneous parts cancel. Restricting to a block diagonal
+can lower the degree further. We nevertheless assign the same ambient
+degree $D$ to every retained equation.
+
+\begin{definition}[Virtual degree assignment]
+\label{def:virtual-degree}
+For a partition $\pi$ of $[n]\setminus(A\cup B)$ with $m$ blocks, set
+\begin{equation}\label{eq:virtual-partition-degree}
+ \boxed{\deg_{\mathrm{vir}}Z_{A,B;\pi}=(L+r-2)^m.}
+\end{equation}
+When $r=0$, assign degree one. Extend this assignment linearly in the
+specified indexed expressions defining $Z^{\mathrm{dep}}_{A,B}$,
+$Z^{\mathrm{dep}}_k$, and $Z^{\mathrm{cand}}_{L,n}$.
+\end{definition}
+
+This is the B\'ezout count for $m$ generic equations of the common
+degree $D$ in the $m$ block variables. It allows contributions at
+infinity when the equations specialize to the Bethe system. It is an
+assignment to the defining expressions, rather than an assertion about
+the total weight of the affine solutions. In particular, we do not yet
+claim $\deg_{\mathrm{vir}}Z=\deg Z$.
+
+\begin{proposition}[Virtual completeness count]
+\label{prop:virtual-completeness}
+For $|A|=|B|=k$ and $r=n-2k$,
+\begin{equation}\label{eq:virtual-depermutation-degree}
+ \deg_{\mathrm{vir}}Z^{\mathrm{dep}}_{A,B}
+ =\deg_{\mathrm{vir}}Z^{\mathrm{dep}}_k
+ =\binom{L+r-2}{r}.
+\end{equation}
+Consequently,
+\begin{equation}\label{eq:virtual-completeness-degree}
+ \boxed{
+ \deg_{\mathrm{vir}}Z^{\mathrm{cand}}_{L,n}
+ =\sum_{k=0}^{\lfloor n/2\rfloor}(-1)^k\binom Lk
+       \binom{L+n-2k-2}{n-2k}
+ =\binom Ln-\binom L{n-1}.}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The partition-lattice identity
+\[
+ \sum_{\pi\in\Pi_r}\mu(\hat0,\pi)D^{|\pi|}
+ =D(D-1)\cdots(D-r+1)
+\]
+follows by counting injective maps from $[r]$ to a set of $D$ elements:
+there are $D^{|\pi|}$ maps constant on each block of $\pi$, and
+M\"obius inversion removes all coincidences. Dividing by $r!$ gives
+\[
+ \deg_{\mathrm{vir}}Z^{\mathrm{dep}}_{A,B}
+ =\frac1{r!}\sum_{\pi\in\Pi_r}\mu(\hat0,\pi)D^{|\pi|}
+ =\binom Dr=\binom{L+r-2}{r}.
+\]
+For $r=0$, both sides are one. The average defining
+$Z^{\mathrm{dep}}_k$ has $n!/((k!)^2r!)$ equal-degree terms, so its
+virtual degree is the same.
+
+For the final identity, use formal power series:
+\[
+ \begin{aligned}
+ \left(\sum_{k=0}^L(-1)^k\binom Lk t^{2k}\right)
+ \left(\sum_{r\ge0}\binom{L+r-2}{r}t^r\right)
+ &=\frac{(1-t^2)^L}{(1-t)^{L-1}}\\
+ &=(1-t)(1+t)^L.
+ \end{aligned}
+\]
+Taking the coefficient of $t^n$ proves
+\eqref{eq:virtual-completeness-degree}, with
+$\binom L{-1}=0$ if $n=0$.
+\end{proof}
+
+Thus the virtual assignment gives the desired number. To deduce the
+affine degree assertion of the conjecture by this method, it remains to
+prove that the differences between virtual and affine counts cancel in
+the final alternating sum. This numerical identity alone does not prove
+the conjectured pointwise physical weights.
 
 \section{The singular-pair correction}
 
