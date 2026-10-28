@@ -1090,7 +1090,7 @@ count of physical solutions or simplicity of the joint spectrum.
 \begin{proposition}\label{prop:one-pair-weight}
 At $p$, the full local length is
 \begin{equation}\label{eq:one-pair-general-length}
- \ell_p(I_{\mathrm{full}})=Le_p+chi_{\mathrm{phys}}(p),
+ \ell_p(I_{\mathrm{full}})=Le_p+\chi_{\mathrm{phys}}(p),
 \end{equation}
 where $\chi_{\mathrm{phys}}(p)$ is one if
 \eqref{eq:physical} holds and zero otherwise. Consequently,
@@ -1241,6 +1241,169 @@ Substitution gives the claimed physical weight. In particular, when
 $e_p=1$, the ordinary local length is $L+1$ at a physical point and
 $L$ otherwise, recovering the small-$n$ calculations.
 \end{proof}
+
+\section{Multiple balanced singular pairs}
+\label{sec:multiple-balanced-pairs}
+
+Let $p$ have exactly $a$ coordinates equal to $1$, $a$ equal to $-1$,
+and $r=n-2a$ other, pairwise distinct coordinates $z_1,\ldots,z_r$.
+Write
+\[
+ H(t)=\prod_{j=1}^r(t-z_j),\qquad
+ Q_k(t)=(t^2-1)^{a-k}H(t)\quad(0\le k\le a).
+\]
+The reduced $TQ$ numerator after fixing $k$ pairs is
+\[
+ \Phi_k(t;Q)=(t+1)^{L-k}(t-3)^kQ(t-2)
+             +(t-1)^{L-k}(t+3)^kQ(t+2).
+\]
+Let $J_k$ be the ideal of its remainder coefficients modulo a variable
+monic polynomial $Q$ of degree $n-2k$, and let $\nu_k(p)$ be its local
+length at $Q=Q_k$.
+
+\paragraph{Why the balanced points satisfy $TQ$.}
+The original polynomial equations do not in general imply divisibility
+at repeated roots. Here the balanced factors supply the missing
+orders of vanishing. Indeed,
+\[
+ \Phi_k(t;Q_k)=(t^2-1)^{a-k}S_a(t),
+\]
+where
+\[
+ S_a(t)=(t+1)^{L-a}(t-3)^aH(t-2)
+        +(t-1)^{L-a}(t+3)^aH(t+2).
+\]
+The equations at the distinct roots of $H$ give $S_a(z_j)=0$, hence
+$H\mid S_a$. Consequently $Q_k\mid\Phi_k(t;Q_k)$ for every $k$.
+The local algebras $J_k$ are nevertheless different from the original
+ordered Bethe algebras; depermutation is essential in relating their
+lengths.
+
+\paragraph{Normalization at a repeated singular configuration.}
+The $TQ$ interpretation of depermutation gives
+\begin{equation}\label{eq:balanced-local-normalization}
+ c_k(p)=\frac{(a!)^2}{n!}\nu_k(p),\qquad 0\le k\le a.
+\end{equation}
+To check the factor, there are $\binom ak^2$ compatible choices of
+fixed labels. The remaining ordered root map has local degree
+$((a-k)!)^2$, and the averaging factor in
+\eqref{eq:reduced-fixed-pair-depermutation} gives
+\[
+ \frac{(k!)^2(n-2k)!}{n!}\binom ak^2
+ \frac{((a-k)!)^2}{(n-2k)!}=\frac{(a!)^2}{n!}.
+\]
+Thus the required vanishing is precisely
+\begin{equation}\label{eq:balanced-remainder-length-identity}
+ \sum_{k=0}^a(-1)^k\binom Lk\nu_k(p)=0.
+\end{equation}
+
+\subsection{All roots in the singular clusters: $n=2a$}
+
+\begin{proposition}\label{prop:pure-balanced-pairs}
+Let $a\ge2$, $n=2a$, $L\ge4a$, and $p=(1^a,-1^a)$. Then
+\begin{equation}\label{eq:pure-balanced-local-lengths}
+ \nu_k(p)=
+ \begin{cases}
+ \displaystyle\binom{L-k}{a-k},&L\equiv a\pmod2,\\[4pt]
+ \displaystyle\binom{L-k+1}{a-k},&L\not\equiv a\pmod2.
+ \end{cases}
+\end{equation}
+In particular, $\operatorname{coeff}_p Z^{\mathrm{cand}}_{L,2a}=0$
+for both parities of $L$.
+\end{proposition}
+
+\begin{proof}
+For $k=a$ there are no free variables and $\nu_a=1$. Otherwise put
+$s=a-k\ge1$ and $M=L-k$. Factor the variable polynomial locally as
+\[
+ Q(t)=A(t-1)B(t+1),\qquad
+ A(u)=u^s-e_1u^{s-1}+\cdots+(-1)^se_s,
+\]
+with $B$ also monic of degree $s$. The two cluster factors at $p$ are
+coprime, so their coefficients are local coordinates on coefficient
+space. Divisibility by $Q$ is equivalent to the congruences
+\[
+ B(u)+u^MU(u)\equiv0\pmod{A(u)},\qquad
+ A(v)+v^MV(v)\equiv0\pmod{B(v)},
+\]
+where
+\[
+ \begin{aligned}
+ U(u)&=\frac{(u+4)^kA(u+2)B(u+4)}
+                 {(u+2)^M(u-2)^kA(u-2)},\\
+ V(v)&=\frac{(v-4)^kA(v-4)B(v-2)}
+                 {(v-2)^M(v+2)^kB(v+2)}.
+ \end{aligned}
+\]
+All denominators are units in the corresponding completed cluster
+algebras. The first congruence solves uniquely for the coefficients
+of $B$ in terms of those of $A$.
+
+Give $u,v$ weight one and $e_j$ weight $j$. If $b_j$ denotes the
+$j$th elementary coefficient of $B$, weighted division in the first
+congruence gives
+\[
+ b_j-e_j=O_{\mathrm w}(M-s+j),\qquad 1\le j\le s.
+\]
+Since $M-s=L-a\ge3a$, these differences do not affect the constant
+and linear weighted terms of the units. Substituting $B=A$ to these
+orders gives, with $C=2^{2a-L}$ and $\alpha=(5a-2L)/4$,
+\[
+ \begin{aligned}
+ U(u)&=(-1)^aC\left(1+\alpha u-\frac54e_1
+                               +O_{\mathrm w}(2)\right),\\
+ V(u)&=(-1)^LC\left(1-\alpha u+\frac54e_1
+                               +O_{\mathrm w}(2)\right).
+ \end{aligned}
+\]
+After eliminating $B$, the initial equations are therefore the
+coefficients of $\operatorname{rem}_A u^M$ when $L\equiv a\pmod2$,
+and, up to a common nonzero scalar, those of
+\begin{equation}\label{eq:balanced-resonant-initial-polynomial}
+ \operatorname{rem}_A
+       \left[u^M\bigl((5a-2L)u-5e_1\bigr)\right]
+\end{equation}
+when the parities differ. Corrections from $B-A$ have strictly higher
+weight, again because $M-s=L-a\ge3a$.
+
+Both initial systems have only the common zero $e_1=\cdots=e_s=0$.
+For the first, $A\mid u^M$ forces $A=u^s$. For the second, any
+nonzero root of $A$ must be the unique simple root of
+$(5a-2L)u-5e_1$. Thus, if such a root $\rho$ existed, we would have
+$A=u^{s-1}(u-\rho)$ and $e_1=\rho$. Evaluation at $\rho$ would give
+\[
+ \bigl(5(a-1)-2L\bigr)\rho^{M+1}=0,
+\]
+which is impossible for $L\ge4a$. Hence $A=u^s$ here as well.
+
+The initial equations consequently form a zero-dimensional weighted
+complete intersection. Their weights are
+$M-s+1,\ldots,M$ in the first case, and
+$M-s+2,\ldots,M+1$ in the second. Higher-weight terms preserve the
+local length. Dividing the product of these equation weights by
+$1\cdot2\cdots s$ gives respectively $\binom Ms$ and
+$\binom{M+1}s$, proving~\eqref{eq:pure-balanced-local-lengths}.
+
+Finally,
+\[
+ \sum_{k=0}^a(-1)^k\binom Lk\binom{L-k}{a-k}
+ =\binom La(1-1)^a=0.
+\]
+For the other parity, Pascal's identity adds
+\[
+ \sum_{k=0}^{a-1}(-1)^k\binom Lk\binom{L-k}{a-k-1}
+ =\binom L{a-1}(1-1)^{a-1}=0,
+\]
+since $a\ge2$. Together with
+\eqref{eq:balanced-local-normalization}, this proves the vanishing
+of the corrected weight.
+\end{proof}
+
+The case $r>0$ additionally involves the local equations for the
+remaining roots. The preceding calculation does not yet establish
+\eqref{eq:balanced-remainder-length-identity} in that case: the
+cluster units depend on these roots, and their variations can affect
+the resonant initial equations.
 
 \begin{thebibliography}{9}
 \bibitem{MTV2009}
