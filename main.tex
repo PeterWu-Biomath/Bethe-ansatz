@@ -586,14 +586,16 @@ Here list some claims that's needed to prove the conjecture:
 	c_0(p)-Lc_1(p)=w(p)
 	\end{equation}
 	where $w(p)$ is the target weight above.
-	The required local-length claim is
+	Writing $e_p$ for the local length of the reduced fixed-pair
+	system, the precise local-length claim is
 	\begin{equation}\label{eq:single-pair-length-criterion}
 	 \ell_p=
 	 \begin{cases}
-	 L+1,&p\text{ satisfies the physical condition }\eqref{eq:physical},\\
-	 L,&\text{otherwise}.
+	 Le_p+1,&p\text{ satisfies the physical condition }\eqref{eq:physical},\\
+	 Le_p,&\text{otherwise}.
 	 \end{cases}
 	\end{equation}
+	For a simple reduced solution, $e_p=1$.
 
 	\item \textbf{Multiple balanced singular pairs: $a=b\ge2$ and $\pi=\hat 0$.}
 	These points have repeated coordinates and hence target weight zero.
@@ -627,8 +629,7 @@ cancellation at infinity.
 
 For the remaining affine configurations, the $TQ$ relation also
 excludes unequal singular multiplicities $a\ne b$, by comparing
-vanishing orders at $1$ and $-1$; see
-Proposition~\ref{prop:unbalanced}. The same argument applies after
+vanishing orders at $1$ and $-1$. The same argument applies after
 fixing any $k$ balanced pairs, so $c_k(p)=0$ for every
 $0\le k\le\min(a,b)$ at an unbalanced configuration.
 Consequently, among singular affine configurations, only
@@ -847,8 +848,8 @@ $Q_0(T)=(T^2-1)^2$, and compute its local length $M_L$. The full and partition l
 finiteness assumption.
 
 This local length is the unordered depermutation multiplicity. To see
-this, use the auxiliary perturbation $h_a$ from
-Proposition~\ref{prop:baxter-support}, now of degree at most three.
+this, use the common polynomial perturbation $h_a$ from
+Section~\ref{sec:general-tq}, now of degree at most three.
 The remainder system becomes $r_Q+h_a=0$. In a finite local family, a
 generic small $h_a$ gives $M_L$ simple quartics near $Q_0$, each with
 distinct roots. Indeed, this system is the fiber of the map
@@ -857,7 +858,7 @@ hypersurface of quartics has lower-dimensional image in a finite local
 neighborhood. Each such quartic has two roots near $1$ and two near
 $-1$, and gives $2!\,2!=4$ ordered configurations near $p_0$.
 All other nearby solutions have collisions and cancel in the M\"obius
-sum, exactly as in Proposition~\ref{prop:baxter-support}.
+sum, as in Section~\ref{sec:general-tq}.
 Thus the coefficient at $p_0$ is $4M_L/24=M_L/6$, and its orbit has
 total coefficient $M_L$.
 
@@ -1068,8 +1069,186 @@ that the two roots have the same nonzero leading coordinate as they
 diverge. This support statement does not yet prove cancellation of
 their local multiplicities in the depermutation sum; that requires
 comparing the full and partition intersections along this boundary.
+\section{One singular pair: $a=b=1$}
+\label{sec:one-singular-pair}
+
+Let $n\ge2$, $L\ge2n$, and
+$p=(1,-1,z_3,\ldots,z_n)$ have pairwise distinct coordinates.
+We retain the standing finiteness assumptions. Put
+\[
+ I_{\mathrm{full}}=(F_1,\ldots,F_n),\qquad
+ I_{\mathrm{red}}=I_{\{1\},\{2\};\hat0},\qquad
+ e_p=\ell_p(I_{\mathrm{red}}).
+\]
+We prove the weight identity without assuming that $e_p=1$.
+The physical input is the standard nonzero singular Bethe-vector
+regularization of \cite[Section~3]{NW2013}, together with simultaneous
+diagonalizability of the homogeneous XXX transfer matrices
+\cite[Theorem~12.6.1]{MTV2009}. Only diagonalizability is used, not the
+count of physical solutions or simplicity of the joint spectrum.
+
+\begin{proposition}\label{prop:one-pair-weight}
+At $p$, the full local length is
+\begin{equation}\label{eq:one-pair-general-length}
+ \ell_p(I_{\mathrm{full}})=Le_p+chi_{\mathrm{phys}}(p),
+\end{equation}
+where $\chi_{\mathrm{phys}}(p)$ is one if
+\eqref{eq:physical} holds and zero otherwise. Consequently,
+\[
+ \boxed{c_0(p)-Lc_1(p)=\frac{\chi_{\mathrm{phys}}(p)}{n!}=w(p).}
+\]
+\end{proposition}
+
+\begin{proof}
+We separate the singular factor and then compute the residual length.
+
+\paragraph{Separating the singular factor.}
+Write $x_1=1+u$, $x_2=-1+v$, and $x_j=y_j$ for $j\ge3$.
+Set
+\[
+ C(u,y)=\prod_{j=3}^n(u-1-y_j),\qquad
+ D(u,y)=\prod_{j=3}^n(u+3-y_j).
+\]
+Since $C(0,z)\ne0$, the first equation solves for $v$ exactly as
+\[
+ v=u+u^Ld(u,y),\qquad
+ d(u,y)=-\frac{4D(u,y)}{(2+u)^LC(u,y)-u^LD(u,y)}.
+\]
+After this substitution, write
+\[
+ F_2=u^LH(u,y),\qquad F_j=G_j(u,y)\quad(3\le j\le n),
+\]
+with $H,G_j$ regular near $(0,z)$. Work in the completed local ring
+\[
+ S=\C[[u,y_3-z_3,\ldots,y_n-z_n]],\qquad
+ \mathcal R=S/(G_3,\ldots,G_n).
+\]
+The full and reduced local algebras
+are respectively $\mathcal R/(u^LH)$ and $\mathcal R/(u)$: at $u=0$,
+$G_j=(y_j^2-1)F_j^{\mathrm{red}}$, with $y_j^2-1$ a unit.
+They have finite length, so $\mathcal R$ is a one-dimensional complete
+intersection and $u$ is a non-zero-divisor. The exact sequence
+\[
+ 0\longrightarrow\mathcal R/(H)
+ \xrightarrow{\ \times u^L\ }\mathcal R/(u^LH)
+ \longrightarrow\mathcal R/(u^L)\longrightarrow0
+\]
+therefore gives
+\begin{equation}\label{eq:one-pair-length-splitting}
+ \ell_p(I_{\mathrm{full}})
+ =Le_p+\dim_\C\mathcal A,\qquad
+ \mathcal A:=S/(H,G_3,\ldots,G_n).
+\end{equation}
+Here $\mathcal A=0$ when $H$ is a unit.
+
+\paragraph{The physical compatibility condition.}
+Put $r=n-2$. Direct substitution gives
+\[
+ H(0,y)=4(-1)^r\left[
+ -\prod_{j=3}^n(y_j+3)
+ +(-1)^L\prod_{j=3}^n
+             \frac{(y_j-1)(y_j-3)}{y_j+1}\right].
+\]
+There are no other exact strings: a finite chain of distinct roots
+separated by $2$ must end at $-1$ and $1$, hence consists of this pair
+alone; see \cite[Lemma~1]{GJ2020}. In particular, $z_j\ne\pm3$
+and $z_i-z_j\ne\pm2$ for $i,j\ge3$. Thus all factors in the
+following ratios are nonzero. Multiplying the reduced equations
+cancels the interactions between the remaining roots and yields
+\[
+ \left(\prod_{j=3}^n\frac{z_j+1}{z_j-1}\right)^{L-1}
+ =\prod_{j=3}^n\frac{z_j+3}{z_j-3}.
+\]
+Combining this with the expression for $H(0,z)$ gives
+\begin{equation}\label{eq:one-pair-compatibility}
+ H(0,z)=0
+ \quad\Longleftrightarrow\quad
+ \left[-\prod_{j=3}^n\frac{z_j+1}{z_j-1}\right]^L=1.
+\end{equation}
+At a nonphysical point, $H$ is consequently a unit, and
+\eqref{eq:one-pair-length-splitting} proves the assertion.
+
+\paragraph{The residual length at a physical point.}
+Suppose now that \eqref{eq:physical} holds. The algebra $\mathcal A$
+is finite and local, with residue field $\C$. Denote by
+$\mathcal B(t)$ and $\mathsf t(t)$ the polynomial creation operator
+and transfer matrix in the rescaled normalization. The vector
+\[
+ \Psi(u,y)=u^{-L}\mathcal B(1+u)\mathcal B(-1+v(u,y))
+                    \prod_{j=3}^n\mathcal B(y_j)|0\rangle
+\]
+is regular at $u=0$, since $v-u=O(u^L)$. Its value at $(0,z)$ is
+the nonzero regularized physical Bethe vector; see
+\cite[Section~3]{NW2013} and \cite[Lemmas~3--4]{GJ2020}.
+
+Let
+\[
+ Q_{\mathcal A}(t)=(t-1-u)(t+1-v)\prod_{j=3}^n(t-y_j)
+ \in\mathcal A[t].
+\]
+All original equations vanish in $\mathcal A$, and the roots remain
+distinct modulo its maximal ideal. Thus the $TQ$ quotient is a
+polynomial $\tau_{\mathcal A}(t)\in\mathcal A[t]$:
+\[
+ \tau_{\mathcal A}(t)Q_{\mathcal A}(t)
+ =(t+1)^LQ_{\mathcal A}(t-2)+(t-1)^LQ_{\mathcal A}(t+2).
+\]
+The off-shell transfer-matrix identity also gives, over $\mathcal A$,
+\begin{equation}\label{eq:one-pair-artin-eigenvector}
+ \mathsf t(t)\Psi=\tau_{\mathcal A}(t)\Psi.
+\end{equation}
+Indeed, divide that identity by $u^L$ before passing to the quotient.
+The unwanted term at the first root is zero by $F_1=0$; that at the
+second root contains $F_2/u^L=H$. Each other unwanted term contains
+$G_j$ and a Bethe vector still containing the singular pair, which is
+divisible by $u^L$. Hence all unwanted terms vanish in $\mathcal A$.
+
+The transfer matrices admit a common eigenbasis, by
+\cite[Theorem~12.6.1]{MTV2009} and the $\mathfrak{sl}_2$
+decomposition of the spin space. In this basis, some component of
+$\Psi$ has nonzero residue and is therefore a unit of $\mathcal A$.
+Equation~\eqref{eq:one-pair-artin-eigenvector} then forces
+$\tau_{\mathcal A}(t)=\tau_p(t)$, the fixed complex eigenvalue
+polynomial at $p$.
+
+For this fixed $\tau_p$, the monic degree-$n$ polynomial solution of
+the $TQ$ relation is unique, even over $\mathcal A$. To see this, put
+\[
+ C_m=L(L-1)-4m(L-m+1).
+\]
+The degree-$n$ solution gives
+$\tau_p(t)=2t^L+C_nt^{L-2}+O(t^{L-3})$. If a nonzero difference
+of two monic solutions has degree $m<n$ and leading coefficient $b$,
+then the coefficient of $t^{L+m-2}$ in its $TQ$ equation is
+\[
+ (C_m-C_n)b=4(n-m)(L+1-n-m)b\ne0,
+\]
+because $L\ge2n$. This is impossible, so
+$Q_{\mathcal A}=Q_p$. Since the roots of $Q_p$ are distinct,
+evaluating at each corresponding root shows that
+$u=0$ and $y_j=z_j$ in $\mathcal A$. Thus $\mathcal A=\C$ and
+its length is one. This proves~\eqref{eq:one-pair-general-length}.
+
+\paragraph{Normalization of the weights.}
+At a distinct-coordinate point, only the discrete partition
+contributes to depermutation. Moreover, there is exactly one choice
+of the fixed positive and negative labels. Consequently,
+\[
+ c_0(p)=\frac{\ell_p(I_{\mathrm{full}})}{n!},\qquad
+ c_1(p)=\frac{e_p}{n!},\qquad c_k(p)=0\quad(k\ge2).
+\]
+Substitution gives the claimed physical weight. In particular, when
+$e_p=1$, the ordinary local length is $L+1$ at a physical point and
+$L$ otherwise, recovering the small-$n$ calculations.
+\end{proof}
 
 \begin{thebibliography}{9}
+\bibitem{MTV2009}
+E.~Mukhin, V.~Tarasov, and A.~Varchenko,
+\emph{Bethe algebra of homogeneous XXX Heisenberg model has simple spectrum},
+Commun.\ Math.\ Phys.\ \textbf{288}, 1--42 (2009),
+\href{https://arxiv.org/abs/0706.0688}{arXiv:0706.0688}.
+
 \bibitem{BK2016}
 L.~Bus\'e and A.~Karasoulou,
 \emph{Resultant of an equivariant polynomial system with respect to the symmetric group},
