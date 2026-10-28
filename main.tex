@@ -393,6 +393,23 @@ polytopes are allowed independent coefficients; generically the
 solutions have no zero coordinates, so this is also the affine count
 \cite[Chapter~3]{Sturmfels}.
 
+This mixed-volume count agrees with the B\'ezout number $D^m$ for
+$m$ hypersurfaces of degree $D$ in $\mathbb P^m$. We may therefore use
+the standard compactification $\mathbb A^m\subset\mathbb P^m$ to
+study the virtual count. For a block equation $G_\alpha(y)$, use its
+degree-$D$ homogenization
+\[
+ \widehat G_\alpha(Y_1,\ldots,Y_m,T)
+ =T^D G_\alpha(Y_1/T,\ldots,Y_m/T),
+\]
+retaining degree $D$ even when cancellation lowers the actual affine
+degree. The hyperplane $T=0$ then records the contribution at infinity.
+If the homogenized equations have a finite common zero set, their
+total length is $D^m$, including local lengths at infinity. If they
+have a positive-dimensional common set at infinity, $D^m$ remains the
+virtual count obtained by a generic degree-$D$ deformation, rather than
+a sum of isolated local lengths for the special equations.
+
 \begin{proposition}[Virtual completeness count]
 \label{prop:virtual-completeness}
 For $|A|=|B|=k$ and $r=n-2k$,
@@ -572,30 +589,6 @@ $Z^{\mathrm{dep}}_0$ is
 \]
 This proves the required cancellation for every $L\ge6$, extending the
 degree-five versus degree-seven example at $L=6$.
-
-\paragraph{The reduced one-pair equation.}
-Fix $x_1=1$, $x_2=-1$, and write $x_3=z$. The first two original
-equations vanish identically, while
-\[
- F_3(1,-1,z)=(z^2-1)Q_L(z),\qquad
- Q_L(z)=(z+1)^{L-1}(z-3)-(z-1)^{L-1}(z+3).
-\]
-Thus $F_3^{\mathrm{red}}=Q_L$, with
-\[
- Q_L(z)=2(L-4)z^{L-1}+\cdots,\qquad
- Q_L(1)=-2^L,\qquad Q_L(-1)=(-1)^L2^L.
-\]
-In particular, the reduced equation has no singular collision at
-$z=\pm1$ and no missing degree at infinity. For a root $z$ of $Q_L$,
-put $e_z=\ord_zQ_L$ and $p=(1,-1,z)$. There is a unique compatible
-choice of the fixed positive and negative coordinates at this ordered
-point. The averaging factor in $Z^{\mathrm{dep}}_1$ therefore gives
-\[
- c_1(p):=\operatorname{coeff}_p Z^{\mathrm{dep}}_1=\frac{e_z}{6}.
-\]
-Together with the preceding boundary calculation, this identifies the
-affine and virtual degrees of the alternating sum. Its value is already
-given by Proposition~\ref{prop:virtual-completeness}.
 
 \paragraph{Unbalanced singular collisions.}
 At $p=(1,-1,1)$, symmetry gives
