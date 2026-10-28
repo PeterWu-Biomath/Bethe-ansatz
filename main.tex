@@ -458,91 +458,31 @@ two labels belong to the same block precisely when their coordinates
 are equal. Write $a=|A(p)|$ and $b=|B(p)|$. If one of $a,b$ is
 positive, the original Bethe equation at that fixed root forces the
 other to be positive as well. Hence either $a=b=0$ or $a,b\ge1$.
-These exact labels classify the affine configurations. In computing
-their weights, however, one must sum contributions from all auxiliary
-ideals containing $p$, rather than just the ideal with its exact labels.
+These exact labels classify the affine configurations. 
 
-Put $c_k(p)=\operatorname{coeff}_p Z^{\mathrm{dep}}_k$. The local claim is
-\[
- \sum_{k=0}^{\lfloor n/2\rfloor}(-1)^k\binom Lk c_k(p)
- =\begin{cases}
- 1/n!,&p\text{ is physical},\\
- 0,&\text{otherwise}.
- \end{cases}
-\]
-The proof separates into the following boundary calculation and five
-disjoint cases for affine points. Throughout, $L\ge2n$.
+Here list some claims that's needed to prove the conjecture:
 \begin{enumerate}
- \item \textbf{Solutions at infinity.}
- Compare the virtual and affine counts using compatible deformations or
- compactifications. With
- \[
-  \beta_k=\deg_{\mathrm{vir}}Z^{\mathrm{dep}}_k
-          -\deg Z^{\mathrm{dep}}_k,
- \]
- prove
- \[
-  \sum_{k=0}^{\lfloor n/2\rfloor}(-1)^k\binom Lk\beta_k=0.
- \]
- Individual $\beta_k$ need not vanish. This establishes the affine
- degree formula from Proposition~\ref{prop:virtual-completeness}; it
- does not by itself establish the local physical weights.
-
- \item \textbf{Regular solutions: $a=b=0$, with distinct coordinates.}
- Only $k=0$ contributes, and only the singleton partition contains
- $p$. Thus
- \[
-  c_0(p)=\frac1{n!}\ell_p((F_1,\ldots,F_n)).
- \]
- Establish physical admissibility and local length one, giving the
- required weight $1/n!$.
-
- \item \textbf{Nonsingular collisions: $a=b=0$, with repeated coordinates.}
- Again only $k=0$ contributes. Prove that the M\"obius combination of
- local lengths vanishes. This requires comparison of the partition
- ideals at $p$; deleting diagonal points from the original system
- does not compute the prescribed combination.
-
- \item \textbf{Exactly one singular pair: $a=b=1$.}
- Only $k=0,1$ can contribute, so prove
- \[
-  c_0(p)-Lc_1(p)=w(p),
- \]
- where $w(p)$ is the target weight above. For distinct remaining
- coordinates, justify the transverse correction by $L$ and identify
- the residual multiplicity with physical admissibility, including
- condition~\eqref{eq:physical}. Prove that the residual weight is
- $1/n!$ at physical points and zero otherwise. If remaining
- coordinates collide, prove that the whole expression vanishes.
- Having one singular pair does not itself imply that the restricted
- solution is simple.
-
- \item \textbf{Unbalanced singular configurations: $a\ne b$.}
- Prove
- \[
-  \sum_{k=0}^{\min(a,b)}(-1)^k\binom Lk c_k(p)=0,
- \]
- allowing arbitrary collisions among the remaining coordinates.
- The vanishing of $c_0(p)$ alone is insufficient: all reduced
- fixed-pair contributions must also be accounted for.
-
- \item \textbf{Multiple balanced singular pairs: $a=b\ge2$.}
- These points have repeated coordinates and hence target weight zero.
- Prove
- \[
-  \sum_{k=0}^{a}(-1)^k\binom Lk c_k(p)=0,
- \]
- including any collisions among the remaining roots. The double-pair
- relation $M_L-Lb_L+\binom L2=0$ is the first nontrivial model.
- The general task is to justify the higher binomial corrections and
- their compatibility at all singular boundaries, for both parities
- of $L$.
+	\item Solution at infinity: there are some cancellation such that $P$ do not have desired degree when you make a series of substitution like $x_i=x_j$. As an example, when $L=6,n=3$, $P(x,x,x)=48x^5+160x^3+48x$ but the expected degree is $7$. We claimed those "solution at infinity" will be cancelled at depermutation.
+	\item Every $Z^{dep}_{k}$ contains only points with singleton $\pi$. 
+	\item Every $Z^{dep}_{k}$ contains only points with $a=b$.
+	\item \textbf{Exactly one singular pair: $a=b=1$.}
+	Only $k=0,1$ can contribute, so prove
+	\[
+	c_0(p)-Lc_1(p)=w(p),
+	\]
+	where $w(p)$ is the target weight above.
+	\item \textbf{Multiple balanced singular pairs: $a=b\ge2$.}
+	These points have repeated coordinates and hence target weight zero.
+	Prove
+	\[
+	\sum_{k=0}^{a}(-1)^k\binom Lk c_k(p)=0,
+	\]
+	including any collisions among the remaining roots. The double-pair
+	relation $M_L-Lb_L+\binom L2=0$ is the first nontrivial model.
+	The general task is to justify the higher binomial corrections and
+	their compatibility at all singular boundaries, for both parities
+	of $L$.
 \end{enumerate}
-The five affine cases establish the pointwise assertion. The boundary
-calculation and the virtual combinatorial identity establish the degree
-assertion. Relating the resulting count to a basis of highest-weight
-Bethe vectors additionally requires their independence and the validity
-of the singular regularization.
 
 \section{The singular-pair correction}
 
