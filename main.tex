@@ -309,10 +309,9 @@ To formulate the singular correction, extend depermutation to systems
 with fixed singular roots. For $0\le k\le\lfloor n/2\rfloor$,
 let $A,B\subseteq[n]$ be disjoint subsets with $|A|=|B|=k$, and put
 $R=[n]\setminus(A\cup B)$ and $r=|R|=n-2k$.
-For these balanced fixed sets, $F_t^{\mathrm{red}}=F_t^{(k)}$, where
-the polynomial $F_t^{(k)}$ is written explicitly in
-\eqref{eq:k-pair-reduced}. Assuming the ideals $I_{A,B;\pi}$ are
-zero-dimensional, set
+For these balanced fixed sets, use the reduced polynomials from
+\eqref{eq:reduced-fixed-equation}. Assuming the ideals
+$I_{A,B;\pi}$ are zero-dimensional, set
 \begin{equation}\label{eq:reduced-fixed-pair-depermutation}
  \begin{aligned}
  Z^{\mathrm{dep}}_{A,B}
@@ -483,39 +482,28 @@ Here list some claims that's needed to prove the conjecture:
 	\item Solution at infinity: there are some cancellation such that $P$ do not have desired degree when you make a series of substitution like $x_i=x_j$. As an example, when $L=6,n=3$, $P(x,x,x)=48x^5+160x^3+48x$ but the expected degree is $7$. We claimed those "solution at infinity" will be cancelled at depermutation.
 	\item Every $Z^{dep}_{k}$ contains only points with singleton $\pi$. 
 	\item Every $Z^{dep}_{k}$ contains only points with $a=b$.
-	\item \textbf{Exactly one singular pair: $a=b=1$.}
+	\item \textbf{Exactly one singular pair: $a=b=1$ and $\pi=\hat 0$.}
 	Only $k=0,1$ can contribute, so prove
 	\begin{equation}\label{eq:singular_weight}
 	c_0(p)-Lc_1(p)=w(p)
 	\end{equation}
 	where $w(p)$ is the target weight above.
-	For a point with pairwise distinct coordinates, let $\ell_p$ be its
-	local length in the full Bethe ideal and let
-	$e_p=\ell_p(I_{A(p),B(p);\hat0})$ be its reduced fixed-pair local
-	length. The normalizations give $c_0(p)=\ell_p/n!$ and
-	$c_1(p)=e_p/n!$. Thus the required local-length claim is
+	The required local-length claim is
 	\begin{equation}\label{eq:single-pair-length-criterion}
 	 \ell_p=
 	 \begin{cases}
-	 Le_p+1,&p\text{ satisfies the physical condition }\eqref{eq:physical},\\
-	 Le_p,&\text{otherwise}.
+	 L+1,&p\text{ satisfies the physical condition }\eqref{eq:physical},\\
+	 L,&\text{otherwise}.
 	 \end{cases}
 	\end{equation}
-	In particular, when $e_p=1$, the full local length is $L+1$ at a
-	physical point and $L$ at a nonphysical point. Proving this length
-	criterion proves the physical weight identity; the cases $n=2,3$
-	below illustrate it.
-	\item \textbf{Multiple balanced singular pairs: $a=b\ge2$.}
+
+	\item \textbf{Multiple balanced singular pairs: $a=b\ge2$ and $\pi=\hat 0$.}
 	These points have repeated coordinates and hence target weight zero.
 	Prove
 	\[
 	\sum_{k=0}^{a}(-1)^k\binom Lk c_k(p)=0,
 	\]
-	including any collisions among the remaining roots. The double-pair
-	relation $M_L-Lb_L+\binom L2=0$ is the first nontrivial model.
-	The general task is to justify the higher binomial corrections and
-	their compatibility at all singular boundaries, for both parities
-	of $L$.
+
 \end{enumerate}
 
 \section{Small numbers of Bethe roots}
@@ -691,43 +679,194 @@ is $L+1$. Therefore
 Thus the local-length criterion, and hence the desired pointwise
 identity, holds at every distinct-coordinate singular solution for $n=3$.
 
-\subsection{$n=4$}
+\subsection{Four roots: the double singular pair $n=4$}
+\label{sec:n4-double-pair}
 
-Apply Definition~\ref{def:depermutation} to $P$ from the background, and
-write $Z^{\mathrm{dep}}_{L,n}=Z^{\mathrm{dep}}_P$. Set $F_k=P_k$,
-with the convention
-\[
- F_k=(x_k+1)^L\prod_{j\ne k}(x_k-x_j-2)
- -(x_k-1)^L\prod_{j\ne k}(x_k-x_j+2).
-\]
-Put $a=1$ and let
-\[
- \Sigma=
- \bigcup_{r\ne s}V(x_r-a,x_s+a)
- \subset\A^n.
-\]
-We seek a permutation-invariant excess formal sum $Z^{\mathrm{exc}}_{L,n}$
-on $\A^n$, supported on $\Sigma$ and normalized by the same factor $1/n!$
-as $Z^{\mathrm{dep}}_{L,n}$, and define
-\begin{equation}\label{eq:physicalcycle}
- Z^{\mathrm{phys}}_{L,n}
- =Z^{\mathrm{dep}}_{L,n}-Z^{\mathrm{exc}}_{L,n}.
+Let $n=4$, $L\ge8$, and $p_0=(1,1,-1,-1)$, and write
+$Z^{\mathrm{dep}}_{L,4}=Z^{\mathrm{dep}}_0$. We prove that the corrected
+weight at this point is zero. By the multiplicity of the
+unordered configuration we mean the sum of the coefficients of
+$Z^{\mathrm{dep}}_{L,4}$ over the six distinct permutations of $p_0$.
+This multiplicity is before any singular-excess subtraction.
+
+\begin{proposition}\label{prop:n4-double-pair}
+The unordered multiplicity of $\{1,1,-1,-1\}$ after depermutation is
+\begin{equation}\label{eq:n4-double-pair}
+ \boxed{M_L=
+ \begin{cases}
+ \displaystyle\binom L2,&L\text{ even},\\[2pt]
+ \displaystyle\binom{L+1}2,&L\text{ odd}.
+ \end{cases}}
 \end{equation}
-This is a proposed construction: the support condition alone does not
-determine $Z^{\mathrm{exc}}_{L,n}$.
-Writing $Z^{\mathrm{exc}}_{L,n}=\sum_i e_i[x^i]$, the pointwise goal is
-\[
- w_i=w_i^{\mathrm{dep}}-e_i.
-\]
-Both $Z^{\mathrm{dep}}_{L,n}$ and the proposed excess formal sum are to be expressed
-in terms of the auxiliary formal sums $Z_j$, so that their difference has the
-form \eqref{eq:weight-cycle}. In the local calculations below,
-$\operatorname{coeff}_pZ^{\mathrm{dep}}_{L,n}=w_i^{\mathrm{dep}}$ when $p=x^i$.
+The coefficient at a single ordered point $p_0$ in the normalized formal sum
+$Z^{\mathrm{dep}}_{L,4}$ is $M_L/6$.
+\end{proposition}
 
-\subsection{General vanishing for unequal singular multiplicities}
+\begin{proof}
+We compute the depermutation multiplicity in symmetric coordinates.
+This also avoids computing four large ordinary local intersection
+lengths separately.
+
+\paragraph{Depermutation and the polynomial remainder equations.}
+For a monic quartic $Q$, let $r_Q$ be the remainder modulo $Q$ of
+\[
+ R_Q(T)=(T+1)^LQ(T-2)+(T-1)^LQ(T+2).
+\]
+The four coefficients of $r_Q$ define a system in the four coefficients
+of $Q$. We will show below that it is isolated at
+$Q_0(T)=(T^2-1)^2$, and compute its local length $M_L$. The full and partition local lengths are taken under our standing
+finiteness assumption.
+
+This local length is the unordered depermutation multiplicity. To see
+this, use the auxiliary perturbation $h_a$ from
+Proposition~\ref{prop:baxter-support}, now of degree at most three.
+The remainder system becomes $r_Q+h_a=0$. In a finite local family, a
+generic small $h_a$ gives $M_L$ simple quartics near $Q_0$, each with
+distinct roots. Indeed, this system is the fiber of the map
+$Q\mapsto-r_Q$; generic fibers are reduced, and the discriminant
+hypersurface of quartics has lower-dimensional image in a finite local
+neighborhood. Each such quartic has two roots near $1$ and two near
+$-1$, and gives $2!\,2!=4$ ordered configurations near $p_0$.
+All other nearby solutions have collisions and cancel in the M\"obius
+sum, exactly as in Proposition~\ref{prop:baxter-support}.
+Thus the coefficient at $p_0$ is $4M_L/24=M_L/6$, and its orbit has
+total coefficient $M_L$.
+
+\paragraph{Separating the two clusters.}
+Use the local factorization
+\[
+ Q(T)=A(T-1)B(T+1),\qquad
+ A(u)=u^2-au+b,\qquad B(v)=v^2-cv+d.
+\]
+The coefficients $(a,b,c,d)$ are local coordinates near $Q_0$: the two
+factors of $Q_0$ are coprime, so multiplication is locally invertible.
+Divisibility by $Q$ is equivalent to divisibility at each of these
+coprime quadratic factors. After division by units, the two congruences
+are
+\begin{equation}\label{eq:n4-cluster-congruences}
+ \begin{aligned}
+ B(u)+u^LU(u)&\equiv0\pmod{A(u)},\\
+ A(v)+v^LV(v)&\equiv0\pmod{B(v)},
+ \end{aligned}
+\end{equation}
+where
+\[
+ \begin{aligned}
+ U(u)&=\frac{A(u+2)B(u+4)}{(u+2)^LA(u-2)},\\
+ V(v)&=\frac{A(v-4)B(v-2)}{(v-2)^LB(v+2)}.
+ \end{aligned}
+\]
+The denominators are units in the corresponding completed quadratic
+algebras. The two coefficients of the first congruence solve uniquely
+for $c,d$ as formal power series in $a,b$, by the implicit function
+theorem.
+
+Give $a,u,v$ weight one and $b$ weight two. The remainder of $u^L$
+modulo $A$ has its linear coefficient of weight $L-1$ and its constant
+coefficient of weight $L$. Consequently the solution of the first
+congruence satisfies
+\[
+ c=a+O_{\mathrm w}(L-1),\qquad d=b+O_{\mathrm w}(L),
+\]
+where $O_{\mathrm w}(j)$ denotes terms of weight at least $j$.
+In particular, for the low-weight calculation that follows we may put
+$B=A$ inside $U,V$.
+
+\paragraph{The leading equations and parity.}
+Put $C=2^{4-L}$. Direct expansion to weight one gives
+\[
+ \begin{aligned}
+ U(u)&=C\left(1+\frac{5-L}{2}u-\frac54a+O_{\mathrm w}(2)\right),\\
+ V(u)&=(-1)^LC\left(1+\frac{L-5}{2}u+\frac54a
+                    +O_{\mathrm w}(2)\right).
+ \end{aligned}
+\]
+After eliminating $c,d$, the leading part of the second congruence is
+obtained by taking the remainder modulo $A$ of $u^L(U(u)+V(u))$.
+The corrections from $B-A$ have higher weight and do not affect these
+initial equations, since $L\ge8$.
+
+If $L$ is even, the constant terms add. Up to a nonzero scalar, the
+two initial equations are the coefficients of
+\[
+ \operatorname{rem}_A u^L.
+\]
+Their weights are $L-1$ and $L$. They have only the common zero
+$(a,b)=(0,0)$, since $A\mid u^L$ forces both roots of $A$ to be zero.
+
+If $L$ is odd, the constant terms cancel. Up to a nonzero scalar, the
+two initial equations are the coefficients of
+\[
+ \operatorname{rem}_A\left((5-L)u^{L+1}-\frac52a u^L\right).
+\]
+Their weights are $L$ and $L+1$. These also have only the common zero
+$(0,0)$. Indeed, if $A$ had two distinct nonzero roots, both would have
+to be the same root of the linear factor
+$(5-L)u-\tfrac52a$, which is impossible. If its roots were $0$ and
+$a\ne0$, evaluation at $u=a$ would give
+$(\tfrac52-L)a^{L+1}\ne0$. If it had a nonzero double root $r$, then
+$a=2r$ and evaluation at $u=r$ would give $-Lr^{L+1}\ne0$.
+
+In both cases the weighted initial equations form a zero-dimensional
+regular sequence, so higher-weight terms do not change the local length.
+For weights $1,2$ and equation weights $d_1,d_2$, that length is
+$d_1d_2/2$: the Hilbert series is
+\[
+ \frac{(1-z^{d_1})(1-z^{d_2})}{(1-z)(1-z^2)},
+\]
+whose value at $z=1$ is $d_1d_2/2$. This proves isolation of the remainder
+system and yields $L(L-1)/2$ for even $L$, and $L(L+1)/2$ for odd $L$,
+as claimed.
+
+\end{proof}
+
+
+\paragraph{The reduced one-pair contribution at the double pair.}
+To finish the weight calculation at $p_0$, fix one positive and one
+negative root. The two remaining reduced equations are $G(x,y)=0$ and
+$G(y,x)=0$, where
+\[
+ G(x,y)=(x+1)^{L-1}(x-3)(x-y-2)
+       -(x-1)^{L-1}(x+3)(x-y+2).
+\]
+Let $b_L$ be their local length at $(1,-1)$. Put $x=1+u$, $y=-1+v$,
+and $\eta=u-v$. The first equation gives
+\[
+ \eta=\frac{4C(u)}{A(u)-C(u)}
+ =-2^{4-L}u^{L-1}
+   \left(1+\frac{5-2L}{4}u+O(u^2)\right),
+\]
+where $A(u)=(2+u)^{L-1}(u-2)$ and $C(u)=u^{L-1}(u+4)$.
+Substitution into the second equation yields
+\[
+ G(y,x)=
+ \begin{cases}
+ 32u^{L-1}+O(u^L),&L\text{ even},\\
+ 8(2L-5)u^L+O(u^{L+1}),&L\text{ odd}.
+ \end{cases}
+\]
+Hence $b_L=L-1$ for even $L$ and $b_L=L$ for odd $L$.
+
+There are four choices of the fixed positive and negative labels at
+$p_0$. Each contributes $b_L/2$ before the averaging factor $2!/4!$,
+so $c_1(p_0)=b_L/6$. Fixing both pairs gives $c_2(p_0)=1/6$, while
+Proposition~\ref{prop:n4-double-pair} gives $c_0(p_0)=M_L/6$.
+Consequently,
+\[
+ \boxed{
+ \operatorname{coeff}_{p_0}Z^{\mathrm{cand}}_{L,4}
+ =\frac16\left(M_L-Lb_L+\binom L2\right)=0.}
+\]
+For even $L$ the numerator is
+$\binom L2-L(L-1)+\binom L2=0$; for odd $L$ it is
+$\binom{L+1}2-L^2+\binom L2=0$.
+Thus the double singular pair has the required zero weight for both
+parities, as do all its permutations.
+
+\section{Unbalanced singular configurations}
 \label{sec:unbalanced}
 
-The cancellation at $(1,-1,1)$ extends to arbitrary unequal numbers of
+Write $Z^{\mathrm{dep}}_{L,n}=Z^{\mathrm{dep}}_0$ for the depermutation sum of the full system. The cancellation at $(1,-1,1)$ extends to arbitrary unequal numbers of
 $1$'s and $-1$'s. The full local algebra need not equal a single partition
 algebra in general; instead, the whole M\"obius sum cancels. We first
 establish a necessary condition for a nonzero depermutation coefficient.
@@ -847,827 +986,7 @@ partition multiplicities. It does not assert that balanced configurations
 have nonzero coefficients or that their singular excess has already been
 computed.
 
-\subsection{Four roots: the double singular pair}
-\label{sec:n4-double-pair}
-
-Let $n=4$, $L\ge8$, and $p_0=(1,1,-1,-1)$. By the multiplicity of the
-unordered configuration we mean the sum of the coefficients of
-$Z^{\mathrm{dep}}_{L,4}$ over the six distinct permutations of $p_0$.
-This multiplicity is before any singular-excess subtraction.
-
-\begin{proposition}\label{prop:n4-double-pair}
-The unordered multiplicity of $\{1,1,-1,-1\}$ after depermutation is
-\begin{equation}\label{eq:n4-double-pair}
- \boxed{M_L=
- \begin{cases}
- \displaystyle\binom L2,&L\text{ even},\\[2pt]
- \displaystyle\binom{L+1}2,&L\text{ odd}.
- \end{cases}}
-\end{equation}
-The coefficient at a single ordered point $p_0$ in the normalized formal sum
-$Z^{\mathrm{dep}}_{L,4}$ is $M_L/6$.
-\end{proposition}
-
-\begin{proof}
-We compute the depermutation multiplicity in symmetric coordinates.
-This also avoids computing four large ordinary local intersection
-lengths separately.
-
-\paragraph{Depermutation and the polynomial remainder equations.}
-For a monic quartic $Q$, let $r_Q$ be the remainder modulo $Q$ of
-\[
- R_Q(T)=(T+1)^LQ(T-2)+(T-1)^LQ(T+2).
-\]
-The four coefficients of $r_Q$ define a system in the four coefficients
-of $Q$. We will show below that it is isolated at
-$Q_0(T)=(T^2-1)^2$, and compute its local length $M_L$. We also verify
-below that the full ordered system is isolated at $p_0$, so that its
-partition lengths and their M\"obius combination are defined.
-
-This local length is the unordered depermutation multiplicity. To see
-this, use the auxiliary perturbation $h_a$ from
-Proposition~\ref{prop:baxter-support}, now of degree at most three.
-The remainder system becomes $r_Q+h_a=0$. In a finite local family, a
-generic small $h_a$ gives $M_L$ simple quartics near $Q_0$, each with
-distinct roots. Indeed, this system is the fiber of the map
-$Q\mapsto-r_Q$; generic fibers are reduced, and the discriminant
-hypersurface of quartics has lower-dimensional image in a finite local
-neighborhood. Each such quartic has two roots near $1$ and two near
-$-1$, and gives $2!\,2!=4$ ordered configurations near $p_0$.
-All other nearby solutions have collisions and cancel in the M\"obius
-sum, exactly as in Proposition~\ref{prop:baxter-support}.
-Thus the coefficient at $p_0$ is $4M_L/24=M_L/6$, and its orbit has
-total coefficient $M_L$.
-
-\paragraph{Separating the two clusters.}
-Use the local factorization
-\[
- Q(T)=A(T-1)B(T+1),\qquad
- A(u)=u^2-au+b,\qquad B(v)=v^2-cv+d.
-\]
-The coefficients $(a,b,c,d)$ are local coordinates near $Q_0$: the two
-factors of $Q_0$ are coprime, so multiplication is locally invertible.
-Divisibility by $Q$ is equivalent to divisibility at each of these
-coprime quadratic factors. After division by units, the two congruences
-are
-\begin{equation}\label{eq:n4-cluster-congruences}
- \begin{aligned}
- B(u)+u^LU(u)&\equiv0\pmod{A(u)},\\
- A(v)+v^LV(v)&\equiv0\pmod{B(v)},
- \end{aligned}
-\end{equation}
-where
-\[
- \begin{aligned}
- U(u)&=\frac{A(u+2)B(u+4)}{(u+2)^LA(u-2)},\\
- V(v)&=\frac{A(v-4)B(v-2)}{(v-2)^LB(v+2)}.
- \end{aligned}
-\]
-The denominators are units in the corresponding completed quadratic
-algebras. The two coefficients of the first congruence solve uniquely
-for $c,d$ as formal power series in $a,b$, by the implicit function
-theorem.
-
-Give $a,u,v$ weight one and $b$ weight two. The remainder of $u^L$
-modulo $A$ has its linear coefficient of weight $L-1$ and its constant
-coefficient of weight $L$. Consequently the solution of the first
-congruence satisfies
-\[
- c=a+O_{\mathrm w}(L-1),\qquad d=b+O_{\mathrm w}(L),
-\]
-where $O_{\mathrm w}(j)$ denotes terms of weight at least $j$.
-In particular, for the low-weight calculation that follows we may put
-$B=A$ inside $U,V$.
-
-\paragraph{The leading equations and parity.}
-Put $C=2^{4-L}$. Direct expansion to weight one gives
-\[
- \begin{aligned}
- U(u)&=C\left(1+\frac{5-L}{2}u-\frac54a+O_{\mathrm w}(2)\right),\\
- V(u)&=(-1)^LC\left(1+\frac{L-5}{2}u+\frac54a
-                    +O_{\mathrm w}(2)\right).
- \end{aligned}
-\]
-After eliminating $c,d$, the leading part of the second congruence is
-obtained by taking the remainder modulo $A$ of $u^L(U(u)+V(u))$.
-The corrections from $B-A$ have higher weight and do not affect these
-initial equations, since $L\ge8$.
-
-If $L$ is even, the constant terms add. Up to a nonzero scalar, the
-two initial equations are the coefficients of
-\[
- \operatorname{rem}_A u^L.
-\]
-Their weights are $L-1$ and $L$. They have only the common zero
-$(a,b)=(0,0)$, since $A\mid u^L$ forces both roots of $A$ to be zero.
-
-If $L$ is odd, the constant terms cancel. Up to a nonzero scalar, the
-two initial equations are the coefficients of
-\[
- \operatorname{rem}_A\left((5-L)u^{L+1}-\frac52a u^L\right).
-\]
-Their weights are $L$ and $L+1$. These also have only the common zero
-$(0,0)$. Indeed, if $A$ had two distinct nonzero roots, both would have
-to be the same root of the linear factor
-$(5-L)u-\tfrac52a$, which is impossible. If its roots were $0$ and
-$a\ne0$, evaluation at $u=a$ would give
-$(\tfrac52-L)a^{L+1}\ne0$. If it had a nonzero double root $r$, then
-$a=2r$ and evaluation at $u=r$ would give $-Lr^{L+1}\ne0$.
-
-In both cases the weighted initial equations form a zero-dimensional
-regular sequence, so higher-weight terms do not change the local length.
-For weights $1,2$ and equation weights $d_1,d_2$, that length is
-$d_1d_2/2$: the Hilbert series is
-\[
- \frac{(1-z^{d_1})(1-z^{d_2})}{(1-z)(1-z^2)},
-\]
-whose value at $z=1$ is $d_1d_2/2$. This proves isolation of the remainder
-system and yields $L(L-1)/2$ for even $L$, and $L(L+1)/2$ for odd $L$,
-as claimed.
-
-\paragraph{Isolation of the ordered system.}
-For completeness, we check the collision strata not directly covered by
-the remainder equations. Near $p_0$, a collision can only merge the two
-roots in the same cluster. If just the positive cluster is merged, write
-$A(u)=(u-r)^2$. The two coefficients of the negative-cluster congruence
-in \eqref{eq:n4-cluster-congruences} solve the coefficients of $B$
-uniquely in terms of $r$. The remaining equation is the positive-cluster
-equation evaluated at $u=r$. Using the same expansions above, its leading
-term is $2Cr^L$ for even $L$ and $-LCr^{L+1}$ for odd $L$.
-It is therefore isolated. The stratum with only the negative cluster
-merged is identical by sign reversal.
-
-If both clusters are merged, write their common values as $1+u$ and
-$-1+v$, and put $\eta=u-v$. Up to nonzero scalar factors the equations are
-\[
- \begin{aligned}
- (2+u)^L\eta^2+u^L(\eta+4)^2&=0,\\
- (v-2)^L\eta^2+v^L(\eta+4)^2&=0.
- \end{aligned}
-\]
-Since the indicated denominators are units, these imply
-\[
- \left(\frac{u}{u+2}\right)^L
- =\left(\frac{v}{v-2}\right)^L.
-\]
-On any nonconstant local curve there is an $L$th root of unity $\omega$
-such that $u/(u+2)=\omega v/(v-2)$, or
-\[
- v=\frac{2u}{(1-\omega)u-2\omega}.
-\]
-If $\omega\ne-1$, then $\eta$ has the same order as $u$, and the first
-equation has terms of incompatible orders $2\ord(u)$ and $L\ord(u)$.
-If $\omega=-1$, which requires even $L$, then $v=u/(1+u)$ and $\eta$
-has order $2\ord(u)$; the incompatible orders are now $4\ord(u)$ and
-$L\ord(u)$. Since $L\ge8$, no such curve exists. Thus this stratum is
-isolated as well. Finally, a curve with no collisions would give a curve
-in the already isolated remainder system. All possible local equality
-strata have now been excluded, proving isolation at $p_0$ and completing
-the local-length justification.
-\end{proof}
-
-For comparison with the notation $l_{ij}$, let $\ell_{11;11}$ be the full
-ordered local length at $p_0$, let $\ell_{2;11}$ be the length after merging
-the two $1$'s, and let $\ell_{2;2}$ be the length after merging both equal
-pairs. These are the local lengths $l_{ij}$ for the four compatible
-partition-weighted sums at the point $x^i=p_0$.
-Sign reversal identifies the two one-pair-merged lengths. The four
-compatible partitions therefore give
-\[
- M_L=\frac{\ell_{11;11}-2\ell_{2;11}+\ell_{2;2}}4.
-\]
-The denominator four includes the orbit size six and the normalization
-$1/4!$. Thus $M_L$ is the sum of $w_i^{\mathrm{dep}}$ over that orbit,
-while each ordered point has $w_i^{\mathrm{dep}}=M_L/6$.
-Formula~\eqref{eq:n4-double-pair} evaluates this combination.
-For instance,
-\[
- \begin{array}{c|rrrr}
- L&8&9&10&11\\ \hline
- M_L&28&45&45&66
- \end{array}
-\]
-Thus the guess $\binom L2$ for this depermuted multiplicity holds for
-even $L$; for odd $L$ the multiplicity is larger by $L$.
-
-\subsection{Four roots: the one-pair count and parity compensation}
-\label{sec:n4-parity-compensation}
-
-The proposed singular subtraction for $n=4$ separates two strata:
-\begin{enumerate}
- \item configurations $\{1,-1,x,y\}$ with $x,y\ne\pm1$, depermuted over
- $x,y$, with proposed excess $L$ times their restricted formal sum;
- \item the configuration $\{1,1,-1,-1\}$, with depermuted multiplicity
- $M_L$ from Proposition~\ref{prop:n4-double-pair}.
-\end{enumerate}
-Unbalanced singular configurations vanish by
-Proposition~\ref{prop:unbalanced}. We now compute the restricted degree
-in the first stratum and explain how its parity dependence compensates
-that of $M_L$.
-
-\begin{proposition}[Restricted one-pair degree]\label{prop:n4-one-pair}
-Let $L\ge8$. Fix $x_1=1$ and $x_2=-1$, and depermute the remaining two
-coordinates after excluding $\pm1$. The resulting restricted formal sum has
-degree
-\begin{equation}\label{eq:n4-one-pair}
- \boxed{B_L=
- \begin{cases}
- \displaystyle\binom{L-1}{2},&L\text{ even},\\[2pt]
- \displaystyle\binom{L-1}{2}-1,&L\text{ odd}.
- \end{cases}}
-\end{equation}
-This degree uses the partition multiplicities of the restricted system;
-it is not a claim that its underlying points are all simple.
-\end{proposition}
-
-\begin{proof}
-The first two Bethe equations vanish identically. Put $x_3=x$, $x_4=y$.
-The other two factor as $(x^2-1)G(x,y)$ and $(y^2-1)G(y,x)$, where
-\[
- G(x,y)=(x+1)^{L-1}(x-3)(x-y-2)
-       -(x-1)^{L-1}(x+3)(x-y+2).
-\]
-The cancelled factors are units on the open set $x,y\ne\pm1$, so $G$
-generates the same localized ideal there. Its degree is $L$, with
-top homogeneous part
-\[
- G^{[L]}(x,y)=2x^{L-1}\bigl((L-6)x-(L-4)y\bigr).
-\]
-This and its transpose have no common zero in $\mathbb P^1$: the cases
-$x=0$ or $y=0$ are impossible, and otherwise the determinant is
-$(L-6)^2-(L-4)^2=4(5-L)\ne0$. Hence the full affine system
-$G(x,y)=G(y,x)=0$ has length $L^2$. On the diagonal,
-\[
- G(x,x)=-2\bigl((x+1)^{L-1}(x-3)+(x-1)^{L-1}(x+3)\bigr)
-\]
-has degree $L$. Before excluding $\pm1$, depermutation therefore gives
-degree $(L^2-L)/2=\binom L2$.
-
-The only solutions outside the open set $x,y\ne\pm1$ are $(1,-1)$ and
-$(-1,1)$. For instance, $G(1,y)=2^L(y+1)$, and the other cases follow
-similarly. Neither point lies on the diagonal. Let $b_L$ be their common
-local length. Their total contribution to the normalized two-variable
-formal sum is $b_L$, so
-\[
- B_L=\binom L2-b_L.
-\]
-
-To find $b_L$, set $x=1+u$, $y=-1+v$, and $\eta=u-v$. The first equation
-becomes
-\[
- A(u)\eta-C(u)(\eta+4)=0,\qquad
- A(u)=(2+u)^{L-1}(u-2),\quad C(u)=u^{L-1}(u+4).
-\]
-Since $A(0)=-2^L$, it solves uniquely as
-\[
- \eta=\frac{4C(u)}{A(u)-C(u)}
- =-2^{4-L}u^{L-1}
-   \left(1+\frac{5-2L}{4}u+O(u^2)\right).
-\]
-Substitution into the second equation gives
-\[
- G(y,x)=v^{L-1}(v-4)(-\eta-4)
-       +(v-2)^{L-1}(v+2)\eta
- =\begin{cases}
- 32u^{L-1}+O(u^L),&L\text{ even},\\
- 8(2L-5)u^L+O(u^{L+1}),&L\text{ odd}.
- \end{cases}
-\]
-Thus $b_L=L-1$ for even $L$ and $b_L=L$ for odd $L$. Subtracting these
-lengths from $\binom L2$ proves \eqref{eq:n4-one-pair}.
-\end{proof}
-
-\paragraph{Why the proposed correction is independent of parity.}
-Under the proposed subtraction rule, the total singular correction is
-\[
- E_L=LB_L+M_L.
-\]
-For odd $L$, $B_L$ is smaller by one than the even-parity formula, while
-$M_L$ is larger by $L$. These changes cancel exactly, giving in both cases
-\begin{equation}\label{eq:n4-total-excess}
- \boxed{E_L=L\binom{L-1}{2}+\binom L2
-              =\frac{L(L-1)^2}{2}.}
-\end{equation}
-Consequently, if the total depermutation degree before singular
-subtraction is $\binom{L+2}{4}$, then
-\[
- \boxed{\binom{L+2}{4}-LB_L-M_L
-       =\binom L4-\binom L3.}
-\]
-For example, at $L=8$ the proposed correction is $8\cdot21+28=196$,
-leaving $210-196=14$; at $L=9$ it is $9\cdot27+45=288$, leaving
-$330-288=42$.
-
-This proves the parity compensation between the two computed
-contributions. To complete the proposed counting argument, one must still
-justify the total degree $\binom{L+2}{4}$ with compatible boundary
-intersections and establish that $L$ times the restricted one-pair formal sum,
-together with the full double-pair contribution, is the intended excess
-formal sum. In particular, the multiplication by $L$ must also be justified
-at collisions of the two free coordinates. These are separate geometric
-and physical claims, not consequences of the degree identity alone.
-
-\subsection{An alternating sum retaining all singular boundaries}
-\label{sec:alternating-singular-cycle}
-
-The identity at the double singular pair suggests organizing the
-subtraction without first separating every exact singular stratum.
-Here $M_L$ means the depermuted multiplicity from
-Proposition~\ref{prop:n4-double-pair}, and $b_L$ means the boundary
-multiplicity of the cancelled reduced two-variable system, not the
-ordinary length of the uncancelled restricted equations.
-The parity-free combination is
-\begin{equation}\label{eq:double-pair-relative}
- \boxed{M_L-Lb_L=-\binom L2.}
-\end{equation}
-Negative coefficients are allowed in a formal sum;
-it does not represent the dimension of a physical vector space. Adding a second boundary
-correction $+\binom L2$ cancels this coefficient.
-
-\paragraph{Formal sums in a common space.}
-Let $\overline Z^{(0)}_{L,4}$ denote the depermutation formal sum of the full
-four-variable system, with weights added over permutation orbits in
-$\Sym^4(\A^1)$. Let
-$\overline Z^{(1)}_{L,2}$ denote the depermutation formal sum of
-$G(x,y)=G(y,x)=0$ on unordered pairs in $\Sym^2(\A^1)$, \emph{including} its
-boundary $\{1,-1\}$. The injective map
-\[
- \iota_1:\Sym^2(\A^1)\longrightarrow\Sym^4(\A^1),
- \qquad D\longmapsto D+[1]+[-1]
-\]
-places them in a common ambient space. The coefficient of the signed
-formal sum
-\[
- \overline Z^{(0)}_{L,4}-L(\iota_1)_*\overline Z^{(1)}_{L,2}
-\]
-at $2[1]+2[-1]$ is precisely \eqref{eq:double-pair-relative}.
-Hence the candidate corrected formal sum is
-\begin{equation}\label{eq:n4-alternating-cycle}
- \overline Z^{\mathrm{cand}}_{L,4}=
- \overline Z^{(0)}_{L,4}-L(\iota_1)_*\overline Z^{(1)}_{L,2}
- +\binom L2[\,2[1]+2[-1]\,].
-\end{equation}
-It has zero coefficient at the double pair for both parities. Away from
-that boundary its correction is exactly the proposed one-pair correction.
-Its degree is
-\[
- \deg\overline Z^{\mathrm{cand}}_{L,4}
- =\deg\overline Z^{(0)}_{L,4}-L\binom L2+\binom L2.
-\]
-Thus the degree calculation no longer requires the separate parity
-formulas for the exact one-pair stratum.
-
-\paragraph{The general family of reduced systems.}
-Retain the standing assumption $L\ge2n$. For $0\le k\le\lfloor n/2\rfloor$
-put $r=n-2k$. After fixing $k$ roots at each of $1$ and $-1$, each
-remaining Bethe equation has a common factor $(x_i^2-1)^k$.
-Cancel it, and define the reduced system in $r$ variables by
-\begin{equation}\label{eq:k-pair-reduced}
- \begin{split}
- F_i^{(k)}(x)={}&
- (x_i+1)^{L-k}(x_i-3)^k
-       \prod_{\substack{j=1\\j\ne i}}^r(x_i-x_j-2)\\
- &-(x_i-1)^{L-k}(x_i+3)^k
-       \prod_{\substack{j=1\\j\ne i}}^r(x_i-x_j+2).
- \end{split}
-\end{equation}
-For $k=0$ this is the original system. Cancellation identifies the
-restricted and reduced ideals after localization where the remaining
-roots avoid $\pm1$.
-We use \eqref{eq:k-pair-reduced} itself to extend the reduced formal sum over
-the boundary; its coefficients there need not equal the local lengths
-of the uncancelled restricted ideal.
-
-When the relevant partition ideals are zero-dimensional, let
-$\overline Z^{(k)}_{L,r}$ be the normalized partition-weighted sum of this reduced
-system, with orbit weights added on $\Sym^r(\A^1)$. Retain all further occurrences of
-$\pm1$ in this formal sum. For $r=0$, set
-$\overline Z^{(k)}_{L,0}=[\varnothing]$ with degree one. Define
-\[
- \iota_k:\Sym^{n-2k}(\A^1)\longrightarrow\Sym^n(\A^1),
- \qquad D\longmapsto D+k[1]+k[-1].
-\]
-These are maps of unordered configurations, so no further permutation
-factor is inserted.
-
-\begin{definition}[Candidate alternating singular correction]
-\label{def:alternating-cycle}
-Subject to the above finiteness assumptions, define the formal sum of points
-\begin{equation}\label{eq:general-alternating-cycle}
- \boxed{\overline Z^{\mathrm{cand}}_{L,n}=
- \sum_{k=0}^{\lfloor n/2\rfloor}
- (-1)^k\binom Lk(\iota_k)_*
-          \overline Z^{(k)}_{L,n-2k}.}
-\end{equation}
-\end{definition}
-
-\paragraph{Expansion in the notation $Z_j,l_{ij},m_j$.}
-The formal sum on the unordered configuration space has an explicit
-permutation-invariant lift to the original space $\A^n$.
-Index its auxiliary systems by
-\[
- j=(A,B;\pi),\qquad |A|=|B|=k,
-\]
-where $A,B\subseteq[n]$ are disjoint, and $\pi$ is a partition of
-$R=[n]\setminus(A\cup B)$.
-Use the ideals already defined in \eqref{eq:fixed-partition-ideal}, with
-$F_{r_\alpha}^{\mathrm{red}}=F_{r_\alpha}^{(k)}(x_R)$. Thus
-\[
- I_j=I_{A,B;\pi},\qquad Z_j=Z(I_j)=Z_{A,B;\pi}.
-\]
-If $\pi$ has $h$ blocks, the defining list contains
-$2k$ fixed-coordinate equations, $h$ reduced Bethe equations, and
-$n-2k-h$ equality equations, for a total of $n$ generators.
-Every point of $V(I_j)$ solves the original Bethe equations. For $k\ge1$
-the fixed-coordinate equations make the original equations at the fixed
-roots vanish, and the remaining original equations are
-$(x_i^2-1)^kF_i^{(k)}$. Hence $V(I_j)\subseteq X$.
-
-Write $l_{ij}=\ell_{x^i}(I_j)$, and choose
-\begin{equation}\label{eq:explicit-cycle-coefficients}
- \boxed{m_j=(-1)^k\binom Lk\frac{(k!)^2}{n!}
-                  \mu(\hat0,\pi).}
-\end{equation}
-Then the ordered candidate formal sum is
-\begin{equation}\label{eq:ordered-alternating-cycle}
- Z^{\mathrm{cand}}_{L,n}=\sum_jm_jZ_j
- =\sum_iw_i^{\mathrm{cand}}[x^i],\qquad
- w_i^{\mathrm{cand}}=\sum_jm_jl_{ij}.
-\end{equation}
-For $q_n:\A^n\to\Sym^n(\A^1)$ the map forgetting the order of the
-coordinates, adding weights over its fibers gives
-\[
- (q_n)_*Z^{\mathrm{cand}}_{L,n}=\overline Z^{\mathrm{cand}}_{L,n}.
-\]
-Indeed, there are $n!/((k!)^2r!)$ choices of the two fixed-coordinate
-sets, and the free-variable partition-weighted sum carries the factor $1/r!$.
-Averaging over those choices yields exactly $(k!)^2/n!$ in
-\eqref{eq:explicit-cycle-coefficients}. For $k=0$ this reduces to
-$m_\pi=\mu(\hat0,\pi)/n!$ in depermutation. For $n=4$, $k=2$, it gives
-coefficient $\binom L2/6$ at each of the six ordered double-pair points.
-
-Thus \eqref{eq:explicit-cycle-coefficients} supplies a concrete family of
-reduced $n$-generator systems in our original notation $I_j,Z_j,l_{ij}$.
-For $k=0$ these are the partition systems of the full Bethe equations;
-for $k>0$ reduction is part of their definition, including on the
-singular boundary.
-The pointwise claim still to prove is
-\[
- w_i^{\mathrm{cand}}=w_i\qquad\text{for every }x^i\in X.
-\]
-This specifies a formal sum. Nonnegativity of its coefficients, its physical
-interpretation, and compatibility with a global compactification are
-conjectural in general. The coefficients for $k\ge3$ are proposed, rather
-than consequences of the calculations for $n\le4$.
-It is weighted inclusion--exclusion on the nested singular-pair loci,
-using whole reduced formal sums instead of separately counting points on
-each exact stratum.
-
-\paragraph{The numerical identity for every $n$.}
-The global expected-degree formula to investigate is
-\begin{equation}\label{eq:reduced-expected-degree}
- \deg\overline Z^{(k)}_{L,r}=A_{L,r},\qquad
- A_{L,r}=\binom{L+r-2}{r}.
-\end{equation}
-For $r=0$ the right side is one. The formula is an expectation requiring
-compatible boundary calculations in general; it is not implied by
-Definition~\ref{def:alternating-cycle}. Under this hypothesis,
-\begin{equation}\label{eq:alternating-degree-identity}
- \boxed{\deg\overline Z^{\mathrm{cand}}_{L,n}
- =\sum_{k=0}^{\lfloor n/2\rfloor}
-   (-1)^k\binom Lk\binom{L+n-2k-2}{n-2k}
- =\binom Ln-\binom L{n-1}.}
-\end{equation}
-Indeed, as a formal power-series identity,
-\[
- \begin{aligned}
- \left(\sum_{k=0}^L(-1)^k\binom Lk z^{2k}\right)
- \left(\sum_{r\ge0}\binom{L+r-2}{r}z^r\right)
- &=\frac{(1-z^2)^L}{(1-z)^{L-1}}\\
- &=(1-z)(1+z)^L.
- \end{aligned}
-\]
-Taking the coefficient of $z^n$ gives the result. This is a numerical
-identity; its use for actual total weights requires
-\eqref{eq:reduced-expected-degree} only for the finitely many indices
-appearing in \eqref{eq:alternating-degree-identity}.
-
-\paragraph{What a geometric proof should construct.}
-The binomial coefficients suggest exterior powers: an $L$-dimensional
-space has $\dim\Lambda^k V=\binom Lk$. The one-pair local factor $u^L$
-provides a natural candidate vector space $V=\C[u]/(u^L)$.
-A possible route is to construct a residual or Koszul-type complex on the
-singular incidence loci whose successive contributions give
-\eqref{eq:general-alternating-cycle}. Koszul complexes use exterior
-powers; see \cite{StacksKoszul}. The required complex and its geometric
-comparison have not been constructed here. The exterior-power analogy
-motivates the coefficients but does not prove them.
-
-This formulation reduces the proposed general approach to two concrete
-tasks: establish the compatible global degree formula
-\eqref{eq:reduced-expected-degree}, and identify the signed formal sum
-\eqref{eq:general-alternating-cycle} with the physical formal sum.
-The next local test is the triple singular pair for $n=6$, where the
-new term $-\binom L3$ first appears. This tests the proposed weights
-without requiring separate formulas for every exact singular stratum.
-
-\subsection{Expected counts with fixed singular roots and a partition}
-\label{sec:fixed-bkk}
-
-Fix nonnegative integers $k,\ell$ with $k+\ell\le n$, and put
-$r=n-k-\ell$ and $h=\min(k,\ell)$. Here $k,\ell$ are the numbers
-of fixed roots, so $h$ is the cancellation exponent in
-\eqref{eq:reduced-fixed-equation}. Choose which $k$ coordinates are fixed at $a=1$ and
-which $\ell$ are fixed at $-a$. Partition the remaining coordinates into
-blocks $S_1,\ldots,S_m$ of sizes
-\[
- s_\alpha=|S_\alpha|,\qquad
- s_1+\cdots+s_m=r,
-\]
-and write $y_\alpha$ for the common value in block $S_\alpha$.
-The blocks remain labeled, and different block values are allowed to
-coincide, as in the partition systems of
-Definition~\ref{def:depermutation}.
-We assume $L\ge2n$ throughout this calculation.
-
-First suppose $k,\ell\ge1$. Every equation belonging to a fixed coordinate
-vanishes identically: at $a$, its first product contains a factor from a
-coordinate equal to $-a$, and its second term contains $(a-a)^L$;
-the argument at $-a$ is analogous. Thus there is one remaining equation
-per block. After removing a nonzero constant, this equation is
-\begin{equation}\label{eq:fixed-raw}
-\begin{split}
- H_\alpha(y)={}&
- (y_\alpha+a)^L(y_\alpha-3a)^k(y_\alpha-a)^\ell
- \prod_{\beta\ne\alpha}(y_\alpha-y_\beta-2)^{s_\beta}
- \\
- &-(-1)^{s_\alpha-1}
- (y_\alpha-a)^L(y_\alpha+a)^k(y_\alpha+3a)^\ell
- \prod_{\beta\ne\alpha}(y_\alpha-y_\beta+2)^{s_\beta}.
-\end{split}
-\end{equation}
-The sign comes from the $s_\alpha-1$ other coordinates in the same block,
-which supply $(-2)^{s_\alpha-1}$ and $2^{s_\alpha-1}$ in the two terms.
-The same formula with $k=\ell=0$ gives the unrestricted partition system.
-
-To require that no further roots equal $\pm a$, work on
-\[
- U=\{y:\prod_{\alpha=1}^m(y_\alpha-a)(y_\alpha+a)\ne0\}.
-\]
-Following \eqref{eq:reduced-fixed-equation}, cancel the paired factor
-\[
- H_\alpha=(y_\alpha^2-1)^h G_\alpha,
-\]
-where
-\begin{equation}\label{eq:fixed-reduced}
-\begin{split}
- G_\alpha(y)={}&
- (y_\alpha+a)^{L-h}(y_\alpha-3a)^k(y_\alpha-a)^{\ell-h}
- \prod_{\beta\ne\alpha}(y_\alpha-y_\beta-2)^{s_\beta}
- \\
- &-(-1)^{s_\alpha-1}
- (y_\alpha-a)^{L-h}(y_\alpha+a)^{k-h}(y_\alpha+3a)^\ell
- \prod_{\beta\ne\alpha}(y_\alpha-y_\beta+2)^{s_\beta}.
-\end{split}
-\end{equation}
-Hence $H_1=\cdots=H_m=0$ and $G_1=\cdots=G_m=0$ define the same
-localized ideal on $U$. Cancellation does not, by itself, exclude all solutions
-on the complement of $U$. When $k\ne\ell$, the additional common
-factor $(y_\alpha+a)^{k-h}(y_\alpha-a)^{\ell-h}$ is retained, in
-accordance with our definition of reduction.
-
-\begin{proposition}[Expected BKK counts]\label{prop:fixed-bkk}
-Let $m\ge1$, and let $\delta_\alpha=1$ if $s_\alpha$ is odd and $0$
-if $s_\alpha$ is even. For $k,\ell\ge1$, or $k=\ell=0$, the total degrees
-of the raw and reduced block equations are respectively
-\[
- d^{\mathrm{raw}}_\alpha=L+n-s_\alpha-\delta_\alpha,
- \qquad
- d^{\mathrm{red}}_\alpha=L+n-2h-s_\alpha-\delta_\alpha.
-\]
-After a generic translation of the block coordinates, the BKK mixed
-volumes of their Newton polytopes are
-\begin{equation}\label{eq:fixed-bkk}
-\boxed{\begin{aligned}
- B^{\mathrm{raw}}_{k,\ell;\pi}(L)
- &=\prod_{\alpha=1}^m
-       (L+n-s_\alpha-\delta_\alpha),\\
- B^{\mathrm{red}}_{k,\ell;\pi}(L)
- &=\prod_{\alpha=1}^m
-       (L+n-2\min(k,\ell)-s_\alpha-\delta_\alpha).
-\end{aligned}}
-\end{equation}
-These are the expected torus counts for generic coefficients with the
-translated supports, not assertions that the Bethe systems attain these
-counts. Actual affine counts still require the boundary and
-nondegeneracy conditions to be checked.
-\end{proposition}
-
-\begin{proof}
-The two terms of $G_\alpha$ have total degree
-$D_\alpha=L+n-2h-s_\alpha$.
-If $s_\alpha$ is even, they add in top degree, giving
-\[
- 2y_\alpha^{L+k+\ell-2h}
- \prod_{\beta\ne\alpha}(y_\alpha-y_\beta)^{s_\beta}.
-\]
-In particular, $y_\alpha^{D_\alpha}$ has coefficient $2$.
-If $s_\alpha$ is odd, the top homogeneous parts cancel. The coefficient
-of $y_\alpha^{D_\alpha-1}$ in the difference is
-\[
- 2\bigl(L-2k-2\ell-2\sum_{\beta\ne\alpha}s_\beta\bigr)
- =2(L-2n+2s_\alpha)\ne0,
-\]
-using $L\ge2n$. Thus the degree drops by exactly one.
-Multiplication by the paired factor of degree $2h$ gives the raw
-degree formula.
-
-For either system, write $Q_\alpha$ for its $\alpha$th polynomial and
-$d_\alpha$ for its degree. The preceding calculation shows that
-$y_\alpha^{d_\alpha}$ has nonzero coefficient. Translate
-$y_\alpha=z_\alpha+c_\alpha$ with generic constants $c_\alpha$, so that
-every translated polynomial has a nonzero constant term. Its Newton
-polytope $\mathcal N_\alpha$ then satisfies
-\[
- [0,d_\alpha e_\alpha]\subseteq\mathcal N_\alpha
- \subseteq d_\alpha\Delta_m,
- \qquad \Delta_m=\operatorname{conv}(0,e_1,\ldots,e_m).
-\]
-Normalize mixed volume so that
-$\operatorname{MV}(\Delta_m,\ldots,\Delta_m)=1$.
-The mixed volumes of both the coordinate segments on the left and the
-scaled simplices on the right equal $\prod_\alpha d_\alpha$.
-Monotonicity therefore gives the same mixed volume for
-$\mathcal N_1,\ldots,\mathcal N_m$. Bernstein's theorem identifies this
-with the generic number of torus solutions; see \cite[Chapter~3]{Sturmfels}.
-\end{proof}
-
-The translation is part of the statement: BKK counts solutions in a
-torus, and the Newton polytopes in the original block coordinates may
-have different mixed volume. For a zero-dimensional affine ideal, a
-generic translation avoids coordinate-zero solutions. It does not remove
-roots at infinity or establish Newton nondegeneracy. Thus
-\eqref{eq:fixed-bkk} gives translated BKK, equivalently B\'ezout, expected
-counts. The actual finite affine counts can be smaller.
-
-For example, with one fixed singular pair ($k=\ell=1$), the reduced
-expected counts for a few partitions are
-\[
-\begin{array}{c|c|c}
- r & (s_1,\ldots,s_m) & B^{\mathrm{red}}_{1,1;\pi}(L)\\ \hline
- 1 &(1)&L-1\\
- 2 &(1,1)&L^2\\
- 2 &(2)&L\\
- 3 &(1,1,1)&(L+1)^3\\
- 3 &(2,1)&(L+1)^2\\
- 3 &(3)&L-1
-\end{array}
-\]
-In general, if all remaining blocks are singletons, the reduced expected
-count is $(L+r-2)^r$. For one block of size $r$, it is $L-1$ if $r$ is odd
-and $L$ if $r$ is even.
-
-Several distinctions are needed when using these numbers. The equations
-impose equality within each block, but not inequality between blocks.
-To count exactly $k$ roots at $a$ and $\ell$ at $-a$, solutions of the
-reduced system outside $U$ must still be removed. To impose distinct block
-values, further diagonal contributions must also be handled. These
-boundary and collision corrections cannot be inferred from the mixed
-volume alone. Furthermore, fixing the singular roots computes a
-restricted intersection; it does not recover the transverse local
-multiplicity of the original system along the singular locus.
-
-If exactly one of $k,\ell$ is positive, the stratum with no additional
-roots at $\pm a$ is empty. Indeed, the equation at a fixed root $a$ forces
-some other root to equal $-a$, and conversely. If $m=0$, there are no
-remaining equations: the fixed configuration contributes one point to
-the restricted system when $k,\ell\ge1$, before transverse multiplicities
-are considered. Finally, the formulas refer to a fixed choice of coordinate
-positions and a fixed labeled partition; they contain no permutation or
-M\"obius weights. Such weights enter when these systems are assembled
-into the formal sums.
-
-\subsection{Local model with exactly one singular pair}
-
-Let $p=(a,-a,z_3,\ldots,z_n)$ have distinct coordinates.
-Set $x_1=a+u$, $x_2=-a+v$. Then
-\[
- F_1=
- (2+u)^L(u-v)\prod_{j=3}^n(1+u-x_j-2)
- -
- u^L(4+u-v)\prod_{j=3}^n(1+u-x_j+2).
-\]
-Assume the coefficient of $u-v$ at $p$ is nonzero and that the Jacobian
-of the restricted equations $F_3,\ldots,F_n$ in $x_3,\ldots,x_n$ at
-$u=v=0$ is invertible. The formal implicit function theorem solves
-$F_1=F_3=\cdots=F_n=0$ as
-\[
- v=v(u),\qquad x_j=x_j(u).
-\]
-Indeed, the indicated Jacobian for the variables $v,x_3,\ldots,x_n$
-is invertible. The first equation implies $u-v(u)\in(u^L)$.
-The remaining equation consequently has the form
-\[
- F_2|_{\mathrm{curve}}=u^Lh(u).
-\]
-If $p$ is isolated, $h\ne0$, and its ordinary local intersection length is
-\begin{equation}\label{eq:local}
- \ell_p=L+\ord_0h.
-\end{equation}
-Since $p$ lies on no collision diagonal, its coefficient in the normalized
-formal sum $Z^{\mathrm{dep}}_{L,n}$ is $\ell_p/n!$. In the notation of the counting
-strategy, $\ell_p=l_{i,\hat0}$ and
-$w_i^{\mathrm{dep}}=l_{i,\hat0}/n!$ for $p=x^i$.
-Its full permutation orbit contributes $\ell_p$ to the degree and to
-the coefficient at the corresponding unordered configuration.
-
-The subtraction in \eqref{eq:local} has an exact algebraic meaning:
-\[
- (u^Lh):(u^L)=(h),
-\]
-and
-\[
- 0\longrightarrow\C[[u]]/(h)
- \xrightarrow{\ \times u^L\ }\C[[u]]/(u^Lh)
- \longrightarrow\C[[u]]/(u^L)\longrightarrow0.
-\]
-Thus $\frac{L}{n!}[p]$ is a natural candidate for the contribution to
-$Z^{\mathrm{exc}}_{L,n}$ on this nondegenerate stratum, leaving
-$\frac{\ord_0h}{n!}[p]$ in $Z^{\mathrm{phys}}_{L,n}$.
-Summing over the permutation orbit gives excess coefficient $L$ and
-residual coefficient $\ord_0h$ at the corresponding unordered configuration.
-
-The next local task is to identify $h(0)$ and establish its relation to
-\eqref{eq:physical}. One expects a nonphysical point to have $h(0)\ne0$,
-and a physical singular point to retain a positive residual coefficient.
-Neither this identification nor simplicity of the residual zero is
-asserted here.
-
-\subsection{Why collisions require a global construction}
-
-At configurations with repeated coordinates or several occurrences of
-$\pm a$, the preceding implicit-function hypotheses can fail.
-Moreover, the partition-weighted sum already combines contributions from several
-systems. Subtracting $L/n!$ independently at each ordered point does not
-specify how excess multiplicities should specialize when points collide.
-
-The desired excess formal sum should therefore be constructed in a family, or
-by a suitable residual intersection, and then evaluated on the collision
-strata. Formulae depending only on the number of singular pairs need not
-capture these contributions.
-
-\section{The proposed completeness statement}
-
-\begin{conjecture}[Partition-ideal counting program]
-For the periodic XXX system, after a suitable treatment of
-boundary intersections, there is a natural excess formal sum
-$Z^{\mathrm{exc}}_{L,n}$ such that the formal sum
-\[
- Z^{\mathrm{cand}}_{L,n}=Z^{\mathrm{dep}}_{L,n}-Z^{\mathrm{exc}}_{L,n}
-                =\sum_jm_jZ_j
-\]
-satisfies the pointwise weight identities
-\[
- \sum_jm_jl_{ij}=w_i\qquad(x^i\in X).
-\]
-In particular, with
-$q:\A^n\to\Sym^n(\A^1)$ the map forgetting coordinate order,
-\[
- \overline Z^{\mathrm{phys}}_{L,n}
- =
- q_*
- Z^{\mathrm{cand}}_{L,n}
-\]
-has nonnegative integer coefficients, a stronger property than our
-standing rational-coefficient convention, with the intended physical
-weights. Moreover,
-\[
- \deg\overline Z^{\mathrm{phys}}_{L,n}
- =\sum_iw_i=\sum_jm_j\ell(I_j)
- =\binom Ln-\binom L{n-1}.
-\]
-\end{conjecture}
-
-A proof would require:
-\begin{enumerate}
- \item Computing the quotient-algebra dimensions $\ell(I_j)$, with an explicit
- accounting of roots at infinity.
- \item Establishing the local singular-pair calculation and identifying
- its residual condition with physical admissibility.
- \item Extending the excess formal sum across collision strata compatibly with
- specialization.
- \item Proving the local identities $\sum_jm_jl_{ij}=w_i$, and relating
- these weights to independent physical Bethe states.
-\end{enumerate}
-The last step is essential: agreement of numerical degrees alone does not
-prove that the associated vectors exist and span the highest-weight space.
-
 \begin{thebibliography}{9}
-\bibitem{StacksKoszul}
-The Stacks Project Authors,
-\emph{The Koszul complex}, Section~15.29,
-\href{https://stacks.math.columbia.edu/tag/0621}{Tag 0621}.
-
 \bibitem{Sturmfels}
 B.~Sturmfels,
 \emph{Solving Systems of Polynomial Equations},
