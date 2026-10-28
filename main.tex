@@ -484,7 +484,154 @@ Here list some claims that's needed to prove the conjecture:
 	of $L$.
 \end{enumerate}
 
-\section{The singular-pair correction}
+\section{Small numbers of Bethe roots}
+Before addressing the general claims, we examine small values of $n$.
+These calculations distinguish the global degree identities from the
+local multiplicity statements and the remaining physical interpretation.
+Throughout, we retain the assumption $L\ge2n$.
+
+\subsection{Two roots: $n=2$}
+\label{sec:n2-check}
+
+Let $L\ge4$. Write
+\[
+ \begin{aligned}
+ F_1(x,y)&=(x+1)^L(x-y-2)-(x-1)^L(x-y+2),\\
+ F_2(x,y)&=F_1(y,x).
+ \end{aligned}
+\]
+There are two partitions of $\{1,2\}$, with M\"obius values $1$ and
+$-1$. Define
+\[
+ I_{\mathrm{full}}=(F_1,F_2),\qquad
+ I_{\mathrm{diag}}=(F_1,x-y).
+\]
+The only balanced fixed-root choices are
+$(A,B)=(\{1\},\{2\})$ and $(\{2\},\{1\})$. There are no free variables
+in either case, so the current definitions give
+\[
+ \begin{aligned}
+ Z^{\mathrm{dep}}_0
+ &=\frac12\bigl(Z(I_{\mathrm{full}})-Z(I_{\mathrm{diag}})\bigr),\\
+ Z^{\mathrm{dep}}_1
+ &=\frac12\bigl([(1,-1)]+[(-1,1)]\bigr),\\
+ Z^{\mathrm{cand}}_{L,2}&=Z^{\mathrm{dep}}_0-LZ^{\mathrm{dep}}_1.
+ \end{aligned}
+\]
+If $A=\ell(I_{\mathrm{full}})$ and $D=\ell(I_{\mathrm{diag}})$, then
+\[
+ \deg Z^{\mathrm{dep}}_0=\frac{A-D}{2}.
+\]
+Here $Z^{\mathrm{dep}}_0=Z^{\mathrm{dep}}_{L,2}$ in the notation used
+later. We first compute these global lengths.
+Here $A=\sum_i l_{i,\hat0}$, $D=\sum_i l_{i,\{\{1,2\}\}}$, and
+$w_i^{\mathrm{dep}}=(l_{i,\hat0}-l_{i,\{\{1,2\}\}})/2$.
+
+\paragraph{Global count and depermutation.}
+Both equations have degree $L$, with top parts
+\[
+ 2x^{L-1}\bigl((L-2)x-Ly\bigr),\qquad
+ 2y^{L-1}\bigl((L-2)y-Lx\bigr).
+\]
+These have no common zero in $\mathbb P^1$ for $L\ge4$; hence there is
+no intersection at infinity and no common component. Therefore
+$A=L^2$. On the diagonal,
+\[
+ F_1(x,x)=-2\bigl((x+1)^L+(x-1)^L\bigr),
+\]
+which has degree $L$, so $D=L$ and
+\[
+ \deg Z^{\mathrm{dep}}_{L,2}=\frac{L^2-L}{2}=\binom L2.
+\]
+The two ordered singular points form one orbit. Assigning excess $L$ to
+that orbit means the formal sum
+\[
+ Z^{\mathrm{exc}}_{L,2}=\frac L2[(1,-1)]+\frac L2[(-1,1)],
+ \qquad\deg Z^{\mathrm{exc}}_{L,2}=L.
+\]
+Thus $Z^{\mathrm{exc}}_{L,2}=LZ^{\mathrm{dep}}_1$; the subtraction is
+exactly the $n=2$ instance of the alternating formula.
+After depermutation and subtraction,
+\begin{equation}\label{eq:n2-periodic-corrected}
+ \boxed{\deg\bigl(Z^{\mathrm{dep}}_{L,2}-Z^{\mathrm{exc}}_{L,2}\bigr)
+ =\frac{L^2-L}{2}-L
+ =\binom L2-\binom L1.}
+\end{equation}
+Thus an excess of $L$ at the unordered singular pair is sufficient for
+the periodic highest-weight count.
+
+\paragraph{Diagonal points cancel locally.}
+The diagonal polynomial is $-2h(s)$, where
+$h(s)=(s+1)^L+(s-1)^L$. At any root $s$, we have $s\ne\pm1$ and
+\[
+ h'(s)=-\frac{2L(s+1)^L}{s^2-1}\ne0.
+\]
+Hence every diagonal root has length one in $I_{\mathrm{diag}}$.
+Write $F_1-F_2=(x-y)K(x,y)$. At a diagonal root,
+\[
+ K(s,s)=4(s+1)^L\left(1+\frac{L}{s^2-1}\right).
+\]
+This is nonzero for $L\ge4$. Indeed, if it vanished, then
+$s^2=1-L$. For $\zeta=(s+1)/(s-1)$, the diagonal equation gives
+$\zeta^L=-1$, while
+\[
+ \zeta+\zeta^{-1}=2-\frac4L.
+\]
+The left side is an algebraic integer. Since the right side is rational
+and belongs to $[1,2)$, it must equal one, forcing $L=4$.
+But then $\zeta^2-\zeta+1=0$ implies $\zeta^4=-\zeta\ne-1$,
+a contradiction. Thus $K$ is a unit locally, and
+\[
+ (F_1,F_2)=(F_1,x-y)
+\]
+in the local ring at $(s,s)$. Both local lengths are one, so
+\[
+ \operatorname{coeff}_{(s,s)}Z^{\mathrm{dep}}_0
+ =\frac{1-1}{2}=0.
+\]
+The fixed-pair sum has no diagonal support. Consequently every diagonal
+point also has zero coefficient in $Z^{\mathrm{cand}}_{L,2}$.
+
+\paragraph{Local check of the excess.}
+Put $x=1+u$ and $y=-1+v$. The first equation gives
+\[
+ v=u-2^{2-L}u^L+O(u^{L+1}).
+\]
+Substituting into the second gives
+\[
+ F_2\bigl(1+u,-1+v(u)\bigr)
+ =4\bigl((-1)^L-1\bigr)u^L+O(u^{L+1}).
+\]
+If $L$ is odd the leading coefficient is $-8$ and the ordinary local
+multiplicity is $L$. If $L$ is even, the next term is
+\[
+ F_2\bigl(1+u,-1+v(u)\bigr)
+ =-4L\,u^{L+1}+O(u^{L+2}),
+\]
+so the multiplicity is $L+1$. Neither singular point lies on the
+diagonal, and its coefficient in $Z^{\mathrm{dep}}_1$ is $1/2$.
+Therefore, at either $p=(1,-1)$ or $p=(-1,1)$,
+\[
+ \operatorname{coeff}_p Z^{\mathrm{cand}}_{L,2}
+ =\frac{\ell_p(I_{\mathrm{full}})-L}{2}
+ =\begin{cases}
+ 0,&L\text{ odd},\\
+ 1/2,&L\text{ even}.
+ \end{cases}
+\]
+The total remaining weight of the unordered singular pair is thus $0$
+for odd $L$ and $1$ for even $L$, exactly matching the periodic singular
+admissibility condition \eqref{eq:physical}; see also \cite{NW2013}.
+Thus for $n=2$ the affine and virtual degree counts agree, diagonal
+contributions cancel, and the singular pair has the required local
+weight for both parities. Unbalanced or multiple singular pairs cannot
+occur. To obtain the full pointwise claim from these calculations,
+one must additionally establish simplicity and physical admissibility
+at every nonsingular off-diagonal solution. Independence of the
+associated Bethe vectors is a further completeness statement.
+
+\subsection{$n=3$}
+\subsection{$n=4$}
 
 Apply Definition~\ref{def:depermutation} to $P$ from the background, and
 write $Z^{\mathrm{dep}}_{L,n}=Z^{\mathrm{dep}}_P$. Set $F_k=P_k$,
@@ -516,80 +663,6 @@ Both $Z^{\mathrm{dep}}_{L,n}$ and the proposed excess formal sum are to be expre
 in terms of the auxiliary formal sums $Z_j$, so that their difference has the
 form \eqref{eq:weight-cycle}. In the local calculations below,
 $\operatorname{coeff}_pZ^{\mathrm{dep}}_{L,n}=w_i^{\mathrm{dep}}$ when $p=x^i$.
-
-\subsection{The case $n=2$: is an excess of $L$ sufficient?}
-\label{sec:n2-check}
-
-Let $L\ge4$. Write
-\[
- \begin{aligned}
- F_1(x,y)&=(x+1)^L(x-y-2)-(x-1)^L(x-y+2),\\
- F_2(x,y)&=F_1(y,x).
- \end{aligned}
-\]
-If $A$ denotes the dimension of $\C[x,y]/(F_1,F_2)$ and
-$D$ the length of the diagonal partition system,
-Definition~\ref{def:depermutation} gives
-\[
- \deg Z^{\mathrm{dep}}_{L,2}=\frac{A-D}{2}.
-\]
-We compute these lengths before assigning a singular excess.
-Here $A=\sum_i l_{i,\hat0}$, $D=\sum_i l_{i,\{\{1,2\}\}}$, and
-$w_i^{\mathrm{dep}}=(l_{i,\hat0}-l_{i,\{\{1,2\}\}})/2$.
-
-\paragraph{Global count and depermutation.}
-Both equations have degree $L$, with top parts
-\[
- 2x^{L-1}\bigl((L-2)x-Ly\bigr),\qquad
- 2y^{L-1}\bigl((L-2)y-Lx\bigr).
-\]
-These have no common zero in $\mathbb P^1$ for $L\ge4$; hence there is
-no intersection at infinity and no common component. Therefore
-$A=L^2$. On the diagonal,
-\[
- F_1(x,x)=-2\bigl((x+1)^L+(x-1)^L\bigr),
-\]
-which has degree $L$, so $D=L$ and
-\[
- \deg Z^{\mathrm{dep}}_{L,2}=\frac{L^2-L}{2}=\binom L2.
-\]
-The two ordered singular points form one orbit. Assigning excess $L$ to
-that orbit means the formal sum
-\[
- Z^{\mathrm{exc}}_{L,2}=\frac L2[(1,-1)]+\frac L2[(-1,1)],
- \qquad\deg Z^{\mathrm{exc}}_{L,2}=L.
-\]
-After depermutation and subtraction,
-\begin{equation}\label{eq:n2-periodic-corrected}
- \boxed{\deg\bigl(Z^{\mathrm{dep}}_{L,2}-Z^{\mathrm{exc}}_{L,2}\bigr)
- =\frac{L^2-L}{2}-L
- =\binom L2-\binom L1.}
-\end{equation}
-Thus an excess of $L$ at the unordered singular pair is sufficient for
-the periodic highest-weight count.
-
-\paragraph{Local check of the excess.}
-Put $x=1+u$ and $y=-1+v$. The first equation gives
-\[
- v=u-2^{2-L}u^L+O(u^{L+1}).
-\]
-Substituting into the second gives
-\[
- F_2\bigl(1+u,-1+v(u)\bigr)
- =4\bigl((-1)^L-1\bigr)u^L+O(u^{L+1}).
-\]
-If $L$ is odd the leading coefficient is $-8$ and the ordinary local
-multiplicity is $L$. If $L$ is even, the next term is
-\[
- F_2\bigl(1+u,-1+v(u)\bigr)
- =-4L\,u^{L+1}+O(u^{L+2}),
-\]
-so the multiplicity is $L+1$. Subtracting $L$ therefore leaves $0$ for
-odd $L$ and $1$ for even $L$, exactly matching the periodic singular
-admissibility condition \eqref{eq:physical}; see also \cite{NW2013}.
-This proves the required degree identity and checks the singular local
-coefficient. Identifying every remaining coefficient with independent
-Bethe vectors is a separate completeness statement.
 
 \subsection{The case $n=3$, $L=6$: cancellation at infinity}
 \label{sec:n3-infinity}
