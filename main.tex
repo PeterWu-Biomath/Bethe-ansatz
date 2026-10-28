@@ -1399,11 +1399,74 @@ since $a\ge2$. Together with
 of the corrected weight.
 \end{proof}
 
-The case $r>0$ additionally involves the local equations for the
-remaining roots. The preceding calculation does not yet establish
-\eqref{eq:balanced-remainder-length-identity} in that case: the
-cluster units depend on these roots, and their variations can affect
-the resonant initial equations.
+\subsection{Additional roots: the nonresonant case}
+
+The other roots cannot be $\pm3$, and no two of them differ by $2$:
+the finite-chain argument used for one singular pair applies to the
+distinct root values, regardless of the multiplicities at $\pm1$.
+In particular, the following expression is well-defined:
+\begin{equation}\label{eq:balanced-resonance-function}
+ \Xi(p)=(-1)^a\frac{H(3)}{H(-1)}
+           +(-1)^L\frac{H(-3)}{H(1)}.
+\end{equation}
+We call the configuration nonresonant when $\Xi(p)\ne0$.
+
+\begin{proposition}\label{prop:balanced-nonresonant}
+Assume $L\ge2n$, the relevant local algebras have finite length, and
+$\Xi(p)\ne0$. Then
+\[
+ \nu_k(p)=\binom{L-k}{a-k}\nu_a(p),\qquad 0\le k\le a.
+\]
+Consequently the corrected weight at $p$ is zero for every $a\ge1$.
+No simplicity assumption is needed for the remaining-root system.
+\end{proposition}
+
+\begin{proof}
+For $k<a$, again put $s=a-k$ and $M=L-k$. Use the local factorization
+\[
+ Q(t)=A(t-1)B(t+1)H_y(t),\qquad
+ H_y(t)=\prod_{j=1}^r(t-y_j),
+\]
+with $A,B$ monic of degree $s$ and $y$ near $z$. The cluster
+congruences are those in the preceding proof, with their units
+multiplied respectively by
+$H_y(u+3)/H_y(u-1)$ and $H_y(v-3)/H_y(v+1)$.
+After eliminating $B$, give the coefficients $e_j$ of $A$ weight $j$
+and keep $y-z$ as parameters of weight zero. The constant weighted
+term of $U+V$ is
+\[
+ 2^{2a-L}\left[(-1)^a\frac{H_y(3)}{H_y(-1)}
+                  +(-1)^L\frac{H_y(-3)}{H_y(1)}\right],
+\]
+which is a unit near $p$. Thus the cluster initial ideal is generated
+by the coefficients of $\operatorname{rem}_A u^M$.
+
+Setting all cluster coefficients to zero in the remaining equations
+gives exactly the reduced $TQ$ system $J_a$ for $H_y$. Hence the
+weighted initial local algebra is the tensor product of the local
+algebra of $J_a$ at $H$ and
+\[
+ \C[e_1,\ldots,e_s]\big/
+ \bigl(\text{coefficients of }\operatorname{rem}_A u^M\bigr).
+\]
+Both factors have finite length. The weighted complete-intersection
+deformation therefore preserves length, and the second factor has
+length $\binom Ms$ by the preceding calculation. This proves the
+formula for $\nu_k$; for $k=a$ it is immediate. Finally,
+\[
+ \sum_{k=0}^a(-1)^k\binom Lk\nu_k(p)
+ =\nu_a(p)\binom La(1-1)^a=0.
+\]
+Apply~\eqref{eq:balanced-local-normalization} to obtain the result.
+\end{proof}
+
+\paragraph{The remaining resonant case.}
+For $a\ge2$, the case still to establish is $r>0$ and $\Xi(p)=0$.
+The cluster units then have vanishing constant sum, and variations of
+$H_y$ can affect their first nonzero terms. The pure-cluster proof
+does not by itself control these terms. In particular, neither the
+distinct-root assumption nor the existence of a $TQ$ relation proves
+\eqref{eq:balanced-remainder-length-identity} at these points.
 
 \begin{thebibliography}{9}
 \bibitem{MTV2009}
