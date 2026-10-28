@@ -355,31 +355,46 @@ Moreover,
 
 \subsection{Virtual degrees and the combinatorial identity}
 
-To study the degree assertion in
-Conjecture~\ref{conj:alternating-completeness}, put
-$r=n-|A|-|B|$ and $D=L+r-2$. For $r\ge1$, each reduced equation
-has degree at most $D$: its two summands have degree $L+r-1$, and
-their top homogeneous parts cancel. Restricting to a block diagonal
-can lower the degree further. We nevertheless assign the same ambient
-degree $D$ to every retained equation.
-
 \begin{definition}[Virtual degree assignment]
 \label{def:virtual-degree}
 For a partition $\pi$ of $[n]\setminus(A\cup B)$ with $m$ blocks, set
 \begin{equation}\label{eq:virtual-partition-degree}
  \boxed{\deg_{\mathrm{vir}}Z_{A,B;\pi}=(L+r-2)^m.}
 \end{equation}
-When $r=0$, assign degree one. Extend this assignment linearly in the
-specified indexed expressions defining $Z^{\mathrm{dep}}_{A,B}$,
-$Z^{\mathrm{dep}}_k$, and $Z^{\mathrm{cand}}_{L,n}$.
+When $r=0$, assign degree one.
 \end{definition}
 
-This is the B\'ezout count for $m$ generic equations of the common
-degree $D$ in the $m$ block variables. It allows contributions at
-infinity when the equations specialize to the Bethe system. It is an
-assignment to the defining expressions, rather than an assertion about
-the total weight of the affine solutions. In particular, we do not yet
-claim $\deg_{\mathrm{vir}}Z=\deg Z$.
+The assignment has the following BKK interpretation. Put
+$r=n-|A|-|B|$ and $D=L+r-2$. For $r\ge1$, retain the ambient monomial
+supports of the reduced equations when identifying coordinates within
+each block, before combining coefficients that may cancel. Let
+$P_\alpha\subseteq\mathbb R_{\ge0}^m$ be the downward closure of the
+convex hull of the retained exponents for block $\alpha$. The ambient
+equation has total degree at most $D$ and a nonzero pure term
+$x_{r_\alpha}^D$. Consequently,
+\[
+ [0,De_\alpha]\subseteq P_\alpha\subseteq D\Delta_m,
+ \qquad
+ \Delta_m=\{u\in\mathbb R_{\ge0}^m:\textstyle\sum_\alpha u_\alpha\le1\}.
+\]
+Normalize mixed volume by
+$\operatorname{MV}(\Delta_m,\ldots,\Delta_m)=1$. Monotonicity gives
+\[
+ \begin{aligned}
+ D^m
+ &=\operatorname{MV}([0,De_1],\ldots,[0,De_m])\\
+ &\le\operatorname{MV}(P_1,\ldots,P_m)
+ \le\operatorname{MV}(D\Delta_m,\ldots,D\Delta_m)=D^m.
+ \end{aligned}
+\]
+Thus the mixed volume equals $D^m$. BKK identifies this with the generic
+solution count when all monomials at lattice points of the enlarged
+polytopes are allowed independent coefficients; generically the
+solutions have no zero coordinates, so this is also the affine count
+\cite[Chapter~3]{Sturmfels}. The virtual assignment retains these
+polytopes even when specialization cancels monomials and sends solutions
+to infinity. It does not yet assert
+$\deg_{\mathrm{vir}}Z=\deg Z$ for the actual affine formal sums.
 
 \begin{proposition}[Virtual completeness count]
 \label{prop:virtual-completeness}
