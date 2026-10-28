@@ -408,10 +408,14 @@ Define the \emph{generalized $TQ$ ideal}
 \begin{equation}\label{eq:general-tq-ideal}
  J=(\rho_0,\ldots,\rho_{n-1})\subseteq\C[e_1,\ldots,e_n].
 \end{equation}
-The equations of $J$ are equivalent to the existence of a polynomial
-$T(t)$ satisfying $\Phi(t;e)=T(t)Q(t)$. This is the generalized $TQ$
-relation. It need not have Baxter's shifted form. Pulling the ideal
-back to the ordered variables gives
+The \emph{generalized $TQ$ relation} is the polynomial identity
+\begin{equation}\label{eq:general-tq-relation}
+ \boxed{T(t)Q(t)=\Phi(t;e)
+ =g\bigl(t;E_1(t;e),\ldots,E_{n-1}(t;e)\bigr),
+ \qquad T\in\C[t].}
+\end{equation}
+The equations of $J$ are exactly the conditions for such a polynomial
+$T$ to exist. Pulling the ideal back to the ordered variables gives
 \[
  K=q^*J
  :=\bigl(\rho_0(e(x)),\ldots,\rho_{n-1}(e(x))\bigr)
@@ -517,8 +521,14 @@ For the XXX polynomial $f=P$, the canonical remainder satisfies
  R(t;e)\equiv-\frac12\bigl((t+1)^LQ(t-2)
                          +(t-1)^LQ(t+2)\bigr)\pmod{Q(t)}.
 \]
-Thus $J$ is exactly the remainder ideal of Baxter's $TQ$ relation;
-see~\cite[eq.~(3)]{GJ2020} for the relation in the unscaled variables.
+Thus $J$ is exactly the remainder ideal of Baxter's $TQ$ relation
+\begin{equation}\label{eq:xxx-tq-relation}
+ \boxed{T(t)Q(t)=(t+1)^LQ(t-2)+(t-1)^LQ(t+2),
+ \qquad T\in\C[t].}
+\end{equation}
+Here $T$ has the standard XXX normalization; it need not equal the
+quotient in \eqref{eq:general-tq-relation}. See~\cite[eq.~(3)]{GJ2020}
+for the relation in the unscaled variables.
 For arbitrary $f$, collision vanishing need not hold. For example,
 $f(x,y)=x^2$ gives
 \[
