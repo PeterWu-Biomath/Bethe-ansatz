@@ -448,7 +448,7 @@ Conjecture~\ref{conj:alternating-completeness}, we must connect this
 virtual count with the affine solutions and establish the prescribed
 weight at every point.
 
-\subsection{Plan for a proof of Conjecture~\ref{conj:alternating-completeness}}
+\subsection{Plan for a proof of Conjecture~\ref{conj:alternating-completeness}}\label{section:plan}
 For $p\in X$, define its exact singular sets
 \[
  A(p)=\{j:p_j=1\},\qquad B(p)=\{j:p_j=-1\},
@@ -467,9 +467,9 @@ Here list some claims that's needed to prove the conjecture:
 	\item Every $Z^{dep}_{k}$ contains only points with $a=b$.
 	\item \textbf{Exactly one singular pair: $a=b=1$.}
 	Only $k=0,1$ can contribute, so prove
-	\[
-	c_0(p)-Lc_1(p)=w(p),
-	\]
+	\begin{equation}\label{eq:singular_weight}
+	c_0(p)-Lc_1(p)=w(p)
+	\end{equation}
 	where $w(p)$ is the target weight above.
 	\item \textbf{Multiple balanced singular pairs: $a=b\ge2$.}
 	These points have repeated coordinates and hence target weight zero.
@@ -491,108 +491,8 @@ local multiplicity statements and the remaining physical interpretation.
 Throughout, we retain the assumption $L\ge2n$.
 
 \subsection{Two roots: $n=2$}
-\label{sec:n2-check}
 
-Let $L\ge4$. Write
-\[
- \begin{aligned}
- F_1(x,y)&=(x+1)^L(x-y-2)-(x-1)^L(x-y+2),\\
- F_2(x,y)&=F_1(y,x).
- \end{aligned}
-\]
-There are two partitions of $\{1,2\}$, with M\"obius values $1$ and
-$-1$. Define
-\[
- I_{\mathrm{full}}=(F_1,F_2),\qquad
- I_{\mathrm{diag}}=(F_1,x-y).
-\]
-The only balanced fixed-root choices are
-$(A,B)=(\{1\},\{2\})$ and $(\{2\},\{1\})$. There are no free variables
-in either case, so the current definitions give
-\[
- \begin{aligned}
- Z^{\mathrm{dep}}_0
- &=\frac12\bigl(Z(I_{\mathrm{full}})-Z(I_{\mathrm{diag}})\bigr),\\
- Z^{\mathrm{dep}}_1
- &=\frac12\bigl([(1,-1)]+[(-1,1)]\bigr),\\
- Z^{\mathrm{cand}}_{L,2}&=Z^{\mathrm{dep}}_0-LZ^{\mathrm{dep}}_1.
- \end{aligned}
-\]
-If $A=\ell(I_{\mathrm{full}})$ and $D=\ell(I_{\mathrm{diag}})$, then
-\[
- \deg Z^{\mathrm{dep}}_0=\frac{A-D}{2}.
-\]
-Here $Z^{\mathrm{dep}}_0=Z^{\mathrm{dep}}_{L,2}$ in the notation used
-later. We first compute these global lengths.
-Here $A=\sum_i l_{i,\hat0}$, $D=\sum_i l_{i,\{\{1,2\}\}}$, and
-$w_i^{\mathrm{dep}}=(l_{i,\hat0}-l_{i,\{\{1,2\}\}})/2$.
-
-\paragraph{Global count and depermutation.}
-Both equations have degree $L$, with top parts
-\[
- 2x^{L-1}\bigl((L-2)x-Ly\bigr),\qquad
- 2y^{L-1}\bigl((L-2)y-Lx\bigr).
-\]
-These have no common zero in $\mathbb P^1$ for $L\ge4$; hence there is
-no intersection at infinity and no common component. Therefore
-$A=L^2$. On the diagonal,
-\[
- F_1(x,x)=-2\bigl((x+1)^L+(x-1)^L\bigr),
-\]
-which has degree $L$, so $D=L$ and
-\[
- \deg Z^{\mathrm{dep}}_{L,2}=\frac{L^2-L}{2}=\binom L2.
-\]
-The two ordered singular points form one orbit. Assigning excess $L$ to
-that orbit means the formal sum
-\[
- Z^{\mathrm{exc}}_{L,2}=\frac L2[(1,-1)]+\frac L2[(-1,1)],
- \qquad\deg Z^{\mathrm{exc}}_{L,2}=L.
-\]
-Thus $Z^{\mathrm{exc}}_{L,2}=LZ^{\mathrm{dep}}_1$; the subtraction is
-exactly the $n=2$ instance of the alternating formula.
-After depermutation and subtraction,
-\begin{equation}\label{eq:n2-periodic-corrected}
- \boxed{\deg\bigl(Z^{\mathrm{dep}}_{L,2}-Z^{\mathrm{exc}}_{L,2}\bigr)
- =\frac{L^2-L}{2}-L
- =\binom L2-\binom L1.}
-\end{equation}
-Thus an excess of $L$ at the unordered singular pair is sufficient for
-the periodic highest-weight count.
-
-\paragraph{Diagonal points cancel locally.}
-The diagonal polynomial is $-2h(s)$, where
-$h(s)=(s+1)^L+(s-1)^L$. At any root $s$, we have $s\ne\pm1$ and
-\[
- h'(s)=-\frac{2L(s+1)^L}{s^2-1}\ne0.
-\]
-Hence every diagonal root has length one in $I_{\mathrm{diag}}$.
-Write $F_1-F_2=(x-y)K(x,y)$. At a diagonal root,
-\[
- K(s,s)=4(s+1)^L\left(1+\frac{L}{s^2-1}\right).
-\]
-This is nonzero for $L\ge4$. Indeed, if it vanished, then
-$s^2=1-L$. For $\zeta=(s+1)/(s-1)$, the diagonal equation gives
-$\zeta^L=-1$, while
-\[
- \zeta+\zeta^{-1}=2-\frac4L.
-\]
-The left side is an algebraic integer. Since the right side is rational
-and belongs to $[1,2)$, it must equal one, forcing $L=4$.
-But then $\zeta^2-\zeta+1=0$ implies $\zeta^4=-\zeta\ne-1$,
-a contradiction. Thus $K$ is a unit locally, and
-\[
- (F_1,F_2)=(F_1,x-y)
-\]
-in the local ring at $(s,s)$. Both local lengths are one, so
-\[
- \operatorname{coeff}_{(s,s)}Z^{\mathrm{dep}}_0
- =\frac{1-1}{2}=0.
-\]
-The fixed-pair sum has no diagonal support. Consequently every diagonal
-point also has zero coefficient in $Z^{\mathrm{cand}}_{L,2}$.
-
-\paragraph{Local check of the excess.}
+As explained in the section \ref{section:plan},  only interesting thing to show is that on $(1,-1)$ the equality \ref{eq:singular_weight} holds, we start from deciding the multiplicity in $Z_0$.
 Put $x=1+u$ and $y=-1+v$. The first equation gives
 \[
  v=u-2^{2-L}u^L+O(u^{L+1}).
@@ -622,15 +522,158 @@ Therefore, at either $p=(1,-1)$ or $p=(-1,1)$,
 The total remaining weight of the unordered singular pair is thus $0$
 for odd $L$ and $1$ for even $L$, exactly matching the periodic singular
 admissibility condition \eqref{eq:physical}; see also \cite{NW2013}.
-Thus for $n=2$ the affine and virtual degree counts agree, diagonal
-contributions cancel, and the singular pair has the required local
-weight for both parities. Unbalanced or multiple singular pairs cannot
-occur. To obtain the full pointwise claim from these calculations,
-one must additionally establish simplicity and physical admissibility
-at every nonsingular off-diagonal solution. Independence of the
-associated Bethe vectors is a further completeness statement.
 
-\subsection{$n=3$}
+\subsection{Three roots: $n=3$}
+\label{sec:n3-infinity}
+Let $L\ge6$. Only $k=0,1$ occur in the alternating formula.
+Proposition~\ref{prop:virtual-completeness} already gives its virtual
+degree, so we focus on the boundary contribution and the singular
+local weights.
+
+\paragraph{Cancellation at infinity.}
+Homogenize the three original equations to their ambient degree
+$L+1$ before imposing partition equalities. The highest-degree part is
+\[
+ F_1^{[L+1]}=2x^{L-1}q_x,\qquad
+ q_x=(L-4)x^2-(L-2)x(y+z)+Lyz,
+\]
+with the other expressions obtained by permutation. The only common
+point at infinity is $P=[1:1:1:0]$. Indeed, a zero coordinate is
+incompatible with the other two equations, and
+\[
+ q_x-q_y=(x-y)\bigl((L-4)(x+y)-(2L-2)z\bigr)
+\]
+and its cyclic analogues force at least two coordinates to coincide.
+Substitution then forces all three to coincide. For a two-block
+partition, say $x=y$, the first leading form restricts to
+$4x^L(z-x)$; its common point at infinity with the remaining equation
+is again $P$.
+
+Write $\widehat F_i$ for the degree-$(L+1)$ homogenizations.
+Permutation symmetry gives
+\[
+ \widehat F_1-\widehat F_2=(X-Y)K_{12},\qquad
+ \widehat F_1-\widehat F_3=(X-Z)K_{13},\qquad
+ K_{12}(P)=K_{13}(P)=-12.
+\]
+Thus, in the local ring at $P$, the full system forces $X=Y=Z$.
+The same holds for each two-block system. On the diagonal, in the
+chart $X=1$,
+\[
+ \widehat F_1(1,1,1,T)
+ =4T\bigl((1+T)^L-(1-T)^L\bigr)
+ =8LT^2+O(T^4).
+\]
+Hence the local length at infinity is two for every partition type
+$(1,1,1)$, $(2,1)$, and $(3)$. Their total contribution to
+$Z^{\mathrm{dep}}_0$ is
+\[
+ \frac16\bigl(2-3\cdot2+2\cdot2\bigr)=0.
+\]
+This proves the required cancellation for every $L\ge6$, extending the
+degree-five versus degree-seven example at $L=6$.
+
+\paragraph{The reduced one-pair equation.}
+Fix $x_1=1$, $x_2=-1$, and write $x_3=z$. The first two original
+equations vanish identically, while
+\[
+ F_3(1,-1,z)=(z^2-1)Q_L(z),\qquad
+ Q_L(z)=(z+1)^{L-1}(z-3)-(z-1)^{L-1}(z+3).
+\]
+Thus $F_3^{\mathrm{red}}=Q_L$, with
+\[
+ Q_L(z)=2(L-4)z^{L-1}+\cdots,\qquad
+ Q_L(1)=-2^L,\qquad Q_L(-1)=(-1)^L2^L.
+\]
+In particular, the reduced equation has no singular collision at
+$z=\pm1$ and no missing degree at infinity. For a root $z$ of $Q_L$,
+put $e_z=\ord_zQ_L$ and $p=(1,-1,z)$. There is a unique compatible
+choice of the fixed positive and negative coordinates at this ordered
+point. The averaging factor in $Z^{\mathrm{dep}}_1$ therefore gives
+\[
+ c_1(p):=\operatorname{coeff}_p Z^{\mathrm{dep}}_1=\frac{e_z}{6}.
+\]
+Together with the preceding boundary calculation, this identifies the
+affine and virtual degrees of the alternating sum. Its value is already
+given by Proposition~\ref{prop:virtual-completeness}.
+
+\paragraph{Unbalanced singular collisions.}
+At $p=(1,-1,1)$, symmetry gives
+\[
+ F_1-F_3=(x_1-x_3)K,\qquad K(p)=-2^{L+1}\ne0.
+\]
+Consequently the full local ideal equals the partition ideal
+$(F_1,F_2,x_1-x_3)$. Their equal local lengths cancel with M\"obius
+coefficients $1,-1$, so $c_0(p)=0$. Also $c_1(p)=0$, because the
+remaining coordinate would be a root $1$ of $Q_L$. Permutation symmetry
+and simultaneous sign reversal give the same conclusion at every
+configuration with two $1$'s and one $-1$, or vice versa. Computing their
+common ordinary local length is unnecessary for this cancellation.
+
+\paragraph{The transverse singular multiplicity.}
+Let $p=(1,-1,z)$ with $Q_L(z)=0$, so $z\ne\pm1$. Use
+$x_1=1+u$, $x_2=-1+v$, $x_3=w$. Eliminating $v$ by $F_1=0$ gives
+\[
+ v=u+2^{2-L}\frac{3-w}{1+w}u^L+O(u^{L+1}),\qquad
+ F_2=u^LH(u,w),
+\]
+where
+\begin{equation}\label{eq:n3-transverse-leading}
+ H(0,w)=\frac4{w+1}
+ \bigl((w+1)(w+3)-(-1)^L(w-1)(w-3)\bigr).
+\end{equation}
+Write $G(u,w)$ for $F_3$ after the same elimination. Then
+$G(0,w)=(w^2-1)Q_L(w)$. If $H(0,z)\ne0$, the local ideal is
+$(u^L,G)$, whose quotient has length $Le_z$. Since $p$ has distinct
+coordinates, its only full-system partition contribution is the
+singleton partition. Therefore
+\[
+ c_0(p)-Lc_1(p)=\frac{Le_z-Le_z}{6}=0.
+\]
+This cancellation does not require the reduced root to be simple.
+
+\paragraph{The physical residual roots.}
+At a root of $Q_L$, equation~\eqref{eq:n3-transverse-leading} vanishes
+precisely when
+\[
+ \left[-\frac{z+1}{z-1}\right]^L=1,
+\]
+the physical singular condition. Indeed, $Q_L(z)=0$ gives
+\[
+ \left(\frac{z+1}{z-1}\right)^{L-1}
+ =\frac{z+3}{z-3},
+\]
+and combining the two conditions yields
+\[
+ (z+1)(z+3)=(-1)^L(z-1)(z-3).
+\]
+For even $L$, this forces $z=0$, which is a root of $Q_L$.
+For odd $L$, it forces $z=\pm\ii\sqrt3$; substitution into $Q_L$
+shows that these are roots exactly when $L\equiv3\pmod6$.
+
+At these residual roots, solving $G(u,w)=0$ to first order gives
+$w(u)=z+\alpha u+O(u^2)$, and substitution into $H$ gives
+$H(u,w(u))=h_1u+O(u^2)$, where
+\[
+ \begin{array}{c|c|c}
+ \text{residual root}&\alpha&h_1\\ \hline
+ z=0,\ L\text{ even}
+ &-\dfrac4{3L-4}&\dfrac{36L(L-4)}{3L-4}\\[6pt]
+ z=\pm\ii\sqrt3,\ L\equiv3\pmod6
+ &-\dfrac2{L-2}&\dfrac{4L(L-3)(z+3)}{L-2}
+ \end{array}
+\]
+In each case the reduced root has length one and $h_1\ne0$.
+The full local length is therefore $L+1$, and
+\[
+ c_0(p)-Lc_1(p)=\frac{L+1-L}{6}=\frac16.
+\]
+Thus the singular part of the corrected sum has one unordered
+configuration $\{1,-1,0\}$ for even $L$, two configurations
+$\{1,-1,\pm\ii\sqrt3\}$ for $L\equiv3\pmod6$, and none for the other
+odd values of $L$. This verifies the required singular weights;
+no multiple balanced singular pairs occur for $n=3$.
+
 \subsection{$n=4$}
 
 Apply Definition~\ref{def:depermutation} to $P$ from the background, and
@@ -663,226 +706,6 @@ Both $Z^{\mathrm{dep}}_{L,n}$ and the proposed excess formal sum are to be expre
 in terms of the auxiliary formal sums $Z_j$, so that their difference has the
 form \eqref{eq:weight-cycle}. In the local calculations below,
 $\operatorname{coeff}_pZ^{\mathrm{dep}}_{L,n}=w_i^{\mathrm{dep}}$ when $p=x^i$.
-
-\subsection{The case $n=3$, $L=6$: cancellation at infinity}
-\label{sec:n3-infinity}
-
-In this example the discrepancy between the degree-five diagonal
-polynomial and the degree-seven ambient equations can be handled
-compatibly with depermutation. The missing contribution is one point of
-multiplicity two, rather than two distinct points at infinity.
-
-Write
-\[
- F_1=(x+1)^6(x-y-2)(x-z-2)
-     -(x-1)^6(x-y+2)(x-z+2),
-\]
-with $F_2,F_3$ obtained by permutation. Each has degree seven. Let
-\[
- \widehat F_i(X,Y,Z,T)=T^7F_i(X/T,Y/T,Z/T)
-\]
-be its degree-seven homogenization in $\mathbb P^3$.
-For every partition, first homogenize
-these ambient equations and then impose the coordinate equalities,
-retaining degree seven even if restriction lowers the affine degree.
-This specifies the compactification used in the calculation below.
-
-\paragraph{The full diagonal.}
-On $x=y=z=s$ the remaining affine polynomial is
-\[
- g(s)=4\bigl((s+1)^6-(s-1)^6\bigr)
-     =48s^5+160s^3+48s.
-\]
-Restricting $\widehat F_1$ to the projective diagonal gives
-\[
- \widehat g(S,T)
- =48S^5T^2+160S^3T^4+48ST^6
- =16ST^2(3S^4+10S^2T^2+3T^4).
-\]
-It therefore has degree seven, consisting of the five affine roots
-counted with multiplicity and a double zero at $[S:T]=[1:0]$.
-If one instead homogenized $g$ only to its minimal degree five, this
-double zero would be absent. Thus the count seven refers to the
-inherited degree-seven intersection, not the projective closure of the
-finite affine diagonal solutions with their local multiplicities.
-
-\paragraph{The full system at infinity.}
-The highest-degree part of $F_1$ is
-\[
- F_1^{[7]}=4x^5\bigl(x^2-2x(y+z)+3yz\bigr),
-\]
-and similarly for the other two equations. Their only common zero in
-the plane at infinity is
-\[
- P=[1:1:1:0].
-\]
-Indeed, if one of $x,y,z$ vanishes, the other equations force all three
-to vanish. Otherwise set
-$Q_x=x^2-2x(y+z)+3yz$ and define $Q_y,Q_z$ cyclically. The identities
-\[
- Q_x-Q_y=(x-y)(x+y-5z)
-\]
-and their cyclic analogues show that a common zero must have two
-coordinates equal; substitution then forces all three to be equal.
-
-To compute the local multiplicity, use $X=1$, $Y=1+u$, $Z=1+v$, $T=t$.
-The linear terms of $\widehat F_1,\widehat F_2,\widehat F_3$ are
-\[
- 4u+4v,\qquad -8u+4v,\qquad 4u-8v.
-\]
-Permutation symmetry gives polynomial factorizations
-\[
- \widehat F_1-\widehat F_2=(X-Y)K_{12},\qquad
- \widehat F_1-\widehat F_3=(X-Z)K_{13},
-\]
-where $K_{12}(P)=K_{13}(P)=-12$. Both factors are units in the local
-ring, so the full local ideal contains $u$ and $v$. Modulo these,
-the remaining equation is
-\[
- \widehat F_1(1,1,1,t)=48t^2+160t^4+48t^6.
-\]
-Consequently the completed local quotient is
-\[
- \C[[u,v,t]]/(\widehat F_1,\widehat F_2,\widehat F_3)
- \simeq\C[[t]]/(t^2),
-\]
-and the full system has multiplicity exactly two at $P$.
-
-\paragraph{The two-block systems.}
-For the partition $x=y$, retain $\widehat F_1$, $\widehat F_3$, and
-$X-Y=0$. On the line at infinity of this plane their only common zero
-is again $P$: the first leading form restricts to
-$4x^6(z-x)$, and $x=0$ is incompatible with the second leading form
-at a projective point. Locally $u=0$, while
-$\widehat F_1-\widehat F_3=(X-Z)K_{13}$ forces $v=0$.
-The completed quotient is therefore again $\C[[t]]/(t^2)$.
-By symmetry, the same multiplicity two occurs for each of the three
-two-block partitions. The full-diagonal system has that same local
-quotient by the calculation of $\widehat g$.
-
-These intersections are zero-dimensional. In fact, any positive-dimensional
-projective component would meet infinity, whereas the only intersection
-there is the isolated point $P$. B\'ezout's theorem now gives
-\[
-\begin{array}{c|c|c|c}
- \text{partition type}&\text{projective length}
- &\text{length at infinity}&\text{affine length}\\ \hline
- 1+1+1&7^3=343&2&341\\
- 2+1&7^2=49&2&47\\
- 3&7&2&5
-\end{array}
-\]
-The projective formal sum obtained by the same M\"obius combination as in
-Definition~\ref{def:depermutation} thus has zero coefficient at $P$:
-\[
- \frac16\bigl(2-3\cdot2+2\cdot2\bigr)=0.
-\]
-It follows that the affine depermutation degree is exactly
-\[
- \boxed{\frac{341-3\cdot47+2\cdot5}{6}
-       =\frac{343-3\cdot49+2\cdot7}{6}=35.}
-\]
-This justifies using seven for the full-diagonal term in this example,
-provided the other terms use the same inherited projective intersections.
-The cancellation requires equality of the boundary multiplicities, not
-merely that all boundary points lie on a collision diagonal.
-The number $35$ is before subtracting the singular-pair excess.
-
-\paragraph{Fixing a singular pair.}
-Set $x_1=1$, $x_2=-1$, and $x_3=z$. The first two equations vanish
-identically. For example, in $F_1$ the first term contains
-$1-(-1)-2=0$, and the second contains $(1-1)^L=0$.
-The remaining equation, for general $L\ge6$, is
-\[
- \begin{aligned}
- F_3(1,-1,z)
- &=(z+1)^L(z-3)(z-1)-(z-1)^L(z+1)(z+3)\\
- &=(z^2-1)Q_L(z),\\
- Q_L(z)&=(z+1)^{L-1}(z-3)-(z-1)^{L-1}(z+3).
- \end{aligned}
-\]
-The leading terms in $Q_L$ cancel, and
-\[
- Q_L(z)=2(L-4)z^{L-1}+\text{lower-degree terms}.
-\]
-Moreover, $Q_L(1)=-2^L$ and $Q_L(-1)=(-1)^L2^L$.
-Thus $F_3$ has degree $L+1$, with simple roots $z=\pm1$ and $L-1$
-remaining roots counted with multiplicity. This confirms the
-factorization and count in the original notes; the roots $z=\pm1$
-are collision configurations.
-
-For $L=6$ the factorization is explicitly
-\[
- F_3(1,-1,z)=4z(z^2-1)(z^4-10z^2-7).
-\]
-The five noncollision values are
-\[
- z=0,\qquad z=\pm\sqrt{5+4\sqrt2},\qquad
- z=\pm\ii\sqrt{4\sqrt2-5},
-\]
-all simple as roots of the restricted equation. Their transverse
-multiplicities in the full three-variable system remain to be computed;
-the restricted count alone does not determine the singular excess.
-
-\paragraph{The collision point $(1,-1,1)$ contributes zero.}
-This can be verified for every $L\ge6$. Let $p=(1,-1,1)$ and use the
-local coordinates
-\[
- x_1=1+u,\qquad x_2=-1+v,\qquad x_3=1+w.
-\]
-The linear terms of $F_1$ and $F_3$ are respectively
-$-2^{L+1}(u-v)$ and $-2^{L+1}(w-v)$. Moreover, symmetry gives
-\[
- F_1-F_3=(x_1-x_3)K,\qquad K(p)=-2^{L+1}\ne0.
-\]
-Thus $K$ is a unit at $p$, and in the local ring
-\[
- (F_1,F_2,F_3)=(F_1,F_2,x_1-x_3).
-\]
-The right-hand side is exactly the partition ideal for
-$\pi=\{\{1,3\},\{2\}\}$. Consequently the full and partition systems
-have identical local algebras, not merely equal multiplicities.
-
-Their common length is $L$. Indeed, on $w=u$ the first equation is
-\[
- F_1=-2\bigl((2+u)^L(u-v)+u^L(u-v+4)\bigr),
-\]
-so it solves uniquely as
-\[
- u-v=-\frac{4u^L}{(2+u)^L+u^L},\qquad v=u+O(u^L).
-\]
-The second equation on this formal curve becomes
-\[
- \begin{aligned}
- F_2&=v^L(v-u-4)^2-(v-2)^L(v-u)^2\\
-    &=16u^L+O(u^{L+1}).
- \end{aligned}
-\]
-Hence both completed local algebras are isomorphic to
-$\C[[u]]/(u^L)$. Only the singleton partition and $\pi$ contribute
-at $p$, with M\"obius coefficients $1$ and $-1$. Therefore
-\[
- \boxed{\operatorname{coeff}_{p}Z^{\mathrm{dep}}_{L,3}
-       =\frac{L-L}{6}=0.}
-\]
-Permutation symmetry and simultaneous sign reversal give the same result
-at all configurations whose coordinates are $\pm1$ and which contain
-both signs. Thus the collision values $z=\pm1$ in the restricted
-singular-pair equation make no contribution after depermutation.
-
-For $L=6$, the five noncollision values listed above give five distinct
-unordered singular configurations, each with a full orbit of size six.
-They satisfy the nondegeneracy hypotheses of the one-pair local model
-below: the restricted root is simple and the coefficient of $u-v$ in
-$F_1$ is nonzero. In particular their full local multiplicities are at
-least six. Assigning excess six to each of these unordered configurations
-subtracts total degree thirty, giving
-\[
- \boxed{35-5\cdot6=5=\binom63-\binom62.}
-\]
-This verifies the proposed degree count and the vanishing of the singular
-collision contributions in this example. The identification of the
-residual coefficients with physical Bethe vectors is a further step.
 
 \subsection{General vanishing for unequal singular multiplicities}
 \label{sec:unbalanced}
