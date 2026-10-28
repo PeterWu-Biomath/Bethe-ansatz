@@ -355,119 +355,123 @@ Moreover,
 \subsection{A generalized $TQ$ relation and depermutation}
 \label{sec:general-tq}
 
-Return temporarily to a general polynomial $f$ symmetric in its last
-$n-1$ arguments, with $F_i$ as in Section~2.1. Let
+Fix a polynomial $f$ symmetric in its last $n-1$ arguments, and write
+$F_i(x)=f(x_i,x_1,\ldots,\widehat{x_i},\ldots,x_n)$.
+We construct a polynomial divisibility relation for this system and
+identify its remainder ideal with depermutation. Write $Z^{\mathrm{dep}}$
+for its depermutation sum and let
 \[
  q:\A^n\longrightarrow\Sym^n(\A^1)\simeq\A^n,
  \qquad x\longmapsto(e_1(x),\ldots,e_n(x)),
 \]
-where $e_j$ is the $j$th elementary symmetric polynomial. A point
-$c=(c_1,\ldots,c_n)$ of the target represents the monic polynomial
+where $e_j$ is the $j$th elementary symmetric polynomial. Using $e_1,\ldots,e_n$
+as coordinates on the target, set
 \[
- Q_c(t)=t^n-c_1t^{n-1}+\cdots+(-1)^nc_n.
+ Q(t)=t^n-e_1t^{n-1}+\cdots+(-1)^ne_n.
 \]
-In particular, $Q_{q(x)}(t)=\prod_i(t-x_i)$.
+After substituting $e=e(x)$, this becomes $\prod_i(t-x_i)$.
 
 \begin{proposition}[Universal polynomial interpolation]
 \label{prop:general-tq-interpolation}
 There is a unique polynomial
 \[
- R_f(t;c)=\sum_{j=0}^{n-1}\rho_j(c)t^j,
- \qquad \rho_j\in\C[c_1,\ldots,c_n],
+ R(t;e)=\sum_{j=0}^{n-1}\rho_j(e)t^j,
+ \qquad \rho_j\in\C[e_1,\ldots,e_n],
 \]
-such that $F_i(x)=R_f(x_i;q(x))$ for every $i$.
+such that $F_i(x)=R(x_i;e(x))$ for every $i$.
 \end{proposition}
 
 \begin{proof}
-By symmetry, write
+Express the symmetric dependence on the last $n-1$ variables as
 \[
  f(x_1,\ldots,x_n)
  =g\bigl(x_1;e_1(x_{\widehat1}),\ldots,e_{n-1}(x_{\widehat1})\bigr).
 \]
-Set $c_0=1$ and
+Set $e_0=1$ and
 \[
- E_j(t;c)=\sum_{k=0}^j(-t)^kc_{j-k},\qquad
- \Phi_f(t;c)=g\bigl(t;E_1(t;c),\ldots,E_{n-1}(t;c)\bigr).
+ E_j(t;e)=\sum_{k=0}^j(-t)^ke_{j-k},\qquad
+ \Phi(t;e)=g\bigl(t;E_1(t;e),\ldots,E_{n-1}(t;e)\bigr).
 \]
-The identities $E_j(x_i;q(x))=e_j(x_{\widehat i})$ imply
-$\Phi_f(x_i;q(x))=F_i(x)$. Divide by the monic polynomial $Q_c$:
+Since $E_j(x_i;e(x))=e_j(x_{\widehat i})$, we have
+$\Phi(x_i;e(x))=F_i(x)$. Division by the monic polynomial $Q$ gives
 \begin{equation}\label{eq:general-tq-division}
- \Phi_f(t;c)=U_f(t;c)Q_c(t)+R_f(t;c),\qquad \deg_tR_f<n.
+ \Phi(t;e)=U(t;e)Q(t)+R(t;e),\qquad \deg_tR<n.
 \end{equation}
-This constructs the required polynomial. For uniqueness, the difference
-of two such remainders vanishes at all $n$ coordinates whenever they
-are distinct, so it is zero. Polynomial identity then extends this
-conclusion to every $c$.
+Evaluating at $t=x_i$ proves existence. For uniqueness, the difference
+of two remainders has degree less than $n$ and vanishes at the $n$
+roots of every squarefree $Q$, so it is zero there. Since squarefree
+monic polynomials form a dense subset of coefficient space, the
+remainders agree identically.
 \end{proof}
 
 Define the \emph{generalized $TQ$ ideal}
 \begin{equation}\label{eq:general-tq-ideal}
- J_f=(\rho_0,\ldots,\rho_{n-1})\subseteq\C[c_1,\ldots,c_n].
+ J=(\rho_0,\ldots,\rho_{n-1})\subseteq\C[e_1,\ldots,e_n].
 \end{equation}
-Its equations say that there is a polynomial $T(t)$ with
-$\Phi_f(t;c)=T(t)Q_c(t)$. For general $f$, this is a polynomial
-divisibility relation; it need not have the shifted form of Baxter's
-equation. Its pullback ideal is, explicitly,
+The equations of $J$ are equivalent to the existence of a polynomial
+$T(t)$ satisfying $\Phi(t;e)=T(t)Q(t)$. This is the generalized $TQ$
+relation. It need not have Baxter's shifted form. Pulling the ideal
+back to the ordered variables gives
 \[
- K_f=q^*J_f
- :=\bigl(\rho_0(q(x)),\ldots,\rho_{n-1}(q(x))\bigr)
+ K=q^*J
+ :=\bigl(\rho_0(e(x)),\ldots,\rho_{n-1}(e(x))\bigr)
  \subseteq\C[x_1,\ldots,x_n].
 \]
-The evaluation identities show $(F_1,\ldots,F_n)\subseteq K_f$.
+The evaluation identities give $(F_1,\ldots,F_n)\subseteq K$.
 For distinct coordinates the two systems are equivalent. If a root
-$a$ of $Q_c$ has multiplicity $s$, the equations of $J_f$ additionally
+$a$ of $Q$ has multiplicity $s$, the equations of $J$ additionally
 impose
 \[
- R_f(a;c)=\partial_tR_f(a;c)=\cdots=
- \partial_t^{s-1}R_f(a;c)=0.
+ R(a;e)=\partial_tR(a;e)=\cdots=
+ \partial_t^{s-1}R(a;e)=0.
 \]
 
 \begin{proposition}[Depermutation and the remainder ideal]
 \label{prop:general-depermutation-tq}
-Assume $(F_1,\ldots,F_n)$ has finite-dimensional quotient. Then $J_f$
-and $K_f$ also have finite-dimensional quotients, and
+Assume $(F_1,\ldots,F_n)$ has finite-dimensional quotient. Then $J$
+and $K$ also have finite-dimensional quotients, and
 \begin{equation}\label{eq:depermutation-tq-correspondence}
- \boxed{Z_f^{\mathrm{dep}}=\frac1{n!}Z(K_f),\qquad
-        q_*Z_f^{\mathrm{dep}}=Z(J_f).}
+ \boxed{Z^{\mathrm{dep}}=\frac1{n!}Z(K),\qquad
+        q_*Z^{\mathrm{dep}}=Z(J).}
 \end{equation}
 More explicitly, if the distinct coordinate values of $p$ occur with
 multiplicities $s_1,\ldots,s_m$, then
 \begin{equation}\label{eq:tq-local-multiplicity}
- \operatorname{coeff}_p Z_f^{\mathrm{dep}}
+ \operatorname{coeff}_p Z^{\mathrm{dep}}
  =\frac{\prod_{\alpha=1}^m s_\alpha!}{n!}\,
-   \ell_{q(p)}(J_f).
+   \ell_{q(p)}(J).
 \end{equation}
-Here the right side is zero if $q(p)\notin V(J_f)$.
+Here the right side is zero if $q(p)\notin V(J)$.
 \end{proposition}
 
 \begin{proof}
-Since $(F_1,\ldots,F_n)\subseteq K_f$, the quotient by $K_f$ is
+Since $(F_1,\ldots,F_n)\subseteq K$, the quotient by $K$ is
 finite-dimensional. The map $q$ is finite and surjective, so the same
-holds for $J_f$.
+holds for $J$.
 
 Perturb every equation by the same polynomial
 $h_a(t)=\sum_{j=0}^{n-1}a_jt^j$:
 \[
  F_i^a(x)=F_i(x)+h_a(x_i).
 \]
-The corresponding remainder is $R_f+h_a$, so the perturbed remainder
+The corresponding remainder is $R+h_a$, so the perturbed remainder
 ideal is $(\rho_0+a_0,\ldots,\rho_{n-1}+a_{n-1})$. At any isolated
 point of the original system, the full, partition, and pulled-back
 remainder ideals are generated by $n$ equations with finite local
 quotients. Their local lengths are therefore conserved under a
 sufficiently small generic perturbation.
 
-For completeness, genericity can be chosen simultaneously for all
+The generic parameters can be chosen simultaneously for all
 partitions. On a stratum with $m$ distinct coordinate values,
 evaluation of $h_a$ at those values is surjective. The block equations
 thus have simple solutions for generic parameters. At a repeated value,
-the extra condition $\partial_t(R_f+h_a)=0$ can be avoided by Hermite
+the extra condition $\partial_t(R+h_a)=0$ can be avoided by Hermite
 interpolation: specifying the $m$ values and one derivative gives
 $m+1\le n$ independent conditions. Splitting a repeated cluster while
 keeping its coordinate sum zero does not change the elementary
 symmetric functions to first order. The full Jacobian on these
 directions is consequently multiplication by the nonzero derivative
-$\partial_t(R_f+h_a)$. Thus the nearby full solutions, and all their
+$\partial_t(R+h_a)$. Thus the nearby full solutions, and all their
 compatible partition solutions, are simple.
 
 At such a nearby solution with equality partition $\sigma$, the
@@ -486,42 +490,43 @@ first equality in \eqref{eq:depermutation-tq-correspondence}.
 
 The polynomial ring $\C[x_1,\ldots,x_n]$ is free of rank $n!$ over
 $\C[e_1,\ldots,e_n]$, so $q$ is finite flat of degree $n!$. Near $p$,
-its local degree is $\prod_\alpha s_\alpha!$: factoring $Q_c$ into
+its local degree is $\prod_\alpha s_\alpha!$: factoring $Q$ into
 coprime factors near its distinct root values reduces the root map to
 one symmetric quotient for each cluster. Thus
 \[
- \ell_p(K_f)=\left(\prod_\alpha s_\alpha!\right)\ell_{q(p)}(J_f).
+ \ell_p(K)=\left(\prod_\alpha s_\alpha!\right)\ell_{q(p)}(J).
 \]
 There are $n!/\prod_\alpha s_\alpha!$ ordered points over $q(p)$.
 This gives \eqref{eq:tq-local-multiplicity} and the pushforward equality.
 \end{proof}
 
-\paragraph{What this proves, and its relation to the literature.}
+\paragraph{Consequences and references.}
 The universal interpolation construction uses elementary symmetric
 polynomial identities. Divided differences for symmetric-group
 equivariant systems, and related resultant decompositions, are studied
 by Bus\'e and Karasoulou~\cite[Sections~2--3]{BK2016}. The local-length
-identity~\eqref{eq:depermutation-tq-correspondence} is proved here;
-we do not attribute that identity to their resultant theorem.
+identity~\eqref{eq:depermutation-tq-correspondence} is established by
+the preceding proof; the cited paper treats the related resultant
+decomposition.
 It shows that the depermutation sum has nonnegative coefficients and
 that its support is exactly the pullback of the remainder solution set.
-It does not assert equality between the original Bethe ideal and $K_f$.
+It does not assert equality between the original Bethe ideal and $K$.
 
 For the XXX polynomial $f=P$, the canonical remainder satisfies
 \[
- R_f(t;c)\equiv-\frac12\bigl((t+1)^LQ_c(t-2)
-                         +(t-1)^LQ_c(t+2)\bigr)\pmod{Q_c(t)}.
+ R(t;e)\equiv-\frac12\bigl((t+1)^LQ(t-2)
+                         +(t-1)^LQ(t+2)\bigr)\pmod{Q(t)}.
 \]
-Thus $J_f$ is exactly the remainder ideal of Baxter's $TQ$ relation;
+Thus $J$ is exactly the remainder ideal of Baxter's $TQ$ relation;
 see~\cite[eq.~(3)]{GJ2020} for the relation in the unscaled variables.
 For arbitrary $f$, collision vanishing need not hold. For example,
 $f(x,y)=x^2$ gives
 \[
- R_f(t;c)=c_1t-c_2,\qquad J_f=(c_1,c_2),\qquad
- K_f=(x+y,xy).
+ R(t;e)=e_1t-e_2,\qquad J=(e_1,e_2),\qquad
+ K=(x+y,xy).
 \]
 The full local length at $(0,0)$ is four and the diagonal length is
-two, so $Z_f^{\mathrm{dep}}=[(0,0)]$. The generalized $TQ$ equations
+two, so $Z^{\mathrm{dep}}=[(0,0)]$. The generalized $TQ$ equations
 retain this double root.
 
 For XXX, exclusion of repeated roots away from $\pm1$ is therefore an
