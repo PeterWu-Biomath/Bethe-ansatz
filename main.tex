@@ -1792,11 +1792,72 @@ so equality is impossible. This excludes the final case and proves
 the proposition.
 \end{proof}
 
+\subsection{Three additional roots invariant under sign reversal}
+
+\begin{proposition}\label{prop:balanced-three-symmetric-roots}
+Let $a\ge2$, $n=2a+3$, and $L\ge4a+6$. The corrected weight
+vanishes at every balanced configuration whose three additional roots
+are $0,w,-w$, with $w\ne0$.
+\end{proposition}
+
+\begin{proof}
+Write $H(t)=t(t^2+p)$, where $p=-w^2$. The values
+$H(\pm1),H(\pm3)$ are nonzero, as in the preceding arguments.
+Since $H$ is odd, $\Xi=0$ requires $L\not\equiv a\pmod2$.
+Otherwise the highest residue obstruction already proves vanishing.
+
+Put
+\[
+ C=\frac{2L-5a}{2},\qquad D=C-\frac83.
+\]
+The root at zero contributes $8/3$ to the logarithmic-derivative
+sum in~\eqref{eq:balanced-second-obstruction}. Consequently
+\[
+ K=D-\frac{12}{p+9}-\frac4{p+1}.
+\]
+Thus $K=0$ would imply
+\[
+ F(p):=D(p+1)(p+9)-16p-48=0.
+\]
+This quadratic is irreducible over $\mathbb Q$. Indeed, its
+discriminant is
+\[
+ 16\bigl((2D-2)^2+12\bigr)
+ =\frac{16}{9}(N^2+108),\qquad N=6L-15a-22\ge32.
+\]
+If $N^2+108$ were an integer square, factoring the difference of
+the two squares would give $N=6$ or $N=26$: these are the only
+nonnegative possibilities from factor pairs of $108$ with the same
+parity. Both contradict $N\ge32$.
+
+Here $D\ge19/3$, and the signs of $F$ at $-9,-3,-1,0$
+show that its roots lie in $(-9,-3)$ and $(-1,0)$.
+The reduced equations $H\mid S_a$ have rational coefficients in
+$p$. Hence if one root of this irreducible quadratic satisfied them,
+so would its conjugate $p\in(-1,0)$. Choose this conjugate and put
+$w=\sqrt{-p}\in(0,1)$. The reduced equation at $w$, including its
+interactions with $0$ and $-w$, becomes
+\[
+ \left(\frac{w+1}{w-1}\right)^{L-a-1}
+ =\left(\frac{w+3}{w-3}\right)^a\frac{w+2}{w-2}.
+\]
+But
+\[
+ \left|\frac{w+1}{w-1}\right|
+ >\left|\frac{w+2}{w-2}\right|
+ >\left|\frac{w+3}{w-3}\right|>1,
+ \qquad L-a-1>a+1,
+\]
+so this equality is impossible. Thus $\Xi$ and $K$ cannot both
+vanish, and the residue obstruction proves the proposition.
+\end{proof}
+
 \paragraph{The remaining case.}
 The general $a\ge2$ claim is reduced to showing that the reduced
 Bethe equations cannot coexist with all $a$ vanishing residue
 obstructions. The configurations still not covered by the preceding
-proofs have at least three additional roots, $\Xi(p)=K(p)=0$, and,
+proofs have at least three additional roots (with the sign-invariant
+three-root case now excluded), $\Xi(p)=K(p)=0$, and,
 for $a>2$, possibly further vanishing obstructions. None of the
 arguments above establishes their exclusion. In particular, the
 affine distinct-root assumption alone must not be used as a proof
