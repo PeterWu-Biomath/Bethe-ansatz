@@ -475,7 +475,8 @@ two labels belong to the same block precisely when their coordinates
 are equal. Write $a=|A(p)|$ and $b=|B(p)|$. If one of $a,b$ is
 positive, the original Bethe equation at that fixed root forces the
 other to be positive as well. Hence either $a=b=0$ or $a,b\ge1$.
-These exact labels classify the affine configurations. 
+These exact labels classify the affine configurations. Write
+$c_k(p)=\operatorname{coeff}_p Z^{\mathrm{dep}}_k$.
 
 Here list some claims that's needed to prove the conjecture:
 \begin{enumerate}
@@ -488,6 +489,22 @@ Here list some claims that's needed to prove the conjecture:
 	c_0(p)-Lc_1(p)=w(p)
 	\end{equation}
 	where $w(p)$ is the target weight above.
+	For a point with pairwise distinct coordinates, let $\ell_p$ be its
+	local length in the full Bethe ideal and let
+	$e_p=\ell_p(I_{A(p),B(p);\hat0})$ be its reduced fixed-pair local
+	length. The normalizations give $c_0(p)=\ell_p/n!$ and
+	$c_1(p)=e_p/n!$. Thus the required local-length claim is
+	\begin{equation}\label{eq:single-pair-length-criterion}
+	 \ell_p=
+	 \begin{cases}
+	 Le_p+1,&p\text{ satisfies the physical condition }\eqref{eq:physical},\\
+	 Le_p,&\text{otherwise}.
+	 \end{cases}
+	\end{equation}
+	In particular, when $e_p=1$, the full local length is $L+1$ at a
+	physical point and $L$ at a nonphysical point. Proving this length
+	criterion proves the physical weight identity; the cases $n=2,3$
+	below illustrate it.
 	\item \textbf{Multiple balanced singular pairs: $a=b\ge2$.}
 	These points have repeated coordinates and hence target weight zero.
 	Prove
@@ -611,19 +628,16 @@ configuration with two $1$'s and one $-1$, or vice versa. Computing their
 common ordinary local length is unnecessary for this cancellation.
 
 \paragraph{The transverse singular multiplicity.}
-Let $p=(1,-1,z)$ be a solution with $z\ne\pm1$. We prove the
-physical weight identity~\eqref{eq:singular_weight}. The reduced equation is
+Let $p=(1,-1,z)$ be a solution with $z\ne\pm1$. We verify the
+local-length criterion~\eqref{eq:single-pair-length-criterion} from
+Section~\ref{section:plan}.
+The reduced equation is
 \[
  Q_L(z)=0,\qquad
  Q_L(w)=(w+1)^{L-1}(w-3)-(w-1)^{L-1}(w+3),
 \]
-since $F_3(1,-1,w)=(w^2-1)Q_L(w)$. Put $e=\ord_zQ_L$.
-The coordinates of $p$ are distinct, and exactly one fixed-pair choice
-contributes at this ordered point. Thus, writing $\ell_p$ for its
-full local multiplicity,
-\[
- c_0(p)=\frac{\ell_p}{6},\qquad c_1(p)=\frac e6.
-\]
+since $F_3(1,-1,w)=(w^2-1)Q_L(w)$. Here the reduced local length is
+$e=\ord_zQ_L$, and $\ell_p$ denotes the full local length.
 
 Set $x_1=1+u$, $x_2=-1+v$, and $x_3=w$. Eliminating $v$ by $F_1=0$
 gives
@@ -649,10 +663,7 @@ $((z+1)/(z-1))^{L-1}=(z+3)/(z-3)$, and combining these two
 relations yields exactly the numerator of $H(0,z)$.
 
 If $p$ is nonphysical, $H$ is a unit in the local ring. The remaining
-ideal is therefore $(u^L,G)$, of length $Le$, and hence
-\[
- c_0(p)-Lc_1(p)=\frac{Le-Le}{6}=0.
-\]
+ideal is therefore $(u^L,G)$, of length $\ell_p=Le$, as required.
 
 If $p$ is physical, $H(0,z)=0$ forces $z=0$ for even $L$, or
 $z^2=-3$ for odd $L$. At these roots $e=1$. The first-order
@@ -677,8 +688,8 @@ is $L+1$. Therefore
  0,&p\text{ is nonphysical}.
  \end{cases}}
 \]
-This is the desired pointwise identity at every distinct-coordinate
-singular solution for $n=3$.
+Thus the local-length criterion, and hence the desired pointwise
+identity, holds at every distinct-coordinate singular solution for $n=3$.
 
 \subsection{$n=4$}
 
