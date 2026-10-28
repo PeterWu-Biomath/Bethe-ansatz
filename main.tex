@@ -556,7 +556,7 @@ degree, so we focus on the boundary contribution and the singular
 local weights.
 
 \paragraph{Cancellation at infinity.}
-Homogenize the three original equations to their ambient degree
+As explained we can compactify by $\mathbb{P}^3$, Homogenize the three original equations to their ambient degree
 $L+1$ before imposing partition equalities. The highest-degree part is
 \[
  F_1^{[L+1]}=2x^{L-1}q_x,\qquad
@@ -595,11 +595,10 @@ $Z^{\mathrm{dep}}_0$ is
 \[
  \frac16\bigl(2-3\cdot2+2\cdot2\bigr)=0.
 \]
-This proves the required cancellation for every $L\ge6$, extending the
-degree-five versus degree-seven example at $L=6$.
+This proves the required cancellation for every $L\ge6$.
 
 \paragraph{Unbalanced singular collisions.}
-At $p=(1,-1,1)$, symmetry gives
+At $p=(1,-1,1)$, we will prove that the depermutation kills the weights. Symmetry gives
 \[
  F_1-F_3=(x_1-x_3)K,\qquad K(p)=-2^{L+1}\ne0.
 \]
@@ -612,68 +611,74 @@ configuration with two $1$'s and one $-1$, or vice versa. Computing their
 common ordinary local length is unnecessary for this cancellation.
 
 \paragraph{The transverse singular multiplicity.}
-Let $p=(1,-1,z)$ with $Q_L(z)=0$, so $z\ne\pm1$. Use
-$x_1=1+u$, $x_2=-1+v$, $x_3=w$. Eliminating $v$ by $F_1=0$ gives
+Let $p=(1,-1,z)$ be a solution with $z\ne\pm1$. We prove the
+physical weight identity~\eqref{eq:singular_weight}. The reduced equation is
 \[
- v=u+2^{2-L}\frac{3-w}{1+w}u^L+O(u^{L+1}),\qquad
- F_2=u^LH(u,w),
+ Q_L(z)=0,\qquad
+ Q_L(w)=(w+1)^{L-1}(w-3)-(w-1)^{L-1}(w+3),
 \]
-where
-\begin{equation}\label{eq:n3-transverse-leading}
- H(0,w)=\frac4{w+1}
- \bigl((w+1)(w+3)-(-1)^L(w-1)(w-3)\bigr).
-\end{equation}
-Write $G(u,w)$ for $F_3$ after the same elimination. Then
-$G(0,w)=(w^2-1)Q_L(w)$. If $H(0,z)\ne0$, the local ideal is
-$(u^L,G)$, whose quotient has length $Le_z$. Since $p$ has distinct
-coordinates, its only full-system partition contribution is the
-singleton partition. Therefore
+since $F_3(1,-1,w)=(w^2-1)Q_L(w)$. Put $e=\ord_zQ_L$.
+The coordinates of $p$ are distinct, and exactly one fixed-pair choice
+contributes at this ordered point. Thus, writing $\ell_p$ for its
+full local multiplicity,
 \[
- c_0(p)-Lc_1(p)=\frac{Le_z-Le_z}{6}=0.
+ c_0(p)=\frac{\ell_p}{6},\qquad c_1(p)=\frac e6.
 \]
-This cancellation does not require the reduced root to be simple.
 
-\paragraph{The physical residual roots.}
-At a root of $Q_L$, equation~\eqref{eq:n3-transverse-leading} vanishes
-precisely when
+Set $x_1=1+u$, $x_2=-1+v$, and $x_3=w$. Eliminating $v$ by $F_1=0$
+gives
+\[
+ v=u+2^{2-L}\frac{3-w}{1+w}u^L+O(u^{L+1}).
+\]
+Write the remaining equations as $F_2=u^LH(u,w)$ and $F_3=G(u,w)$.
+Their restrictions to $u=0$ are
+\[
+ \begin{aligned}
+ H(0,w)&=\frac4{w+1}
+ \bigl((w+1)(w+3)-(-1)^L(w-1)(w-3)\bigr),\\
+ G(0,w)&=(w^2-1)Q_L(w).
+ \end{aligned}
+\]
+At a root of $Q_L$, the condition $H(0,z)=0$ is equivalent to
 \[
  \left[-\frac{z+1}{z-1}\right]^L=1,
 \]
-the physical singular condition. Indeed, $Q_L(z)=0$ gives
-\[
- \left(\frac{z+1}{z-1}\right)^{L-1}
- =\frac{z+3}{z-3},
-\]
-and combining the two conditions yields
-\[
- (z+1)(z+3)=(-1)^L(z-1)(z-3).
-\]
-For even $L$, this forces $z=0$, which is a root of $Q_L$.
-For odd $L$, it forces $z=\pm\ii\sqrt3$; substitution into $Q_L$
-shows that these are roots exactly when $L\equiv3\pmod6$.
+which is the physical singular condition~\eqref{eq:physical}.
+Indeed, the reduced equation gives
+$((z+1)/(z-1))^{L-1}=(z+3)/(z-3)$, and combining these two
+relations yields exactly the numerator of $H(0,z)$.
 
-At these residual roots, solving $G(u,w)=0$ to first order gives
-$w(u)=z+\alpha u+O(u^2)$, and substitution into $H$ gives
-$H(u,w(u))=h_1u+O(u^2)$, where
+If $p$ is nonphysical, $H$ is a unit in the local ring. The remaining
+ideal is therefore $(u^L,G)$, of length $Le$, and hence
+\[
+ c_0(p)-Lc_1(p)=\frac{Le-Le}{6}=0.
+\]
+
+If $p$ is physical, $H(0,z)=0$ forces $z=0$ for even $L$, or
+$z^2=-3$ for odd $L$. At these roots $e=1$. The first-order
+elimination of $G=0$ gives $w(u)=z+\alpha u+O(u^2)$, and substitution
+in $H$ gives $H(u,w(u))=h_1u+O(u^2)$, with
 \[
  \begin{array}{c|c|c}
- \text{residual root}&\alpha&h_1\\ \hline
- z=0,\ L\text{ even}
+ &\alpha&h_1\\ \hline
+ L\text{ even},\ z=0
  &-\dfrac4{3L-4}&\dfrac{36L(L-4)}{3L-4}\\[6pt]
- z=\pm\ii\sqrt3,\ L\equiv3\pmod6
+ L\text{ odd},\ z^2=-3
  &-\dfrac2{L-2}&\dfrac{4L(L-3)(z+3)}{L-2}
  \end{array}
 \]
-In each case the reduced root has length one and $h_1\ne0$.
-The full local length is therefore $L+1$, and
+In both cases $h_1\ne0$ for $L\ge6$, so the full local multiplicity
+is $L+1$. Therefore
 \[
- c_0(p)-Lc_1(p)=\frac{L+1-L}{6}=\frac16.
+ \boxed{
+ c_0(p)-Lc_1(p)
+ =\begin{cases}
+ 1/6,&p\text{ is physical},\\
+ 0,&p\text{ is nonphysical}.
+ \end{cases}}
 \]
-Thus the singular part of the corrected sum has one unordered
-configuration $\{1,-1,0\}$ for even $L$, two configurations
-$\{1,-1,\pm\ii\sqrt3\}$ for $L\equiv3\pmod6$, and none for the other
-odd values of $L$. This verifies the required singular weights;
-no multiple balanced singular pairs occur for $n=3$.
+This is the desired pointwise identity at every distinct-coordinate
+singular solution for $n=3$.
 
 \subsection{$n=4$}
 
