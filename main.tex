@@ -356,53 +356,17 @@ Moreover,
 \label{sec:general-tq}
 
 Fix a polynomial $f$ symmetric in its last $n-1$ arguments, and write
-$F_i(x)=f(x_i,x_1,\ldots,\widehat{x_i},\ldots,x_n)$.
-We construct a polynomial divisibility relation for this system and
-identify its remainder ideal with depermutation. Write $Z^{\mathrm{dep}}$
-for its depermutation sum and let
-\[
- q:\A^n\longrightarrow\Sym^n(\A^1)\simeq\A^n,
- \qquad x\longmapsto(e_1(x),\ldots,e_n(x)),
-\]
-where $e_j$ is the $j$th elementary symmetric polynomial. Using $e_1,\ldots,e_n$
-as coordinates on the target, set
-\[
- Q(t)=t^n-e_1t^{n-1}+\cdots+(-1)^ne_n.
-\]
-After substituting $e=e(x)$, this becomes $\prod_i(t-x_i)$.
+$F_i(x)=f(x_i,x_1,\ldots,\widehat{x_i},\ldots,x_n)$. Let $e_j$ be the $j$-th symmetric polynomial on $x_1,\dots,x_n$, and $\hat e_j$ be the $j$-th symmetric polynomial on $x_2,\dots,x_n$. Let $Q(t;e)=\sum_{j=0}^n (-1)^j e_j t^j$
 
-\begin{proposition}[Universal polynomial interpolation]
-\label{prop:general-tq-interpolation}
-There is a unique polynomial
-\[
- R(t;e)=\sum_{j=0}^{n-1}\rho_j(e)t^j,
- \qquad \rho_j\in\C[e_1,\ldots,e_n],
-\]
-such that $F_i(x)=R(x_i;e(x))$ for every $i$.
-\end{proposition}
+We set up to find a polynomial $R(t;e)$ s.t. when we evaluated $e$ on some roots of $F_i=0$, $R$ is divided by $Q$. Then we propose the following construction: let g be the polynomial s.t. $f(x_1,\dots,x_n)=g(x_1,\hat e_1,\dots,\hat e_{n-1})$. Then let
+\begin{align*}
+	E_j(t;e)&=\sum_{k=0}^j(-t)^ke_{j-k}\\
+	\Phi(t;e)&=g\bigl(t;E_1(t;e),\ldots,E_{n-1}(t;e)\bigr).
+\end{align*}
+As $Q$ is monomial, there
 
-\begin{proof}
-Express the symmetric dependence on the last $n-1$ variables as
-\[
- f(x_1,\ldots,x_n)
- =g\bigl(x_1;e_1(x_{\widehat1}),\ldots,e_{n-1}(x_{\widehat1})\bigr).
-\]
-Set $e_0=1$ and
-\[
- E_j(t;e)=\sum_{k=0}^j(-t)^ke_{j-k},\qquad
- \Phi(t;e)=g\bigl(t;E_1(t;e),\ldots,E_{n-1}(t;e)\bigr).
-\]
-Since $E_j(x_i;e(x))=e_j(x_{\widehat i})$, we have
-$\Phi(x_i;e(x))=F_i(x)$. Division by the monic polynomial $Q$ gives
-\begin{equation}\label{eq:general-tq-division}
- \Phi(t;e)=U(t;e)Q(t)+R(t;e),\qquad \deg_tR<n.
-\end{equation}
-Evaluating at $t=x_i$ proves existence. For uniqueness, the difference
-of two remainders has degree less than $n$ and vanishes at the $n$
-roots of every squarefree $Q$, so it is zero there. Since squarefree
-monic polynomials form a dense subset of coefficient space, the
-remainders agree identically.
-\end{proof}
+For a proof, just observe that $R$ is divided by $Q$ iff $R(x_i)=0$ for all $i$. W.L.O.G assume $i=1$, then when evaluated on $t=x_1$, $E_j=\hat e_j$ thus $\Phi(t;e)=g(x_1,\hat e_1,\dots,\hat e_{n-1})=f(x_1,\dots,x_n)=0$.
+
 
 Define the \emph{generalized $TQ$ ideal}
 \begin{equation}\label{eq:general-tq-ideal}
