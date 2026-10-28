@@ -1531,13 +1531,276 @@ $\nu_k=\binom{M+1}s$. The same two binomial identities prove
 zero weight.
 \end{proof}
 
-\paragraph{The remaining resonant case.}
-For $a\ge2$, the case still to establish is $r\ge2$ and $\Xi(p)=0$.
-The cluster units then have vanishing constant sum, and variations of
-$H_y$ can affect their first nonzero terms. The pure-cluster proof
-does not by itself control these terms. In particular, neither the
-distinct-root assumption nor the existence of a $TQ$ relation proves
-\eqref{eq:balanced-remainder-length-identity} at these points.
+\subsection{A spectral interpretation of the alternating local length}
+\label{sec:balanced-spectral-interpretation}
+
+There is a second route which avoids computing the individual lengths.
+Let $\tau_p$ be the polynomial quotient in the full $TQ$ relation
+for $Q_0=(t^2-1)^aH$. Write $\eta_{L,n}(\tau_p)$ for the dimension
+of the joint generalized eigenspace with eigenvalue polynomial
+$\tau_p$ in the highest-weight subspace of $\mathcal H$ with $n$
+down spins; set this dimension to zero when the eigenvalue is absent.
+
+\begin{proposition}\label{prop:balanced-spectral-euler}
+Under the standing assumptions,
+\begin{equation}\label{eq:balanced-spectral-euler}
+ \sum_{k=0}^a(-1)^k\binom Lk\nu_k(p)
+ =\eta_{L,n}(\tau_p)\in\{0,1\}.
+\end{equation}
+Thus the desired cancellation is equivalent to excluding $\tau_p$
+from the spectrum of the finite spin chain.
+\end{proposition}
+
+\begin{proof}
+Let $M_s$ be the highest-weight $\mathfrak{sl}_2$ Verma module of
+spin $s$, with generators $e,f,h$ normalized by $[e,f]=2h$.
+The singular vector $f^2v_{1/2}$ gives the exact sequence
+\[
+ 0\longrightarrow M_{-3/2}\longrightarrow M_{1/2}
+   \longrightarrow\C^2\longrightarrow0.
+\]
+Equip each factor with the evaluation Lax matrix whose highest-vector
+diagonal entries are $t+2s$ and $t-2s$. The sequence intertwines these
+matrices. Tensoring $L$ copies therefore gives an exact complex
+compatible with the transfer matrices. Its term in degree $k$ is
+the direct sum over $k$-element subsets of sites, with $M_{-3/2}$ at
+these sites and $M_{1/2}$ at the others.
+
+Fix $h_0=L/2-n\ge0$. In degree $k$, this weight is reached after
+$n-2k$ lowering operations. Passing to highest vectors of weight
+$h_0$ preserves exactness. Indeed, on this weight space the finite
+sum
+\[
+ \mathcal P_{h_0}
+ =\sum_{j\ge0}\frac{(-1)^j f^je^j}
+                 {j!\prod_{q=1}^j(2h_0+q+1)}
+\]
+is a natural idempotent onto $\ker e$. Its denominators are nonzero,
+and it commutes with the differentials and transfer matrices.
+Taking its image is consequently taking a direct summand of the
+exact weight-space complex.
+
+The vacuum polynomials in degree $k$ are
+\[
+ a_k(t)=(t+1)^{L-k}(t-3)^k,\qquad
+ d_k(t)=(t-1)^{L-k}(t+3)^k.
+\]
+The spectral multiplicities on each such highest-weight space equal
+the local lengths of $J_k$. Here is the specialization argument
+needed for this statement. Keep the local spins fixed and vary the
+evaluation parameters $\theta_j$. For widely separated parameters,
+suitably rescaled creation operators $\mathcal B(\theta_j)$ have leading
+terms $f_j$. Their products give a basis in each fixed finite range
+of degrees, by comparison with the tensor-product Verma basis.
+The cyclic map from the holomorphic Yangian module to the tensor
+product is therefore an isomorphism in these degrees for generic
+parameters; its intertwining property follows from the defining
+highest-vector and creation-operator relations in
+\cite[Proposition~2.5.1]{MTV2009}. On its highest-weight part, the
+transfer action is the dual regular representation of the
+polynomial-solution algebra \cite[Corollary~7.3.2]{MTV2009}.
+This algebra is the remainder algebra $J_k$, after translating and
+rescaling the spectral variable. Traces of polynomials in the transfer
+coefficients consequently agree generically. The highest-weight
+projectors are regular near the homogeneous parameters. The
+bounded constant-degree family of \cite[Section~4.2]{MTV2009},
+together with its complete-intersection equations, makes the
+remainder algebras a finite flat family there. The trace identities specialize
+to these parameters. Hence the joint spectral multiplicities agree
+even if the specialized modules themselves are not isomorphic.
+The separating condition here is $L-2n+1+j\ne0$ for the relevant
+positive integers $j$, which follows from $L\ge2n$.
+
+All roots of $J_k$ with eigenvalue $\tau_p$ must be $Q_k$. In fact,
+if a monic polynomial $Q$ of degree $n-2k$ has that reduced
+eigenvalue, then $(t^2-1)^kQ$ solves the full $TQ$ relation with
+eigenvalue $\tau_p$. The uniqueness argument in the proof of
+Proposition~\ref{prop:one-pair-weight} applies without any assumption
+on root multiplicities, so this polynomial must equal $Q_0$.
+Thus the multiplicity in degree $k$ is $\nu_k(p)$, and it is zero
+for $k>a$.
+
+Taking a joint generalized eigenspace is an exact operation on these
+finite-dimensional modules: it is a primary direct summand for the
+commuting transfer coefficients. Euler characteristic of the resulting
+exact complex gives~\eqref{eq:balanced-spectral-euler}, including
+the factor $\binom Lk$ counting subsets of sites. Finally, the
+homogeneous finite spin chain has simple joint spectrum on highest
+vectors \cite[Theorem~12.1.1]{MTV2009}, so its multiplicity is zero
+or one.
+\end{proof}
+
+\subsection{Wronskian residue obstructions}
+\label{sec:balanced-wronskian-obstructions}
+
+The polynomial-kernel characterization of the finite-chain spectrum
+\cite[Section~12.8]{MTV2009} identifies
+$\eta_{L,n}(\tau_p)=1$ with the existence of a polynomial $P$ such
+that
+\begin{equation}\label{eq:balanced-polynomial-companion}
+ P(t+1)Q_0(t-1)-P(t-1)Q_0(t+1)=t^L.
+\end{equation}
+This is stronger than the single $TQ$ relation. The following gives
+explicit tests for failure of this condition.
+
+Set
+\[
+ \mathcal U(t)=\frac{t^L}{Q_0(t+1)Q_0(t-1)}
+ =\frac{t^{L-2a}}{(t^2-4)^aH(t+1)H(t-1)}.
+\]
+For $1\le j\le a$, let $c_j^+$ and $c_j^-$ be the coefficients of
+$(t-2)^{-j}$ and $(t+2)^{-j}$ in its principal parts at $2$ and
+$-2$, respectively, and put $\Theta_j=c_j^++c_j^-$.
+
+\begin{proposition}\label{prop:balanced-residue-obstructions}
+A polynomial companion in~\eqref{eq:balanced-polynomial-companion}
+exists if and only if
+\[
+ \Theta_1=\cdots=\Theta_a=0.
+\]
+Consequently, for $a\ge2$, any nonzero $\Theta_j$ proves the desired
+vanishing of the corrected weight at $p$.
+\end{proposition}
+
+\begin{proof}
+Writing $f=P/Q_0$, the Wronskian relation becomes
+$f(t+1)-f(t-1)=\mathcal U(t)$. Its rational principal parts telescope
+along each orbit of translation by $2$. At the ordinary roots $z_j$,
+the two simple-pole coefficients of $\mathcal U$ at $z_j+1$ and
+$z_j-1$ sum to zero by the $TQ$ equation at $z_j$.
+These contributions are the differences of rational functions with
+simple poles at $z_j$.
+
+The remaining poles are those at $2$ and $-2$, of orders at most $a$.
+There is no pole at zero since $L\ge2n$. For each order $j$, their
+sum of coefficients must vanish. Conversely, when it vanishes, the
+corresponding principal parts are the difference of
+\[
+ -c_j^+\bigl((t-1)^{-j}+(t+1)^{-j}\bigr).
+\]
+Every polynomial part also has a polynomial discrete antiderivative.
+We therefore obtain $f$ with poles only at roots of $Q_0$, and of
+orders bounded by their multiplicities. Hence $P=Q_0f$ is a
+polynomial. This proves the equivalence. The last assertion follows
+from Proposition~\ref{prop:balanced-spectral-euler} and
+\eqref{eq:balanced-local-normalization}.
+\end{proof}
+
+The highest principal-part coefficient is
+\[
+ c_a^+=\frac{2^{L-4a}}{H(3)H(1)},\qquad
+ c_a^-=\frac{(-1)^{L-a}2^{L-4a}}{H(-1)H(-3)}.
+\]
+Thus $\Theta_a=0$ is exactly $\Xi(p)=0$. When this holds, write
+$\mathfrak h(t)=H'(t)/H(t)$ and define
+\begin{equation}\label{eq:balanced-second-obstruction}
+ K(p)=\frac{2L-5a}{2}-\mathfrak h(3)-\mathfrak h(1)
+                         +\mathfrak h(-1)+\mathfrak h(-3).
+\end{equation}
+Differentiating the pole numerators gives
+\[
+ \Theta_{a-1}=c_a^+K(p).
+\]
+Therefore $\Xi(p)=0$ and $K(p)\ne0$ also prove cancellation, with
+no simplicity or Jacobian assumption on the remaining roots.
+
+\subsection{Two additional roots: $n=2a+2$}
+
+\begin{proposition}\label{prop:balanced-two-additional-roots}
+Let $a\ge2$, $n=2a+2$, and $L\ge4a+4$. The corrected weight is zero
+at every balanced configuration with two distinct additional roots
+outside $\pm1$.
+\end{proposition}
+
+\begin{proof}
+By the preceding propositions, it suffices to exclude
+$\Xi(p)=K(p)=0$. Write $H(t)=t^2-st+p$ and put
+$C=(2L-5a)/2$. All four values $H(\pm1),H(\pm3)$ are nonzero.
+The resonance condition is
+\begin{equation}\label{eq:two-additional-resonance}
+ \begin{cases}
+ (p+9)(p+1)+3s^2=0,&L\equiv a\pmod2,\\
+ s(p+3)=0,&L\not\equiv a\pmod2.
+ \end{cases}
+\end{equation}
+For later use, direct evaluation of logarithmic derivatives gives
+\[
+ K=C-\frac{6(2p+18-s^2)}{(p+9)^2-9s^2}
+       -\frac{2(2p+2-s^2)}{(p+1)^2-s^2}.
+\]
+
+The product of the reduced Bethe equations, combined with resonance,
+also implies
+\begin{equation}\label{eq:balanced-resonant-momentum}
+ \Pi^L=(-1)^{aL},\qquad
+ \Pi=\frac{H(-1)}{H(1)}=\frac{p+1+s}{p+1-s}.
+\end{equation}
+Indeed, with $\Sigma=H(-3)/H(3)$ these two conditions are
+$\Pi^{L-a}=\Sigma^a$ and $\Pi\Sigma=(-1)^{a+L+1}$.
+If $p,s$ are real, \eqref{eq:balanced-resonant-momentum} forces
+$\Pi=\pm1$, hence $s=0$ or $p=-1$.
+
+If $L\equiv a\pmod2$, substitute
+$s^2=-(p+9)(p+1)/3$ into $K=0$. This gives
+\[
+ p=-3+\frac8{C-1},\qquad
+ s^2=-\frac{(p+9)(p+1)}3.
+\]
+Here $C\ge(3a+8)/2\ge7$, so $-3<p<-1$ and $s^2>0$.
+Thus $p,s$ are real with $s\ne0$ and $p\ne-1$, contradicting
+\eqref{eq:balanced-resonant-momentum}.
+
+Now let $L\not\equiv a\pmod2$. If $p=-3$, the equation $K=0$
+gives
+\[
+ s^2=\frac{12C}{3C-8}>0.
+\]
+Again $p,s$ are real, $s\ne0$, and $p\ne-1$, giving the same
+contradiction. It remains to consider $s=0$.
+
+For $H=t^2+p$, the equation $K=0$ becomes
+\begin{equation}\label{eq:two-additional-quadratic-obstruction}
+ F(p):=C(p+1)(p+9)-16p-48=0.
+\end{equation}
+This quadratic is irreducible over $\mathbb Q$. Its discriminant is
+$16(d^2+12)$, where $d=2C-2=2L-5a-2$ is an integer at least $12$.
+Since $d^2<d^2+12<(d+1)^2$, the discriminant is not a rational
+square. The two real conjugate roots of $F$ lie respectively in
+$(-1,0)$ and $(-9,-3)$: this follows from
+\[
+ F(-1)=-32,\quad F(0)=9C-48>0,\quad
+ F(-9)=96,\quad F(-3)=-12C.
+\]
+
+The conditions $H\mid S_a$ are polynomial equations in $p$ with
+rational coefficients. If either root of the irreducible $F$ satisfied
+them, both would. Choose the conjugate $p\in(-1,0)$ and set
+$w=\sqrt{-p}\in(0,1)$, so the additional roots are $w,-w$.
+The reduced equation at $w$, after cancelling its interaction with
+$-w$, requires
+\[
+ \left(\frac{w+1}{w-1}\right)^{L-a-1}
+ =\left(\frac{w+3}{w-3}\right)^a.
+\]
+But
+\[
+ \left|\frac{w+1}{w-1}\right|
+ >\left|\frac{w+3}{w-3}\right|>1,
+ \qquad L-a-1>a,
+\]
+so equality is impossible. This excludes the final case and proves
+the proposition.
+\end{proof}
+
+\paragraph{The remaining case.}
+The general $a\ge2$ claim is reduced to showing that the reduced
+Bethe equations cannot coexist with all $a$ vanishing residue
+obstructions. The configurations still not covered by the preceding
+proofs have at least three additional roots, $\Xi(p)=K(p)=0$, and,
+for $a>2$, possibly further vanishing obstructions. None of the
+arguments above establishes their exclusion. In particular, the
+affine distinct-root assumption alone must not be used as a proof
+that these repeated singular pairs have zero corrected weight.
 
 \begin{thebibliography}{9}
 \bibitem{MTV2009}
