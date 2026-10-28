@@ -430,6 +430,45 @@ impose
  \partial_t^{s-1}R(a;e)=0.
 \]
 
+\begin{example}[$f(x,y,z)=x^2+xy+xz$]
+\label{ex:general-tq-quadratic}
+Write $e_1=x+y+z$, $e_2=xy+xz+yz$, and $e_3=xyz$. Since
+$f(x,y,z)=x(x+y+z)$, the three equations are simply
+\[
+ F_1=e_1x,\qquad F_2=e_1y,\qquad F_3=e_1z.
+\]
+We seek one polynomial in $t$ whose values at $x,y,z$ give these
+three expressions. It is immediately $R(t;e)=e_1t$.
+The construction in the proof gives the same answer: here
+$g(t;s_1,s_2)=t^2+ts_1$ and $E_1(t;e)=e_1-t$, so
+\[
+ \Phi(t;e)=t^2+t(e_1-t)=e_1t.
+\]
+Its degree in $t$ is already less than three. Division by
+\[
+ Q(t)=t^3-e_1t^2+e_2t-e_3
+\]
+therefore gives $U=0$ and $R=e_1t$. The generalized $TQ$ relation is
+\[
+ T(t)\bigl(t^3-e_1t^2+e_2t-e_3\bigr)=e_1t.
+\]
+Because $Q$ is monic of degree three, this identity forces
+$T=0$ and $e_1=0$. Hence
+\[
+ \boxed{J=(e_1),\qquad K=(x+y+z).}
+\]
+Thus the allowed unordered configurations are precisely the monic
+cubics $Q(t)=t^3+e_2t-e_3$, whose three roots sum to zero.
+In the ordered variables the original ideal is
+\[
+ (F_1,F_2,F_3)=(x+y+z)(x,y,z).
+\]
+Its zero set is also the plane $x+y+z=0$, although the ideal differs
+from $K$. This example illustrates the construction of $R,J,K$; its
+solution set is positive-dimensional, so the finite-length
+depermutation proposition below does not apply.
+\end{example}
+
 \begin{proposition}[Depermutation and the remainder ideal]
 \label{prop:general-depermutation-tq}
 Assume $(F_1,\ldots,F_n)$ has finite-dimensional quotient. Then $J$
