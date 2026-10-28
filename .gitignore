@@ -7,3 +7,6 @@
 *.fls
 *.fdb_latexmk
 *.toc
+
+# Python computation cache
+__pycache__/

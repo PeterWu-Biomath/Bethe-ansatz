@@ -1852,12 +1852,94 @@ so this equality is impossible. Thus $\Xi$ and $K$ cannot both
 vanish, and the residue obstruction proves the proposition.
 \end{proof}
 
+\subsection{Three additional roots: momentum and exact elimination}
+
+For three additional roots, write
+\[
+ H(t)=t^3-st^2+pt-q,\qquad
+ C=\frac{2L-5a}{2}\ge9,\qquad
+ \Pi=\frac{H(-1)}{H(1)}.
+\]
+The product of the reduced equations and $\Xi=0$ again imply
+$\Pi^L=(-1)^{aL}$. The resonance equation itself is
+\begin{equation}\label{eq:cubic-resonance}
+ \begin{cases}
+ 3(p+9)(p+1)+(9s+q)(s+q)=0,&L\equiv a\pmod2,\\
+ 3s(p+3)+q(p+7)=0,&L\not\equiv a\pmod2.
+ \end{cases}
+\end{equation}
+
+\begin{proposition}\label{prop:balanced-cubic-endpoint-momentum}
+For $a\ge2$ and $L\ge4a+6$, a balanced configuration with three
+additional roots and $\Pi=1$ or $\Pi=-1$ has zero corrected weight.
+\end{proposition}
+
+\begin{proof}
+It suffices to consider $\Xi=0$. If $\Pi=1$, then $p=-1$ and
+$s+q\ne0$, since $H(1)\ne0$. For opposite parities,
+\eqref{eq:cubic-resonance} would force $s+q=0$, a contradiction.
+For equal parities it gives $q=-9s$. Substitution into
+\eqref{eq:balanced-second-obstruction} yields $K=C-5/3\ne0$.
+
+If $\Pi=-1$, then $q=-s$ and $p\ne-1$. For equal parities,
+\eqref{eq:cubic-resonance} gives $p=-9$, and direct substitution
+gives $K=C-3\ne0$. For opposite parities, the resonance equation
+gives $s=0$, hence $q=0$. This is the sign-invariant case of
+Proposition~\ref{prop:balanced-three-symmetric-roots}.
+\end{proof}
+
+For the remaining momentum values, put
+\[
+ v=\frac{s+q}{p+1},\qquad
+ \Pi=-\frac{1+v}{1-v}.
+\]
+The endpoint proposition allows us to assume $v\ne0$ and $p\ne-1$.
+Equations~\eqref{eq:cubic-resonance} then give
+\begin{equation}\label{eq:cubic-momentum-parameterization}
+ s=\begin{cases}
+ -\dfrac{3(p+9)+v^2(p+1)}{8v},&L\equiv a\pmod2,\\[5pt]
+ -\dfrac{v(p+7)}2,&L\not\equiv a\pmod2,
+ \end{cases}
+ \qquad q=v(p+1)-s.
+\end{equation}
+The momentum condition is the one-variable polynomial equation
+\[
+ (-(1+v))^L-(-1)^{aL}(1-v)^L=0.
+\]
+Over each number field defined by an irreducible factor of this
+polynomial, $K=0$ is a polynomial equation of degree at most two in
+$p$. Reduce the three coefficients of $S_a\bmod H$ modulo this
+quadratic. Their common gcd with the quadratic tests whether the
+reduced Bethe equations can also hold. Factors supported on
+$H(\pm1)H(\pm3)\operatorname{disc}(H)=0$ must be removed, since
+these are outside the configurations under consideration.
+
+\paragraph{An exact check beyond sign-invariant configurations.}
+For $a=2$, $L=14$, the two nonendpoint momentum factors are
+\[
+ v^6+21v^4+35v^2+7,\qquad
+ 7v^6+35v^4+21v^2+1.
+\]
+In either field, the numerator of $K$, up to a nonzero scalar, is
+\[
+ (7v^2-3)p^2+(58v^2-18)p+51v^2+81.
+\]
+The gcd calculation just described gives $1$ in both fields.
+Together with the endpoint proposition, this excludes every
+three-additional-root configuration for these parameters. The
+calculation is implemented with exact rational and number-field
+arithmetic in \texttt{computations/check\_balanced\_cubic.py}; it
+also verifies all lengths $14\le L\le25$ for $a=2$,
+$18\le L\le25$ for $a=3$, and $22\le L\le25$ for $a=4$.
+These finite checks do not establish the assertion for arbitrary $L$.
+
 \paragraph{The remaining case.}
 The general $a\ge2$ claim is reduced to showing that the reduced
 Bethe equations cannot coexist with all $a$ vanishing residue
 obstructions. The configurations still not covered by the preceding
-proofs have at least three additional roots (with the sign-invariant
-three-root case now excluded), $\Xi(p)=K(p)=0$, and,
+proofs have at least three additional roots (for three roots, the
+endpoint momenta and the finite parameter ranges above are excluded),
+$\Xi(p)=K(p)=0$, and,
 for $a>2$, possibly further vanishing obstructions. None of the
 arguments above establishes their exclusion. In particular, the
 affine distinct-root assumption alone must not be used as a proof
