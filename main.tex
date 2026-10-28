@@ -356,17 +356,48 @@ Moreover,
 \label{sec:general-tq}
 
 Fix a polynomial $f$ symmetric in its last $n-1$ arguments, and write
-$F_i(x)=f(x_i,x_1,\ldots,\widehat{x_i},\ldots,x_n)$. Let $e_j$ be the $j$-th symmetric polynomial on $x_1,\dots,x_n$, and $\hat e_j$ be the $j$-th symmetric polynomial on $x_2,\dots,x_n$. Let $Q(t;e)=\sum_{j=0}^n (-1)^j e_j t^j$
+$F_i(x)=f(x_i,x_1,\ldots,\widehat{x_i},\ldots,x_n)$.
+Let $e_j$ and $\hat e_j$ denote the elementary symmetric polynomials
+in $x_1,\ldots,x_n$ and $x_2,\ldots,x_n$, respectively, and set $e_0=1$.
+The map from ordered roots to their elementary symmetric functions is
+\[
+ q:\A^n\longrightarrow\Sym^n(\A^1)\simeq\A^n,
+ \qquad x\longmapsto e(x).
+\]
+Using $e_1,\ldots,e_n$ as coordinates on the target, define
+\[
+ Q(t;e)=\sum_{j=0}^n(-1)^je_jt^{n-j},
+ \qquad Q(t;e(x))=\prod_{i=1}^n(t-x_i).
+\]
+Write $Z^{\mathrm{dep}}$ for the depermutation sum of this system.
 
-We set up to find a polynomial $R(t;e)$ s.t. when we evaluated $e$ on some roots of $F_i=0$, $R$ is divided by $Q$. Then we propose the following construction: let g be the polynomial s.t. $f(x_1,\dots,x_n)=g(x_1,\hat e_1,\dots,\hat e_{n-1})$. Then let
+We construct a polynomial $\Phi(t;e)$ whose divisibility by $Q(t;e)$
+encodes the equations at distinct roots. By symmetry, there is a
+polynomial $g$ such that
+\[
+ f(x_1,\ldots,x_n)=g(x_1;\hat e_1,\ldots,\hat e_{n-1}).
+\]
+Set
 \begin{align*}
-	E_j(t;e)&=\sum_{k=0}^j(-t)^ke_{j-k}\\
+	E_j(t;e)&=\sum_{k=0}^j(-t)^ke_{j-k},\qquad 1\le j<n,\\
 	\Phi(t;e)&=g\bigl(t;E_1(t;e),\ldots,E_{n-1}(t;e)\bigr).
 \end{align*}
-As $Q$ is monomial, there
-
-For a proof, just observe that $R$ is divided by $Q$ iff $R(x_i)=0$ for all $i$. W.L.O.G assume $i=1$, then when evaluated on $t=x_1$, $E_j=\hat e_j$ thus $\Phi(t;e)=g(x_1,\hat e_1,\dots,\hat e_{n-1})=f(x_1,\dots,x_n)=0$.
-
+Since $Q$ is monic, polynomial division gives unique polynomials $U,R$
+with coefficients in $\C[e_1,\ldots,e_n]$ such that
+\begin{equation}\label{eq:general-tq-division}
+ \Phi(t;e)=U(t;e)Q(t;e)+R(t;e),\qquad
+ R(t;e)=\sum_{j=0}^{n-1}\rho_j(e)t^j.
+\end{equation}
+The elementary symmetric identities give
+$E_j(x_i;e(x))=e_j(x_1,\ldots,\widehat{x_i},\ldots,x_n)$, hence
+\[
+ \Phi(x_i;e(x))=R(x_i;e(x))=F_i(x).
+\]
+If the coordinates are distinct, the equations $F_i(x)=0$ therefore
+force $R(t;e(x))=0$, since $R$ has degree less than $n$ and vanishes
+at all $n$ roots. Thus they are equivalent to $Q\mid\Phi$ on this
+locus. At repeated roots, divisibility requires additional vanishing
+conditions, described below.
 
 Define the \emph{generalized $TQ$ ideal}
 \begin{equation}\label{eq:general-tq-ideal}
@@ -403,7 +434,7 @@ $f(x,y,z)=x(x+y+z)$, the three equations are simply
 \]
 We seek one polynomial in $t$ whose values at $x,y,z$ give these
 three expressions. It is immediately $R(t;e)=e_1t$.
-The construction in the proof gives the same answer: here
+The construction above gives the same answer: here
 $g(t;s_1,s_2)=t^2+ts_1$ and $E_1(t;e)=e_1-t$, so
 \[
  \Phi(t;e)=t^2+t(e_1-t)=e_1t.
