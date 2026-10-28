@@ -630,10 +630,8 @@ excludes unequal singular multiplicities $a\ne b$, by comparing
 vanishing orders at $1$ and $-1$; see
 Proposition~\ref{prop:unbalanced}. The same argument applies after
 fixing any $k$ balanced pairs, so $c_k(p)=0$ for every
-$0\le k\le\min(a,b)$ at an unbalanced configuration. In particular,
-if $a=b-1$, then $c_a(p)=0$: fixing all $a$ pairs leaves exactly one
-root at $-1$ and none at $1$, and the reduced equation at that root
-is nonzero. Consequently, among singular affine configurations, only
+$0\le k\le\min(a,b)$ at an unbalanced configuration.
+Consequently, among singular affine configurations, only
 the balanced cases $a=b$ remain: the physical-weight identity for
 $a=b=1$ and the alternating cancellation for $a=b\ge2$.
 
@@ -994,128 +992,82 @@ $\binom{L+1}2-L^2+\binom L2=0$.
 Thus the double singular pair has the required zero weight for both
 parities, as do all its permutations.
 
-\section{Unbalanced singular configurations}
-\label{sec:unbalanced}
+\section{Root at infinity: general case}
+\label{sec:general-infinity}
 
-Write $Z^{\mathrm{dep}}_{L,n}=Z^{\mathrm{dep}}_0$ for the depermutation sum of the full system. The cancellation at $(1,-1,1)$ extends to arbitrary unequal numbers of
-$1$'s and $-1$'s. The full local algebra need not equal a single partition
-algebra in general; instead, the whole M\"obius sum cancels. We first
-establish a necessary condition for a nonzero depermutation coefficient.
-
-For a configuration $x=(x_1,\ldots,x_n)$, define
+Use homogeneous coordinates $[X_1:\cdots:X_n:W]$ on $\mathbb P^n$,
+where $W=x_{n+1}$ and $x_i=X_i/W$ on the affine chart. Set
+$D=L+n-2$, and let $\widehat F_i$ be the degree-$D$ homogenization
+of $F_i$. The cancellation of the terms of degree $D+1$ gives
 \[
- Q_x(t)=\prod_{i=1}^n(t-x_i),\qquad
- R_x(t)=(t+1)^LQ_x(t-2)+(t-1)^LQ_x(t+2).
+ \widehat F_i(X,W)=\frac1W\left(
+ (X_i+W)^L\prod_{j\ne i}(X_i-X_j-2W)
+ -(X_i-W)^L\prod_{j\ne i}(X_i-X_j+2W)\right).
 \]
-The Bethe polynomials satisfy
-\begin{equation}\label{eq:baxter-evaluation}
- F_i(x)=-\frac12R_x(x_i).
+The numerator is divisible by $W$, so this is a polynomial. On the
+hyperplane at infinity, its restriction is
+\begin{equation}\label{eq:leading-equations-infinity}
+ \widehat F_i(X,0)=2X_i^{L-1}\left(
+ L\prod_{j\ne i}(X_i-X_j)
+ -2X_i\sum_{j\ne i}\prod_{h\ne i,j}(X_i-X_h)
+ \right).
 \end{equation}
-For distinct coordinates, their vanishing is equivalent to $Q_x\mid R_x$.
-For repeated coordinates, evaluation alone does not impose the required
-orders of vanishing. Depermutation nevertheless has the following
-support property.
 
-\begin{proposition}[Support of the depermutation sum]
-\label{prop:baxter-support}
-Let $p$ be an isolated solution of $F_1=\cdots=F_n=0$. If $Q_p$ does not
-divide $R_p$, then
-\[
- \operatorname{coeff}_pZ^{\mathrm{dep}}_{L,n}=0.
-\]
-Only the local finiteness assumption is needed; the full affine system
-may have other components away from $p$.
+\begin{proposition}[Collisions at infinity]
+\label{prop:collisions-infinity}
+Assume $L\ge2n$. If $[X_1:\cdots:X_n:0]$ is a common zero of
+$\widehat F_1,\ldots,\widehat F_n$, then there are distinct indices
+$i,j$ such that $X_i=X_j\ne0$. In particular, every solution at
+infinity lies on a collision diagonal.
 \end{proposition}
 
 \begin{proof}
-Introduce an auxiliary polynomial $h_a(t)=\sum_{j=0}^{n-1}a_jt^j$ and
-perturb the equations to
+Suppose instead that all nonzero coordinates are pairwise distinct.
+Let $S=\{i:X_i\ne0\}$, write $s=|S|\ge1$, and let $z=n-s$ be
+the number of zero coordinates. For $i\in S$, every factor
+$X_i-X_j$ is nonzero. Dividing
+\eqref{eq:leading-equations-infinity} by
+$2X_i^{L-1}\prod_{j\ne i}(X_i-X_j)$ therefore gives
 \[
- F_i^a(x)=-\frac12\bigl(R_x(x_i)+h_a(x_i)\bigr)=0.
+ L=2\sum_{j\ne i}\frac{X_i}{X_i-X_j}
+   =2z+2\sum_{\substack{j\in S\\j\ne i}}
+                     \frac{X_i}{X_i-X_j}.
 \]
-This common perturbation preserves permutation symmetry and all partition
-systems. It is used only to compute local intersection numbers.
-
-For each partition through $p$, the restricted system has as many
-equations as block variables and is isolated at $p$. Indeed, its local
-algebra is the full local algebra modulo the corresponding coordinate
-equalities. Conservation of local intersection number therefore expresses
-its length as the number of nearby solutions, with multiplicity, for a
-sufficiently small generic $a$. One can choose a common generic
-one-parameter direction in the $a$-space for the finitely many partitions;
-the isolated complete intersections give finite flat local families.
-
-We explain why all these nearby solutions can be taken simple.
-On a stratum with $m$ distinct coordinate values $y_1,\ldots,y_m$,
-there are $m$ equations. Evaluation of polynomials of degree at most
-$n-1$ at these $m$ values is surjective. The incidence variety of block
-values and parameters is therefore smooth of dimension $n$, and its
-finite fibers over generic parameters are reduced by generic smoothness.
-For any repeated value $y_\alpha$, the extra condition
+Sum over $i\in S$. Each unordered pair in $S$ contributes one to
+the double sum, since
 \[
- \left.\frac{d}{dt}\bigl(R_x(t)+h_a(t)\bigr)\right|_{t=y_\alpha}=0
+ \frac{X_i}{X_i-X_j}+\frac{X_j}{X_j-X_i}=1.
 \]
-can also be avoided: values at the $m$ distinct points together with one
-derivative impose $m+1\le n$ independent conditions on $h_a$, by Hermite
-interpolation. The incidence locus with this extra condition has
-dimension $n-1$, so its image does not contain generic parameters.
-
-On variations within a repeated cluster whose coordinate sum is zero,
-the first variation of $Q_x$ is zero. The full Jacobian acts on these
-directions by the nonzero scalar
-$-\tfrac12(R_x+h_a)'(y_\alpha)$. On the complementary directions it is
-the nonsingular block Jacobian just considered. Thus every nearby full
-solution is simple. At such a solution, each compatible partition system
-is simple as well: its Jacobian is the restriction to the fixed subspace
-for the permutations within its blocks, and the invertible full Jacobian
-and its inverse preserve this subspace.
-
-If $Q_p\nmid R_p$, some coefficient of the remainder of $R_p$ modulo
-the monic polynomial $Q_p$ is nonzero. Remainder coefficients vary
-polynomially with $x$ and $a$, so
-$Q_x\nmid R_x+h_a$ throughout a sufficiently small neighborhood of
-$(p,0)$. There can therefore be no nearby solution with all coordinates
-distinct. Every nearby simple solution has a nontrivial equality
-partition $\rho$. Its contribution to the M\"obius sum is
+Consequently,
 \[
- \frac1{n!}\sum_{\pi\le\rho}\mu(\hat0,\pi)=0.
+ Ls=2zs+s(s-1),\qquad
+ L=2z+s-1=n+z-1\le2n-2.
 \]
-Conservation of the local lengths in every partition system proves the
-claimed vanishing at $p$.
+This contradicts $L\ge2n$.
 \end{proof}
 
-\begin{proposition}[Unbalanced singular clusters vanish]
-\label{prop:unbalanced}
-Assume $L\ge2n$ and $n\ge1$. Suppose $p$ is an isolated solution with exactly
-$k$ coordinates equal to $1$ and $\ell$ equal to $-1$, the remaining
-coordinates being different from $\pm1$. If $k\ne\ell$, then
+The same argument applies after fixing $k$ balanced singular pairs.
+There are $r=n-2k$ free roots, whose reduced equations are
 \[
- \boxed{\operatorname{coeff}_pZ^{\mathrm{dep}}_{L,n}=0.}
+ G_i(x)=(x_i+1)^{L-k}(x_i-3)^k
+                \prod_{j\ne i}(x_i-x_j-2)
+       -(x_i-1)^{L-k}(x_i+3)^k
+                \prod_{j\ne i}(x_i-x_j+2),
 \]
-The remaining coordinates may repeat and need not satisfy any additional
-nondegeneracy assumption.
-\end{proposition}
+where the products run over the other free roots. Their degree is
+$L+r-2$, and their leading forms are
+\eqref{eq:leading-equations-infinity} with $n$ replaced by $r$ and
+the coefficient $L$ inside the parentheses replaced by $L-4k$.
+Since $L-4k\ge2r$, the same contradiction shows that every boundary
+solution has two equal nonzero free-root coordinates. For $r=1$
+there are no boundary solutions, and $r=0$ has no free-root boundary.
 
-\begin{proof}
-By Proposition~\ref{prop:baxter-support}, it suffices to prove that
-$Q_p\nmid R_p$. By simultaneous sign reversal, assume $k>\ell$.
-
-Since $\ell\le n<L$, at $t=1$ the term $(t+1)^LQ_p(t-2)$ has
-vanishing order exactly $\ell$, whereas $(t-1)^LQ_p(t+2)$ has order at
-least $L$. Hence
-\[
- \ord_{t=1}R_p=\ell<k=\ord_{t=1}Q_p,
-\]
-so divisibility is impossible, and the depermutation coefficient vanishes.
-\end{proof}
-
-The isolated-solution assumption is essential for the statement as
-formulated: it is what makes all the local lengths, and hence the
-coefficient of the formal sum of points, defined. The proposition establishes
-vanishing of the M\"obius combination, not a pairwise equality of all
-partition multiplicities. It does not assert that balanced configurations
-have nonzero coefficients or that their singular excess has already been
-computed.
+Thus the collision at infinity can be proved directly, without the
+affine distinct-root assumption. The equality $X_i=X_j\ne0$ means
+that the two roots have the same nonzero leading coordinate as they
+diverge. This support statement does not yet prove cancellation of
+their local multiplicities in the depermutation sum; that requires
+comparing the full and partition intersections along this boundary.
 
 \begin{thebibliography}{9}
 \bibitem{BK2016}
