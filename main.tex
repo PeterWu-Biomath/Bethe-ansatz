@@ -1460,8 +1460,79 @@ formula for $\nu_k$; for $k=a$ it is immediate. Finally,
 Apply~\eqref{eq:balanced-local-normalization} to obtain the result.
 \end{proof}
 
+\subsection{One additional root: $n=2a+1$}
+
+\begin{proposition}\label{prop:balanced-one-additional-root}
+Let $a\ge2$, $n=2a+1$, and $L\ge4a+2$. The corrected weight is zero
+at every configuration $p=(1^a,-1^a,z)$ with $z\ne\pm1$.
+If $\Xi(p)=0$, its local remainder lengths are
+\[
+ \nu_k(p)=\binom{L-k+1}{a-k},\qquad 0\le k\le a.
+\]
+\end{proposition}
+
+\begin{proof}
+The nonresonant case is Proposition~\ref{prop:balanced-nonresonant}.
+Suppose $\Xi(p)=0$. With $H(t)=t-z$, this condition reads
+\[
+ (-1)^a(z-3)(z-1)+(-1)^L(z+3)(z+1)=0.
+\]
+Thus $z=0$ when the parities differ, and $z^2=-3$ when they agree.
+The remaining-root equation is
+\[
+ g_a(z)=(z+1)^{L-a}(z-3)^a-(z-1)^{L-a}(z+3)^a=0.
+\]
+Define
+\[
+ R(z)=-\frac2{z^2-1},\qquad S(z)=-\frac6{z^2-9},\qquad
+ D(z)=(L-a)R(z)-aS(z).
+\]
+The logarithmic derivative of the ratio of the two terms in $g_a$
+is $D$. At the possible resonant roots,
+\[
+ \begin{array}{c|c|c}
+ &R+S&D\\ \hline
+ z=0&8/3&\dfrac23(3L-4a)\\[4pt]
+ z^2=-3&1&\dfrac{L-2a}{2}
+ \end{array}
+\]
+so $g_a$ has a simple zero there and $\nu_a(p)=1$.
+
+For $k<a$, put $s=a-k$ and $M=L-k$, and factor the variable
+polynomial as $Q=A(t-1)B(t+1)(t-y)$. Eliminate $B$ as before.
+The equation at $y$ also solves for $y$ as a function of the cluster
+coefficients, with
+\[
+ y=z-\frac{R+S}{D}\,e_1+O_{\mathrm w}(2).
+\]
+This follows by expanding its logarithmic form: its linear terms are
+$D(y-z)+(R+S)e_1$. Substituting into the cluster units, their
+constant sum vanishes and their first weighted term, up to a nonzero
+scalar, is $\alpha u+\beta e_1$, where
+\[
+ \alpha=\frac{5a-2L}{2}+R+S,\qquad
+ \beta=-\frac52+\frac{(R+S)^2}{D}.
+\]
+The displayed values and $L\ge4a+2$ give $\alpha<0$ and $\beta<0$.
+In particular, $\alpha\ne0$ and $\alpha+\beta\ne0$.
+
+The cluster initial equations are therefore the coefficients of
+\[
+ \operatorname{rem}_A\bigl[u^M(\alpha u+\beta e_1)\bigr].
+\]
+They have only the zero solution in coefficient space. Indeed, any
+nonzero root $\rho$ of $A$ would be the unique simple nonzero root
+of $\alpha u+\beta e_1$, forcing $e_1=\rho$ and
+$(\alpha+\beta)\rho=0$, a contradiction. The weighted
+complete-intersection calculation from
+Proposition~\ref{prop:pure-balanced-pairs} now gives
+$\nu_k=\binom{M+1}s$. The same two binomial identities prove
+\eqref{eq:balanced-remainder-length-identity}, hence the required
+zero weight.
+\end{proof}
+
 \paragraph{The remaining resonant case.}
-For $a\ge2$, the case still to establish is $r>0$ and $\Xi(p)=0$.
+For $a\ge2$, the case still to establish is $r\ge2$ and $\Xi(p)=0$.
 The cluster units then have vanishing constant sum, and variations of
 $H_y$ can affect their first nonzero terms. The pure-cluster proof
 does not by itself control these terms. In particular, neither the
