@@ -89,7 +89,7 @@ the polynomial is
 	-
 	(x_1-1)^L\prod_{j\ne1}(x_1-x_j+2).
 \end{equation}
-We call them {\em Bethe polynomial},
+We call $P$ the \emph{Bethe polynomial};
 it is symmetric in its last $n-1$ arguments. Set
 \[
 P_i(x)=P(x_i,x_1,\ldots,\widehat{x_i},\ldots,x_n).
@@ -150,7 +150,7 @@ simply adds the weights over each permutation orbit. We write
 $\Sym^r(\A^1)$ for the set of unordered configurations of $r$ complex
 numbers, allowing repetitions.
 
-For a zero-dimensional ideal $I\subseteq\C[x_1,\ldots,x_n]$ we define its associated formal sum. Define
+For a zero-dimensional ideal $I\subseteq\C[x_1,\ldots,x_n]$, define
 its global and local lengths by
 \[
 \begin{aligned}
@@ -233,7 +233,7 @@ The dependence on $A,B$ is suppressed in the notation. Define
 		\bigr).
 	\end{aligned}
 \end{equation}
-Modeling the elements $x\in X$ that $x_a=1\ (a\in A),\quad x_b=-1\ (b\in B)$ and $x_i$ being equal when $i$ belongs to the same block. Symmetry makes it independent
+The support is contained in the locus in $X$ with the specified fixed roots and block equalities. The reduced equations impose additional conditions on that locus. Symmetry makes the ideal independent
 of the chosen representatives. Let
 \[
 Z_{A,B;\pi}=Z(I_{A,B;\pi})
@@ -265,51 +265,33 @@ coordinates is
 
 
 We now replace these finite sets by formal sums of points recording local lengths.
-Consider a general polynomial $f(x_1,\ldots,x_n)$ symmetric in
+Consider a general polynomial $F(x_1,\ldots,x_n)$ symmetric in
 its last $n-1$ arguments. Set
 \[
-F_i(x)=f(x_i,x_1,\ldots,\widehat{x_i},\ldots,x_n).
+F_i(x)=F(x_i,x_1,\ldots,\widehat{x_i},\ldots,x_n).
 \]
 For a partition $\pi=\{S_1,\ldots,S_m\}$ choose a representative
 $r_a\in S_a$ for each block, and set
 \[
-I_\pi=\bigl(F_{r_a},\ x_b-x_{r_a}:
-1\le a\le m,\ b\in S_a\setminus\{r_a\}\bigr).
-\]
-There are $m$ polynomial equations and $n-m$ equality equations, hence
-$n$ specified generators. Set $Z_\pi=Z(I_\pi)$.
-Symmetry makes the ideal independent of the representatives. Its support
-is contained in the full solution set: on each block diagonal all the
-corresponding $F_i$ agree. For $f=P$ this support is contained in $X$;
-for general $f$ use its full solution set in place of $X$.
-
-Assume these ideals are zero-dimensional. In the notation above, the index $j$
-is now the partition $\pi$, and
-\[
-l_{i\pi}=\ell_{x^i}(I_\pi),\qquad
-m_\pi=\frac{\mu(\hat0,\pi)}{n!},\qquad
-Z_\pi=\sum_i l_{i\pi}[x^i].
-\]
+I_{F;\pi}=\bigl(F_{r_a},\ x_b-x_{r_a}:
+1\le a\le m,\ b\in S_a\setminus\{r_a\}\bigr),
+\] and $Z_{F;\pi}=Z(I_{F;\pi})$.
 
 \begin{definition}
 	\label{def:depermutation}
-	The {\em depermutation sum} of $f$ is
+	The {\em depermutated sum} of $F$ is
 	\begin{equation}\label{eq:cycle}
-		Z^{\mathrm{dep}}_f=\frac{1}{n!}
+		Z^{\mathrm{dep}}_F=\frac{1}{n!}
 		\sum_{\pi\in\Pi_n}
-		\mu(\hat0,\pi)Z_\pi
-		=\sum_\pi m_\pi Z_\pi.
+		\mu(\hat0,\pi)Z_{F;\pi}.
 	\end{equation}
 \end{definition}
 
-We now return to the XXX polynomial $f=P$, so that $F_i=P_i$.
+We now return to the XXX polynomial $F=P$.
 To formulate the singular correction, extend depermutation to systems
 with fixed singular roots. For $0\le k\le\lfloor n/2\rfloor$,
 let $A,B\subseteq[n]$ be disjoint subsets with $|A|=|B|=k$, and put
-$R=[n]\setminus(A\cup B)$ and $r=|R|=n-2k$.
-For these balanced fixed sets, use the reduced polynomials from
-\eqref{eq:reduced-fixed-equation}. Assuming the ideals
-$I_{A,B;\pi}$ are zero-dimensional, set
+$R=[n]\setminus(A\cup B)$ and $r=|R|=n-2k$. Set
 \begin{equation}\label{eq:reduced-fixed-pair-depermutation}
 	\begin{aligned}
 		Z^{\mathrm{dep}}_{A,B}
@@ -321,12 +303,7 @@ $I_{A,B;\pi}$ are zero-dimensional, set
 				|A|=|B|=k}}Z^{\mathrm{dep}}_{A,B}.
 	\end{aligned}
 \end{equation}
-Here $\Pi(R)$ is the partition lattice of the remaining labels.
-Depermutation acts only on the $r$ free coordinates; the sum over $A,B$
-restores invariance under all coordinate permutations. The factor
-$(k!)^2r!/n!$ averages over the $n!/((k!)^2r!)$ choices of $A,B$.
-For $r=0$, the partition lattice has one element, with M\"obius value
-one, and $0!=1$. In particular, $Z^{\mathrm{dep}}_0=Z^{\mathrm{dep}}_P$.
+Here $\Pi(R)$ is the partition lattice of the remaining labels, that depermutation acts only on the $r$ free coordinates. In particular, $Z^{\mathrm{dep}}_0=Z^{\mathrm{dep}}_P$.
 
 \begin{conjecture}[Alternating completeness formula]
 	\label{conj:alternating-completeness}
@@ -334,32 +311,20 @@ one, and $0!=1$. In particular, $Z^{\mathrm{dep}}_0=Z^{\mathrm{dep}}_P$.
 	zero-dimensional. The formal sum
 	\begin{equation}\label{eq:central-alternating-cycle}
 		\boxed{
-			Z^{\mathrm{cand}}_{L,n}
-			:=\sum_{k=0}^{\lfloor n/2\rfloor}(-1)^k\binom Lk
+			\sum_{k=0}^{\lfloor n/2\rfloor}(-1)^k\binom Lk
 			Z^{\mathrm{dep}}_k
 		}
 	\end{equation}
-	has the target physical weights, that is,
-	\[
-	Z^{\mathrm{cand}}_{L,n}=\sum_{i=1}^s w_i[x^i].
-	\]
-	Moreover,
-	\[
-	\deg Z^{\mathrm{cand}}_{L,n}
-	=d(L,n)=\binom Ln-\binom L{n-1}.
-	\]
+	equals $Z_{Bethe}$
 \end{conjecture}
 
-The affine degree assertion follows from
-Proposition~\ref{prop:affine-completeness-degree} under the stated
-finiteness hypotheses. The pointwise identification with the target
-physical weights remains the conjectural part.
+The projective intersection number is computed in Section~2.3. Its identification with the affine degree and the target physical weights requires the boundary and local arguments described below.
 
 \subsection{A generalized $TQ$ relation and depermutation}
 \label{sec:general-tq}
 
-Fix a polynomial $f$ symmetric in its last $n-1$ arguments, and write
-$F_i(x)=f(x_i,x_1,\ldots,\widehat{x_i},\ldots,x_n)$.
+Fix a polynomial $F$ symmetric in its last $n-1$ arguments, and write
+$F_i(x)=F(x_i,x_1,\ldots,\widehat{x_i},\ldots,x_n)$.
 Let $e_j$ and $\hat e_j$ denote the elementary symmetric polynomials
 in $x_1,\ldots,x_n$ and $x_2,\ldots,x_n$, respectively, and set $e_0=1$.
 The map from ordered roots to their elementary symmetric functions is
@@ -379,7 +344,7 @@ $\Phi(t;e)$ whose divisibility by $Q(t;e)$
 encodes the equations at distinct roots. By symmetry, there is a
 polynomial $g$ such that
 \[
-f(x_1,\ldots,x_n)=g(x_1;\hat e_1,\ldots,\hat e_{n-1}).
+F(x_1,\ldots,x_n)=g(x_1;\hat e_1,\ldots,\hat e_{n-1}).
 \]
 Set
 \begin{align*}
@@ -422,7 +387,7 @@ simple, and M\"obius inversion cancels those with repeated coordinates.
 Each remaining unordered configuration corresponds to one solution of
 the perturbed $TQ$ ideal and has $n!$ ordered representatives, each of
 weight $1/n!$. This proves the identity for the perturbed systems;
-specializing back recovers the local multiplicities on both sides.
+specializing back recovers the local lengths on both sides, provided the local families are finite and flat. This is a proof outline: finite flatness for all partition and remainder families and generic transversality for this coherent perturbation still require justification.
 
 For the XXX system, we use the following additional input.
 
@@ -453,13 +418,35 @@ holds for the reduced balanced fixed-pair systems: if $H$ satisfies
 their $TQ$ relation after fixing $k$ pairs, then
 $Q=(t^2-1)^kH$ satisfies~\eqref{eq:xxx-tq-relation}.
 
-\subsection{Virtual degrees and the combinatorial identity}
+\subsection{Projective intersection numbers and the combinatorial identity}
+We compactify the ordered root space by
+\[
+\A^n\hookrightarrow\mathbb P^n,\qquad
+x\longmapsto[1:x_1:\cdots:x_n].
+\]
+Write $[z:x_1:\cdots:x_n]$ for homogeneous coordinates; $z=0$ is
+the boundary. Put $r=n-|A|-|B|$ and $D=L+r-2$. The fixed-root
+equations become $x_a-z=0$ and $x_b+z=0$. Together with the block
+equalities they define a linear subspace
+$\Lambda_{A,B;\pi}\simeq\mathbb P^m$, where $m=|\pi|$.
+Homogenize each reduced Bethe equation to degree $D$ before restriction
+to this subspace, retaining this degree even when restriction causes
+cancellation. For the hyperplane class $H$ of $\mathbb P^n$, the
+intersection number is
+\[
+\int_{\mathbb P^n}H^{n-m}(DH)^m=D^m.
+\]
+Below, $\deg_{\mathbb P^n}$ denotes this intersection number, extended
+linearly to weighted sums. The notation $\deg$ continues to denote
+affine total weight. Identifying these quantities requires accounting
+for boundary contributions.
 
-\begin{definition}[Virtual degree assignment]
-	\label{def:virtual-degree}
+
+\begin{definition}[Projective intersection number]
+	\label{def:projective-degree}
 	For a partition $\pi$ of $[n]\setminus(A\cup B)$ with $m$ blocks, set
-	\begin{equation}\label{eq:virtual-partition-degree}
-		\boxed{\deg_{\mathrm{vir}}Z_{A,B;\pi}=(L+r-2)^m.}
+	\begin{equation}\label{eq:projective-partition-degree}
+		\boxed{\deg_{\mathbb P^n}Z_{A,B;\pi}=(L+r-2)^m.}
 	\end{equation}
 	When $r=0$, assign degree one.
 \end{definition}
@@ -468,12 +455,12 @@ The assignment has the following BKK interpretation. Put
 $r=n-|A|-|B|$ and $D=L+r-2$. For $r\ge1$, retain the ambient monomial
 supports of the reduced equations when identifying coordinates within
 each block, before combining coefficients that may cancel. Let
-$P_\alpha\subseteq\mathbb R_{\ge0}^m$ be the downward closure of the
+$\mathcal N_\alpha\subseteq\mathbb R_{\ge0}^m$ be the downward closure of the
 convex hull of the retained exponents for block $\alpha$. The ambient
 equation has total degree at most $D$ and a nonzero pure term
 $x_{r_\alpha}^D$. Consequently,
 \[
-[0,De_\alpha]\subseteq P_\alpha\subseteq D\Delta_m,
+[0,De_\alpha]\subseteq \mathcal N_\alpha\subseteq D\Delta_m,
 \qquad
 \Delta_m=\{u\in\mathbb R_{\ge0}^m:\textstyle\sum_\alpha u_\alpha\le1\}.
 \]
@@ -483,7 +470,7 @@ $\operatorname{MV}(\Delta_m,\ldots,\Delta_m)=1$. Monotonicity gives
 \begin{aligned}
 	D^m
 	&=\operatorname{MV}([0,De_1],\ldots,[0,De_m])\\
-	&\le\operatorname{MV}(P_1,\ldots,P_m)
+	&\le\operatorname{MV}(\mathcal N_1,\ldots,\mathcal N_m)
 	\le\operatorname{MV}(D\Delta_m,\ldots,D\Delta_m)=D^m.
 \end{aligned}
 \]
@@ -493,10 +480,18 @@ polytopes are allowed independent coefficients; generically the
 solutions have no zero coordinates, so this is also the affine count
 \cite[Chapter~3]{Sturmfels}.
 
+\begin{remark}[Agreement of compactifications]
+The compactification associated with the enlarged Newton polytopes
+above has intersection number $D^m$, coinciding with the intersection
+number in $\mathbb P^n$. Restricting to
+$\Lambda_{A,B;\pi}\simeq\mathbb P^m$ gives the same number,
+$\int_{\mathbb P^m}(DH)^m=D^m$. Boundary contributions need not be
+represented in the same way in these compactifications.
+\end{remark}
 This mixed-volume count agrees with the B\'ezout number $D^m$ for
 $m$ hypersurfaces of degree $D$ in $\mathbb P^m$. We may therefore use
 the standard compactification $\mathbb A^m\subset\mathbb P^m$ to
-study the virtual count. For a block equation $G_\alpha(y)$, use its
+study the projective intersection number. For a block equation $G_\alpha(y)$, use its
 degree-$D$ homogenization
 \[
 \widehat G_\alpha(Y_1,\ldots,Y_m,T)
@@ -507,21 +502,21 @@ degree. The hyperplane $T=0$ then records the contribution at infinity.
 If the homogenized equations have a finite common zero set, their
 total length is $D^m$, including local lengths at infinity. If they
 have a positive-dimensional common set at infinity, $D^m$ remains the
-virtual count obtained by a generic degree-$D$ deformation, rather than
+projective intersection number obtained by a generic degree-$D$ deformation, rather than
 a sum of isolated local lengths for the special equations.
 
-\begin{proposition}[Virtual completeness count]
-	\label{prop:virtual-completeness}
+\begin{proposition}[Projective completeness count]
+	\label{prop:projective-completeness}
 	For $|A|=|B|=k$ and $r=n-2k$,
-	\begin{equation}\label{eq:virtual-depermutation-degree}
-		\deg_{\mathrm{vir}}Z^{\mathrm{dep}}_{A,B}
-		=\deg_{\mathrm{vir}}Z^{\mathrm{dep}}_k
+	\begin{equation}\label{eq:projective-depermutation-degree}
+		\deg_{\mathbb P^n}Z^{\mathrm{dep}}_{A,B}
+		=\deg_{\mathbb P^n}Z^{\mathrm{dep}}_k
 		=\binom{L+r-2}{r}.
 	\end{equation}
 	Consequently,
-	\begin{equation}\label{eq:virtual-completeness-degree}
+	\begin{equation}\label{eq:projective-completeness-degree}
 		\boxed{
-			\deg_{\mathrm{vir}}Z^{\mathrm{cand}}_{L,n}
+			\deg_{\mathbb P^n}Z^{\mathrm{cand}}_{L,n}
 			=\sum_{k=0}^{\lfloor n/2\rfloor}(-1)^k\binom Lk
 			\binom{L+n-2k-2}{n-2k}
 			=\binom Ln-\binom L{n-1}.}
@@ -538,13 +533,13 @@ a sum of isolated local lengths for the special equations.
 	there are $D^{|\pi|}$ maps constant on each block of $\pi$, and
 	M\"obius inversion removes all coincidences. Dividing by $r!$ gives
 	\[
-	\deg_{\mathrm{vir}}Z^{\mathrm{dep}}_{A,B}
+	\deg_{\mathbb P^n}Z^{\mathrm{dep}}_{A,B}
 	=\frac1{r!}\sum_{\pi\in\Pi_r}\mu(\hat0,\pi)D^{|\pi|}
 	=\binom Dr=\binom{L+r-2}{r}.
 	\]
 	For $r=0$, both sides are one. The average defining
 	$Z^{\mathrm{dep}}_k$ has $n!/((k!)^2r!)$ equal-degree terms, so its
-	virtual degree is the same.
+	projective intersection number is the same.
 	
 	For the final identity, use formal power series:
 	\[
@@ -556,13 +551,13 @@ a sum of isolated local lengths for the special equations.
 	\end{aligned}
 	\]
 	Taking the coefficient of $t^n$ proves
-	\eqref{eq:virtual-completeness-degree}, with
+	\eqref{eq:projective-completeness-degree}, with
 	$\binom L{-1}=0$ if $n=0$.
 \end{proof}
 
-Thus the virtual assignment gives the desired number. To prove
+Thus the projective intersection calculation gives the desired number. To prove
 Conjecture~\ref{conj:alternating-completeness}, we must connect this
-virtual count with the affine solutions and establish the prescribed
+projective intersection number with the affine solutions and establish the prescribed
 weight at every point.
 
 \subsection{Plan for a proof of Conjecture~\ref{conj:alternating-completeness}}\label{section:plan}
@@ -576,23 +571,24 @@ are equal. Write $a=|A(p)|$ and $b=|B(p)|$. If one of $a,b$ is
 positive, the original Bethe equation at that fixed root forces the
 other to be positive as well. Hence either $a=b=0$ or $a,b\ge1$.
 These exact labels classify the affine configurations. Write
-$c_k(p)=\operatorname{coeff}_p Z^{\mathrm{dep}}_k$.
+$w_k(p)$ for the weight of $p$ in $Z^{\mathrm{dep}}_k$, and set $w(p)=w_i$ when $p=x^i$.
 
-Here list some claims that's needed to prove the conjecture:
+The following steps are needed to prove the conjecture:
 \begin{enumerate}
 	\item Solution at infinity: there are some cancellation such that $P$ do not have desired degree when you make a series of substitution like $x_i=x_j$. As an example, when $L=6,n=3$, $P(x,x,x)=48x^5+160x^3+48x$ but the expected degree is $7$. We claimed those "solution at infinity" will be cancelled at depermutation.
-	\item Every $Z^{dep}_{k}$ contains only points with singleton $\pi$. 
+	\item Every $Z^{\mathrm{dep}}_k$ has zero weight at configurations with collisions outside $\pm1$, so its support has $\pi(p)=\hat0$. 
 	\item Every $Z^{dep}_{k}$ contains only points with $a=b$.
+\item For distinct nonsingular solutions, establish local length one for $(P_1,\ldots,P_n)$ and a nonzero Bethe vector. Only $k=0$ contributes, giving weight $1/n!$.
 	\item \textbf{Exactly one singular pair: $a=b=1$ and $\pi=\hat 0$.}
 	Only $k=0,1$ can contribute, so prove
 	\begin{equation}\label{eq:singular_weight}
-		c_0(p)-Lc_1(p)=w(p)
+		w_0(p)-Lw_1(p)=w(p)
 	\end{equation}
 	where $w(p)$ is the target weight above.
-	Writing $e_p$ for the local length of the reduced fixed-pair
+	Writing $e_p=\ell_p(I_{A(p),B(p);\hat0})$ for the local length of the reduced fixed-pair
 	system, the precise local-length claim is
 	\begin{equation}\label{eq:single-pair-length-criterion}
-		\ell_p=
+		\ell_p((P_1,\ldots,P_n))=
 		\begin{cases}
 			Le_p+1,&p\text{ satisfies the physical condition }\eqref{eq:physical},\\
 			Le_p,&\text{otherwise}.
@@ -604,7 +600,7 @@ Here list some claims that's needed to prove the conjecture:
 	These points have repeated coordinates and hence target weight zero.
 	Prove
 	\[
-	\sum_{k=0}^{a}(-1)^k\binom Lk c_k(p)=0,
+	\sum_{k=0}^{a}(-1)^k\binom Lk w_k(p)=0,
 	\]
 	
 \end{enumerate}
@@ -633,7 +629,7 @@ cancellation at infinity.
 For the remaining affine configurations, the $TQ$ relation also
 excludes unequal singular multiplicities $a\ne b$, by comparing
 vanishing orders at $1$ and $-1$. The same argument applies after
-fixing any $k$ balanced pairs, so $c_k(p)=0$ for every
+fixing any $k$ balanced pairs, so $w_k(p)=0$ for every
 $0\le k\le\min(a,b)$ at an unbalanced configuration.
 Consequently, among singular affine configurations, only
 the balanced cases $a=b$ remain: the physical-weight identity for
