@@ -1264,15 +1264,17 @@ calculation. We retain pairwise distinct coordinates and $L\ge2n$.
 Suppose $p=(1,-1,z_3,\ldots,z_n)$ is a simple zero of
 $I_{\mathrm{red}}$. Then
 \[
- \ell_p(I_{\mathrm{full}})=
- \begin{cases}
- L+1,&p\text{ satisfies }\eqref{eq:physical},\\
- L,&\text{otherwise}.
- \end{cases}
+ \ell_p(I_{\mathrm{full}})=L+\epsilon,\qquad
+ \epsilon:=\dim_\C S/(H,G_3,\ldots,G_n)\ge0,
 \]
-Thus~\eqref{eq:single-pair-length-criterion} holds with $e_p=1$.
-The proof uses the standard nonzero regularized singular Bethe vector,
-but no theorem of MTV.
+where $S,H,G_j$ are obtained by the elimination above. The number
+$\epsilon$ is the local intersection multiplicity of $H=0$ with
+the smooth curve $G_3=\cdots=G_n=0$, and is positive if and only if
+the physical condition~\eqref{eq:physical} holds. At a physical
+point this intersection is simple, so $\epsilon=1$ and
+\eqref{eq:single-pair-length-criterion} holds with $e_p=1$.
+Only the last assertion uses the standard nonzero regularized
+singular Bethe vector; no theorem of MTV is needed.
 \end{proposition}
 
 \begin{proof}
@@ -1286,8 +1288,26 @@ algebra becomes
 \[
  \C[[u]]/(u^Lh(u)),\qquad h(u)=H(u,y(u)).
 \]
-By~\eqref{eq:one-pair-compatibility}, $h(0)=0$ precisely at a
-physical point. If $h(0)\ne0$, the length is $L$.
+Consequently,
+\begin{equation}\label{eq:simple-pair-residual-multiplicity}
+ \epsilon=\dim_\C\C[[u]]/(h(u))
+          =\ord_{u=0}h(u),\qquad
+ \ell_p(I_{\mathrm{full}})=L+\epsilon.
+\end{equation}
+The standing finiteness assumption ensures that $h$ is not identically
+zero. We assign vanishing order zero to a unit, so the formula also
+covers $h(0)\ne0$. This identifies $\epsilon$ as an ordinary zero
+multiplicity on the smooth local curve; it is independent of the
+choice of local parameter or multiplication of $H$ by a unit.
+Since $y(0)=z$, equation~\eqref{eq:one-pair-compatibility} now gives
+\[
+ \boxed{\epsilon>0
+ \quad\Longleftrightarrow\quad h(0)=H(0,z)=0
+ \quad\Longleftrightarrow\quad
+ \left[-\prod_{j=3}^n\frac{z_j+1}{z_j-1}\right]^L=1.}
+\]
+Thus positivity and the equivalence with the physical condition follow
+from local elimination alone.
 
 At a physical point it remains to prove $h'(0)\ne0$. Suppose instead
 that $h(u)=O(u^2)$. Along the curve let $Q(u;t)$ be the monic root
