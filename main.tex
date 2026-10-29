@@ -1713,6 +1713,86 @@ Differentiating the pole numerators gives
 Therefore $\Xi(p)=0$ and $K(p)\ne0$ also prove cancellation, with
 no simplicity or Jacobian assumption on the remaining roots.
 
+\subsection{Uniform restrictions on a possible counterexample}
+
+The second residue obstruction also constrains configurations with
+arbitrarily many additional roots. Count these roots with their
+multiplicities and write
+\[
+ Q(t)=(t^2-1)^a\prod_{j=1}^r(t-z_j),\qquad
+ z_j\ne\pm1,\qquad C=\frac{2L-5a}{2}>0.
+\]
+
+\begin{proposition}\label{prop:balanced-counterexample-localization}
+Let $a\ge2$, $L\ge2n$, and suppose the corrected coefficient of
+this balanced configuration is nonzero. Then
+\begin{equation}\label{eq:balanced-counterexample-sum}
+ C=\sum_{j=1}^r\left(\frac2{1-z_j^2}+\frac6{9-z_j^2}\right).
+\end{equation}
+In particular $r>0$, and at least one additional root satisfies
+\begin{equation}\label{eq:balanced-counterexample-distance}
+ \min\{|z_j^2-1|,|z_j^2-9|\}
+ \le\frac{8r}{C}=\frac{16r}{2L-5a}.
+\end{equation}
+If all the additional roots are purely imaginary, a necessary
+condition is
+\begin{equation}\label{eq:balanced-real-rapidity-bound}
+ L\le\frac52a+\frac83r.
+\end{equation}
+These conclusions do not require the additional roots to be distinct.
+\end{proposition}
+
+\begin{proof}
+By Proposition~\ref{prop:exact-corrected-weights}, a nonzero
+coefficient gives a polynomial companion. The Wronskian identity
+forces $P,Q$ to be coprime and $Q(\pm3)\ne0$: a common root would
+give two distinct zeros of $t^L$, while evaluation at $\pm2$
+excludes the latter values when $Q(\pm1)=0$.
+
+The pole comparison for $P/Q$ at $0,2,-2$ gives
+$\Theta_a=\Theta_{a-1}=0$, hence $K=0$. This comparison is local
+at the singular pair and is unchanged by multiplicities elsewhere.
+Since
+\[
+ \frac{H'(t)}{H(t)}=\sum_{j=1}^r\frac1{t-z_j},
+\]
+substitution into~\eqref{eq:balanced-second-obstruction} gives
+\eqref{eq:balanced-counterexample-sum}. For $r=0$ it contradicts
+$C>0$. If both distances in
+\eqref{eq:balanced-counterexample-distance} were greater than
+$8r/C$ for every root, the triangle inequality would make the
+absolute value of the sum in~\eqref{eq:balanced-counterexample-sum}
+strictly less than $r(2+6)C/(8r)=C$, again a contradiction.
+
+Finally, if $z_j=\ii y_j$ with $y_j\in\mathbb R$, each summand is
+positive and at most
+\[
+ \frac2{1+y_j^2}+\frac6{9+y_j^2}\le\frac83.
+\]
+Thus $C\le8r/3$, which is
+\eqref{eq:balanced-real-rapidity-bound}.
+\end{proof}
+
+Consequently, if all remaining rapidities are real in the original
+variables, the corrected weight is zero whenever
+$L>5a/2+8r/3$. Under $L\ge2n=4a+2r$, this includes every
+$r<9a/4$. This is an exclusion criterion for that class, not an
+assumption that all physical roots are real.
+
+There is also a useful reality constraint on every possible
+counterexample:
+\[
+ Q(t)=(-1)^n\overline{Q(-\bar t)},\qquad
+ H(t)=(-1)^r\overline{H(-\bar t)}.
+\]
+Indeed, undoing the rescaling gives a polynomial Wronskian plane
+with imaginary step $\ii$ and normalized Wronskian $\lambda^L$.
+The reality theorem of \cite[Theorem~1.1]{MTV2011} makes this plane
+real. Its unique monic minimal-degree polynomial therefore has real
+coefficients in $\lambda$, giving the displayed identities. Thus
+nonimaginary ordinary roots in the scaled variables occur in pairs
+$z,-\bar z$; they are not excluded by the real-rapidity criterion.
+
 \subsection{Two additional roots: $n=2a+2$}
 
 \begin{proposition}\label{prop:balanced-two-additional-roots}
@@ -2281,6 +2361,12 @@ uniform proof of the boxed assertion is still required; the finite
 certificates above do not replace it.
 
 \begin{thebibliography}{9}
+\bibitem{MTV2011}
+E.~Mukhin, V.~Tarasov, and A.~Varchenko,
+\emph{Reality property of discrete Wronski map with imaginary step},
+Lett.\ Math.\ Phys.\ \textbf{100}, 151--160 (2012),
+\href{https://arxiv.org/abs/1102.5368}{arXiv:1102.5368}.
+
 \bibitem{PS1999}
 G.~P.~Pronko and Yu.~G.~Stroganov,
 \emph{Bethe equations ``on the wrong side of the equator''},
