@@ -1371,6 +1371,61 @@ a contradiction. Thus $h'(0)\ne0$, and the length at a physical
 point is $L+1$, proving the claim.
 \end{proof}
 
+\paragraph{The physical polynomial and its local multiplicity.}
+Write
+\[
+ A(y)=\prod_{j=3}^n(y_j+1),\qquad
+ B(y)=\prod_{j=3}^n(y_j-1),\qquad
+ \mathcal P(y)=(-A(y))^L-B(y)^L.
+\]
+Thus $\mathcal P(z)=0$ is precisely the physical condition. The
+minus sign is outside the product: putting it inside every factor
+would instead give $(-1)^{(n-2)L}A(y)^L-B(y)^L$, which need not
+define the same condition.
+
+There is an exact multiplicity interpretation using a natural lift
+of $\mathcal P$ to the local curve above. Set $v(u)=v(u,y(u))$ and
+\[
+ \kappa(u)=\frac{2+u}{v(u)-2}\frac{v(u)}u,\qquad
+ \widetilde{\mathcal P}(u)
+ =\bigl(\kappa(u)A(y(u))\bigr)^L-B(y(u))^L.
+\]
+Since $v(u)=u+O(u^L)$, the quotient $v(u)/u$ is regular and
+$\kappa(0)=-1$. In particular,
+$\widetilde{\mathcal P}(0)=\mathcal P(z)$. In fact,
+\begin{equation}\label{eq:epsilon-physical-polynomial}
+ \boxed{\epsilon=\ord_{u=0}\widetilde{\mathcal P}(u).}
+\end{equation}
+To check this, put $\eta=u-v(u)$ and
+\[
+ C_2(u)=\prod_{j=3}^n\bigl(v(u)-3-y_j(u)\bigr).
+\]
+Multiply the equations for the remaining roots to cancel their mutual
+interaction factors, and use $F_1=0$ to eliminate $\eta$. The
+cancelled second equation then gives the identity on the curve
+\[
+ h(u)=-\frac{(4+\eta)C_2(u)(v(u)-2)^L}
+                  {(2+u)^L A(y(u))^L}\,
+                  \widetilde{\mathcal P}(u).
+\]
+The prefactor is a unit, since the remaining roots avoid $\pm1$
+and $\pm3$. This proves~\eqref{eq:epsilon-physical-polynomial}
+directly, without spectral input.
+
+The lift matters: one cannot in general replace
+$\widetilde{\mathcal P}(u)$ by $\mathcal P(y(u))$. For $n=2$
+and even $L$, the latter is identically zero, whereas the former
+has a simple zero and $\epsilon=1$. On the fixed reduced scheme,
+the proved simplicity statement does give the numerical identity
+\[
+ \epsilon=\dim_\C
+ \bigl(\mathcal O_{V(I_{\mathrm{red}}),p}/(\mathcal P)\bigr),
+\]
+because this local ring is $\C$. This last description records
+whether the reduced point satisfies the physical condition; the
+lifted polynomial is what computes the residual intersection
+multiplicity before simplicity is proved.
+
 \section{Multiple balanced singular pairs}
 \label{sec:multiple-balanced-pairs}
 
