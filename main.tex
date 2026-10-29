@@ -21,15 +21,16 @@
 \maketitle
 
 \begin{abstract}
-We describe a proposed algebraic counting approach to completeness for the
-periodic spin-$1/2$ XXX chain. A partition-lattice formula defines a weighted sum of solutions
-whose coefficients are intended to retain contributions when Bethe roots
-collide. Its degree is an alternating sum of global intersection numbers.
-A second formal sum, supported on configurations containing the singular pair
-$1,-1$ in the rescaled variables, should remove the nonphysical contribution.
-We distinguish
-the definition of the partition-weighted sum from the conjectural physical
-interpretation and the unresolved construction of the singular correction.
+We study an algebraic counting approach to completeness for the periodic
+spin-$1/2$ XXX chain. A partition-lattice formula defines depermutation
+with local intersection multiplicities, and a binomial alternating sum
+corrects the singular-pair contributions. Under finiteness hypotheses,
+a spectral resolution identifies this corrected sum with the normalized
+ordered-root pullback of the polynomial-kernel ideal. This proves its
+affine degree formula. Identifying its pointwise coefficients with the
+usual physical-root weights still requires root-simplicity statements;
+in particular, the uniform exclusion of repeated singular pairs remains
+unproved, although several families are treated explicitly.
 \end{abstract}
 
 \section{Background: the XXX Bethe ansatz}
@@ -351,6 +352,11 @@ Moreover,
  =d(L,n)=\binom Ln-\binom L{n-1}.
 \]
 \end{conjecture}
+
+The affine degree assertion follows from
+Proposition~\ref{prop:affine-completeness-degree} under the stated
+finiteness hypotheses. The pointwise identification with the target
+physical weights remains the conjectural part.
 
 \subsection{A generalized $TQ$ relation and depermutation}
 \label{sec:general-tq}
@@ -1542,13 +1548,16 @@ $\tau_p$ in the highest-weight subspace of $\mathcal H$ with $n$
 down spins; set this dimension to zero when the eigenvalue is absent.
 
 \begin{proposition}\label{prop:balanced-spectral-euler}
-Under the standing assumptions,
+Under the standing finiteness assumptions,
 \begin{equation}\label{eq:balanced-spectral-euler}
  \sum_{k=0}^a(-1)^k\binom Lk\nu_k(p)
  =\eta_{L,n}(\tau_p)\in\{0,1\}.
 \end{equation}
 Thus the desired cancellation is equivalent to excluding $\tau_p$
 from the spectrum of the finite spin chain.
+The same identity holds for $a=0,1$ and when $H$ has repeated roots
+away from $\pm1$, provided $Q_0$ satisfies the full $TQ$ relation.
+No root-simplicity assumption is used in this proposition.
 \end{proposition}
 
 \begin{proof}
@@ -2027,6 +2036,111 @@ configuration under consideration has zero corrected weight for
 these parameter pairs. These certificates are finite checks, not a
 uniform proof for arbitrary $L,n$.
 
+\subsection{The corrected sum without root-simplicity assumptions}
+
+The spectral calculation gives an exact interpretation of the entire
+corrected formal sum, including configurations with arbitrary
+collisions. This interpretation does not require the distinct-root
+assumption from Section~\ref{sec:general-tq}.
+For an ordered configuration $p$, write
+\[
+ \sigma(p)=|\operatorname{Stab}_{S_n}(p)|
+          =\prod_{z\in\C}m_z(p)!,\qquad
+ Q_p(t)=\prod_{i=1}^n(t-p_i),
+\]
+where $m_z(p)$ is the multiplicity of the value $z$ in $p$.
+Let $\varepsilon(Q)$ be one if $Q$ has a polynomial companion in
+\eqref{eq:balanced-polynomial-companion}, and zero otherwise.
+
+\begin{proposition}[Exact corrected weights]
+\label{prop:exact-corrected-weights}
+Assume $L\ge2n$ and the standing finiteness hypotheses on the
+partition ideals. For every $p\in X$,
+\begin{equation}\label{eq:exact-corrected-weight}
+ \boxed{\operatorname{coeff}_p Z^{\mathrm{cand}}_{L,n}
+       =\frac{\sigma(p)}{n!}\,\varepsilon(Q_p).}
+\end{equation}
+In particular, all corrected coefficients are nonnegative, even
+without assuming simplicity of the ordinary roots.
+\end{proposition}
+
+\begin{proof}
+If $p$ belongs to the support of some $Z_k^{\mathrm{dep}}$, the
+depermutation correspondence implies the reduced $TQ$ relation for
+the polynomial remaining after removing its $k$ fixed pairs.
+Multiplication by $(t^2-1)^k$ lifts this relation to the full $TQ$
+relation for $Q_p$. Hence, if $Q_p$ does not satisfy $TQ$, all the
+corrected coefficients at $p$ vanish; a companion is also impossible.
+
+Suppose now that $Q_p$ satisfies $TQ$. Comparison of orders at
+$1,-1$ forces equal singular multiplicities, say $a=b$, with $a=0$
+allowed. Write
+\[
+ Q_p=(t^2-1)^a\prod_{j=1}^m(t-z_j)^{s_j},\qquad
+ z_j\ne\pm1,
+\]
+where the $z_j$ are distinct, but the $s_j$ are arbitrary.
+For $0\le k\le a$, let $\nu_k$ be the local reduced remainder
+length at $Q_k=Q_p/(t^2-1)^k$. The same root-map calculation as in
+\eqref{eq:balanced-local-normalization} gives
+\[
+ \begin{aligned}
+ c_k(p)
+ &=\frac{(k!)^2(n-2k)!}{n!}\binom ak^2
+   \frac{((a-k)!)^2\prod_j s_j!}{(n-2k)!}\,\nu_k\\
+ &=\frac{(a!)^2\prod_j s_j!}{n!}\,\nu_k
+  =\frac{\sigma(p)}{n!}\,\nu_k.
+ \end{aligned}
+\]
+For $k>a$ the coefficient is zero. The proof of
+Proposition~\ref{prop:balanced-spectral-euler} applies verbatim:
+neither the specialization of the Verma-module characters nor the
+uniqueness of the fixed-eigenvalue polynomial uses separability of
+$H$. Thus the alternating sum of the $\nu_k$ is
+$\eta_{L,n}(\tau_p)$. The polynomial-kernel characterization of the
+finite-chain spectrum identifies this number with
+$\varepsilon(Q_p)$, proving the formula.
+\end{proof}
+
+Let $\mathcal Q_{L,n}$ be the finite set of monic degree-$n$
+polynomials which admit a normalized polynomial companion, and let
+$J^{\mathrm{poly}}_{L,n}\subset\C[e_1,\ldots,e_n]$ be its reduced
+coefficient ideal. For the ordered-root map
+$q:\A^n\to\Sym^n(\A^1)$, formula~\eqref{eq:exact-corrected-weight}
+is equivalently the formal-sum identity
+\begin{equation}\label{eq:corrected-polynomial-kernel-ideal}
+ Z^{\mathrm{cand}}_{L,n}
+ =\frac1{n!}Z\bigl(q^*J^{\mathrm{poly}}_{L,n}\bigr),\qquad
+ q_*Z^{\mathrm{cand}}_{L,n}=\sum_{Q\in\mathcal Q_{L,n}}[Q].
+\end{equation}
+Indeed, the local degree of the root map at $p$ is $\sigma(p)$.
+An orbit has $n!/\sigma(p)$ ordered representatives, so its total
+corrected weight is exactly $\varepsilon(Q_p)$.
+
+\begin{proposition}[Affine completeness degree]
+\label{prop:affine-completeness-degree}
+Under the finiteness hypotheses, without the distinct-root assumption,
+\[
+ \deg Z^{\mathrm{cand}}_{L,n}
+ =\binom Ln-\binom L{n-1}.
+\]
+\end{proposition}
+
+\begin{proof}
+Taking degrees in~\eqref{eq:corrected-polynomial-kernel-ideal}
+counts $\mathcal Q_{L,n}$. By the simple-spectrum and
+polynomial-kernel theorems of
+\cite[Sections~12.1 and~12.8]{MTV2009}, this is the dimension of
+the highest-weight subspace, namely the displayed binomial difference.
+\end{proof}
+
+Thus the affine degree assertion in
+Conjecture~\ref{conj:alternating-completeness} follows from the
+spectral argument. The pointwise assertion requires more: a
+polynomial-kernel solution must have the root-simplicity properties
+prescribed in the target weights. The degree identity alone cannot
+exclude a solution with repeated singular pairs.
+
 \subsection{The uniform statement needed to finish the proof}
 
 Let $\mathcal W^{(2)}_{L,n}$ be the closed subspace of the normalized
@@ -2040,8 +2154,8 @@ this single divisibility condition includes every $a\ge2$.
 
 \begin{proposition}[Uniform reduction to double-pair exclusion]
 \label{prop:balanced-uniform-reduction}
-Fix $L\ge2n$, $n\ge4$, and retain the finiteness and distinct-root
-assumptions of this note. The following statements are equivalent:
+Fix $L\ge2n$, $n\ge4$, and retain only the finiteness hypotheses
+of this note. The following statements are equivalent:
 \begin{enumerate}
  \item Every balanced configuration with $a=b\ge2$ has zero
  corrected weight in $Z^{\mathrm{cand}}_{L,n}$.
@@ -2050,15 +2164,10 @@ assumptions of this note. The following statements are equivalent:
 \end{proposition}
 
 \begin{proof}
-Configurations with a repeated coordinate outside $\pm1$ already
-have zero coefficients in every $Z_k^{\mathrm{dep}}$, by the standing
-distinct-root assumption and the depermutation correspondence.
-For any remaining balanced configuration, its corrected coefficient is
-$(a!)^2\eta_{L,n}(\tau_p)/n!$ by
-\eqref{eq:balanced-local-normalization} and
-Proposition~\ref{prop:balanced-spectral-euler}. The polynomial-kernel
-characterization identifies $\eta=1$ with a polynomial companion.
-Thus the second statement implies the first.
+By Proposition~\ref{prop:exact-corrected-weights}, the corrected
+coefficient is $\sigma(p)\varepsilon(Q_p)/n!$. Hence the second
+statement implies the first, regardless of collisions among the
+ordinary roots.
 
 Conversely, let $(P,Q)$ be a complex point of
 $\mathcal W^{(2)}_{L,n}$. Two elementary consequences of its
@@ -2077,12 +2186,10 @@ Second, using the Wronskian at $t+1$ and $t-1$ gives
  &\quad=Q(t)\bigl(P(t+2)Q(t-2)-P(t-2)Q(t+2)\bigr).
  \end{aligned}
 \]
-Thus $Q$ satisfies the full polynomial $TQ$ relation. The standing
-distinct-root assumption makes its remaining roots pairwise
-distinct. Labeling its roots therefore gives a balanced point $p$
-of the type considered here. Its companion implies
-$\eta_{L,n}(\tau_p)=1$, so its corrected coefficient is
-$(a!)^2/n!>0$, contradicting the first statement.
+Thus $Q$ satisfies the full polynomial $TQ$ relation, so labeling
+its roots gives a balanced point $p\in X$. Its companion implies
+$\varepsilon(Q_p)=1$, and its corrected coefficient is
+$\sigma(p)/n!>0$, contradicting the first statement.
 \end{proof}
 
 The unresolved assertion is therefore precisely
