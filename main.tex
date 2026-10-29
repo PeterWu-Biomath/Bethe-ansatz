@@ -1793,6 +1793,69 @@ coefficients in $\lambda$, giving the displayed identities. Thus
 nonimaginary ordinary roots in the scaled variables occur in pairs
 $z,-\bar z$; they are not excluded by the real-rapidity criterion.
 
+\begin{proposition}[A bound from all residue obstructions]
+\label{prop:balanced-multiplicity-bound}
+For a balanced configuration with $a\ge2$ and $r=n-2a$ additional
+roots, a nonzero corrected coefficient requires
+\begin{equation}\label{eq:balanced-multiplicity-bound}
+ a\le4r+3.
+\end{equation}
+At half filling $L=2n$, the stronger necessary condition is
+\begin{equation}\label{eq:balanced-half-filling-bound}
+ a\le4r+1.
+\end{equation}
+In particular, violation of either applicable bound proves vanishing,
+with no reality or simplicity condition on the additional roots.
+\end{proposition}
+
+\begin{proof}
+A nonzero coefficient gives a polynomial companion, so all the
+singular residue obstructions vanish. Put $M=L-2a$ and introduce
+the two units at $s=0$
+\[
+ A(s)=\frac{(s+2)^M}{(s+4)^aH(s+3)H(s+1)},\qquad
+ B(s)=\frac{(s-2)^M}{(s-4)^aH(s-1)H(s-3)}.
+\]
+They are the analytic pole numerators of $\mathcal U$ at $2$ and
+$-2$. The equations $\Theta_1=\cdots=\Theta_a=0$ say exactly
+$A+B=O(s^a)$. Thus the rational logarithmic derivative
+\[
+ \begin{aligned}
+ D(s)&=\frac{(A/B)'(s)}{(A/B)(s)}\\
+ &=-\frac{4M}{s^2-4}+\frac{8a}{s^2-16}
+   +\frac{H'(s-1)}{H(s-1)}+\frac{H'(s-3)}{H(s-3)}
+   -\frac{H'(s+1)}{H(s+1)}-\frac{H'(s+3)}{H(s+3)}
+ \end{aligned}
+\]
+has a zero of order at least $a-1$ at zero.
+
+This rational function is not identically zero. Since
+$H(\pm1)H(\pm3)\ne0$, its residue at $s=2$ is
+\[
+ -M-\operatorname{mult}_{5}(H)<0.
+\]
+Here multiplicities are nonnegative and $M>0$. A common denominator is
+\[
+ T(s)=(s^2-4)(s^2-16)
+       H(s-1)H(s-3)H(s+1)H(s+3),
+\]
+of degree $4r+4$, with $T(0)\ne0$. Also $D(s)=O(s^{-2})$ at
+infinity, so the nonzero polynomial $N=T D$ has degree at most
+$4r+2$. Its order at zero is at least $a-1$, proving
+\eqref{eq:balanced-multiplicity-bound}.
+
+For the improvement at half filling, expansion at infinity gives
+\[
+ D(s)=-\frac{4(L-2n)}{s^2}
+       +\frac{16\sum_{j=1}^r z_j}{s^3}+O(s^{-4}).
+\]
+When $L=2n$, comparison of the next-to-leading Wronskian coefficient
+gives $[t^{n-1}]Q=0$, hence $\sum_j z_j=0$.
+Consequently $D(s)=O(s^{-4})$ and $\deg N\le4r$.
+The same order comparison yields $a-1\le4r$, proving
+\eqref{eq:balanced-half-filling-bound}.
+\end{proof}
+
 \subsection{Two additional roots: $n=2a+2$}
 
 \begin{proposition}\label{prop:balanced-two-additional-roots}
