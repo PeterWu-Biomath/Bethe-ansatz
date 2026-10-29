@@ -1,0 +1,2783 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=28mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{conjecture}[proposition]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[proposition]{Definition}
+\newtheorem{example}[proposition]{Example}
+\newtheorem{remark}[proposition]{Remark}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\A}{\mathbb A}
+\newcommand{\C}{\mathbb C}
+\newcommand{\length}{\operatorname{length}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\ord}{\operatorname{ord}}
+\title{Completeness of the Bethe Ansatz\\through Partition Ideals and Weighted Point Sums}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study an algebraic counting approach to completeness for the periodic
+spin-$1/2$ XXX chain. A partition-lattice formula defines depermutation
+with local intersection multiplicities, and a binomial alternating sum
+corrects the singular-pair contributions. Normalized inhomogeneous
+families give a local complex proving nonnegativity of the corrected
+lengths without spectral input. Finite flatness of the remainder
+families also proves the affine degree formula under the partition-ideal
+finiteness hypotheses. A spectral resolution further identifies the
+corrected sum with the normalized ordered-root pullback of the
+polynomial-kernel ideal. Identifying its pointwise coefficients with the
+usual physical-root weights still requires root-simplicity statements;
+in particular, the uniform exclusion of repeated singular pairs remains
+unproved, although several families are treated explicitly.
+\end{abstract}
+
+\section{Background: the XXX Bethe ansatz}
+
+Let $L$ be the length of the periodic spin-$1/2$ XXX chain, with state space
+$\mathcal H=(\C^2)^{\otimes L}$. One normalization of its Hamiltonian is
+\[
+ H=\frac14\sum_{\ell=1}^L
+ \bigl(\boldsymbol{\sigma}_{\ell}\cdot
+ \boldsymbol{\sigma}_{\ell+1}-1\bigr),
+ \qquad \boldsymbol{\sigma}_{L+1}=\boldsymbol{\sigma}_1.
+\]
+The sector with $n$ down spins has dimension $\binom Ln$.
+The algebraic Bethe ansatz constructs candidate eigenvectors
+\[
+ B(\lambda_1)\cdots B(\lambda_n)|0\rangle
+\]
+from parameters satisfying
+\begin{equation}\label{eq:bethe}
+ \left(\frac{\lambda_k+\ii/2}{\lambda_k-\ii/2}\right)^L
+ =
+ \prod_{j\ne k}\frac{\lambda_k-\lambda_j+\ii}{\lambda_k-\lambda_j-\ii},
+ \qquad k=1,\ldots,n.
+\end{equation}
+Throughout these notes we assume $L\ge2n$, where $n$ is the number of
+Bethe roots. The number of highest-weight states in this
+sector, counted with their vector-space dimensions, is
+\begin{equation}\label{eq:target}
+ d(L,n)=\binom Ln-\binom L{n-1},
+\end{equation}
+%Indeed, each irreducible $\mathfrak{sl}_2$ summand contributes one state to each of its weight spaces; taking the difference of two consecutive sector dimensions extracts the number of highest-weight states of the specified weight. This is a target dimension for completeness, rather than a count of distinct energy eigenvalues.
+
+One would expect that the Bethe ansatz reconstructs all highest-weight
+vectors. For simplicity, rescale the parameters by
+\[
+ \lambda_j=\frac{\ii}{2}x_j,
+ \qquad x_j=\frac{2\lambda_j}{\ii}.
+\]
+The singular values $\lambda_j=\pm\ii/2$ become $x_j=\pm1$, and the
+interaction shifts $\pm\ii$ become $\pm2$.
+After clearing denominators and discarding a nonzero common scalar,
+the polynomial is
+\begin{equation}\label{eq:polynomial}
+	P(x_1,\ldots,x_n)=
+	(x_1+1)^L\prod_{j\ne1}(x_1-x_j-2)
+	-
+	(x_1-1)^L\prod_{j\ne1}(x_1-x_j+2).
+\end{equation}
+It is symmetric in its last $n-1$ arguments. Set
+\[
+ P_i(x)=P(x_i,x_1,\ldots,\widehat{x_i},\ldots,x_n).
+\]
+The periodic Bethe equations are $P_i=0$ for $i=1,\ldots,n$.
+
+First we require distinct coordinates; repeated coordinates are called
+\emph{collisions}. The Bethe creation operators commute, so we also
+identify configurations differing by a permutation. Solutions containing
+$x_1=1$ and $x_2=-1$ are called \emph{singular}. For distinct remaining
+roots, physical singular solutions of the periodic system require the
+additional regularization condition
+\begin{equation}\label{eq:physical}
+ \left[-\prod_{j=3}^n
+ \frac{x_j+1}{x_j-1}\right]^L=1.
+\end{equation}
+As an example for $n=2$, the empty product is $1$,
+and the condition requires $L$ to be even.
+See \cite{NW2013} for regularizations and
+\cite{HNS2013} for the completeness counting problem.
+
+\section{The counting strategy}
+Assume that the set of ordered solutions of $P_1=\cdots=P_n=0$ is finite,
+and write
+\[
+ X=\{x^1,\ldots,x^s\}\subseteq\C^n
+\]
+for this set. In the target count, physical solutions have pairwise
+distinct coordinates and yield nonzero Bethe vectors, using
+regularization at singular solutions. Each physical permutation orbit
+therefore has $n!$ elements. Assign the target weights
+\[
+ w_i=\begin{cases}
+ 1/n!,&x^i\text{ is a physical solution},\\
+ 0,&\text{otherwise}.
+ \end{cases}
+\]
+The desired completeness statement is
+\begin{equation}\label{eq:target-weights}
+ \sum_{i=1}^s w_i=d(L,n).
+\end{equation}
+
+We work with formal sums of points with rational coefficients:
+\[
+ Z=\sum_i c_i[x^i],\qquad c_i\in\mathbb Q.
+\]
+Here $[x^i]$ is a formal symbol for the point $x^i$, and equality of
+such sums means equality of the coefficient at every point. We write
+$\deg Z=\sum_i c_i$ for the total weight, allowing negative coefficients.
+All operations below are operations on these formal sums.
+For a map $\phi$ of point sets, we use the notation
+\[
+ \phi_*\!\left(\sum_p c_p[p]\right)=\sum_p c_p[\phi(p)],
+\]
+adding coefficients when several points have the same image. In
+particular, passing from ordered tuples to unordered configurations
+simply adds the weights over each permutation orbit. We write
+$\Sym^r(\A^1)$ for the set of unordered configurations of $r$ complex
+numbers, allowing repetitions.
+
+For a zero-dimensional ideal $I\subseteq\C[x_1,\ldots,x_n]$, define
+its global and local lengths by
+\[
+ \begin{aligned}
+ \ell(I)&=\dim_\C\bigl(\C[x_1,\ldots,x_n]/I\bigr),\\
+ \ell_p(I)&=\dim_\C\bigl(\C[x_1,\ldots,x_n]/I\bigr)_{\mathfrak m_p},
+ \end{aligned}
+\]
+where $\mathfrak m_p$ is the maximal ideal of the point $p$, and
+$\ell_p(I)=0$ if $p\notin V(I)$. The associated formal sum is
+\[
+ Z(I)=\sum_{p\in V(I)}\ell_p(I)[p],\qquad
+ \deg Z(I)=\ell(I).
+\]
+Thus its coefficients are nonnegative integers, and its total weight
+is the dimension of a finite-dimensional quotient algebra.
+
+Our strategy is to express the target weights as rational linear
+combinations of ordinary local intersection lengths. We seek ideals
+$I_j$ and coefficients $m_j\in\mathbb Q$ such that each $I_j$ is
+generated by $n$ polynomials, is zero-dimensional, and satisfies
+$V(I_j)\subseteq X$. Set $Z_j=Z(I_j)$ and write
+\[
+ Z_j=\sum_{i=1}^s l_{ij}[x^i],\qquad
+ l_{ij}=\ell_{x^i}(I_j),
+\]
+with $l_{ij}=0$ when $x^i\notin V(I_j)$. We require the formal sum
+\begin{equation}\label{eq:weight-cycle}
+ Z_{\text{Bethe}}=\sum_jm_jZ_j
+\end{equation}
+to equal $\sum_iw_i[x^i]$; equivalently,
+\begin{equation}\label{eq:local-weight-decomposition}
+	\sum_j m_jl_{ij}=w_i\qquad\text{for every }i.
+\end{equation}
+Taking degrees then gives
+\begin{equation}\label{eq:global-weight-decomposition}
+ \sum_iw_i=\sum_jm_j\ell(I_j),\qquad
+ \ell(I_j)=\deg Z_j=\sum_i l_{ij}.
+\end{equation}
+
+The generators of $I_j$ allow us to study their global
+intersection numbers by BKK theory or a suitable compactification.
+
+The proposed approach has two steps:
+\begin{enumerate}
+ \item To remove collision and permutation redundancy we make use of M\"obius inversion on the partition lattice. We call this process {\em depermutation}.
+ \item Construct an excess formal sum on the singular-pair locus and subtract it.
+ The resulting formal sum should satisfy the pointwise identities
+ \eqref{eq:local-weight-decomposition} and hence the degree identity
+ \eqref{eq:target-weights}.
+\end{enumerate}
+The first step supplies explicit formal sums $Z_j$ and rational coefficients
+$m_j$ for depermutation. The second modifies these coefficients and adds
+formal sums on the singular locus so that the resulting local sums are the
+target weights $w_i$. The advantage is the passage from the local
+identities \eqref{eq:local-weight-decomposition} to the global calculation
+\eqref{eq:global-weight-decomposition}.
+
+We use the following notation for the auxiliary formal sums. Write $F_i=P_i$,
+and let $A,B\subseteq[n]$ be disjoint, with either $A=B=\varnothing$ or
+both $A$ and $B$ nonempty. Let $\pi=\{S_1,\ldots,S_m\}$ be a partition
+of $R=[n]\setminus(A\cup B)$, and choose a representative $r_\alpha\in
+S_\alpha$ for each block. For $t\in R$, define
+the reduced polynomial by
+\begin{equation}\label{eq:reduced-fixed-equation}
+ F_t^{\mathrm{red}}(x_R)
+ :=\frac{\left.F_t(x)\right|_{x_a=1\ (a\in A),\,
+                                      x_b=-1\ (b\in B)}}{(x_t+1)^{|A|}(x_t-1)^{|B|}}.
+\end{equation}
+This is well-defined: the two terms in the numerator are both divisible
+by $(x_t+1)^{|A|}(x_t-1)^{|B|}$, since $L\ge2n$.
+For $A=B=\varnothing$, set $F_t^{\mathrm{red}}=F_t$.
+The dependence on $A,B$ is suppressed in the notation. Define
+\begin{equation}\label{eq:fixed-partition-ideal}
+ \begin{aligned}
+ I_{A,B;\pi}=\bigl(&x_a-1\ (a\in A),\quad x_b+1\ (b\in B),\\
+                 &F_{r_\alpha}^{\mathrm{red}}\ (1\le\alpha\le m),\\
+                 &x_t-x_{r_\alpha}\quad
+                  (1\le\alpha\le m,\ t\in S_\alpha\setminus\{r_\alpha\})
+                  \bigr).
+ \end{aligned}
+\end{equation}
+Here one reduced equation $F_{r_\alpha}^{\mathrm{red}}=0$ is retained for each block, together
+with the equalities within that block. The ideal has $|A|+|B|$ fixed-root
+equations, $m$ Bethe equations, and $n-|A|-|B|-m$ equality equations,
+for a total of $n$ specified generators. Symmetry makes it independent
+of the chosen representatives. Let
+\[
+ Z_{A,B;\pi}=Z(I_{A,B;\pi})
+ =\sum_{p\in V(I_{A,B;\pi})}\ell_p(I_{A,B;\pi})[p],
+\]
+whenever $I_{A,B;\pi}$ is zero-dimensional. Its support is contained in
+$X$: the original equations at the fixed roots vanish automatically when
+both signs occur, and each remaining original equation is
+$(x_t+1)^{|A|}(x_t-1)^{|B|}F_t^{\mathrm{red}}$ after fixing $A,B$. Within each block,
+the reduced equations agree after imposing the equalities. We abbreviate
+$Z_{\varnothing,\varnothing;\pi}$ to $Z_\pi$.
+
+Our aim is to find rational coefficients $m_{A,B;\pi}$ such that
+\[
+ Z_{\text{Bethe}}=\sum_{A,B,\pi}m_{A,B;\pi}Z_{A,B;\pi}.
+\]
+This is the notation $j=(A,B;\pi)$ in
+\eqref{eq:local-weight-decomposition}; its local lengths are
+$l_{i,(A,B;\pi)}=\ell_{x^i}(I_{A,B;\pi})$.
+Throughout the note, $I$ denotes an ideal and $Z$ a formal sum of points.
+All auxiliary ideals $I_{A,B;\pi}$ use the reduced equations
+\eqref{eq:reduced-fixed-equation}; the associated sums $Z_{A,B;\pi}$
+therefore need no additional superscript. The original polynomials
+$F_t$ are retained for studying multiplicities in the full Bethe system.
+
+\subsection{Depermutation}
+The general principle for removing collisions is M\"obius inversion on the
+partition lattice. To illustrate it, let $\Omega$ be a finite set and
+$S\subseteq\Omega^n$ be invariant under coordinate permutations. For a
+partition $\pi$ of $[n]$, let $S_\pi$ consist of the tuples in $S$ satisfying
+$x_i=x_j$ whenever $i,j$ belong to the same block of $\pi$; coordinates in
+different blocks are still allowed to coincide. Order the partition lattice
+$\Pi_n$ by refinement, with $\hat0$ the partition into singletons. Then
+the number of permutation orbits in $S$ with pairwise distinct
+coordinates is
+\[
+ \frac{1}{n!}\sum_{\pi\in\Pi_n}\mu(\hat0,\pi)\,\#S_\pi,
+ \qquad
+ \mu(\hat0,\pi)=\prod_{B\in\pi}(-1)^{|B|-1}(|B|-1)!.
+\]
+
+
+We now replace these finite sets by formal sums of points recording local lengths.
+Consider a general polynomial $f(x_1,\ldots,x_n)$ symmetric in
+its last $n-1$ arguments. Set
+\[
+ F_i(x)=f(x_i,x_1,\ldots,\widehat{x_i},\ldots,x_n).
+\]
+For a partition $\pi=\{S_1,\ldots,S_m\}$ choose a representative
+$r_a\in S_a$ for each block, and set
+\[
+ I_\pi=\bigl(F_{r_a},\ x_b-x_{r_a}:
+       1\le a\le m,\ b\in S_a\setminus\{r_a\}\bigr).
+\]
+There are $m$ polynomial equations and $n-m$ equality equations, hence
+$n$ specified generators. Set $Z_\pi=Z(I_\pi)$.
+Symmetry makes the ideal independent of the representatives. Its support
+is contained in the full solution set: on each block diagonal all the
+corresponding $F_i$ agree. For $f=P$ this support is contained in $X$;
+for general $f$ use its full solution set in place of $X$.
+
+Assume these ideals are zero-dimensional. In the notation above, the index $j$
+is now the partition $\pi$, and
+\[
+ l_{i\pi}=\ell_{x^i}(I_\pi),\qquad
+ m_\pi=\frac{\mu(\hat0,\pi)}{n!},\qquad
+ Z_\pi=\sum_i l_{i\pi}[x^i].
+\]
+
+\begin{definition}
+\label{def:depermutation}
+The {\em depermutation sum} of $f$ is
+\begin{equation}\label{eq:cycle}
+ Z^{\mathrm{dep}}_f=\frac{1}{n!}
+ \sum_{\pi\in\Pi_n}
+ \mu(\hat0,\pi)Z_\pi
+ =\sum_\pi m_\pi Z_\pi.
+\end{equation}
+\end{definition}
+
+We now return to the XXX polynomial $f=P$, so that $F_i=P_i$.
+To formulate the singular correction, extend depermutation to systems
+with fixed singular roots. For $0\le k\le\lfloor n/2\rfloor$,
+let $A,B\subseteq[n]$ be disjoint subsets with $|A|=|B|=k$, and put
+$R=[n]\setminus(A\cup B)$ and $r=|R|=n-2k$.
+For these balanced fixed sets, use the reduced polynomials from
+\eqref{eq:reduced-fixed-equation}. Assuming the ideals
+$I_{A,B;\pi}$ are zero-dimensional, set
+\begin{equation}\label{eq:reduced-fixed-pair-depermutation}
+ \begin{aligned}
+ Z^{\mathrm{dep}}_{A,B}
+ &=\frac1{r!}\sum_{\pi\in\Pi(R)}
+       \mu(\hat0,\pi)Z_{A,B;\pi},\\
+ Z^{\mathrm{dep}}_k
+ &=
+ \frac{(k!)^2(n-2k)!}{n!}\sum_{\substack{A,B\subseteq[n],\ A\cap B=\varnothing\\
+                   |A|=|B|=k}}Z^{\mathrm{dep}}_{A,B}.
+ \end{aligned}
+\end{equation}
+Here $\Pi(R)$ is the partition lattice of the remaining labels.
+Depermutation acts only on the $r$ free coordinates; the sum over $A,B$
+restores invariance under all coordinate permutations. The factor
+$(k!)^2r!/n!$ averages over the $n!/((k!)^2r!)$ choices of $A,B$.
+For $r=0$, the partition lattice has one element, with M\"obius value
+one, and $0!=1$. In particular, $Z^{\mathrm{dep}}_0=Z^{\mathrm{dep}}_P$.
+
+\begin{conjecture}[Alternating completeness formula]
+\label{conj:alternating-completeness}
+Assume $L\ge2n$ and that the reduced partition ideals are
+zero-dimensional. The formal sum
+\begin{equation}\label{eq:central-alternating-cycle}
+ \boxed{
+ Z^{\mathrm{cand}}_{L,n}
+ :=\sum_{k=0}^{\lfloor n/2\rfloor}(-1)^k\binom Lk
+ Z^{\mathrm{dep}}_k
+ }
+\end{equation}
+has the target physical weights, that is,
+\[
+ Z^{\mathrm{cand}}_{L,n}=\sum_{i=1}^s w_i[x^i].
+\]
+Moreover,
+\[
+ \deg Z^{\mathrm{cand}}_{L,n}
+ =d(L,n)=\binom Ln-\binom L{n-1}.
+\]
+\end{conjecture}
+
+The affine degree assertion follows from
+Proposition~\ref{prop:affine-completeness-degree} under the stated
+finiteness hypotheses. The pointwise identification with the target
+physical weights remains the conjectural part.
+
+\subsection{A generalized $TQ$ relation and depermutation}
+\label{sec:general-tq}
+
+Fix a polynomial $f$ symmetric in its last $n-1$ arguments, and write
+$F_i(x)=f(x_i,x_1,\ldots,\widehat{x_i},\ldots,x_n)$.
+Let $e_j$ and $\hat e_j$ denote the elementary symmetric polynomials
+in $x_1,\ldots,x_n$ and $x_2,\ldots,x_n$, respectively, and set $e_0=1$.
+The map from ordered roots to their elementary symmetric functions is
+\[
+ q:\A^n\longrightarrow\Sym^n(\A^1)\simeq\A^n,
+ \qquad x\longmapsto e(x).
+\]
+Using $e_1,\ldots,e_n$ as coordinates on the target, define
+\[
+ Q(t;e)=\sum_{j=0}^n(-1)^je_jt^{n-j},
+\]
+Write $Z^{\mathrm{dep}}$ for the depermutation sum of this system.
+
+The $TQ$ relation transforms equations in the roots $x$ into equations
+in their elementary symmetric functions $e$. We construct a polynomial
+$\Phi(t;e)$ whose divisibility by $Q(t;e)$
+encodes the equations at distinct roots. By symmetry, there is a
+polynomial $g$ such that
+\[
+ f(x_1,\ldots,x_n)=g(x_1;\hat e_1,\ldots,\hat e_{n-1}).
+\]
+Set
+\begin{align*}
+	E_j(t;e)&=\sum_{k=0}^j(-t)^ke_{j-k},\qquad 1\le j<n,\\
+	\Phi(t;e)&=g\bigl(t;E_1(t;e),\ldots,E_{n-1}(t;e)\bigr).
+\end{align*}
+
+The elementary symmetric identities give
+$E_j(x_1;e(x))=\hat e_j$, hence
+\[
+ \Phi(x_1;e(x))=g(x_1;\hat e_1,\ldots,\hat e_{n-1})=F_1(x).
+\]
+If the coordinates are distinct, the equations $F_i(x)=0$ therefore
+give $\Phi(x_i;e(x))=0$ for every $i$, by symmetry. Thus they are
+equivalent to $Q\mid\Phi$ on this locus.
+
+Since $Q$ is monic, polynomial division gives unique polynomials $U,R$
+with coefficients in $\C[e_1,\ldots,e_n]$ such that
+\begin{equation}\label{eq:general-tq-division}
+	\Phi(t;e)=U(t;e)Q(t;e)+R(t;e),\qquad
+	R(t;e)=\sum_{j=0}^{n-1}\rho_j(e)t^j.
+\end{equation}
+
+Define the \emph{generalized $TQ$ ideal}
+\begin{equation}\label{eq:general-tq-ideal}
+ J=(\rho_0,\ldots,\rho_{n-1})\subseteq\C[e_1,\ldots,e_n].
+\end{equation}
+
+The formal sum associated to the $TQ$ ideal is the pushforward of the
+depermutation sum to $\Sym^n(\A^1)$:
+\[
+ q_*Z^{\mathrm{dep}}=Z(J).
+\]
+Here we assume the relevant ideals are zero-dimensional. Informally,
+one can see this by perturbing all equations coherently as
+$F_i\mapsto F_i+h(x_i)$, where $h$ is a generic small polynomial of
+degree less than $n$. The local intersection lengths are conserved
+under this perturbation. For generic $h$, the nearby solutions are
+simple, and M\"obius inversion cancels those with repeated coordinates.
+Each remaining unordered configuration corresponds to one solution of
+the perturbed $TQ$ ideal and has $n!$ ordered representatives, each of
+weight $1/n!$. This proves the identity for the perturbed systems;
+specializing back recovers the local multiplicities on both sides.
+
+For the XXX system, we use the following additional input.
+
+\paragraph{Distinct-root assumption away from the singular values.}
+Let $L\ge2n$, and suppose a monic polynomial $Q$ of degree $n$ admits
+a polynomial $T$ satisfying Baxter's relation
+\begin{equation}\label{eq:xxx-tq-relation}
+ T(t)Q(t)=(t+1)^LQ(t-2)+(t-1)^LQ(t+2).
+\end{equation}
+Write
+\[
+ Q(t)=(t-1)^a(t+1)^bQ_{\mathrm{reg}}(t),
+ \qquad Q_{\mathrm{reg}}(1)Q_{\mathrm{reg}}(-1)\ne0.
+\]
+We assume that $Q_{\mathrm{reg}}$ is squarefree. Equivalently, every
+root of $Q$ outside $\{1,-1\}$ is simple; repetitions at the singular
+values are allowed.
+
+The exclusion of repeated roots through polynomiality of $T$ is
+discussed in \cite[Introduction, eq.~(1.3) and footnote~2]{HJJ2024},
+where numerical evidence is reported and a rigorous proof for the
+spin-$1/2$ XXX chain is stated to be unavailable to the authors.
+We use the precise version above, including configurations with
+singular roots, as an assumption rather than a proved result.
+Together with the pushforward identity, it rules out collisions away
+from $\pm1$ in the support of $Z^{\mathrm{dep}}$. The same conclusion
+holds for the reduced balanced fixed-pair systems: if $H$ satisfies
+their $TQ$ relation after fixing $k$ pairs, then
+$Q=(t^2-1)^kH$ satisfies~\eqref{eq:xxx-tq-relation}.
+
+\subsection{Virtual degrees and the combinatorial identity}
+
+\begin{definition}[Virtual degree assignment]
+\label{def:virtual-degree}
+For a partition $\pi$ of $[n]\setminus(A\cup B)$ with $m$ blocks, set
+\begin{equation}\label{eq:virtual-partition-degree}
+ \boxed{\deg_{\mathrm{vir}}Z_{A,B;\pi}=(L+r-2)^m.}
+\end{equation}
+When $r=0$, assign degree one.
+\end{definition}
+
+The assignment has the following BKK interpretation. Put
+$r=n-|A|-|B|$ and $D=L+r-2$. For $r\ge1$, retain the ambient monomial
+supports of the reduced equations when identifying coordinates within
+each block, before combining coefficients that may cancel. Let
+$P_\alpha\subseteq\mathbb R_{\ge0}^m$ be the downward closure of the
+convex hull of the retained exponents for block $\alpha$. The ambient
+equation has total degree at most $D$ and a nonzero pure term
+$x_{r_\alpha}^D$. Consequently,
+\[
+ [0,De_\alpha]\subseteq P_\alpha\subseteq D\Delta_m,
+ \qquad
+ \Delta_m=\{u\in\mathbb R_{\ge0}^m:\textstyle\sum_\alpha u_\alpha\le1\}.
+\]
+Normalize mixed volume by
+$\operatorname{MV}(\Delta_m,\ldots,\Delta_m)=1$. Monotonicity gives
+\[
+ \begin{aligned}
+ D^m
+ &=\operatorname{MV}([0,De_1],\ldots,[0,De_m])\\
+ &\le\operatorname{MV}(P_1,\ldots,P_m)
+ \le\operatorname{MV}(D\Delta_m,\ldots,D\Delta_m)=D^m.
+ \end{aligned}
+\]
+Thus the mixed volume equals $D^m$. BKK identifies this with the generic
+solution count when all monomials at lattice points of the enlarged
+polytopes are allowed independent coefficients; generically the
+solutions have no zero coordinates, so this is also the affine count
+\cite[Chapter~3]{Sturmfels}.
+
+This mixed-volume count agrees with the B\'ezout number $D^m$ for
+$m$ hypersurfaces of degree $D$ in $\mathbb P^m$. We may therefore use
+the standard compactification $\mathbb A^m\subset\mathbb P^m$ to
+study the virtual count. For a block equation $G_\alpha(y)$, use its
+degree-$D$ homogenization
+\[
+ \widehat G_\alpha(Y_1,\ldots,Y_m,T)
+ =T^D G_\alpha(Y_1/T,\ldots,Y_m/T),
+\]
+retaining degree $D$ even when cancellation lowers the actual affine
+degree. The hyperplane $T=0$ then records the contribution at infinity.
+If the homogenized equations have a finite common zero set, their
+total length is $D^m$, including local lengths at infinity. If they
+have a positive-dimensional common set at infinity, $D^m$ remains the
+virtual count obtained by a generic degree-$D$ deformation, rather than
+a sum of isolated local lengths for the special equations.
+
+\begin{proposition}[Virtual completeness count]
+\label{prop:virtual-completeness}
+For $|A|=|B|=k$ and $r=n-2k$,
+\begin{equation}\label{eq:virtual-depermutation-degree}
+ \deg_{\mathrm{vir}}Z^{\mathrm{dep}}_{A,B}
+ =\deg_{\mathrm{vir}}Z^{\mathrm{dep}}_k
+ =\binom{L+r-2}{r}.
+\end{equation}
+Consequently,
+\begin{equation}\label{eq:virtual-completeness-degree}
+ \boxed{
+ \deg_{\mathrm{vir}}Z^{\mathrm{cand}}_{L,n}
+ =\sum_{k=0}^{\lfloor n/2\rfloor}(-1)^k\binom Lk
+       \binom{L+n-2k-2}{n-2k}
+ =\binom Ln-\binom L{n-1}.}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The partition-lattice identity
+\[
+ \sum_{\pi\in\Pi_r}\mu(\hat0,\pi)D^{|\pi|}
+ =D(D-1)\cdots(D-r+1)
+\]
+follows by counting injective maps from $[r]$ to a set of $D$ elements:
+there are $D^{|\pi|}$ maps constant on each block of $\pi$, and
+M\"obius inversion removes all coincidences. Dividing by $r!$ gives
+\[
+ \deg_{\mathrm{vir}}Z^{\mathrm{dep}}_{A,B}
+ =\frac1{r!}\sum_{\pi\in\Pi_r}\mu(\hat0,\pi)D^{|\pi|}
+ =\binom Dr=\binom{L+r-2}{r}.
+\]
+For $r=0$, both sides are one. The average defining
+$Z^{\mathrm{dep}}_k$ has $n!/((k!)^2r!)$ equal-degree terms, so its
+virtual degree is the same.
+
+For the final identity, use formal power series:
+\[
+ \begin{aligned}
+ \left(\sum_{k=0}^L(-1)^k\binom Lk t^{2k}\right)
+ \left(\sum_{r\ge0}\binom{L+r-2}{r}t^r\right)
+ &=\frac{(1-t^2)^L}{(1-t)^{L-1}}\\
+ &=(1-t)(1+t)^L.
+ \end{aligned}
+\]
+Taking the coefficient of $t^n$ proves
+\eqref{eq:virtual-completeness-degree}, with
+$\binom L{-1}=0$ if $n=0$.
+\end{proof}
+
+Thus the virtual assignment gives the desired number. To prove
+Conjecture~\ref{conj:alternating-completeness}, we must connect this
+virtual count with the affine solutions and establish the prescribed
+weight at every point.
+
+\subsection{Plan for a proof of Conjecture~\ref{conj:alternating-completeness}}\label{section:plan}
+For $p\in X$, define its exact singular sets
+\[
+ A(p)=\{j:p_j=1\},\qquad B(p)=\{j:p_j=-1\},
+\]
+and let $\pi(p)$ be the equality partition of the remaining labels:
+two labels belong to the same block precisely when their coordinates
+are equal. Write $a=|A(p)|$ and $b=|B(p)|$. If one of $a,b$ is
+positive, the original Bethe equation at that fixed root forces the
+other to be positive as well. Hence either $a=b=0$ or $a,b\ge1$.
+These exact labels classify the affine configurations. Write
+$c_k(p)=\operatorname{coeff}_p Z^{\mathrm{dep}}_k$.
+
+Here list some claims that's needed to prove the conjecture:
+\begin{enumerate}
+	\item Solution at infinity: there are some cancellation such that $P$ do not have desired degree when you make a series of substitution like $x_i=x_j$. As an example, when $L=6,n=3$, $P(x,x,x)=48x^5+160x^3+48x$ but the expected degree is $7$. We claimed those "solution at infinity" will be cancelled at depermutation.
+	\item Every $Z^{dep}_{k}$ contains only points with singleton $\pi$. 
+	\item Every $Z^{dep}_{k}$ contains only points with $a=b$.
+	\item \textbf{Exactly one singular pair: $a=b=1$ and $\pi=\hat 0$.}
+	Only $k=0,1$ can contribute, so prove
+	\begin{equation}\label{eq:singular_weight}
+	c_0(p)-Lc_1(p)=w(p)
+	\end{equation}
+	where $w(p)$ is the target weight above.
+	Writing $e_p$ for the local length of the reduced fixed-pair
+	system, the precise local-length claim is
+	\begin{equation}\label{eq:single-pair-length-criterion}
+	 \ell_p=
+	 \begin{cases}
+	 Le_p+1,&p\text{ satisfies the physical condition }\eqref{eq:physical},\\
+	 Le_p,&\text{otherwise}.
+	 \end{cases}
+	\end{equation}
+	For a simple reduced solution, $e_p=1$.
+
+	\item \textbf{Multiple balanced singular pairs: $a=b\ge2$ and $\pi=\hat 0$.}
+	These points have repeated coordinates and hence target weight zero.
+	Prove
+	\[
+	\sum_{k=0}^{a}(-1)^k\binom Lk c_k(p)=0,
+	\]
+
+\end{enumerate}
+
+\paragraph{Reduction using the distinct-root assumption.}
+The distinct-root assumption substantially reduces these tasks.
+Together with the $TQ$ interpretation of depermutation, it excludes
+every affine configuration with a collision outside $\pm1$, for the
+full system and for each reduced balanced fixed-pair system. Thus only
+configurations with $\pi(p)=\hat0$ need further consideration.
+
+At infinity, the expected cancellation has a similar interpretation:
+several roots tend to the same point $\infty\in\mathbb P^1$.
+Indeed, in the unpartitioned reduced system with $r\ge1$ free roots,
+the coefficient of the pure term $x_i^{L+r-2}$ in its own equation is
+$2(L-2n+2)\ne0$. Hence its projective equations have no boundary
+solution with just one nonzero root coordinate. Every boundary
+solution therefore has at least two coordinates representing roots
+at infinity. If the distinct-root exclusion and the
+$TQ$/depermutation correspondence extend to a compatible
+compactification, these repeated infinite roots have zero depermuted
+weight as well. This extension remains a boundary claim to justify:
+the affine distinct-root assumption alone does not establish
+cancellation at infinity.
+
+For the remaining affine configurations, the $TQ$ relation also
+excludes unequal singular multiplicities $a\ne b$, by comparing
+vanishing orders at $1$ and $-1$. The same argument applies after
+fixing any $k$ balanced pairs, so $c_k(p)=0$ for every
+$0\le k\le\min(a,b)$ at an unbalanced configuration.
+Consequently, among singular affine configurations, only
+the balanced cases $a=b$ remain: the physical-weight identity for
+$a=b=1$ and the alternating cancellation for $a=b\ge2$.
+
+\section{Small numbers of Bethe roots}
+Before addressing the general claims, we examine small values of $n$.
+These calculations distinguish the global degree identities from the
+local multiplicity statements and the remaining physical interpretation.
+Throughout, we retain the assumption $L\ge2n$.
+
+\subsection{Two roots: $n=2$}
+
+As explained in the section \ref{section:plan},  only interesting thing to show is that on $(1,-1)$ the equality \ref{eq:singular_weight} holds, we start from deciding the multiplicity in $Z_0$.
+Put $x=1+u$ and $y=-1+v$. The first equation gives
+\[
+ v=u-2^{2-L}u^L+O(u^{L+1}).
+\]
+Substituting into the second gives
+\[
+ F_2\bigl(1+u,-1+v(u)\bigr)
+ =4\bigl((-1)^L-1\bigr)u^L+O(u^{L+1}).
+\]
+If $L$ is odd the leading coefficient is $-8$ and the ordinary local
+multiplicity is $L$. If $L$ is even, the next term is
+\[
+ F_2\bigl(1+u,-1+v(u)\bigr)
+ =-4L\,u^{L+1}+O(u^{L+2}),
+\]
+so the multiplicity is $L+1$. Neither singular point lies on the
+diagonal, and its coefficient in $Z^{\mathrm{dep}}_1$ is $1/2$.
+Therefore, at either $p=(1,-1)$ or $p=(-1,1)$,
+\[
+ \operatorname{coeff}_p Z^{\mathrm{cand}}_{L,2}
+ =\frac{\ell_p(I_{\mathrm{full}})-L}{2}
+ =\begin{cases}
+ 0,&L\text{ odd},\\
+ 1/2,&L\text{ even}.
+ \end{cases}
+\]
+The total remaining weight of the unordered singular pair is thus $0$
+for odd $L$ and $1$ for even $L$, exactly matching the periodic singular
+admissibility condition \eqref{eq:physical}; see also \cite{NW2013}.
+
+\subsection{Three roots: $n=3$}
+\label{sec:n3-infinity}
+Let $L\ge6$. Only $k=0,1$ occur in the alternating formula.
+The polynomial is
+\[
+ \begin{aligned}
+ P(x,y,z)={}&(x+1)^L(x-y-2)(x-z-2)\\
+ &-(x-1)^L(x-y+2)(x-z+2),
+ \end{aligned}
+\]
+with $F_1=P(x,y,z)$, $F_2=P(y,x,z)$, and $F_3=P(z,x,y)$.
+Proposition~\ref{prop:virtual-completeness} already gives its virtual
+degree, so we focus on the boundary contribution and the singular
+local weights.
+
+\paragraph{Cancellation at infinity.}
+As explained we can compactify by $\mathbb{P}^3$, Homogenize the three original equations to their ambient degree
+$L+1$ before imposing partition equalities. The highest-degree part is
+\[
+ F_1^{[L+1]}=2x^{L-1}q_x,\qquad
+ q_x=(L-4)x^2-(L-2)x(y+z)+Lyz,
+\]
+with the other expressions obtained by permutation. The only common
+point at infinity is $P=[1:1:1:0]$. Indeed, a zero coordinate is
+incompatible with the other two equations, and
+\[
+ q_x-q_y=(x-y)\bigl((L-4)(x+y)-(2L-2)z\bigr)
+\]
+and its cyclic analogues force at least two coordinates to coincide.
+Substitution then forces all three to coincide. For a two-block
+partition, say $x=y$, the first leading form restricts to
+$4x^L(z-x)$; its common point at infinity with the remaining equation
+is again $P$.
+
+Write $\widehat F_i$ for the degree-$(L+1)$ homogenizations.
+Permutation symmetry gives
+\[
+ \widehat F_1-\widehat F_2=(X-Y)K_{12},\qquad
+ \widehat F_1-\widehat F_3=(X-Z)K_{13},\qquad
+ K_{12}(P)=K_{13}(P)=-12.
+\]
+Thus, in the local ring at $P$, the full system forces $X=Y=Z$.
+The same holds for each two-block system. On the diagonal, in the
+chart $X=1$,
+\[
+ \widehat F_1(1,1,1,T)
+ =4T\bigl((1+T)^L-(1-T)^L\bigr)
+ =8LT^2+O(T^4).
+\]
+Hence the local length at infinity is two for every partition type
+$(1,1,1)$, $(2,1)$, and $(3)$. Their total contribution to
+$Z^{\mathrm{dep}}_0$ is
+\[
+ \frac16\bigl(2-3\cdot2+2\cdot2\bigr)=0.
+\]
+This proves the required cancellation for every $L\ge6$.
+
+\paragraph{Unbalanced singular collisions.}
+At $p=(1,-1,1)$, we will prove that the depermutation kills the weights. Symmetry gives
+\[
+ F_1-F_3=(x_1-x_3)K,\qquad K(p)=-2^{L+1}\ne0.
+\]
+Consequently the full local ideal equals the partition ideal
+$(F_1,F_2,x_1-x_3)$. Their equal local lengths cancel with M\"obius
+coefficients $1,-1$, so $c_0(p)=0$. Also $c_1(p)=0$, because the
+remaining coordinate would be a root $1$ of $Q_L$. Permutation symmetry
+and simultaneous sign reversal give the same conclusion at every
+configuration with two $1$'s and one $-1$, or vice versa. Computing their
+common ordinary local length is unnecessary for this cancellation.
+
+\paragraph{The transverse singular multiplicity.}
+Let $p=(1,-1,z)$ be a solution with $z\ne\pm1$. We verify the
+local-length criterion~\eqref{eq:single-pair-length-criterion} from
+Section~\ref{section:plan}.
+The reduced equation is
+\[
+ Q_L(z)=0,\qquad
+ Q_L(w)=(w+1)^{L-1}(w-3)-(w-1)^{L-1}(w+3),
+\]
+since $F_3(1,-1,w)=(w^2-1)Q_L(w)$. Here the reduced local length is
+$e=\ord_zQ_L$, and $\ell_p$ denotes the full local length.
+
+Set $x_1=1+u$, $x_2=-1+v$, and $x_3=w$. Eliminating $v$ by $F_1=0$
+gives
+\[
+ v=u+2^{2-L}\frac{3-w}{1+w}u^L+O(u^{L+1}).
+\]
+Write the remaining equations as $F_2=u^LH(u,w)$ and $F_3=G(u,w)$.
+Their restrictions to $u=0$ are
+\[
+ \begin{aligned}
+ H(0,w)&=\frac4{w+1}
+ \bigl((w+1)(w+3)-(-1)^L(w-1)(w-3)\bigr),\\
+ G(0,w)&=(w^2-1)Q_L(w).
+ \end{aligned}
+\]
+At a root of $Q_L$, the condition $H(0,z)=0$ is equivalent to
+\[
+ \left[-\frac{z+1}{z-1}\right]^L=1,
+\]
+which is the physical singular condition~\eqref{eq:physical}.
+Indeed, the reduced equation gives
+$((z+1)/(z-1))^{L-1}=(z+3)/(z-3)$, and combining these two
+relations yields exactly the numerator of $H(0,z)$.
+
+If $p$ is nonphysical, $H$ is a unit in the local ring. The remaining
+ideal is therefore $(u^L,G)$, of length $\ell_p=Le$, as required.
+
+If $p$ is physical, $H(0,z)=0$ forces $z=0$ for even $L$, or
+$z^2=-3$ for odd $L$. At these roots $e=1$. The first-order
+elimination of $G=0$ gives $w(u)=z+\alpha u+O(u^2)$, and substitution
+in $H$ gives $H(u,w(u))=h_1u+O(u^2)$, with
+\[
+ \begin{array}{c|c|c}
+ &\alpha&h_1\\ \hline
+ L\text{ even},\ z=0
+ &-\dfrac4{3L-4}&\dfrac{36L(L-4)}{3L-4}\\[6pt]
+ L\text{ odd},\ z^2=-3
+ &-\dfrac2{L-2}&\dfrac{4L(L-3)(z+3)}{L-2}
+ \end{array}
+\]
+In both cases $h_1\ne0$ for $L\ge6$, so the full local multiplicity
+is $L+1$. Therefore
+\[
+ \boxed{
+ c_0(p)-Lc_1(p)
+ =\begin{cases}
+ 1/6,&p\text{ is physical},\\
+ 0,&p\text{ is nonphysical}.
+ \end{cases}}
+\]
+Thus the local-length criterion, and hence the desired pointwise
+identity, holds at every distinct-coordinate singular solution for $n=3$.
+
+\subsection{Four roots: the double singular pair $n=4$}
+\label{sec:n4-double-pair}
+
+Let $n=4$, $L\ge8$, and $p_0=(1,1,-1,-1)$, and write
+$Z^{\mathrm{dep}}_{L,4}=Z^{\mathrm{dep}}_0$. We prove that the corrected
+weight at this point is zero. By the multiplicity of the
+unordered configuration we mean the sum of the coefficients of
+$Z^{\mathrm{dep}}_{L,4}$ over the six distinct permutations of $p_0$.
+This multiplicity is before any singular-excess subtraction.
+
+\begin{proposition}\label{prop:n4-double-pair}
+The unordered multiplicity of $\{1,1,-1,-1\}$ after depermutation is
+\begin{equation}\label{eq:n4-double-pair}
+ \boxed{M_L=
+ \begin{cases}
+ \displaystyle\binom L2,&L\text{ even},\\[2pt]
+ \displaystyle\binom{L+1}2,&L\text{ odd}.
+ \end{cases}}
+\end{equation}
+The coefficient at a single ordered point $p_0$ in the normalized formal sum
+$Z^{\mathrm{dep}}_{L,4}$ is $M_L/6$.
+\end{proposition}
+
+\begin{proof}
+We compute the depermutation multiplicity in symmetric coordinates.
+This also avoids computing four large ordinary local intersection
+lengths separately.
+
+\paragraph{Depermutation and the polynomial remainder equations.}
+For a monic quartic $Q$, let $r_Q$ be the remainder modulo $Q$ of
+\[
+ R_Q(T)=(T+1)^LQ(T-2)+(T-1)^LQ(T+2).
+\]
+The four coefficients of $r_Q$ define a system in the four coefficients
+of $Q$. We will show below that it is isolated at
+$Q_0(T)=(T^2-1)^2$, and compute its local length $M_L$. The full and partition local lengths are taken under our standing
+finiteness assumption.
+
+This local length is the unordered depermutation multiplicity. To see
+this, use the common polynomial perturbation $h_a$ from
+Section~\ref{sec:general-tq}, now of degree at most three.
+The remainder system becomes $r_Q+h_a=0$. In a finite local family, a
+generic small $h_a$ gives $M_L$ simple quartics near $Q_0$, each with
+distinct roots. Indeed, this system is the fiber of the map
+$Q\mapsto-r_Q$; generic fibers are reduced, and the discriminant
+hypersurface of quartics has lower-dimensional image in a finite local
+neighborhood. Each such quartic has two roots near $1$ and two near
+$-1$, and gives $2!\,2!=4$ ordered configurations near $p_0$.
+All other nearby solutions have collisions and cancel in the M\"obius
+sum, as in Section~\ref{sec:general-tq}.
+Thus the coefficient at $p_0$ is $4M_L/24=M_L/6$, and its orbit has
+total coefficient $M_L$.
+
+\paragraph{Separating the two clusters.}
+Use the local factorization
+\[
+ Q(T)=A(T-1)B(T+1),\qquad
+ A(u)=u^2-au+b,\qquad B(v)=v^2-cv+d.
+\]
+The coefficients $(a,b,c,d)$ are local coordinates near $Q_0$: the two
+factors of $Q_0$ are coprime, so multiplication is locally invertible.
+Divisibility by $Q$ is equivalent to divisibility at each of these
+coprime quadratic factors. After division by units, the two congruences
+are
+\begin{equation}\label{eq:n4-cluster-congruences}
+ \begin{aligned}
+ B(u)+u^LU(u)&\equiv0\pmod{A(u)},\\
+ A(v)+v^LV(v)&\equiv0\pmod{B(v)},
+ \end{aligned}
+\end{equation}
+where
+\[
+ \begin{aligned}
+ U(u)&=\frac{A(u+2)B(u+4)}{(u+2)^LA(u-2)},\\
+ V(v)&=\frac{A(v-4)B(v-2)}{(v-2)^LB(v+2)}.
+ \end{aligned}
+\]
+The denominators are units in the corresponding completed quadratic
+algebras. The two coefficients of the first congruence solve uniquely
+for $c,d$ as formal power series in $a,b$, by the implicit function
+theorem.
+
+Give $a,u,v$ weight one and $b$ weight two. The remainder of $u^L$
+modulo $A$ has its linear coefficient of weight $L-1$ and its constant
+coefficient of weight $L$. Consequently the solution of the first
+congruence satisfies
+\[
+ c=a+O_{\mathrm w}(L-1),\qquad d=b+O_{\mathrm w}(L),
+\]
+where $O_{\mathrm w}(j)$ denotes terms of weight at least $j$.
+In particular, for the low-weight calculation that follows we may put
+$B=A$ inside $U,V$.
+
+\paragraph{The leading equations and parity.}
+Put $C=2^{4-L}$. Direct expansion to weight one gives
+\[
+ \begin{aligned}
+ U(u)&=C\left(1+\frac{5-L}{2}u-\frac54a+O_{\mathrm w}(2)\right),\\
+ V(u)&=(-1)^LC\left(1+\frac{L-5}{2}u+\frac54a
+                    +O_{\mathrm w}(2)\right).
+ \end{aligned}
+\]
+After eliminating $c,d$, the leading part of the second congruence is
+obtained by taking the remainder modulo $A$ of $u^L(U(u)+V(u))$.
+The corrections from $B-A$ have higher weight and do not affect these
+initial equations, since $L\ge8$.
+
+If $L$ is even, the constant terms add. Up to a nonzero scalar, the
+two initial equations are the coefficients of
+\[
+ \operatorname{rem}_A u^L.
+\]
+Their weights are $L-1$ and $L$. They have only the common zero
+$(a,b)=(0,0)$, since $A\mid u^L$ forces both roots of $A$ to be zero.
+
+If $L$ is odd, the constant terms cancel. Up to a nonzero scalar, the
+two initial equations are the coefficients of
+\[
+ \operatorname{rem}_A\left((5-L)u^{L+1}-\frac52a u^L\right).
+\]
+Their weights are $L$ and $L+1$. These also have only the common zero
+$(0,0)$. Indeed, if $A$ had two distinct nonzero roots, both would have
+to be the same root of the linear factor
+$(5-L)u-\tfrac52a$, which is impossible. If its roots were $0$ and
+$a\ne0$, evaluation at $u=a$ would give
+$(\tfrac52-L)a^{L+1}\ne0$. If it had a nonzero double root $r$, then
+$a=2r$ and evaluation at $u=r$ would give $-Lr^{L+1}\ne0$.
+
+In both cases the weighted initial equations form a zero-dimensional
+regular sequence, so higher-weight terms do not change the local length.
+For weights $1,2$ and equation weights $d_1,d_2$, that length is
+$d_1d_2/2$: the Hilbert series is
+\[
+ \frac{(1-z^{d_1})(1-z^{d_2})}{(1-z)(1-z^2)},
+\]
+whose value at $z=1$ is $d_1d_2/2$. This proves isolation of the remainder
+system and yields $L(L-1)/2$ for even $L$, and $L(L+1)/2$ for odd $L$,
+as claimed.
+
+\end{proof}
+
+
+\paragraph{The reduced one-pair contribution at the double pair.}
+To finish the weight calculation at $p_0$, fix one positive and one
+negative root. The two remaining reduced equations are $G(x,y)=0$ and
+$G(y,x)=0$, where
+\[
+ G(x,y)=(x+1)^{L-1}(x-3)(x-y-2)
+       -(x-1)^{L-1}(x+3)(x-y+2).
+\]
+Let $b_L$ be their local length at $(1,-1)$. Put $x=1+u$, $y=-1+v$,
+and $\eta=u-v$. The first equation gives
+\[
+ \eta=\frac{4C(u)}{A(u)-C(u)}
+ =-2^{4-L}u^{L-1}
+   \left(1+\frac{5-2L}{4}u+O(u^2)\right),
+\]
+where $A(u)=(2+u)^{L-1}(u-2)$ and $C(u)=u^{L-1}(u+4)$.
+Substitution into the second equation yields
+\[
+ G(y,x)=
+ \begin{cases}
+ 32u^{L-1}+O(u^L),&L\text{ even},\\
+ 8(2L-5)u^L+O(u^{L+1}),&L\text{ odd}.
+ \end{cases}
+\]
+Hence $b_L=L-1$ for even $L$ and $b_L=L$ for odd $L$.
+
+There are four choices of the fixed positive and negative labels at
+$p_0$. Each contributes $b_L/2$ before the averaging factor $2!/4!$,
+so $c_1(p_0)=b_L/6$. Fixing both pairs gives $c_2(p_0)=1/6$, while
+Proposition~\ref{prop:n4-double-pair} gives $c_0(p_0)=M_L/6$.
+Consequently,
+\[
+ \boxed{
+ \operatorname{coeff}_{p_0}Z^{\mathrm{cand}}_{L,4}
+ =\frac16\left(M_L-Lb_L+\binom L2\right)=0.}
+\]
+For even $L$ the numerator is
+$\binom L2-L(L-1)+\binom L2=0$; for odd $L$ it is
+$\binom{L+1}2-L^2+\binom L2=0$.
+Thus the double singular pair has the required zero weight for both
+parities, as do all its permutations.
+
+\section{Root at infinity: general case}
+\label{sec:general-infinity}
+
+Use homogeneous coordinates $[X_1:\cdots:X_n:W]$ on $\mathbb P^n$,
+where $W=x_{n+1}$ and $x_i=X_i/W$ on the affine chart. Set
+$D=L+n-2$, and let $\widehat F_i$ be the degree-$D$ homogenization
+of $F_i$. The cancellation of the terms of degree $D+1$ gives
+\[
+ \widehat F_i(X,W)=\frac1W\left(
+ (X_i+W)^L\prod_{j\ne i}(X_i-X_j-2W)
+ -(X_i-W)^L\prod_{j\ne i}(X_i-X_j+2W)\right).
+\]
+The numerator is divisible by $W$, so this is a polynomial. On the
+hyperplane at infinity, its restriction is
+\begin{equation}\label{eq:leading-equations-infinity}
+ \widehat F_i(X,0)=2X_i^{L-1}\left(
+ L\prod_{j\ne i}(X_i-X_j)
+ -2X_i\sum_{j\ne i}\prod_{h\ne i,j}(X_i-X_h)
+ \right).
+\end{equation}
+
+\begin{proposition}[Collisions at infinity]
+\label{prop:collisions-infinity}
+Assume $L\ge2n$. If $[X_1:\cdots:X_n:0]$ is a common zero of
+$\widehat F_1,\ldots,\widehat F_n$, then there are distinct indices
+$i,j$ such that $X_i=X_j\ne0$. In particular, every solution at
+infinity lies on a collision diagonal.
+\end{proposition}
+
+\begin{proof}
+Suppose instead that all nonzero coordinates are pairwise distinct.
+Let $S=\{i:X_i\ne0\}$, write $s=|S|\ge1$, and let $z=n-s$ be
+the number of zero coordinates. For $i\in S$, every factor
+$X_i-X_j$ is nonzero. Dividing
+\eqref{eq:leading-equations-infinity} by
+$2X_i^{L-1}\prod_{j\ne i}(X_i-X_j)$ therefore gives
+\[
+ L=2\sum_{j\ne i}\frac{X_i}{X_i-X_j}
+   =2z+2\sum_{\substack{j\in S\\j\ne i}}
+                     \frac{X_i}{X_i-X_j}.
+\]
+Sum over $i\in S$. Each unordered pair in $S$ contributes one to
+the double sum, since
+\[
+ \frac{X_i}{X_i-X_j}+\frac{X_j}{X_j-X_i}=1.
+\]
+Consequently,
+\[
+ Ls=2zs+s(s-1),\qquad
+ L=2z+s-1=n+z-1\le2n-2.
+\]
+This contradicts $L\ge2n$.
+\end{proof}
+
+The same argument applies after fixing $k$ balanced singular pairs.
+There are $r=n-2k$ free roots, whose reduced equations are
+\[
+ G_i(x)=(x_i+1)^{L-k}(x_i-3)^k
+                \prod_{j\ne i}(x_i-x_j-2)
+       -(x_i-1)^{L-k}(x_i+3)^k
+                \prod_{j\ne i}(x_i-x_j+2),
+\]
+where the products run over the other free roots. Their degree is
+$L+r-2$, and their leading forms are
+\eqref{eq:leading-equations-infinity} with $n$ replaced by $r$ and
+the coefficient $L$ inside the parentheses replaced by $L-4k$.
+Since $L-4k\ge2r$, the same contradiction shows that every boundary
+solution has two equal nonzero free-root coordinates. For $r=1$
+there are no boundary solutions, and $r=0$ has no free-root boundary.
+
+Thus the collision at infinity can be proved directly, without the
+affine distinct-root assumption. The equality $X_i=X_j\ne0$ means
+that the two roots have the same nonzero leading coordinate as they
+diverge. This support statement does not yet prove cancellation of
+their local multiplicities in the depermutation sum; that requires
+comparing the full and partition intersections along this boundary.
+\section{One singular pair: $a=b=1$}
+\label{sec:one-singular-pair}
+
+Let $n\ge2$, $L\ge2n$, and
+$p=(1,-1,z_3,\ldots,z_n)$ have pairwise distinct coordinates.
+We retain the standing finiteness assumptions. Put
+\[
+ I_{\mathrm{full}}=(F_1,\ldots,F_n),\qquad
+ I_{\mathrm{red}}=I_{\{1\},\{2\};\hat0},\qquad
+ e_p=\ell_p(I_{\mathrm{red}}).
+\]
+We prove the weight identity without assuming that $e_p=1$.
+The physical input is the standard nonzero singular Bethe-vector
+regularization of \cite[Section~3]{NW2013}, together with simultaneous
+diagonalizability of the homogeneous XXX transfer matrices
+\cite[Theorem~12.6.1]{MTV2009}. Only diagonalizability is used, not the
+count of physical solutions or simplicity of the joint spectrum.
+
+\begin{proposition}\label{prop:one-pair-weight}
+At $p$, the full local length is
+\begin{equation}\label{eq:one-pair-general-length}
+ \ell_p(I_{\mathrm{full}})=Le_p+\chi_{\mathrm{phys}}(p),
+\end{equation}
+where $\chi_{\mathrm{phys}}(p)$ is one if
+\eqref{eq:physical} holds and zero otherwise. Consequently,
+\[
+ \boxed{c_0(p)-Lc_1(p)=\frac{\chi_{\mathrm{phys}}(p)}{n!}=w(p).}
+\]
+\end{proposition}
+
+\begin{proof}
+We separate the singular factor and then compute the residual length.
+
+\paragraph{Separating the singular factor.}
+Write $x_1=1+u$, $x_2=-1+v$, and $x_j=y_j$ for $j\ge3$.
+Set
+\[
+ C(u,y)=\prod_{j=3}^n(u-1-y_j),\qquad
+ D(u,y)=\prod_{j=3}^n(u+3-y_j).
+\]
+Since $C(0,z)\ne0$, the first equation solves for $v$ exactly as
+\[
+ v=u+u^Ld(u,y),\qquad
+ d(u,y)=-\frac{4D(u,y)}{(2+u)^LC(u,y)-u^LD(u,y)}.
+\]
+After this substitution, write
+\[
+ F_2=u^LH(u,y),\qquad F_j=G_j(u,y)\quad(3\le j\le n),
+\]
+with $H,G_j$ regular near $(0,z)$. Work in the completed local ring
+\[
+ S=\C[[u,y_3-z_3,\ldots,y_n-z_n]],\qquad
+ \mathcal R=S/(G_3,\ldots,G_n).
+\]
+The full and reduced local algebras
+are respectively $\mathcal R/(u^LH)$ and $\mathcal R/(u)$: at $u=0$,
+$G_j=(y_j^2-1)F_j^{\mathrm{red}}$, with $y_j^2-1$ a unit.
+They have finite length, so $\mathcal R$ is a one-dimensional complete
+intersection and $u$ is a non-zero-divisor. The exact sequence
+\[
+ 0\longrightarrow\mathcal R/(H)
+ \xrightarrow{\ \times u^L\ }\mathcal R/(u^LH)
+ \longrightarrow\mathcal R/(u^L)\longrightarrow0
+\]
+therefore gives
+\begin{equation}\label{eq:one-pair-length-splitting}
+ \ell_p(I_{\mathrm{full}})
+ =Le_p+\dim_\C\mathcal A,\qquad
+ \mathcal A:=S/(H,G_3,\ldots,G_n).
+\end{equation}
+Here $\mathcal A=0$ when $H$ is a unit.
+
+\paragraph{The physical compatibility condition.}
+Put $r=n-2$. Direct substitution gives
+\[
+ H(0,y)=4(-1)^r\left[
+ -\prod_{j=3}^n(y_j+3)
+ +(-1)^L\prod_{j=3}^n
+             \frac{(y_j-1)(y_j-3)}{y_j+1}\right].
+\]
+There are no other exact strings: a finite chain of distinct roots
+separated by $2$ must end at $-1$ and $1$, hence consists of this pair
+alone; see \cite[Lemma~1]{GJ2020}. In particular, $z_j\ne\pm3$
+and $z_i-z_j\ne\pm2$ for $i,j\ge3$. Thus all factors in the
+following ratios are nonzero. Multiplying the reduced equations
+cancels the interactions between the remaining roots and yields
+\[
+ \left(\prod_{j=3}^n\frac{z_j+1}{z_j-1}\right)^{L-1}
+ =\prod_{j=3}^n\frac{z_j+3}{z_j-3}.
+\]
+Combining this with the expression for $H(0,z)$ gives
+\begin{equation}\label{eq:one-pair-compatibility}
+ H(0,z)=0
+ \quad\Longleftrightarrow\quad
+ \left[-\prod_{j=3}^n\frac{z_j+1}{z_j-1}\right]^L=1.
+\end{equation}
+At a nonphysical point, $H$ is consequently a unit, and
+\eqref{eq:one-pair-length-splitting} proves the assertion.
+
+\paragraph{The residual length at a physical point.}
+Suppose now that \eqref{eq:physical} holds. The algebra $\mathcal A$
+is finite and local, with residue field $\C$. Denote by
+$\mathcal B(t)$ and $\mathsf t(t)$ the polynomial creation operator
+and transfer matrix in the rescaled normalization. The vector
+\[
+ \Psi(u,y)=u^{-L}\mathcal B(1+u)\mathcal B(-1+v(u,y))
+                    \prod_{j=3}^n\mathcal B(y_j)|0\rangle
+\]
+is regular at $u=0$, since $v-u=O(u^L)$. Its value at $(0,z)$ is
+the nonzero regularized physical Bethe vector; see
+\cite[Section~3]{NW2013} and \cite[Lemmas~3--4]{GJ2020}.
+
+Let
+\[
+ Q_{\mathcal A}(t)=(t-1-u)(t+1-v)\prod_{j=3}^n(t-y_j)
+ \in\mathcal A[t].
+\]
+All original equations vanish in $\mathcal A$, and the roots remain
+distinct modulo its maximal ideal. Thus the $TQ$ quotient is a
+polynomial $\tau_{\mathcal A}(t)\in\mathcal A[t]$:
+\[
+ \tau_{\mathcal A}(t)Q_{\mathcal A}(t)
+ =(t+1)^LQ_{\mathcal A}(t-2)+(t-1)^LQ_{\mathcal A}(t+2).
+\]
+The off-shell transfer-matrix identity also gives, over $\mathcal A$,
+\begin{equation}\label{eq:one-pair-artin-eigenvector}
+ \mathsf t(t)\Psi=\tau_{\mathcal A}(t)\Psi.
+\end{equation}
+Indeed, divide that identity by $u^L$ before passing to the quotient.
+The unwanted term at the first root is zero by $F_1=0$; that at the
+second root contains $F_2/u^L=H$. Each other unwanted term contains
+$G_j$ and a Bethe vector still containing the singular pair, which is
+divisible by $u^L$. Hence all unwanted terms vanish in $\mathcal A$.
+
+The transfer matrices admit a common eigenbasis, by
+\cite[Theorem~12.6.1]{MTV2009} and the $\mathfrak{sl}_2$
+decomposition of the spin space. In this basis, some component of
+$\Psi$ has nonzero residue and is therefore a unit of $\mathcal A$.
+Equation~\eqref{eq:one-pair-artin-eigenvector} then forces
+$\tau_{\mathcal A}(t)=\tau_p(t)$, the fixed complex eigenvalue
+polynomial at $p$.
+
+For this fixed $\tau_p$, the monic degree-$n$ polynomial solution of
+the $TQ$ relation is unique, even over $\mathcal A$. To see this, put
+\[
+ C_m=L(L-1)-4m(L-m+1).
+\]
+The degree-$n$ solution gives
+$\tau_p(t)=2t^L+C_nt^{L-2}+O(t^{L-3})$. If a nonzero difference
+of two monic solutions has degree $m<n$ and leading coefficient $b$,
+then the coefficient of $t^{L+m-2}$ in its $TQ$ equation is
+\[
+ (C_m-C_n)b=4(n-m)(L+1-n-m)b\ne0,
+\]
+because $L\ge2n$. This is impossible, so
+$Q_{\mathcal A}=Q_p$. Since the roots of $Q_p$ are distinct,
+evaluating at each corresponding root shows that
+$u=0$ and $y_j=z_j$ in $\mathcal A$. Thus $\mathcal A=\C$ and
+its length is one. This proves~\eqref{eq:one-pair-general-length}.
+
+\paragraph{Normalization of the weights.}
+At a distinct-coordinate point, only the discrete partition
+contributes to depermutation. Moreover, there is exactly one choice
+of the fixed positive and negative labels. Consequently,
+\[
+ c_0(p)=\frac{\ell_p(I_{\mathrm{full}})}{n!},\qquad
+ c_1(p)=\frac{e_p}{n!},\qquad c_k(p)=0\quad(k\ge2).
+\]
+Substitution gives the claimed physical weight. In particular, when
+$e_p=1$, the ordinary local length is $L+1$ at a physical point and
+$L$ otherwise, recovering the small-$n$ calculations.
+\end{proof}
+
+\section{Multiple balanced singular pairs}
+\label{sec:multiple-balanced-pairs}
+
+Let $p$ have exactly $a$ coordinates equal to $1$, $a$ equal to $-1$,
+and $r=n-2a$ other, pairwise distinct coordinates $z_1,\ldots,z_r$.
+Write
+\[
+ H(t)=\prod_{j=1}^r(t-z_j),\qquad
+ Q_k(t)=(t^2-1)^{a-k}H(t)\quad(0\le k\le a).
+\]
+The reduced $TQ$ numerator after fixing $k$ pairs is
+\[
+ \Phi_k(t;Q)=(t+1)^{L-k}(t-3)^kQ(t-2)
+             +(t-1)^{L-k}(t+3)^kQ(t+2).
+\]
+Let $J_k$ be the ideal of its remainder coefficients modulo a variable
+monic polynomial $Q$ of degree $n-2k$, and let $\nu_k(p)$ be its local
+length at $Q=Q_k$.
+
+\paragraph{Why the balanced points satisfy $TQ$.}
+The original polynomial equations do not in general imply divisibility
+at repeated roots. Here the balanced factors supply the missing
+orders of vanishing. Indeed,
+\[
+ \Phi_k(t;Q_k)=(t^2-1)^{a-k}S_a(t),
+\]
+where
+\[
+ S_a(t)=(t+1)^{L-a}(t-3)^aH(t-2)
+        +(t-1)^{L-a}(t+3)^aH(t+2).
+\]
+The equations at the distinct roots of $H$ give $S_a(z_j)=0$, hence
+$H\mid S_a$. Consequently $Q_k\mid\Phi_k(t;Q_k)$ for every $k$.
+The local algebras $J_k$ are nevertheless different from the original
+ordered Bethe algebras; depermutation is essential in relating their
+lengths.
+
+\paragraph{Normalization at a repeated singular configuration.}
+The $TQ$ interpretation of depermutation gives
+\begin{equation}\label{eq:balanced-local-normalization}
+ c_k(p)=\frac{(a!)^2}{n!}\nu_k(p),\qquad 0\le k\le a.
+\end{equation}
+To check the factor, there are $\binom ak^2$ compatible choices of
+fixed labels. The remaining ordered root map has local degree
+$((a-k)!)^2$, and the averaging factor in
+\eqref{eq:reduced-fixed-pair-depermutation} gives
+\[
+ \frac{(k!)^2(n-2k)!}{n!}\binom ak^2
+ \frac{((a-k)!)^2}{(n-2k)!}=\frac{(a!)^2}{n!}.
+\]
+Thus the required vanishing is precisely
+\begin{equation}\label{eq:balanced-remainder-length-identity}
+ \sum_{k=0}^a(-1)^k\binom Lk\nu_k(p)=0.
+\end{equation}
+
+\subsection{All roots in the singular clusters: $n=2a$}
+
+\begin{proposition}\label{prop:pure-balanced-pairs}
+Let $a\ge2$, $n=2a$, $L\ge4a$, and $p=(1^a,-1^a)$. Then
+\begin{equation}\label{eq:pure-balanced-local-lengths}
+ \nu_k(p)=
+ \begin{cases}
+ \displaystyle\binom{L-k}{a-k},&L\equiv a\pmod2,\\[4pt]
+ \displaystyle\binom{L-k+1}{a-k},&L\not\equiv a\pmod2.
+ \end{cases}
+\end{equation}
+In particular, $\operatorname{coeff}_p Z^{\mathrm{cand}}_{L,2a}=0$
+for both parities of $L$.
+\end{proposition}
+
+\begin{proof}
+For $k=a$ there are no free variables and $\nu_a=1$. Otherwise put
+$s=a-k\ge1$ and $M=L-k$. Factor the variable polynomial locally as
+\[
+ Q(t)=A(t-1)B(t+1),\qquad
+ A(u)=u^s-e_1u^{s-1}+\cdots+(-1)^se_s,
+\]
+with $B$ also monic of degree $s$. The two cluster factors at $p$ are
+coprime, so their coefficients are local coordinates on coefficient
+space. Divisibility by $Q$ is equivalent to the congruences
+\[
+ B(u)+u^MU(u)\equiv0\pmod{A(u)},\qquad
+ A(v)+v^MV(v)\equiv0\pmod{B(v)},
+\]
+where
+\[
+ \begin{aligned}
+ U(u)&=\frac{(u+4)^kA(u+2)B(u+4)}
+                 {(u+2)^M(u-2)^kA(u-2)},\\
+ V(v)&=\frac{(v-4)^kA(v-4)B(v-2)}
+                 {(v-2)^M(v+2)^kB(v+2)}.
+ \end{aligned}
+\]
+All denominators are units in the corresponding completed cluster
+algebras. The first congruence solves uniquely for the coefficients
+of $B$ in terms of those of $A$.
+
+Give $u,v$ weight one and $e_j$ weight $j$. If $b_j$ denotes the
+$j$th elementary coefficient of $B$, weighted division in the first
+congruence gives
+\[
+ b_j-e_j=O_{\mathrm w}(M-s+j),\qquad 1\le j\le s.
+\]
+Since $M-s=L-a\ge3a$, these differences do not affect the constant
+and linear weighted terms of the units. Substituting $B=A$ to these
+orders gives, with $C=2^{2a-L}$ and $\alpha=(5a-2L)/4$,
+\[
+ \begin{aligned}
+ U(u)&=(-1)^aC\left(1+\alpha u-\frac54e_1
+                               +O_{\mathrm w}(2)\right),\\
+ V(u)&=(-1)^LC\left(1-\alpha u+\frac54e_1
+                               +O_{\mathrm w}(2)\right).
+ \end{aligned}
+\]
+After eliminating $B$, the initial equations are therefore the
+coefficients of $\operatorname{rem}_A u^M$ when $L\equiv a\pmod2$,
+and, up to a common nonzero scalar, those of
+\begin{equation}\label{eq:balanced-resonant-initial-polynomial}
+ \operatorname{rem}_A
+       \left[u^M\bigl((5a-2L)u-5e_1\bigr)\right]
+\end{equation}
+when the parities differ. Corrections from $B-A$ have strictly higher
+weight, again because $M-s=L-a\ge3a$.
+
+Both initial systems have only the common zero $e_1=\cdots=e_s=0$.
+For the first, $A\mid u^M$ forces $A=u^s$. For the second, any
+nonzero root of $A$ must be the unique simple root of
+$(5a-2L)u-5e_1$. Thus, if such a root $\rho$ existed, we would have
+$A=u^{s-1}(u-\rho)$ and $e_1=\rho$. Evaluation at $\rho$ would give
+\[
+ \bigl(5(a-1)-2L\bigr)\rho^{M+1}=0,
+\]
+which is impossible for $L\ge4a$. Hence $A=u^s$ here as well.
+
+The initial equations consequently form a zero-dimensional weighted
+complete intersection. Their weights are
+$M-s+1,\ldots,M$ in the first case, and
+$M-s+2,\ldots,M+1$ in the second. Higher-weight terms preserve the
+local length. Dividing the product of these equation weights by
+$1\cdot2\cdots s$ gives respectively $\binom Ms$ and
+$\binom{M+1}s$, proving~\eqref{eq:pure-balanced-local-lengths}.
+
+Finally,
+\[
+ \sum_{k=0}^a(-1)^k\binom Lk\binom{L-k}{a-k}
+ =\binom La(1-1)^a=0.
+\]
+For the other parity, Pascal's identity adds
+\[
+ \sum_{k=0}^{a-1}(-1)^k\binom Lk\binom{L-k}{a-k-1}
+ =\binom L{a-1}(1-1)^{a-1}=0,
+\]
+since $a\ge2$. Together with
+\eqref{eq:balanced-local-normalization}, this proves the vanishing
+of the corrected weight.
+\end{proof}
+
+\subsection{Additional roots: the nonresonant case}
+
+The other roots cannot be $\pm3$, and no two of them differ by $2$:
+the finite-chain argument used for one singular pair applies to the
+distinct root values, regardless of the multiplicities at $\pm1$.
+In particular, the following expression is well-defined:
+\begin{equation}\label{eq:balanced-resonance-function}
+ \Xi(p)=(-1)^a\frac{H(3)}{H(-1)}
+           +(-1)^L\frac{H(-3)}{H(1)}.
+\end{equation}
+We call the configuration nonresonant when $\Xi(p)\ne0$.
+
+\begin{proposition}\label{prop:balanced-nonresonant}
+Assume $L\ge2n$, the relevant local algebras have finite length, and
+$\Xi(p)\ne0$. Then
+\[
+ \nu_k(p)=\binom{L-k}{a-k}\nu_a(p),\qquad 0\le k\le a.
+\]
+Consequently the corrected weight at $p$ is zero for every $a\ge1$.
+No simplicity assumption is needed for the remaining-root system.
+\end{proposition}
+
+\begin{proof}
+For $k<a$, again put $s=a-k$ and $M=L-k$. Use the local factorization
+\[
+ Q(t)=A(t-1)B(t+1)H_y(t),\qquad
+ H_y(t)=\prod_{j=1}^r(t-y_j),
+\]
+with $A,B$ monic of degree $s$ and $y$ near $z$. The cluster
+congruences are those in the preceding proof, with their units
+multiplied respectively by
+$H_y(u+3)/H_y(u-1)$ and $H_y(v-3)/H_y(v+1)$.
+After eliminating $B$, give the coefficients $e_j$ of $A$ weight $j$
+and keep $y-z$ as parameters of weight zero. The constant weighted
+term of $U+V$ is
+\[
+ 2^{2a-L}\left[(-1)^a\frac{H_y(3)}{H_y(-1)}
+                  +(-1)^L\frac{H_y(-3)}{H_y(1)}\right],
+\]
+which is a unit near $p$. Thus the cluster initial ideal is generated
+by the coefficients of $\operatorname{rem}_A u^M$.
+
+Setting all cluster coefficients to zero in the remaining equations
+gives exactly the reduced $TQ$ system $J_a$ for $H_y$. Hence the
+weighted initial local algebra is the tensor product of the local
+algebra of $J_a$ at $H$ and
+\[
+ \C[e_1,\ldots,e_s]\big/
+ \bigl(\text{coefficients of }\operatorname{rem}_A u^M\bigr).
+\]
+Both factors have finite length. The weighted complete-intersection
+deformation therefore preserves length, and the second factor has
+length $\binom Ms$ by the preceding calculation. This proves the
+formula for $\nu_k$; for $k=a$ it is immediate. Finally,
+\[
+ \sum_{k=0}^a(-1)^k\binom Lk\nu_k(p)
+ =\nu_a(p)\binom La(1-1)^a=0.
+\]
+Apply~\eqref{eq:balanced-local-normalization} to obtain the result.
+\end{proof}
+
+\subsection{One additional root: $n=2a+1$}
+
+\begin{proposition}\label{prop:balanced-one-additional-root}
+Let $a\ge2$, $n=2a+1$, and $L\ge4a+2$. The corrected weight is zero
+at every configuration $p=(1^a,-1^a,z)$ with $z\ne\pm1$.
+If $\Xi(p)=0$, its local remainder lengths are
+\[
+ \nu_k(p)=\binom{L-k+1}{a-k},\qquad 0\le k\le a.
+\]
+\end{proposition}
+
+\begin{proof}
+The nonresonant case is Proposition~\ref{prop:balanced-nonresonant}.
+Suppose $\Xi(p)=0$. With $H(t)=t-z$, this condition reads
+\[
+ (-1)^a(z-3)(z-1)+(-1)^L(z+3)(z+1)=0.
+\]
+Thus $z=0$ when the parities differ, and $z^2=-3$ when they agree.
+The remaining-root equation is
+\[
+ g_a(z)=(z+1)^{L-a}(z-3)^a-(z-1)^{L-a}(z+3)^a=0.
+\]
+Define
+\[
+ R(z)=-\frac2{z^2-1},\qquad S(z)=-\frac6{z^2-9},\qquad
+ D(z)=(L-a)R(z)-aS(z).
+\]
+The logarithmic derivative of the ratio of the two terms in $g_a$
+is $D$. At the possible resonant roots,
+\[
+ \begin{array}{c|c|c}
+ &R+S&D\\ \hline
+ z=0&8/3&\dfrac23(3L-4a)\\[4pt]
+ z^2=-3&1&\dfrac{L-2a}{2}
+ \end{array}
+\]
+so $g_a$ has a simple zero there and $\nu_a(p)=1$.
+
+For $k<a$, put $s=a-k$ and $M=L-k$, and factor the variable
+polynomial as $Q=A(t-1)B(t+1)(t-y)$. Eliminate $B$ as before.
+The equation at $y$ also solves for $y$ as a function of the cluster
+coefficients, with
+\[
+ y=z-\frac{R+S}{D}\,e_1+O_{\mathrm w}(2).
+\]
+This follows by expanding its logarithmic form: its linear terms are
+$D(y-z)+(R+S)e_1$. Substituting into the cluster units, their
+constant sum vanishes and their first weighted term, up to a nonzero
+scalar, is $\alpha u+\beta e_1$, where
+\[
+ \alpha=\frac{5a-2L}{2}+R+S,\qquad
+ \beta=-\frac52+\frac{(R+S)^2}{D}.
+\]
+The displayed values and $L\ge4a+2$ give $\alpha<0$ and $\beta<0$.
+In particular, $\alpha\ne0$ and $\alpha+\beta\ne0$.
+
+The cluster initial equations are therefore the coefficients of
+\[
+ \operatorname{rem}_A\bigl[u^M(\alpha u+\beta e_1)\bigr].
+\]
+They have only the zero solution in coefficient space. Indeed, any
+nonzero root $\rho$ of $A$ would be the unique simple nonzero root
+of $\alpha u+\beta e_1$, forcing $e_1=\rho$ and
+$(\alpha+\beta)\rho=0$, a contradiction. The weighted
+complete-intersection calculation from
+Proposition~\ref{prop:pure-balanced-pairs} now gives
+$\nu_k=\binom{M+1}s$. The same two binomial identities prove
+\eqref{eq:balanced-remainder-length-identity}, hence the required
+zero weight.
+\end{proof}
+
+\subsection{A local geometric complex from normalized deformations}
+\label{sec:normalized-local-complex}
+
+There is a geometric realization of the alternating local length which
+does not use the Bethe algebra or its spectrum. Its terms come from
+normalizations of one-parameter deformations of the local schemes.
+They have the required dimensions, but are not direct sums of the
+original local algebras. This distinction is essential.
+
+In this subsection $I\subseteq[L]$ labels sites of the chain, rather
+than fixed root labels. For site parameters
+$\theta=(\theta_1,\ldots,\theta_L)$ and
+$I\subseteq[L]$, put $r=n-2|I|\ge0$ and define
+\[
+ \begin{aligned}
+ D_i(t)&=(t-\theta_i)^2-1,\\
+ a_I(t)&=\prod_{i\notin I}(t-\theta_i+1)
+          \prod_{i\in I}(t-\theta_i-3),\\
+ d_I(t)&=\prod_{i\notin I}(t-\theta_i-1)
+          \prod_{i\in I}(t-\theta_i+3),\\
+ \Phi_I(t;Q)&=a_I(t)Q(t-2)+d_I(t)Q(t+2).
+ \end{aligned}
+\]
+Let $\mathcal X_I\to\A^L_\theta$ be the scheme defined by the
+remainder of $\Phi_I$ modulo a monic degree-$r$ polynomial $Q$.
+At $\theta=0$ this is the reduced remainder scheme $V(J_{|I|})$.
+For $j\notin I$ with $2(|I|+1)\le n$, the identity
+\begin{equation}\label{eq:inhomogeneous-factor-insertion}
+ \Phi_I(t;D_jQ)=D_j(t)\Phi_{I\cup\{j\}}(t;Q)
+\end{equation}
+gives a closed immersion
+$\mathcal X_{I\cup\{j\}}\hookrightarrow\mathcal X_I$.
+Indeed, the remainder on the left is $D_j$ times the smaller
+remainder, and multiplication by the monic polynomial $D_j$ does
+not change the ideal generated by its coefficients.
+
+\begin{proposition}[Finite flat remainder families]
+\label{prop:geometric-remainder-flatness}
+Assume $L\ge2n$. Each $\mathcal X_I\to\A^L_\theta$ is finite
+flat of degree
+\[
+ N_{L,r}=\binom{L+r-2}{r}.
+\]
+There is a nonempty Zariski open set of site parameters on which all
+these fibers are reduced. On this open set their polynomials $Q$
+have distinct roots. Every pair of roots differing by $2$ is exactly
+$\theta_j-1,\theta_j+1$ for some $j\notin I$, with both roots simple.
+\end{proposition}
+
+\begin{proof}
+The case $r=0$ is immediate. For $r>0$, write
+$Q=t^r+q_1t^{r-1}+\cdots+q_r$ and give $q_j$ weight $j$.
+Set $b=L-4|I|\ge2r$. Taylor expansion shows that the weighted
+initial equations of the remainder coefficients are the coefficients of
+\[
+ \operatorname{rem}_Q\left(4t^{L-2}
+               \bigl(t^2Q''-btQ'\bigr)\right).
+\]
+Their respective weights are $L-1,L,\ldots,L+r-2$; they are
+independent of $\theta$. To find their common zero set, factor
+$Q=t^gH$ with $H(0)\ne0$. The divisibility condition implies
+$H\mid t^2Q''-btQ'$. Since $t^g$ also divides this expression,
+\[
+ t^2Q''-btQ'=r(r-1-b)Q.
+\]
+The eigenvalues $m(m-1-b)$ for $0\le m\le r$ are distinct,
+because $b\ge2r$. Hence $Q=t^r$.
+
+The initial equations therefore form a regular sequence in the
+weighted polynomial ring. The filtered Koszul complex gives the
+associated graded quotient by these initial equations. It has length
+\[
+ \frac{(L-1)L\cdots(L+r-2)}{1\cdot2\cdots r}
+ =N_{L,r}.
+\]
+The same initial equations work over $\C[\theta]$, giving a
+uniform finite spanning set and this length in every fiber. The
+finite complete-intersection family is consequently flat.
+
+We give the generic-reducedness argument, including the boundary
+where a site pair occurs. Choose distinct site parameters with no
+differences in $2\mathbb Z\cap[-2n-6,2n+6]$. At the bottom and
+top of a maximal string of roots spaced by $2$, evaluation of
+$Q\mid\Phi_I$ forces a zero of
+$a_I$ and of $d_I$, respectively. The nonresonance of the sites
+then leaves only the pair $\theta_j-1,\theta_j+1$ at a positive
+site $j\notin I$. The two multiplicities cannot both exceed one:
+if they did, the vanishing order at the lower endpoint would be exactly
+one, less than its multiplicity in $Q$.
+
+Remove one copy of every such pair, and let $J\supseteq I$ be the
+resulting set of negative sites. The remaining polynomial $H$ has
+degree $s=n-2|J|$ and is coprime to its shifts by $2$ and to the
+two vacuum polynomials of the $J$-system. Temporarily use the
+coefficients of
+\[
+ W(t)=\prod_{j\notin J}(t-\theta_j),\qquad M=L-|J|,
+\]
+as the positive-site parameters, and keep the negative centers
+$c_i=\theta_i$, $i\in J$. For fixed $H,c$, the remainder equations
+are linear in the coefficients of the monic polynomial $W$:
+\begin{equation}\label{eq:geometric-interpolation-equations}
+ \prod_{i\in J}(t-c_i-3)W(t+1)H(t-2)
+ +\prod_{i\in J}(t-c_i+3)W(t-1)H(t+2)
+ \equiv0\pmod H.
+\end{equation}
+Since $H(t-1)$ and $H(t+1)$ are coprime, interpolation at their
+roots, with multiplicities, prescribes the two classes
+$\delta W(t-1),\delta W(t+1)$ independently. Here $M\ge2s$.
+The linear map in~\eqref{eq:geometric-interpolation-equations}
+is therefore surjective. The admissible incidence scheme is smooth
+of dimension $L$, and its projection to $(H,c)$ is smooth. Its
+projection to the site parameters is quasi-finite by the first part
+of the proof, hence is generically etale in characteristic zero.
+Furthermore, a repeated root of $H$, or a root $c_i\pm1$, cuts
+out a proper hypersurface in the $(H,c)$ space. These conditions
+are absent for generic site parameters. Thus the residual roots and
+all the site-pair roots are generically distinct.
+
+It remains to check transverse reducedness at an inserted pair.
+Write its center as $c$, its roots as $c+1+u,c-1+v$, and the
+product of all other root factors as $H_*$. In the system before
+insertion write $a=(t-c+1)a_*$ and $d=(t-c-1)d_*$. The two
+evaluation equations have linear parts
+\[
+ A(u-v)+Bu,\qquad Cv+D(v-u),
+\]
+where
+\[
+ \begin{aligned}
+ A&=-4a_*(c+1)H_*(c-1),&
+ B&=8d_*(c+1)H_*(c+3),\\
+ C&=8a_*(c-1)H_*(c-3),&
+ D&=-4d_*(c-1)H_*(c+1).
+ \end{aligned}
+\]
+Their determinant is $AC+BC+BD$. It is not identically zero on
+the residual incidence scheme. Indeed, in addition to the $2s$
+interpolation conditions above, one can prescribe the $3|J|$
+values $W(c_i),W(c_i-2),W(c_i+2)$ independently: their nodes are
+distinct and avoid the roots of $H(t-1)H(t+1)$, and
+\[
+ M=L-|J|\ge2s+3|J|.
+\]
+Holding the other values fixed, the term $AC$ has a nonzero
+coefficient of $W(c+2)W(c)$, whereas $BC$ and $BD$ do not
+involve $W(c+2)$. Thus the determinant is generically nonzero.
+The endpoint equations have zero derivatives in the residual root
+directions and in other pairs' transverse directions. Their blocks,
+together with the residual Jacobian, give an invertible full
+Jacobian for generic parameters. There are finitely many $I,J$,
+so a common open set works for all of them. Passing back from $W$
+to its distinct ordered roots is etale and preserves these conclusions.
+\end{proof}
+
+\begin{proposition}[Normalized local complex]
+\label{prop:normalized-local-complex}
+Let $L\ge2n$ and let
+$Q_0=(t^2-1)^aH$, with $H(\pm1)\ne0$, satisfy the full $TQ$
+relation. Repetitions among the roots of $H$ are allowed. For
+$Q_k=Q_0/(t^2-1)^k$, let $\nu_k(p)$ be the local remainder length.
+A generic one-parameter deformation of the site parameters determines
+a finite complex of vector spaces $C_\bullet(p)$ such that
+\begin{equation}\label{eq:normalized-local-complex-dimensions}
+ \dim C_k(p)=\binom Lk\nu_k(p)\quad(0\le k\le a),\qquad
+ H_k(C_\bullet(p))=0\quad(k>0).
+\end{equation}
+Its degree-zero homology $M_p$ is the special fiber of the
+normalization of the nearby components containing no exact site pair.
+Consequently, without spectral input,
+\begin{equation}\label{eq:geometric-local-positivity}
+ \boxed{\sum_{k=0}^a(-1)^k\binom Lk\nu_k(p)
+              =\dim_\C M_p\ge0.}
+\end{equation}
+The construction may depend on the chosen deformation; the displayed
+dimension does not.
+\end{proposition}
+
+\begin{proof}
+Choose a line $\theta_i=\varepsilon c_i$ whose generic point lies
+in the common open set of Proposition~\ref{prop:geometric-remainder-flatness},
+and work over $T=\C[[\varepsilon]]$. In $\mathcal X_\varnothing$
+take the finite flat local factor specializing to $Q_0$. For each
+$I\subseteq[L]$ with $2|I|\le n$, take its inverse image in $\mathcal X_I$ under
+insertion of the factors $D_i$, $i\in I$, and denote its coordinate
+algebra by $\mathcal A_I$. Henselian decomposition of a finite
+algebra makes these local factors well-defined. For $|I|=k\le a$,
+the special fiber is the local algebra of $J_k$ at $Q_k$, so
+$\mathcal A_I$ is finite free of rank $\nu_k(p)$ over $T$.
+For $k>a$ the inverse image is empty.
+
+The generic fibers are reduced. Flatness implies that the total
+algebras $\mathcal A_I$ are reduced as well. Let
+$\mathcal B_I$ be their normalizations. These are finite products
+of discrete valuation rings, finite free over $T$, with the same
+ranks as $\mathcal A_I$; for the standard normalization facts see
+\cite[Tag~035E]{Stacks}. Normalization separates the generic
+components that can meet at the homogeneous point.
+
+For $J\subset I$, factor insertion is a closed immersion whose
+generic fiber selects a subset of the reduced points. Consequently
+$\mathcal B_I$ is canonically a direct factor of $\mathcal B_J$.
+There is an extension-by-zero map
+\[
+ \iota_{I,J}:\mathcal B_I\longrightarrow\mathcal B_J.
+\]
+These maps compose according to inclusions of subsets. Define
+\[
+ \mathcal C_k=\bigoplus_{|I|=k}\mathcal B_I,
+ \qquad
+ \left.d_k\right|_{\mathcal B_I}
+ =\sum_{j\in I}(-1)^{\#\{i\in I:i<j\}}
+             \iota_{I,I\setminus\{j\}}.
+\]
+The usual cancellation of signs gives $d_{k-1}d_k=0$.
+
+To compute homology, decompose by the normal components of the
+full local family. For one such component, let $S$ be the set of
+sites whose factors $D_i$ divide its generic polynomial. Its
+contribution to $\mathcal C_k$ is one copy of its normal ring for
+each $k$-element subset of $S$. The differential is contraction
+on the exterior algebra of the free module with basis $S$, sending
+every basis vector to $1$. If $S\ne\varnothing$, exterior
+multiplication by any chosen basis vector is a contracting homotopy.
+If $S=\varnothing$, only degree zero remains. The whole complex
+is therefore split exact in positive degrees, with degree-zero
+homology equal to the product of the normal components having
+$S=\varnothing$.
+
+Set $C_\bullet(p)=\mathcal C_\bullet/\varepsilon\mathcal C_\bullet$.
+The splitting and the contracting homotopies survive specialization.
+Each degree-$k$ term has dimension $\binom Lk\nu_k(p)$, and its
+degree-zero homology is the asserted $M_p$. Euler characteristic
+proves~\eqref{eq:geometric-local-positivity}.
+\end{proof}
+
+\paragraph{Why normalization cannot simply be omitted.}
+Let $A_k$ denote the original local algebra of $J_k$ at $Q_k$.
+Factor insertion gives quotient maps $A_0\twoheadrightarrow A_k$.
+Each $A_k$ is an Artinian complete intersection and hence Gorenstein,
+with a one-dimensional socle; see \cite[Section~47.21]{Stacks}.
+Thus no $A_0$-linear resolution with terms
+$A_k^{\binom Lk}$ can be exact in positive degrees when $a\ge1$:
+its top injection would require an injection of socles of dimensions
+$\binom La$ and $\binom L{a-1}$, whereas $L\ge2n\ge4a$ makes
+the first strictly larger. Taking the vector-space duals of these
+algebras does not remove this obstruction. The special fibers of
+$\mathcal B_I$ have the same lengths as $A_k$, but can have
+different module structures, so the normalized construction avoids
+this problem.
+
+For example, for $n=2$ and $Q_0=t^2-1$, there are $L$ nearby
+sections $Q=D_i$. Their normalizations contribute one copy of $T$
+each, and each cancels with its degree-one term. The possible
+remaining component has special-fiber length
+$\nu_0-L\nu_1$. This is a geometric cancellation of branches,
+rather than an injection of $L$ copies of the residue field into
+the original local algebra.
+
+For $n=4$ at $Q_0=(t^2-1)^2$, the local lengths already computed
+in Proposition~\ref{prop:n4-double-pair} and the subsequent reduced
+calculation make the normalized complex especially explicit. There
+is a section $Q=D_iD_j$ for each unordered pair of distinct sites.
+For even $L$, these $\binom L2$ sections exhaust the rank $\nu_0$,
+and the complex is the direct sum of $\binom L2$ blocks
+\[
+ 0\longrightarrow T\xrightarrow{\,(-1,1)\,}T^2
+       \xrightarrow{\,(1,1)\,}T\longrightarrow0.
+\]
+For odd $L$, the same sections account for $\binom L2$ of the
+$\binom{L+1}2$ branches. For each fixed site $i$, its degree-one
+family has rank $L$: $L-1$ sections contain a second site pair,
+and the remaining rank-one component contains only the pair at $i$.
+These $L$ components are distinct and exhaust the remaining rank
+of the degree-zero family. Thus there are also $L$ blocks
+$0\to T\xrightarrow{1}T\to0$ in degrees one and zero. Both
+parities give an acyclic complex, although their individual term
+dimensions differ.
+
+The geometric construction proves nonnegativity and gives an explicit
+homology space. It does not identify that space with a spin-chain
+eigenspace, prove its dimension is at most one, or establish vanishing
+at every repeated singular pair.
+
+\subsection{A spectral interpretation of the alternating local length}
+\label{sec:balanced-spectral-interpretation}
+
+The transfer matrices give a stronger interpretation of the same local
+integer, including the upper bound one on its value.
+Let $\tau_p$ be the polynomial quotient in the full $TQ$ relation
+for $Q_0=(t^2-1)^aH$. Write $\eta_{L,n}(\tau_p)$ for the dimension
+of the joint generalized eigenspace with eigenvalue polynomial
+$\tau_p$ in the highest-weight subspace of $\mathcal H$ with $n$
+down spins; set this dimension to zero when the eigenvalue is absent.
+
+\begin{proposition}\label{prop:balanced-spectral-euler}
+Under the standing finiteness assumptions,
+\begin{equation}\label{eq:balanced-spectral-euler}
+ \sum_{k=0}^a(-1)^k\binom Lk\nu_k(p)
+ =\eta_{L,n}(\tau_p)\in\{0,1\}.
+\end{equation}
+Thus the desired cancellation is equivalent to excluding $\tau_p$
+from the spectrum of the finite spin chain.
+The same identity holds for $a=0,1$ and when $H$ has repeated roots
+away from $\pm1$, provided $Q_0$ satisfies the full $TQ$ relation.
+No root-simplicity assumption is used in this proposition.
+\end{proposition}
+
+\begin{proof}
+Let $M_s$ be the highest-weight $\mathfrak{sl}_2$ Verma module of
+spin $s$, with generators $e,f,h$ normalized by $[e,f]=2h$.
+The singular vector $f^2v_{1/2}$ gives the exact sequence
+\[
+ 0\longrightarrow M_{-3/2}\longrightarrow M_{1/2}
+   \longrightarrow\C^2\longrightarrow0.
+\]
+Equip each factor with the evaluation Lax matrix whose highest-vector
+diagonal entries are $t+2s$ and $t-2s$. The sequence intertwines these
+matrices. Tensoring $L$ copies therefore gives an exact complex
+compatible with the transfer matrices. Its term in degree $k$ is
+the direct sum over $k$-element subsets of sites, with $M_{-3/2}$ at
+these sites and $M_{1/2}$ at the others.
+
+Fix $h_0=L/2-n\ge0$. In degree $k$, this weight is reached after
+$n-2k$ lowering operations. Passing to highest vectors of weight
+$h_0$ preserves exactness. Indeed, on this weight space the finite
+sum
+\[
+ \mathcal P_{h_0}
+ =\sum_{j\ge0}\frac{(-1)^j f^je^j}
+                 {j!\prod_{q=1}^j(2h_0+q+1)}
+\]
+is a natural idempotent onto $\ker e$. Its denominators are nonzero,
+and it commutes with the differentials and transfer matrices.
+Taking its image is consequently taking a direct summand of the
+exact weight-space complex.
+
+The vacuum polynomials in degree $k$ are
+\[
+ a_k(t)=(t+1)^{L-k}(t-3)^k,\qquad
+ d_k(t)=(t-1)^{L-k}(t+3)^k.
+\]
+The spectral multiplicities on each such highest-weight space equal
+the local lengths of $J_k$. Here is the specialization argument
+needed for this statement. Keep the local spins fixed and vary the
+evaluation parameters $\theta_j$. For widely separated parameters,
+suitably rescaled creation operators $\mathcal B(\theta_j)$ have leading
+terms $f_j$. Their products give a basis in each fixed finite range
+of degrees, by comparison with the tensor-product Verma basis.
+The cyclic map from the holomorphic Yangian module to the tensor
+product is therefore an isomorphism in these degrees for generic
+parameters; its intertwining property follows from the defining
+highest-vector and creation-operator relations in
+\cite[Proposition~2.5.1]{MTV2009}. On its highest-weight part, the
+transfer action is the dual regular representation of the
+polynomial-solution algebra \cite[Corollary~7.3.2]{MTV2009}.
+This algebra is the remainder algebra $J_k$, after translating and
+rescaling the spectral variable. Traces of polynomials in the transfer
+coefficients consequently agree generically. The highest-weight
+projectors are regular near the homogeneous parameters. Finite
+flatness of these remainder families was proved directly in
+Proposition~\ref{prop:geometric-remainder-flatness}; compare also
+\cite[Section~4.2]{MTV2009}. The trace identities specialize
+to these parameters. Hence the joint spectral multiplicities agree
+even if the specialized modules themselves are not isomorphic.
+The separating condition here is $L-2n+1+j\ne0$ for the relevant
+positive integers $j$, which follows from $L\ge2n$.
+
+All roots of $J_k$ with eigenvalue $\tau_p$ must be $Q_k$. In fact,
+if a monic polynomial $Q$ of degree $n-2k$ has that reduced
+eigenvalue, then $(t^2-1)^kQ$ solves the full $TQ$ relation with
+eigenvalue $\tau_p$. The uniqueness argument in the proof of
+Proposition~\ref{prop:one-pair-weight} applies without any assumption
+on root multiplicities, so this polynomial must equal $Q_0$.
+Thus the multiplicity in degree $k$ is $\nu_k(p)$, and it is zero
+for $k>a$.
+
+Taking a joint generalized eigenspace is an exact operation on these
+finite-dimensional modules: it is a primary direct summand for the
+commuting transfer coefficients. Euler characteristic of the resulting
+exact complex gives~\eqref{eq:balanced-spectral-euler}, including
+the factor $\binom Lk$ counting subsets of sites. Finally, the
+homogeneous finite spin chain has simple joint spectrum on highest
+vectors \cite[Theorem~12.1.1]{MTV2009}, so its multiplicity is zero
+or one.
+\end{proof}
+
+\subsection{Wronskian residue obstructions}
+\label{sec:balanced-wronskian-obstructions}
+
+The polynomial-kernel characterization of the finite-chain spectrum
+\cite[Section~12.8]{MTV2009} identifies
+$\eta_{L,n}(\tau_p)=1$ with the existence of a polynomial $P$ such
+that
+\begin{equation}\label{eq:balanced-polynomial-companion}
+ P(t+1)Q_0(t-1)-P(t-1)Q_0(t+1)=t^L.
+\end{equation}
+This is stronger than the single $TQ$ relation. The following gives
+explicit tests for failure of this condition.
+
+Set
+\[
+ \mathcal U(t)=\frac{t^L}{Q_0(t+1)Q_0(t-1)}
+ =\frac{t^{L-2a}}{(t^2-4)^aH(t+1)H(t-1)}.
+\]
+For $1\le j\le a$, let $c_j^+$ and $c_j^-$ be the coefficients of
+$(t-2)^{-j}$ and $(t+2)^{-j}$ in its principal parts at $2$ and
+$-2$, respectively, and put $\Theta_j=c_j^++c_j^-$.
+
+\begin{proposition}\label{prop:balanced-residue-obstructions}
+A polynomial companion in~\eqref{eq:balanced-polynomial-companion}
+exists if and only if
+\[
+ \Theta_1=\cdots=\Theta_a=0.
+\]
+Consequently, for $a\ge2$, any nonzero $\Theta_j$ proves the desired
+vanishing of the corrected weight at $p$.
+\end{proposition}
+
+\begin{proof}
+Writing $f=P/Q_0$, the Wronskian relation becomes
+$f(t+1)-f(t-1)=\mathcal U(t)$. Its rational principal parts telescope
+along each orbit of translation by $2$. At the ordinary roots $z_j$,
+the two simple-pole coefficients of $\mathcal U$ at $z_j+1$ and
+$z_j-1$ sum to zero by the $TQ$ equation at $z_j$.
+These contributions are the differences of rational functions with
+simple poles at $z_j$.
+
+The remaining poles are those at $2$ and $-2$, of orders at most $a$.
+There is no pole at zero since $L\ge2n$. For each order $j$, their
+sum of coefficients must vanish. Conversely, when it vanishes, the
+corresponding principal parts are the difference of
+\[
+ -c_j^+\bigl((t-1)^{-j}+(t+1)^{-j}\bigr).
+\]
+Every polynomial part also has a polynomial discrete antiderivative.
+We therefore obtain $f$ with poles only at roots of $Q_0$, and of
+orders bounded by their multiplicities. Hence $P=Q_0f$ is a
+polynomial. This proves the equivalence. The last assertion follows
+from Proposition~\ref{prop:balanced-spectral-euler} and
+\eqref{eq:balanced-local-normalization}.
+\end{proof}
+
+The highest principal-part coefficient is
+\[
+ c_a^+=\frac{2^{L-4a}}{H(3)H(1)},\qquad
+ c_a^-=\frac{(-1)^{L-a}2^{L-4a}}{H(-1)H(-3)}.
+\]
+Thus $\Theta_a=0$ is exactly $\Xi(p)=0$. When this holds, write
+$\mathfrak h(t)=H'(t)/H(t)$ and define
+\begin{equation}\label{eq:balanced-second-obstruction}
+ K(p)=\frac{2L-5a}{2}-\mathfrak h(3)-\mathfrak h(1)
+                         +\mathfrak h(-1)+\mathfrak h(-3).
+\end{equation}
+Differentiating the pole numerators gives
+\[
+ \Theta_{a-1}=c_a^+K(p).
+\]
+Therefore $\Xi(p)=0$ and $K(p)\ne0$ also prove cancellation, with
+no simplicity or Jacobian assumption on the remaining roots.
+
+\subsection{Uniform restrictions on a possible counterexample}
+
+The second residue obstruction also constrains configurations with
+arbitrarily many additional roots. Count these roots with their
+multiplicities and write
+\[
+ Q(t)=(t^2-1)^a\prod_{j=1}^r(t-z_j),\qquad
+ z_j\ne\pm1,\qquad C=\frac{2L-5a}{2}>0.
+\]
+
+\begin{proposition}\label{prop:balanced-counterexample-localization}
+Let $a\ge2$, $L\ge2n$, and suppose the corrected coefficient of
+this balanced configuration is nonzero. Then
+\begin{equation}\label{eq:balanced-counterexample-sum}
+ C=\sum_{j=1}^r\left(\frac2{1-z_j^2}+\frac6{9-z_j^2}\right).
+\end{equation}
+In particular $r>0$, and at least one additional root satisfies
+\begin{equation}\label{eq:balanced-counterexample-distance}
+ \min\{|z_j^2-1|,|z_j^2-9|\}
+ \le\frac{8r}{C}=\frac{16r}{2L-5a}.
+\end{equation}
+If all the additional roots are purely imaginary, a necessary
+condition is
+\begin{equation}\label{eq:balanced-real-rapidity-bound}
+ L\le\frac52a+\frac83r.
+\end{equation}
+These conclusions do not require the additional roots to be distinct.
+\end{proposition}
+
+\begin{proof}
+By Proposition~\ref{prop:exact-corrected-weights}, a nonzero
+coefficient gives a polynomial companion. The Wronskian identity
+forces $P,Q$ to be coprime and $Q(\pm3)\ne0$: a common root would
+give two distinct zeros of $t^L$, while evaluation at $\pm2$
+excludes the latter values when $Q(\pm1)=0$.
+
+The pole comparison for $P/Q$ at $0,2,-2$ gives
+$\Theta_a=\Theta_{a-1}=0$, hence $K=0$. This comparison is local
+at the singular pair and is unchanged by multiplicities elsewhere.
+Since
+\[
+ \frac{H'(t)}{H(t)}=\sum_{j=1}^r\frac1{t-z_j},
+\]
+substitution into~\eqref{eq:balanced-second-obstruction} gives
+\eqref{eq:balanced-counterexample-sum}. For $r=0$ it contradicts
+$C>0$. If both distances in
+\eqref{eq:balanced-counterexample-distance} were greater than
+$8r/C$ for every root, the triangle inequality would make the
+absolute value of the sum in~\eqref{eq:balanced-counterexample-sum}
+strictly less than $r(2+6)C/(8r)=C$, again a contradiction.
+
+Finally, if $z_j=\ii y_j$ with $y_j\in\mathbb R$, each summand is
+positive and at most
+\[
+ \frac2{1+y_j^2}+\frac6{9+y_j^2}\le\frac83.
+\]
+Thus $C\le8r/3$, which is
+\eqref{eq:balanced-real-rapidity-bound}.
+\end{proof}
+
+Consequently, if all remaining rapidities are real in the original
+variables, the corrected weight is zero whenever
+$L>5a/2+8r/3$. Under $L\ge2n=4a+2r$, this includes every
+$r<9a/4$. This is an exclusion criterion for that class, not an
+assumption that all physical roots are real.
+
+There is also a useful reality constraint on every possible
+counterexample:
+\[
+ Q(t)=(-1)^n\overline{Q(-\bar t)},\qquad
+ H(t)=(-1)^r\overline{H(-\bar t)}.
+\]
+Indeed, undoing the rescaling gives a polynomial Wronskian plane
+with imaginary step $\ii$ and normalized Wronskian $\lambda^L$.
+The reality theorem of \cite[Theorem~1.1]{MTV2011} makes this plane
+real. Its unique monic minimal-degree polynomial therefore has real
+coefficients in $\lambda$, giving the displayed identities. Thus
+nonimaginary ordinary roots in the scaled variables occur in pairs
+$z,-\bar z$; they are not excluded by the real-rapidity criterion.
+
+\begin{proposition}[A bound from all residue obstructions]
+\label{prop:balanced-multiplicity-bound}
+For a balanced configuration with $a\ge2$ and $r=n-2a$ additional
+roots, a nonzero corrected coefficient requires
+\begin{equation}\label{eq:balanced-multiplicity-bound}
+ a\le4r+3.
+\end{equation}
+At half filling $L=2n$, the stronger necessary condition is
+\begin{equation}\label{eq:balanced-half-filling-bound}
+ a\le4r+1.
+\end{equation}
+In particular, violation of either applicable bound proves vanishing,
+with no reality or simplicity condition on the additional roots.
+\end{proposition}
+
+\begin{proof}
+A nonzero coefficient gives a polynomial companion, so all the
+singular residue obstructions vanish. Put $M=L-2a$ and introduce
+the two units at $s=0$
+\[
+ A(s)=\frac{(s+2)^M}{(s+4)^aH(s+3)H(s+1)},\qquad
+ B(s)=\frac{(s-2)^M}{(s-4)^aH(s-1)H(s-3)}.
+\]
+They are the analytic pole numerators of $\mathcal U$ at $2$ and
+$-2$. The equations $\Theta_1=\cdots=\Theta_a=0$ say exactly
+$A+B=O(s^a)$. Thus the rational logarithmic derivative
+\[
+ \begin{aligned}
+ D(s)&=\frac{(A/B)'(s)}{(A/B)(s)}\\
+ &=-\frac{4M}{s^2-4}+\frac{8a}{s^2-16}
+   +\frac{H'(s-1)}{H(s-1)}+\frac{H'(s-3)}{H(s-3)}
+   -\frac{H'(s+1)}{H(s+1)}-\frac{H'(s+3)}{H(s+3)}
+ \end{aligned}
+\]
+has a zero of order at least $a-1$ at zero.
+
+This rational function is not identically zero. Since
+$H(\pm1)H(\pm3)\ne0$, its residue at $s=2$ is
+\[
+ -M-\operatorname{mult}_{5}(H)<0.
+\]
+Here multiplicities are nonnegative and $M>0$. A common denominator is
+\[
+ T(s)=(s^2-4)(s^2-16)
+       H(s-1)H(s-3)H(s+1)H(s+3),
+\]
+of degree $4r+4$, with $T(0)\ne0$. Also $D(s)=O(s^{-2})$ at
+infinity, so the nonzero polynomial $N=T D$ has degree at most
+$4r+2$. Its order at zero is at least $a-1$, proving
+\eqref{eq:balanced-multiplicity-bound}.
+
+For the improvement at half filling, expansion at infinity gives
+\[
+ D(s)=-\frac{4(L-2n)}{s^2}
+       +\frac{16\sum_{j=1}^r z_j}{s^3}+O(s^{-4}).
+\]
+When $L=2n$, comparison of the next-to-leading Wronskian coefficient
+gives $[t^{n-1}]Q=0$, hence $\sum_j z_j=0$.
+Consequently $D(s)=O(s^{-4})$ and $\deg N\le4r$.
+The same order comparison yields $a-1\le4r$, proving
+\eqref{eq:balanced-half-filling-bound}.
+\end{proof}
+
+\subsection{Two additional roots: $n=2a+2$}
+
+\begin{proposition}\label{prop:balanced-two-additional-roots}
+Let $a\ge2$, $n=2a+2$, and $L\ge4a+4$. The corrected weight is zero
+at every balanced configuration with two distinct additional roots
+outside $\pm1$.
+\end{proposition}
+
+\begin{proof}
+By the preceding propositions, it suffices to exclude
+$\Xi(p)=K(p)=0$. Write $H(t)=t^2-st+p$ and put
+$C=(2L-5a)/2$. All four values $H(\pm1),H(\pm3)$ are nonzero.
+The resonance condition is
+\begin{equation}\label{eq:two-additional-resonance}
+ \begin{cases}
+ (p+9)(p+1)+3s^2=0,&L\equiv a\pmod2,\\
+ s(p+3)=0,&L\not\equiv a\pmod2.
+ \end{cases}
+\end{equation}
+For later use, direct evaluation of logarithmic derivatives gives
+\[
+ K=C-\frac{6(2p+18-s^2)}{(p+9)^2-9s^2}
+       -\frac{2(2p+2-s^2)}{(p+1)^2-s^2}.
+\]
+
+The product of the reduced Bethe equations, combined with resonance,
+also implies
+\begin{equation}\label{eq:balanced-resonant-momentum}
+ \Pi^L=(-1)^{aL},\qquad
+ \Pi=\frac{H(-1)}{H(1)}=\frac{p+1+s}{p+1-s}.
+\end{equation}
+Indeed, with $\Sigma=H(-3)/H(3)$ these two conditions are
+$\Pi^{L-a}=\Sigma^a$ and $\Pi\Sigma=(-1)^{a+L+1}$.
+If $p,s$ are real, \eqref{eq:balanced-resonant-momentum} forces
+$\Pi=\pm1$, hence $s=0$ or $p=-1$.
+
+If $L\equiv a\pmod2$, substitute
+$s^2=-(p+9)(p+1)/3$ into $K=0$. This gives
+\[
+ p=-3+\frac8{C-1},\qquad
+ s^2=-\frac{(p+9)(p+1)}3.
+\]
+Here $C\ge(3a+8)/2\ge7$, so $-3<p<-1$ and $s^2>0$.
+Thus $p,s$ are real with $s\ne0$ and $p\ne-1$, contradicting
+\eqref{eq:balanced-resonant-momentum}.
+
+Now let $L\not\equiv a\pmod2$. If $p=-3$, the equation $K=0$
+gives
+\[
+ s^2=\frac{12C}{3C-8}>0.
+\]
+Again $p,s$ are real, $s\ne0$, and $p\ne-1$, giving the same
+contradiction. It remains to consider $s=0$.
+
+For $H=t^2+p$, the equation $K=0$ becomes
+\begin{equation}\label{eq:two-additional-quadratic-obstruction}
+ F(p):=C(p+1)(p+9)-16p-48=0.
+\end{equation}
+This quadratic is irreducible over $\mathbb Q$. Its discriminant is
+$16(d^2+12)$, where $d=2C-2=2L-5a-2$ is an integer at least $12$.
+Since $d^2<d^2+12<(d+1)^2$, the discriminant is not a rational
+square. The two real conjugate roots of $F$ lie respectively in
+$(-1,0)$ and $(-9,-3)$: this follows from
+\[
+ F(-1)=-32,\quad F(0)=9C-48>0,\quad
+ F(-9)=96,\quad F(-3)=-12C.
+\]
+
+The conditions $H\mid S_a$ are polynomial equations in $p$ with
+rational coefficients. If either root of the irreducible $F$ satisfied
+them, both would. Choose the conjugate $p\in(-1,0)$ and set
+$w=\sqrt{-p}\in(0,1)$, so the additional roots are $w,-w$.
+The reduced equation at $w$, after cancelling its interaction with
+$-w$, requires
+\[
+ \left(\frac{w+1}{w-1}\right)^{L-a-1}
+ =\left(\frac{w+3}{w-3}\right)^a.
+\]
+But
+\[
+ \left|\frac{w+1}{w-1}\right|
+ >\left|\frac{w+3}{w-3}\right|>1,
+ \qquad L-a-1>a,
+\]
+so equality is impossible. This excludes the final case and proves
+the proposition.
+\end{proof}
+
+\subsection{Three additional roots invariant under sign reversal}
+
+\begin{proposition}\label{prop:balanced-three-symmetric-roots}
+Let $a\ge2$, $n=2a+3$, and $L\ge4a+6$. The corrected weight
+vanishes at every balanced configuration whose three additional roots
+are $0,w,-w$, with $w\ne0$.
+\end{proposition}
+
+\begin{proof}
+Write $H(t)=t(t^2+p)$, where $p=-w^2$. The values
+$H(\pm1),H(\pm3)$ are nonzero, as in the preceding arguments.
+Since $H$ is odd, $\Xi=0$ requires $L\not\equiv a\pmod2$.
+Otherwise the highest residue obstruction already proves vanishing.
+
+Put
+\[
+ C=\frac{2L-5a}{2},\qquad D=C-\frac83.
+\]
+The root at zero contributes $8/3$ to the logarithmic-derivative
+sum in~\eqref{eq:balanced-second-obstruction}. Consequently
+\[
+ K=D-\frac{12}{p+9}-\frac4{p+1}.
+\]
+Thus $K=0$ would imply
+\[
+ F(p):=D(p+1)(p+9)-16p-48=0.
+\]
+This quadratic is irreducible over $\mathbb Q$. Indeed, its
+discriminant is
+\[
+ 16\bigl((2D-2)^2+12\bigr)
+ =\frac{16}{9}(N^2+108),\qquad N=6L-15a-22\ge32.
+\]
+If $N^2+108$ were an integer square, factoring the difference of
+the two squares would give $N=6$ or $N=26$: these are the only
+nonnegative possibilities from factor pairs of $108$ with the same
+parity. Both contradict $N\ge32$.
+
+Here $D\ge19/3$, and the signs of $F$ at $-9,-3,-1,0$
+show that its roots lie in $(-9,-3)$ and $(-1,0)$.
+The reduced equations $H\mid S_a$ have rational coefficients in
+$p$. Hence if one root of this irreducible quadratic satisfied them,
+so would its conjugate $p\in(-1,0)$. Choose this conjugate and put
+$w=\sqrt{-p}\in(0,1)$. The reduced equation at $w$, including its
+interactions with $0$ and $-w$, becomes
+\[
+ \left(\frac{w+1}{w-1}\right)^{L-a-1}
+ =\left(\frac{w+3}{w-3}\right)^a\frac{w+2}{w-2}.
+\]
+But
+\[
+ \left|\frac{w+1}{w-1}\right|
+ >\left|\frac{w+2}{w-2}\right|
+ >\left|\frac{w+3}{w-3}\right|>1,
+ \qquad L-a-1>a+1,
+\]
+so this equality is impossible. Thus $\Xi$ and $K$ cannot both
+vanish, and the residue obstruction proves the proposition.
+\end{proof}
+
+\subsection{Three additional roots: momentum and exact elimination}
+
+For three additional roots, write
+\[
+ H(t)=t^3-st^2+pt-q,\qquad
+ C=\frac{2L-5a}{2}\ge9,\qquad
+ \Pi=\frac{H(-1)}{H(1)}.
+\]
+The product of the reduced equations and $\Xi=0$ again imply
+$\Pi^L=(-1)^{aL}$. The resonance equation itself is
+\begin{equation}\label{eq:cubic-resonance}
+ \begin{cases}
+ 3(p+9)(p+1)+(9s+q)(s+q)=0,&L\equiv a\pmod2,\\
+ 3s(p+3)+q(p+7)=0,&L\not\equiv a\pmod2.
+ \end{cases}
+\end{equation}
+
+\begin{proposition}\label{prop:balanced-cubic-endpoint-momentum}
+For $a\ge2$ and $L\ge4a+6$, a balanced configuration with three
+additional roots and $\Pi=1$ or $\Pi=-1$ has zero corrected weight.
+\end{proposition}
+
+\begin{proof}
+It suffices to consider $\Xi=0$. If $\Pi=1$, then $p=-1$ and
+$s+q\ne0$, since $H(1)\ne0$. For opposite parities,
+\eqref{eq:cubic-resonance} would force $s+q=0$, a contradiction.
+For equal parities it gives $q=-9s$. Substitution into
+\eqref{eq:balanced-second-obstruction} yields $K=C-5/3\ne0$.
+
+If $\Pi=-1$, then $q=-s$ and $p\ne-1$. For equal parities,
+\eqref{eq:cubic-resonance} gives $p=-9$, and direct substitution
+gives $K=C-3\ne0$. For opposite parities, the resonance equation
+gives $s=0$, hence $q=0$. This is the sign-invariant case of
+Proposition~\ref{prop:balanced-three-symmetric-roots}.
+\end{proof}
+
+For the remaining momentum values, put
+\[
+ v=\frac{s+q}{p+1},\qquad
+ \Pi=-\frac{1+v}{1-v}.
+\]
+The endpoint proposition allows us to assume $v\ne0$ and $p\ne-1$.
+Equations~\eqref{eq:cubic-resonance} then give
+\begin{equation}\label{eq:cubic-momentum-parameterization}
+ s=\begin{cases}
+ -\dfrac{3(p+9)+v^2(p+1)}{8v},&L\equiv a\pmod2,\\[5pt]
+ -\dfrac{v(p+7)}2,&L\not\equiv a\pmod2,
+ \end{cases}
+ \qquad q=v(p+1)-s.
+\end{equation}
+The momentum condition is the one-variable polynomial equation
+\[
+ (-(1+v))^L-(-1)^{aL}(1-v)^L=0.
+\]
+Over each number field defined by an irreducible factor of this
+polynomial, $K=0$ is a polynomial equation of degree at most two in
+$p$. Reduce the three coefficients of $S_a\bmod H$ modulo this
+quadratic. Their common gcd with the quadratic tests whether the
+reduced Bethe equations can also hold. Factors supported on
+$H(\pm1)H(\pm3)\operatorname{disc}(H)=0$ must be removed, since
+these are outside the configurations under consideration.
+
+\paragraph{An exact check beyond sign-invariant configurations.}
+For $a=2$, $L=14$, the two nonendpoint momentum factors are
+\[
+ v^6+21v^4+35v^2+7,\qquad
+ 7v^6+35v^4+21v^2+1.
+\]
+In either field, the numerator of $K$, up to a nonzero scalar, is
+\[
+ (7v^2-3)p^2+(58v^2-18)p+51v^2+81.
+\]
+The gcd calculation just described gives $1$ in both fields.
+Together with the endpoint proposition, this excludes every
+three-additional-root configuration for these parameters. The
+calculation is implemented with exact rational and number-field
+arithmetic in \texttt{computations/check\_balanced\_cubic.py}; it
+also verifies all lengths $14\le L\le25$ for $a=2$,
+$18\le L\le25$ for $a=3$, and $22\le L\le25$ for $a=4$.
+These finite checks do not establish the assertion for arbitrary $L$.
+
+\subsection{Modular certificates for repeated singular pairs}
+
+The companion condition also permits exact tests which do not assume
+that the additional roots are distinct. The finiteness statement below
+is essential: an empty modular fiber of an arbitrary affine system
+does not by itself exclude complex solutions.
+
+\begin{proposition}\label{prop:finite-wronskian-family}
+Fix $L\ge2n$ and put $d=L-n+1$ and
+$R=\mathbb Z[1/(2(L+1)!)]$. Consider the coefficient scheme of
+\[
+ P(t+1)Q(t-1)-P(t-1)Q(t+1)=t^L,
+\]
+where $Q$ is monic of degree $n$, $P$ has degree $d$ and leading
+coefficient $1/(2(d-n))$, and $[t^n]P=0$. This scheme is finite
+over $R$. Consequently, for any prime $\mathfrak p>L+1$, if this
+system together with $(t^2-1)^2\mid Q$ has no solution over
+$\overline{\mathbb F}_{\mathfrak p}$, it has no complex solution.
+\end{proposition}
+
+\begin{proof}
+The leading coefficient of $P$ is forced by the Wronskian equation.
+Adding a multiple of $Q$ to $P$ does not change that equation, so
+$[t^n]P=0$ fixes this freedom uniquely. Give the coefficients of
+$t^j$ in $Q$ and $P$ weights $n-j$ and $d-j$, respectively.
+The highest-weight parts of the remaining coefficient equations
+are those of the continuous Wronskian identity
+\[
+ 2(P'Q-PQ')=t^L.
+\]
+Indeed, the first-order terms in the two shifts give this expression;
+every higher odd-order term has strictly smaller coefficient weight.
+
+Over any field of characteristic zero or greater than $L+1$, the
+continuous system has only the solution
+\[
+ Q=t^n,\qquad P=\frac{t^d}{2(d-n)}.
+\]
+To see this, its gcd is $t^g$ up to a scalar, since its square divides
+$t^L$. Write $P=t^g A$, $Q=t^g B$, with $A,B$ coprime.
+Choose either $A/B$ or $B/A$ to have denominator nonzero at zero.
+Its derivative has order $L-2g$ there. The first nonconstant term
+therefore has order $L-2g+1$, while its numerator after subtracting
+its value at zero has degree at most $d-g$. These orders behave as
+in characteristic zero because all relevant polynomial degrees are
+smaller than the characteristic. Thus
+\[
+ L-2g+1\le d-g,\qquad g\ge n.
+\]
+Since $g\le n$, we have $Q=t^n$; integrating the continuous identity
+and imposing the gauge gives the displayed $P$.
+
+Thus the homogeneous initial equations have only the coefficient
+origin as their common zero in every residue characteristic of $R$.
+Their radical contains every coefficient variable, so their quotient
+is finite over $R$. The associated graded algebra of the discrete
+coefficient scheme is a quotient of this finite algebra. The
+discrete coefficient algebra is consequently finite over $R$ as well.
+
+Imposing $(t^2-1)^2\mid Q$ gives a further finite $R$-algebra $B$.
+If $B/\mathfrak pB=0$, Nakayama's lemma gives
+$B\otimes_R R_{(\mathfrak p)}=0$, and hence
+$B\otimes_R\mathbb Q=0$. This proves the modular implication.
+\end{proof}
+
+\paragraph{Eliminating the companion coefficients.}
+This test can be performed using only the coefficients of
+$Q=(t^2-1)^2H$. Descend through the coefficients of $P$, starting
+with degree $d$. For $m\ne n$, the coefficient of $t^{m+n-1}$ in
+\[
+ (t+1)^mQ(t-1)-(t-1)^mQ(t+1)
+\]
+is the nonzero constant $2(m-n)$. It therefore determines
+$[t^m]P$ from the coefficients already found. At $m=n$, set the
+gauge coefficient to zero and retain the resulting constraint.
+The remaining Wronskian coefficients give polynomial equations in
+$H$. When $L=2n$, the first constraint also forces
+$[t^{n-1}]Q=0$, reducing the number of variables by one.
+
+The exact implementation
+\texttt{computations/check\_balanced\_wronskian.py} obtains the unit
+Gr\"obner basis modulo $101$ for
+\[
+ (L,n)=(16,8),\quad(17,8),\quad(18,9).
+\]
+Proposition~\ref{prop:finite-wronskian-family} therefore excludes a
+polynomial companion for every $Q$ divisible by $(t^2-1)^2$ in
+these cases. This includes all $a\ge2$ allowed by each $n$, without
+an assumption on the other roots. By
+Proposition~\ref{prop:balanced-spectral-euler}, every balanced
+configuration under consideration has zero corrected weight for
+these parameter pairs. These certificates are finite checks, not a
+uniform proof for arbitrary $L,n$.
+
+\subsection{The corrected sum without root-simplicity assumptions}
+
+The spectral calculation gives an exact interpretation of the entire
+corrected formal sum, including configurations with arbitrary
+collisions. This interpretation does not require the distinct-root
+assumption from Section~\ref{sec:general-tq}.
+For an ordered configuration $p$, write
+\[
+ \sigma(p)=|\operatorname{Stab}_{S_n}(p)|
+          =\prod_{z\in\C}m_z(p)!,\qquad
+ Q_p(t)=\prod_{i=1}^n(t-p_i),
+\]
+where $m_z(p)$ is the multiplicity of the value $z$ in $p$.
+Let $\varepsilon(Q)$ be one if $Q$ has a polynomial companion in
+\eqref{eq:balanced-polynomial-companion}, and zero otherwise.
+
+\begin{proposition}[Exact corrected weights]
+\label{prop:exact-corrected-weights}
+Assume $L\ge2n$ and the standing finiteness hypotheses on the
+partition ideals. For every $p\in X$,
+\begin{equation}\label{eq:exact-corrected-weight}
+ \boxed{\operatorname{coeff}_p Z^{\mathrm{cand}}_{L,n}
+       =\frac{\sigma(p)}{n!}\,\varepsilon(Q_p).}
+\end{equation}
+In particular, all corrected coefficients are nonnegative, even
+without assuming simplicity of the ordinary roots.
+\end{proposition}
+
+\begin{proof}
+If $p$ belongs to the support of some $Z_k^{\mathrm{dep}}$, the
+depermutation correspondence implies the reduced $TQ$ relation for
+the polynomial remaining after removing its $k$ fixed pairs.
+Multiplication by $(t^2-1)^k$ lifts this relation to the full $TQ$
+relation for $Q_p$. Hence, if $Q_p$ does not satisfy $TQ$, all the
+corrected coefficients at $p$ vanish; a companion is also impossible.
+
+Suppose now that $Q_p$ satisfies $TQ$. Comparison of orders at
+$1,-1$ forces equal singular multiplicities, say $a=b$, with $a=0$
+allowed. Write
+\[
+ Q_p=(t^2-1)^a\prod_{j=1}^m(t-z_j)^{s_j},\qquad
+ z_j\ne\pm1,
+\]
+where the $z_j$ are distinct, but the $s_j$ are arbitrary.
+For $0\le k\le a$, let $\nu_k$ be the local reduced remainder
+length at $Q_k=Q_p/(t^2-1)^k$. The same root-map calculation as in
+\eqref{eq:balanced-local-normalization} gives
+\[
+ \begin{aligned}
+ c_k(p)
+ &=\frac{(k!)^2(n-2k)!}{n!}\binom ak^2
+   \frac{((a-k)!)^2\prod_j s_j!}{(n-2k)!}\,\nu_k\\
+ &=\frac{(a!)^2\prod_j s_j!}{n!}\,\nu_k
+  =\frac{\sigma(p)}{n!}\,\nu_k.
+ \end{aligned}
+\]
+For $k>a$ the coefficient is zero. The proof of
+Proposition~\ref{prop:balanced-spectral-euler} applies verbatim:
+neither the specialization of the Verma-module characters nor the
+uniqueness of the fixed-eigenvalue polynomial uses separability of
+$H$. Thus the alternating sum of the $\nu_k$ is
+$\eta_{L,n}(\tau_p)$. The polynomial-kernel characterization of the
+finite-chain spectrum identifies this number with
+$\varepsilon(Q_p)$, proving the formula.
+\end{proof}
+
+Let $\mathcal Q_{L,n}$ be the finite set of monic degree-$n$
+polynomials which admit a normalized polynomial companion, and let
+$J^{\mathrm{poly}}_{L,n}\subset\C[e_1,\ldots,e_n]$ be its reduced
+coefficient ideal. For the ordered-root map
+$q:\A^n\to\Sym^n(\A^1)$, formula~\eqref{eq:exact-corrected-weight}
+is equivalently the formal-sum identity
+\begin{equation}\label{eq:corrected-polynomial-kernel-ideal}
+ Z^{\mathrm{cand}}_{L,n}
+ =\frac1{n!}Z\bigl(q^*J^{\mathrm{poly}}_{L,n}\bigr),\qquad
+ q_*Z^{\mathrm{cand}}_{L,n}=\sum_{Q\in\mathcal Q_{L,n}}[Q].
+\end{equation}
+Indeed, the local degree of the root map at $p$ is $\sigma(p)$.
+An orbit has $n!/\sigma(p)$ ordered representatives, so its total
+corrected weight is exactly $\varepsilon(Q_p)$.
+
+\begin{proposition}[Affine completeness degree]
+\label{prop:affine-completeness-degree}
+Under the finiteness hypotheses, without the distinct-root assumption,
+\[
+ \deg Z^{\mathrm{cand}}_{L,n}
+ =\binom Ln-\binom L{n-1}.
+\]
+\end{proposition}
+
+\begin{proof}
+The depermutation correspondence gives
+$\deg Z_k^{\mathrm{dep}}=\ell(J_k)$: passing to the ordered roots
+and applying the prescribed normalization preserves the total weight.
+Proposition~\ref{prop:geometric-remainder-flatness}, specialized at
+$\theta=0$, gives
+\[
+ \ell(J_k)=\binom{L+n-2k-2}{n-2k}.
+\]
+Summing with coefficients $(-1)^k\binom Lk$ and applying
+\eqref{eq:virtual-completeness-degree} proves the assertion. This
+degree argument does not use a spectral theorem.
+\end{proof}
+
+Thus the affine degree assertion in
+Conjecture~\ref{conj:alternating-completeness} follows from the
+geometric argument above. The pointwise assertion requires more: a
+polynomial-kernel solution must have the root-simplicity properties
+prescribed in the target weights. The degree identity alone cannot
+exclude a solution with repeated singular pairs.
+
+\subsection{The uniform statement needed to finish the proof}
+
+Let $\mathcal W^{(2)}_{L,n}$ be the closed subspace of the normalized
+Wronskian coefficient scheme in
+Proposition~\ref{prop:finite-wronskian-family} defined by
+\[
+ (t^2-1)^2\mid Q(t).
+\]
+There is no restriction on the other factors of $Q$. In particular,
+this single divisibility condition includes every $a\ge2$.
+
+\begin{proposition}[Uniform reduction to double-pair exclusion]
+\label{prop:balanced-uniform-reduction}
+Fix $L\ge2n$, $n\ge4$, and retain only the finiteness hypotheses
+of this note. The following statements are equivalent:
+\begin{enumerate}
+ \item Every balanced configuration with $a=b\ge2$ has zero
+ corrected weight in $Z^{\mathrm{cand}}_{L,n}$.
+ \item $\mathcal W^{(2)}_{L,n}(\C)=\varnothing$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+By Proposition~\ref{prop:exact-corrected-weights}, the corrected
+coefficient is $\sigma(p)\varepsilon(Q_p)/n!$. Hence the second
+statement implies the first, regardless of collisions among the
+ordinary roots.
+
+Conversely, let $(P,Q)$ be a complex point of
+$\mathcal W^{(2)}_{L,n}$. Two elementary consequences of its
+Wronskian equation identify its roots with the configurations above.
+First, $P,Q$ are coprime: a common root $c$ would make the
+Wronskian vanish at both $c+1$ and $c-1$, forcing $c=-1$ and
+$c=1$ simultaneously. Consequently $P(1),P(-1)\ne0$.
+If the multiplicities of $1,-1$ in $Q$ were unequal, the
+Wronskian at zero would have the smaller of these orders, which is
+less than $L$. Hence these multiplicities are equal, say $a\ge2$.
+
+Second, using the Wronskian at $t+1$ and $t-1$ gives
+\[
+ \begin{aligned}
+ &(t+1)^LQ(t-2)+(t-1)^LQ(t+2)\\
+ &\quad=Q(t)\bigl(P(t+2)Q(t-2)-P(t-2)Q(t+2)\bigr).
+ \end{aligned}
+\]
+Thus $Q$ satisfies the full polynomial $TQ$ relation, so labeling
+its roots gives a balanced point $p\in X$. Its companion implies
+$\varepsilon(Q_p)=1$, and its corrected coefficient is
+$\sigma(p)/n!>0$, contradicting the first statement.
+\end{proof}
+
+The unresolved assertion is therefore precisely
+\[
+ \boxed{\mathcal W^{(2)}_{L,n}(\C)=\varnothing
+        \quad\text{for every }L\ge2n.}
+\]
+Equivalently, the minimal-degree polynomial in a polynomial
+Wronskian pair should have at most a simple root at each of $1,-1$.
+This is a uniform assertion, rather than a separate calculation for
+each number of singular pairs.
+
+\paragraph{Why the minimal-degree restriction is essential.}
+The exclusion is false for arbitrary polynomial solutions in the same
+two-dimensional kernel. In fact, double singular pairs occur naturally
+in the higher-degree dual pencil. The existence and role of this dual
+pencil are discussed in~\cite{PS1999}; the following observation
+explains a multiplicity phenomenon within it.
+
+\begin{proposition}\label{prop:dual-double-pairs}
+Let $L\ge3$ be odd. Suppose an even polynomial $Q_*$ of degree
+$m\le L/2$, with $Q_*(1)\ne0$, has a polynomial companion $P_*$.
+Then a member of the dual pencil $P_*+\C Q_*$ is divisible by
+$(t^2-1)^2$. Its degree is $L-m+1>L/2$.
+\end{proposition}
+
+\begin{proof}
+Normalize $P_*$ by $[t^m]P_*=0$. Its degree $L-m+1$ is even.
+Reflection $t\mapsto-t$ preserves the normalized Wronskian equation,
+since $Q_*$ is even and $L$ is odd. Uniqueness of the normalized
+companion therefore makes $P_*$ even. Put
+\[
+ R(t)=P_*(t)-\frac{P_*(1)}{Q_*(1)}Q_*(t).
+\]
+Then $R$ is even and $R(1)=R(-1)=0$. Differentiating
+\[
+ R(t+1)Q_*(t-1)-R(t-1)Q_*(t+1)=t^L
+\]
+at zero gives
+\[
+ 2\bigl(R'(1)Q_*(1)-R(1)Q_*'(1)\bigr)=0.
+\]
+Hence $R'(1)=0$, and evenness also gives $R'(-1)=0$.
+The subtraction does not change its degree, proving the claim.
+\end{proof}
+
+For an explicit example,
+\[
+ L=5,\qquad Q(t)=(t^2-1)^2,\qquad
+ P(t)=-\frac14(t^2+1)
+\]
+satisfy
+\[
+ P(t+1)Q(t-1)-P(t-1)Q(t+1)=t^5.
+\]
+The same polynomial kernel has minimal-degree solution $t^2+1$.
+Thus the example has a polynomial companion and a physical transfer
+eigenvalue, but the repeated-pair polynomial has degree four, beyond
+the range $L\ge2\deg Q$. It is not a counterexample to the boxed
+assertion. Any uniform proof must use the minimal-degree condition,
+rather than polynomiality of both solutions alone.
+
+\paragraph{What the cited results do and do not supply.}
+The polynomial-kernel result of \cite[Section~12.8]{MTV2009}
+identifies the Wronskian pairs with the finite-chain spectrum; it
+does not by itself exclude the closed subspace
+$\mathcal W^{(2)}_{L,n}$. The multiplicity constraints of
+\cite[Section~4.2]{HJJ2024} imply equality of the two singular
+multiplicities for spin $1/2$, but allow their common value to
+exceed one. Neither statement supplies the boxed exclusion.
+Even the single $TQ$ relation together with the distinct-root
+assumption away from $\pm1$ is insufficient: for every $L\ge8$,
+\[
+ \begin{aligned}
+ Q(t)&=(t^2-1)^2,\\
+ \tau(t)&=(t+1)^{L-2}(t-3)^2
+            +(t-1)^{L-2}(t+3)^2
+ \end{aligned}
+\]
+satisfy $TQ$, and the condition on ordinary roots is vacuous.
+The absence of a companion in these examples was established by
+the pure-cluster calculation, not by $TQ$ alone.
+
+In residue language, the remaining task is to exclude the reduced
+Bethe equations together with $\Theta_1=\cdots=\Theta_a=0$.
+The unproved configurations have at least three additional roots,
+outside the families and parameter values already treated. A
+uniform proof of the boxed assertion is still required; the finite
+certificates above do not replace it.
+
+\begin{thebibliography}{99}
+\bibitem{Stacks}
+The Stacks Project Authors,
+\emph{The Stacks Project},
+\href{https://stacks.math.columbia.edu/tag/062F}{Tag~062F},
+\href{https://stacks.math.columbia.edu/tag/035E}{Tag~035E}, and
+\href{https://stacks.math.columbia.edu/tag/0DW6}{Section~47.21}.
+
+\bibitem{MTV2011}
+E.~Mukhin, V.~Tarasov, and A.~Varchenko,
+\emph{Reality property of discrete Wronski map with imaginary step},
+Lett.\ Math.\ Phys.\ \textbf{100}, 151--160 (2012),
+\href{https://arxiv.org/abs/1102.5368}{arXiv:1102.5368}.
+
+\bibitem{PS1999}
+G.~P.~Pronko and Yu.~G.~Stroganov,
+\emph{Bethe equations ``on the wrong side of the equator''},
+J.\ Phys.\ A: Math.\ Gen.\ \textbf{32}, 2333--2340 (1999),
+\href{https://arxiv.org/abs/hep-th/9808153}{arXiv:hep-th/9808153}.
+
+\bibitem{MTV2009}
+E.~Mukhin, V.~Tarasov, and A.~Varchenko,
+\emph{Bethe algebra of homogeneous XXX Heisenberg model has simple spectrum},
+Commun.\ Math.\ Phys.\ \textbf{288}, 1--42 (2009),
+\href{https://arxiv.org/abs/0706.0688}{arXiv:0706.0688}.
+
+\bibitem{BK2016}
+L.~Bus\'e and A.~Karasoulou,
+\emph{Resultant of an equivariant polynomial system with respect to the symmetric group},
+J.\ Symbolic Comput.\ \textbf{76}, 142--157 (2016),
+\href{https://arxiv.org/abs/1407.2799}{arXiv:1407.2799}.
+
+\bibitem{GJ2020}
+E.~Granet and J.~L.~Jacobsen,
+\emph{On zero-remainder conditions in the Bethe ansatz},
+JHEP \textbf{03}, 178 (2020),
+\href{https://arxiv.org/abs/1910.07797}{arXiv:1910.07797}.
+
+\bibitem{HJJ2024}
+J.~Hou, Y.~Jiang, and R.-D.~Zhu,
+\emph{Spin-$s$ Rational $Q$-system},
+SciPost Phys.\ \textbf{16}, 113 (2024),
+\href{https://arxiv.org/abs/2303.07640}{arXiv:2303.07640}.
+
+\bibitem{Sturmfels}
+B.~Sturmfels,
+\emph{Solving Systems of Polynomial Equations},
+CBMS Regional Conference Series in Mathematics \textbf{97}, AMS (2002),
+\href{https://web.math.berkeley.edu/~bernd/cbms.pdf}{author's manuscript}.
+
+\bibitem{HNS2013}
+W.~Hao, R.~I.~Nepomechie, and A.~J.~Sommese,
+\emph{Completeness of solutions of Bethe's equations},
+Phys.\ Rev.\ E \textbf{88}, 052113 (2013),
+\href{https://arxiv.org/abs/1308.4645}{arXiv:1308.4645}.
+
+\bibitem{NW2013}
+R.~I.~Nepomechie and C.~Wang,
+\emph{Algebraic Bethe ansatz for singular solutions},
+J.\ Phys.\ A \textbf{46}, 325002 (2013),
+\href{https://arxiv.org/abs/1304.7978}{arXiv:1304.7978}.
+
+\end{thebibliography}
+\end{document}
