@@ -1933,6 +1933,100 @@ also verifies all lengths $14\le L\le25$ for $a=2$,
 $18\le L\le25$ for $a=3$, and $22\le L\le25$ for $a=4$.
 These finite checks do not establish the assertion for arbitrary $L$.
 
+\subsection{Modular certificates for repeated singular pairs}
+
+The companion condition also permits exact tests which do not assume
+that the additional roots are distinct. The finiteness statement below
+is essential: an empty modular fiber of an arbitrary affine system
+does not by itself exclude complex solutions.
+
+\begin{proposition}\label{prop:finite-wronskian-family}
+Fix $L\ge2n$ and put $d=L-n+1$ and
+$R=\mathbb Z[1/(2(L+1)!)]$. Consider the coefficient scheme of
+\[
+ P(t+1)Q(t-1)-P(t-1)Q(t+1)=t^L,
+\]
+where $Q$ is monic of degree $n$, $P$ has degree $d$ and leading
+coefficient $1/(2(d-n))$, and $[t^n]P=0$. This scheme is finite
+over $R$. Consequently, for any prime $\mathfrak p>L+1$, if this
+system together with $(t^2-1)^2\mid Q$ has no solution over
+$\overline{\mathbb F}_{\mathfrak p}$, it has no complex solution.
+\end{proposition}
+
+\begin{proof}
+The leading coefficient of $P$ is forced by the Wronskian equation.
+Adding a multiple of $Q$ to $P$ does not change that equation, so
+$[t^n]P=0$ fixes this freedom uniquely. Give the coefficients of
+$t^j$ in $Q$ and $P$ weights $n-j$ and $d-j$, respectively.
+The highest-weight parts of the remaining coefficient equations
+are those of the continuous Wronskian identity
+\[
+ 2(P'Q-PQ')=t^L.
+\]
+Indeed, the first-order terms in the two shifts give this expression;
+every higher odd-order term has strictly smaller coefficient weight.
+
+Over any field of characteristic zero or greater than $L+1$, the
+continuous system has only the solution
+\[
+ Q=t^n,\qquad P=\frac{t^d}{2(d-n)}.
+\]
+To see this, its gcd is $t^g$ up to a scalar, since its square divides
+$t^L$. Write $P=t^g A$, $Q=t^g B$, with $A,B$ coprime.
+Choose either $A/B$ or $B/A$ to have denominator nonzero at zero.
+Its derivative has order $L-2g$ there. The first nonconstant term
+therefore has order $L-2g+1$, while its numerator after subtracting
+its value at zero has degree at most $d-g$. These orders behave as
+in characteristic zero because all relevant polynomial degrees are
+smaller than the characteristic. Thus
+\[
+ L-2g+1\le d-g,\qquad g\ge n.
+\]
+Since $g\le n$, we have $Q=t^n$; integrating the continuous identity
+and imposing the gauge gives the displayed $P$.
+
+Thus the homogeneous initial equations have only the coefficient
+origin as their common zero in every residue characteristic of $R$.
+Their radical contains every coefficient variable, so their quotient
+is finite over $R$. The associated graded algebra of the discrete
+coefficient scheme is a quotient of this finite algebra. The
+discrete coefficient algebra is consequently finite over $R$ as well.
+
+Imposing $(t^2-1)^2\mid Q$ gives a further finite $R$-algebra $B$.
+If $B/\mathfrak pB=0$, Nakayama's lemma gives
+$B\otimes_R R_{(\mathfrak p)}=0$, and hence
+$B\otimes_R\mathbb Q=0$. This proves the modular implication.
+\end{proof}
+
+\paragraph{Eliminating the companion coefficients.}
+This test can be performed using only the coefficients of
+$Q=(t^2-1)^2H$. Descend through the coefficients of $P$, starting
+with degree $d$. For $m\ne n$, the coefficient of $t^{m+n-1}$ in
+\[
+ (t+1)^mQ(t-1)-(t-1)^mQ(t+1)
+\]
+is the nonzero constant $2(m-n)$. It therefore determines
+$[t^m]P$ from the coefficients already found. At $m=n$, set the
+gauge coefficient to zero and retain the resulting constraint.
+The remaining Wronskian coefficients give polynomial equations in
+$H$. When $L=2n$, the first constraint also forces
+$[t^{n-1}]Q=0$, reducing the number of variables by one.
+
+The exact implementation
+\texttt{computations/check\_balanced\_wronskian.py} obtains the unit
+Gr\"obner basis modulo $101$ for
+\[
+ (L,n)=(16,8),\quad(17,8),\quad(18,9).
+\]
+Proposition~\ref{prop:finite-wronskian-family} therefore excludes a
+polynomial companion for every $Q$ divisible by $(t^2-1)^2$ in
+these cases. This includes all $a\ge2$ allowed by each $n$, without
+an assumption on the other roots. By
+Proposition~\ref{prop:balanced-spectral-euler}, every balanced
+configuration under consideration has zero corrected weight for
+these parameter pairs. These certificates are finite checks, not a
+uniform proof for arbitrary $L,n$.
+
 \paragraph{The remaining case.}
 The general $a\ge2$ claim is reduced to showing that the reduced
 Bethe equations cannot coexist with all $a$ vanishing residue
