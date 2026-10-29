@@ -2202,6 +2202,56 @@ Wronskian pair should have at most a simple root at each of $1,-1$.
 This is a uniform assertion, rather than a separate calculation for
 each number of singular pairs.
 
+\paragraph{Why the minimal-degree restriction is essential.}
+The exclusion is false for arbitrary polynomial solutions in the same
+two-dimensional kernel. In fact, double singular pairs occur naturally
+in the higher-degree dual pencil. The existence and role of this dual
+pencil are discussed in~\cite{PS1999}; the following observation
+explains a multiplicity phenomenon within it.
+
+\begin{proposition}\label{prop:dual-double-pairs}
+Let $L\ge3$ be odd. Suppose an even polynomial $Q_*$ of degree
+$m\le L/2$, with $Q_*(1)\ne0$, has a polynomial companion $P_*$.
+Then a member of the dual pencil $P_*+\C Q_*$ is divisible by
+$(t^2-1)^2$. Its degree is $L-m+1>L/2$.
+\end{proposition}
+
+\begin{proof}
+Normalize $P_*$ by $[t^m]P_*=0$. Its degree $L-m+1$ is even.
+Reflection $t\mapsto-t$ preserves the normalized Wronskian equation,
+since $Q_*$ is even and $L$ is odd. Uniqueness of the normalized
+companion therefore makes $P_*$ even. Put
+\[
+ R(t)=P_*(t)-\frac{P_*(1)}{Q_*(1)}Q_*(t).
+\]
+Then $R$ is even and $R(1)=R(-1)=0$. Differentiating
+\[
+ R(t+1)Q_*(t-1)-R(t-1)Q_*(t+1)=t^L
+\]
+at zero gives
+\[
+ 2\bigl(R'(1)Q_*(1)-R(1)Q_*'(1)\bigr)=0.
+\]
+Hence $R'(1)=0$, and evenness also gives $R'(-1)=0$.
+The subtraction does not change its degree, proving the claim.
+\end{proof}
+
+For an explicit example,
+\[
+ L=5,\qquad Q(t)=(t^2-1)^2,\qquad
+ P(t)=-\frac14(t^2+1)
+\]
+satisfy
+\[
+ P(t+1)Q(t-1)-P(t-1)Q(t+1)=t^5.
+\]
+The same polynomial kernel has minimal-degree solution $t^2+1$.
+Thus the example has a polynomial companion and a physical transfer
+eigenvalue, but the repeated-pair polynomial has degree four, beyond
+the range $L\ge2\deg Q$. It is not a counterexample to the boxed
+assertion. Any uniform proof must use the minimal-degree condition,
+rather than polynomiality of both solutions alone.
+
 \paragraph{What the cited results do and do not supply.}
 The polynomial-kernel result of \cite[Section~12.8]{MTV2009}
 identifies the Wronskian pairs with the finite-chain spectrum; it
@@ -2231,6 +2281,12 @@ uniform proof of the boxed assertion is still required; the finite
 certificates above do not replace it.
 
 \begin{thebibliography}{9}
+\bibitem{PS1999}
+G.~P.~Pronko and Yu.~G.~Stroganov,
+\emph{Bethe equations ``on the wrong side of the equator''},
+J.\ Phys.\ A: Math.\ Gen.\ \textbf{32}, 2333--2340 (1999),
+\href{https://arxiv.org/abs/hep-th/9808153}{arXiv:hep-th/9808153}.
+
 \bibitem{MTV2009}
 E.~Mukhin, V.~Tarasov, and A.~Varchenko,
 \emph{Bethe algebra of homogeneous XXX Heisenberg model has simple spectrum},
