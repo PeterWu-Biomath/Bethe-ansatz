@@ -831,243 +831,227 @@ We prove a weaker version of \eqref{eq:single-pair-length-criterion}:
 \end{proof}
 
 
-\section{The local index as a residual length}
+\section{The local index as a degree of remaining components}
 \label{sec:residual-local-index}
 
-The one-pair calculation separates a forced singular factor from
-a residual equation. We extend this interpretation to several pairs.
-The conclusion is a nonnegative local length; proving that this length
-vanishes at every repeated singular configuration remains a separate
-problem.
+We give a geometric interpretation of the alternating sum using the
+original partition ideals. The argument uses an inhomogeneous family
+and two inclusion--exclusion operations: depermutation removes
+collisions, and the alternating sum removes components carrying a
+site singular pair. The conclusion is conditional on the genericity
+assumptions stated below; no $TQ$ relation is needed.
 
-Fix a solution
+\paragraph{The family and its fixed-pair systems.}
+Introduce site parameters $\theta_1,\ldots,\theta_L$ and put
 \[
- p=(1^a,-1^a,z_1,\ldots,z_r),\qquad n=2a+r,\quad a\ge1,
- \qquad H(t)=\prod_{j=1}^r(t-z_j).
+ a_\theta(t)=\prod_{j=1}^L(t+\theta_j+1),\qquad
+ d_\theta(t)=\prod_{j=1}^L(t+\theta_j-1).
 \]
-Throughout this section $L\ge2n$, the ordinary roots $z_j$ are distinct
-and different from $\pm1$, all relevant local ideals are
-zero-dimensional, and the system after fixing all $a$ singular pairs
-has a simple zero at $H$. The empty ordinary-root system is considered
-simple. The finite-string argument from the preceding section also
-excludes ordinary roots at $\pm3$ and differences $\pm2$ between
-ordinary roots.
+The deformed original equations are
+\[
+ P_i^\theta(x)=a_\theta(x_i)\prod_{s\ne i}(x_i-x_s-2)
+             -d_\theta(x_i)\prod_{s\ne i}(x_i-x_s+2)=0.
+\]
+They specialize to $P_i=0$ at $\theta=0$. A \emph{site pair} at site
+$j$ means that two coordinates are $1-\theta_j$ and $-1-\theta_j$.
+The equations at these two coordinates vanish automatically: in each
+term either a vacuum factor or an interaction factor is zero.
 
-\paragraph{The lengths entering the index.}
-For $0\le k\le a$, put
+For a subset $I\subseteq[L]$, fix one such pair for each $j\in I$,
+using different root labels. Call this assignment a \emph{placement}.
+Let $R$ be the remaining labels. After substitution, divide each free
+equation by
 \[
- Q_k(t)=(t^2-1)^{a-k}H(t),\qquad
- \Phi_k(t;Q)=(t+1)^{L-k}(t-3)^kQ(t-2)
-             +(t-1)^{L-k}(t+3)^kQ(t+2).
+ \prod_{j\in I}\bigl((x_t+\theta_j)^2-1\bigr),\qquad t\in R.
 \]
-Let $J_k$ be the ideal of coefficients of the remainder of $\Phi_k$
-modulo a variable monic polynomial $Q$ of degree $n-2k$. Define
+The resulting polynomials are
 \[
- \nu_k(p)=\ell_{Q_k}(J_k).
+ P_{t,I}^\theta
+ =a_{\theta,I}(x_t)\prod_{s\in R\setminus\{t\}}(x_t-x_s-2)
+ -d_{\theta,I}(x_t)\prod_{s\in R\setminus\{t\}}(x_t-x_s+2),
 \]
-Thus $\nu_a(p)=1$ by the simplicity assumption. These are lengths in
-coefficient space, after depermutation. The normalization in
-Section~\ref{sec:general-tq} gives
-\begin{equation}\label{eq:main-local-index-normalization}
- w_k(p)=\frac{(a!)^2}{n!}\nu_k(p),\qquad
- w_p(\tilde{Z})
- =\frac{(a!)^2}{n!}
-       \sum_{k=0}^a(-1)^k\binom Lk\nu_k(p).
+where
+\[
+ \begin{aligned}
+ a_{\theta,I}(t)&=\prod_{j\notin I}(t+\theta_j+1)
+                  \prod_{j\in I}(t+\theta_j-3),\\
+ d_{\theta,I}(t)&=\prod_{j\notin I}(t+\theta_j-1)
+                  \prod_{j\in I}(t+\theta_j+3).
+ \end{aligned}
+\]
+For $\theta=0$ and $|I|=k$, these are precisely the reduced equations
+used in $I_{A,B;\pi}$, where $A,B$ are the labels of the fixed positive
+and negative roots.
+
+\paragraph{Distinct coordinates and simple zeros: the assumptions.}
+Fix an isolated homogeneous solution $p$, and restrict to a generic
+line $\theta_j=c_j\varepsilon$ through $0$. Work locally near $p$ over
+$T=\C[[\varepsilon]]$. We assume the following for this family and all
+its fixed-pair systems.
+\begin{enumerate}
+ \item The local partition families specializing to $p$ are finite
+ and flat over $T$. Thus each central local length equals the degree
+ of its nearby fiber, counted with multiplicity.
+ \item For generic $\varepsilon\ne0$, every zero of each system of
+ free equations $P_{t,I}^\theta=0$ is simple. Explicitly, the Jacobian
+ with respect to its $|R|$ free coordinates is invertible, or,
+ equivalently, its local algebra has length one. The empty system is
+ assigned length one.
+ \item For generic $\varepsilon\ne0$, the site endpoints are pairwise
+ distinct. In each fixed-pair reduced system the free roots avoid
+ all endpoints already fixed by its placement.
+\end{enumerate}
+These are hypotheses about the particular inhomogeneous family;
+we do not establish them here for all $L,n$.
+
+Distinctness and simplicity play different roles. A simple zero may
+have repeated coordinates, and such zeros are allowed in the auxiliary
+systems. Depermutation cancels them. The configurations retained after
+this cancellation must have pairwise distinct coordinates. For a
+fixed-pair system this means distinct free coordinates, together with
+the endpoint avoidance in the third assumption. The homogeneous point
+$p$ itself may have repeated coordinates and local length greater than
+one. In particular, simplicity of a fully reduced homogeneous zero,
+when available, does not by itself imply all the genericity assumptions
+above.
+
+\paragraph{Deforming the original formal sum.}
+For a placement of $I$ and a partition $\pi$ of $R$, let
+$Z^\theta_{I,\mathrm{placement};\pi}$ be the formal sum defined by
+fixing its endpoints, retaining one reduced equation per block, and
+imposing the equalities inside each block. Define
+\[
+ \mathcal Z_I(\theta)=\frac1{n!}
+ \sum_{\mathrm{placements}}\ \sum_{\pi\in\Pi(R)}
+       \mu(\hat0,\pi)Z^\theta_{I,\mathrm{placement};\pi}.
+\]
+All sums here are restricted to the local families specializing to
+$p$. At $\theta=0$, each choice of $A,B$ occurs $(k!)^2$ times,
+because the $k$ sites can be assigned independently to its positive
+and negative labels. Thus the normalization in
+\eqref{eq:reduced-fixed-pair-depermutation} gives
+\[
+ \mathcal Z_I(0)=Z_k^{\mathrm{dep}}\quad (|I|=k),\qquad
+ \mathcal Z(\theta):=\sum_{|I|\le\lfloor n/2\rfloor}
+                 (-1)^{|I|}\mathcal Z_I(\theta),\qquad
+ \mathcal Z(0)=\tilde Z.
+\]
+The equalities at $0$ are understood locally at $p$.
+
+\begin{proposition}[Component interpretation under genericity assumptions]
+\label{prop:main-component-index}
+Under the assumptions above, call a nearby ordered solution
+\emph{good} if its coordinates are pairwise distinct and it contains
+no site pair. Then
+\begin{equation}\label{eq:main-component-count}
+ \boxed{w_p(\tilde Z)=\frac1{n!}
+       \#\{\text{good nearby ordered solutions specializing to }p\}
+       \ge0.}
 \end{equation}
-Indeed, there are $\binom ak^2$ compatible choices of fixed labels,
-and the remaining ordered-root map has local degree $((a-k)!)^2$.
-Together with the averaging and depermutation factors these give the
-common factor $(a!)^2/n!$.
+The count is the degree over the generic parameter, including all
+sheets of a component.
 
-\paragraph{The residual ideal.}
-Use the elementary symmetric coordinates of the roots near $1$:
-\[
- C(u)=u^a-e_1u^{a-1}+\cdots+(-1)^ae_a.
-\]
-All these coordinates vanish at $p$. We write
-$\operatorname{rem}_C G$ for the remainder of an analytic germ $G(u;e)$
-modulo $C(u)$. Monic division makes its coefficients analytic in $e$.
-
-\begin{proposition}[Residual interpretation of the index]
-\label{prop:main-residual-index}
-Under the assumptions above, cluster elimination constructs an analytic
-germ $G(u;e)$ such that the finite algebra
-\begin{equation}\label{eq:main-residual-algebra}
- \mathcal R_p=
- \C[[e_1,\ldots,e_a]]/
- \bigl(\text{coefficients of }\operatorname{rem}_C G(u;e)\bigr)
+More precisely, let $\mathcal Y_p$ be the scheme-theoretic closure of
+these good generic points in the finite local family, and let $B_p$
+be its coordinate algebra. Then $B_p$ is finite free over $T$, and
+\begin{equation}\label{eq:main-component-length}
+ \boxed{w_p(\tilde Z)=\frac{\operatorname{rank}_T B_p}{n!}
+       =\frac{\dim_\C(B_p/\varepsilon B_p)}{n!}.}
 \end{equation}
-satisfies
-\begin{equation}\label{eq:main-residual-index}
- \boxed{\sum_{k=0}^a(-1)^k\binom Lk\nu_k(p)
-                  =\dim_\C\mathcal R_p\ge0.}
-\end{equation}
-The zero algebra is allowed. No spectral or weighted initial-form
-assumption is required.
+The empty closure has the zero algebra.
 \end{proposition}
 
 \begin{proof}
-\emph{First, reduce the cluster equations to one divisibility condition.}
-Factor a nearby full polynomial as
+First fix $I$ and a placement. At a generic simple zero of the free
+system, let $\sigma$ be the equality partition of its free coordinates.
+A partition $\pi$ contributes exactly when $\pi\le\sigma$. Its local
+length is one: imposing its block equalities on the full free ideal
+gives the partition ideal, and the full local algebra is already
+$\C$. Consequently its total M\"obius contribution is
 \[
- Q(t)=C(t-1)D(t+1)H_y(t),\qquad
- H_y(t)=\prod_{j=1}^r(t-y_j),
+ \sum_{\pi\le\sigma}\mu(\hat0,\pi)
+ =\begin{cases}1,&\sigma=\hat0,\\0,&\sigma\ne\hat0.\end{cases}
 \]
-where $D$ is monic of degree $a$ and $y$ is near $z$. The $TQ$ equations
-at the two clusters are
-\[
- D(u)+u^LU_+(u)\equiv0\pmod{C(u)},\qquad
- C(u)+u^LU_-(u)\equiv0\pmod{D(u)},
-\]
-with analytic units
-\[
- \begin{aligned}
- U_+(u)&=\frac{C(u+2)D(u+4)H_y(u+3)}
-                   {(u+2)^LC(u-2)H_y(u-1)},\\
- U_-(u)&=\frac{C(u-4)D(u-2)H_y(u-3)}
-                   {(u-2)^LD(u+2)H_y(u+1)}.
- \end{aligned}
-\]
-The first congruence solves for the coefficients of $D$: its Jacobian
-in those coefficients is the identity at the origin. Simplicity of
-the fully reduced zero then solves the ordinary-root equations for
-$y$. Hence $D,y,U_+,U_-$ are analytic functions of $e$.
+Thus only distinct free roots remain. By endpoint avoidance, the full
+configuration then has distinct coordinates. Every such reduced
+solution satisfies the original equations, including the automatically
+vanishing equations at the pinned pairs.
 
-Perform the following two monic divisions:
+Now let $q$ be a distinct-coordinate solution of the generic original
+system, and set
 \[
- D+u^LU_+=CE_+,\qquad
- C+u^LU_-=DE_-+R,\quad \deg_uR<a.
+ S(q)=\{j:\text{both }1-\theta_j\text{ and }-1-\theta_j
+                         \text{ occur among the coordinates of }q\}.
 \]
-The quotient germs $E_+,E_-$ have constant term one. Substitution gives
+It occurs in the $I$-system exactly when $I\subseteq S(q)$, with a
+unique placement. Indeed, all factors divided out of its free
+equations are units at $q$, so the reduced and original free equations
+are equivalent there. Its weight in each such $\mathcal Z_I$ is
+$1/n!$. Its alternating weight is therefore
 \[
- R=C(1-E_+E_-)+u^L(U_-+U_+E_-).
+ \frac1{n!}\sum_{I\subseteq S(q)}(-1)^{|I|}
+ =\begin{cases}1/n!,&S(q)=\varnothing,\\0,&S(q)\ne\varnothing.\end{cases}
 \]
-Consequently the explicit choice
-\begin{equation}\label{eq:main-effective-germ}
- G=U_-+U_+E_-
-\end{equation}
-gives $R=\operatorname{rem}_C(u^LG)$. Thus the full local ideal,
-after elimination, is generated by the coefficients of this remainder.
+Collision configurations contribute nothing to any $\mathcal Z_I$:
+they either violate endpoint avoidance or have a free collision, whose
+M\"obius sum vanishes. Hence $\mathcal Z(\theta)$ is exactly the
+normalized sum of good generic solutions. Conservation of local
+lengths in every auxiliary family gives
+\eqref{eq:main-component-count} on specializing to $p$.
 
-This reduction is compatible with fixing pairs. If $C=u^kC_s$, where
-$s=a-k$, the first division forces $D=u^kD_s$. Cancelling $u^k$ in
-both identities leaves the same quotient germs and gives
-\begin{equation}\label{eq:main-compatible-remainders}
- \nu_k(p)=\ell_{C_s=u^s}
- \left(\text{coefficients of }
-     \operatorname{rem}_{C_s}
-          \bigl(u^{L-k}G(u;u^kC_s)\bigr)\right).
-\end{equation}
-Here the second argument means substitution of the coefficients of
-$u^kC_s$ for $e$. The ordinary-root equations agree with those of the
-reduced system after cancelling units. Uniqueness of the implicit
-solutions therefore makes these precisely the local systems $J_k$.
-
-\emph{Second, subtract the fixed divisor $u^L$.}
-We give the local intersection argument explicitly. In this auxiliary
-divisor problem replace
-\[
- u^L\ \text{by}\ P(u)=\prod_{i=1}^L(u-\delta_i),\qquad
- G\ \text{by}\ G+h,\quad \deg h<a,
-\]
-with small generic parameters. These are auxiliary analytic
-intersections; the Bethe parameters remain fixed. For a subset
-$I\subseteq[L]$, let $P_I=\prod_{i\in I}(u-\delta_i)$ and impose
-$C=P_IC_s$, $s=a-|I|$. The smaller equations are
-\[
- C_s\mid P_{[L]\setminus I}(u)
-                 \bigl(G(u;P_IC_s)+h(u)\bigr).
-\]
-Their central local lengths are $\nu_{|I|}(p)$ by
-\eqref{eq:main-compatible-remainders}. They have as many equations as
-coefficient variables, so conservation of isolated complete-intersection
-length gives that many nearby solutions, counted with length.
-
-For clarity, generic parameters make these solutions simple. Stratify
-by the exact subset $T$ of roots of $P$ contained in $C$, and write
-$C=P_TB$. The remaining condition is $B\mid G(u;P_TB)+h(u)$, since
-$B$ avoids the nodes outside $T$. Variation of $h$ surjects onto
-$\C[u]/(B)$, including at repeated roots, so the incidence scheme
-is smooth over the coefficients of $B$ and the nodes. Repeated roots
-of $B$, including a second occurrence of a selected node, form proper
-hypersurfaces and are absent generically. When $T\ne\varnothing$,
-the extra condition $(G+h)(\delta_i)=0$ at a selected node is also
-avoidable by interpolation: $\deg B+1\le a$. The resulting finite
-projections are generically \'etale. Thus all selected roots are
-transverse, and all the local systems can be counted simultaneously
-by nearby simple points. For $T=\varnothing$, the residual equations
-are independent of the nodes, which can be chosen to avoid their roots.
-
-A nearby full solution with exact selected subset $T$ occurs in the
-$I$-system precisely for $I\subseteq T$. Its alternating contribution
-is therefore
-\[
- \sum_{I\subseteq T}(-1)^{|I|}
- =\begin{cases}1,&T=\varnothing,\\0,&T\ne\varnothing.\end{cases}
-\]
-The surviving points are exactly the residual solutions $C\mid G+h$.
-Their central ideal has finite colength: multiplication by $u^L$ in
-$\C[[e]][u]/(C)$ expresses the full remainder coefficients as linear
-combinations of the residual ones. Hence the residual quotient is a
-quotient of the finite full local algebra. Conservation of its local
-length gives~\eqref{eq:main-residual-index}, with the factor
-$\binom Lk$ counting subsets of size $k$.
+For the algebraic formulation, take the image of the finite local
+coordinate algebra in the product of the generic fields corresponding
+to good points. This image is $B_p$, the algebra of their closure.
+It is finite and torsion-free over the discrete valuation ring $T$,
+hence free. Its rank counts the good generic points, including the
+degrees of their residue fields. Its central fiber has the same
+vector-space dimension, proving \eqref{eq:main-component-length}.
 \end{proof}
 
-For $a=1$, this is the preceding calculation:
+\paragraph{Meaning of the alternating sum of $\nu_k(p)$.}
+For comparison with the unordered local index, suppose
 \[
- \mathcal R_p\simeq\C[[u]]/(h(u)),\qquad
- \nu_0-L\nu_1=\ord_0h.
+ p=(1^a,-1^a,z_1,\ldots,z_r),\qquad n=2a+r,
 \]
-For general $a$, equations~\eqref{eq:main-local-index-normalization}
-and~\eqref{eq:main-residual-index} give
+where the $z_j$ are distinct and different from $\pm1$. Define the
+unordered reduced depermutation multiplicities by the normalization
 \[
- w_p(\tilde{Z})
-       =\frac{(a!)^2}{n!}\dim_\C\mathcal R_p.
+ \nu_k(p)=\frac{n!}{(a!)^2}w_k(p),\qquad 0\le k\le a.
 \]
-Thus the balanced cancellation problem is to prove
-$\mathcal R_p=0$ for $a\ge2$. This vanishing, and length one at a
-physical one-pair point, do not follow from nonnegativity alone.
-
-\paragraph{A conditional Koszul model.}
-There is a simpler numerical model when the local leading equations
-satisfy an additional regularity condition. With one pair still free,
-the reduced system has local algebra
-\[
- \C[[u]]/(u^{L-a+1}h(u)),\qquad
- \rho=\ord_0h\ge0,\qquad d=L-a+1+\rho=\nu_{a-1}.
-\]
-Suppose that for every $k<a$, after the same elimination, the weighted
-initial equations in the $s=a-k$ elementary cluster coordinates form
-a regular sequence of degrees $d,d+1,\ldots,d+s-1$, with coordinate
-weights $1,2,\ldots,s$. This is a hypothesis about leading equations;
-it is not implied by simplicity of the fully reduced zero.
-The weighted complete-intersection Hilbert series gives
-\[
- \nu_k=\binom{d+a-k-1}{a-k}
-       =\binom{L+\rho-k}{a-k}.
-\]
-Let $W=\C[u]/(u^d)$ as a vector space, and place $W$ in degree one
-in $S=\Sym_\C(W)$. Take the internal degree-$a$ part of the Koszul
-complex on the $L$ linear forms $[1],[u],\ldots,[u^{L-1}]\in W$:
-\[
- K_k=S_{a-k}\otimes\bigwedge^k\C^L,
- \qquad \dim K_k=\binom Lk\nu_k.
-\]
-Here $[1]\in W$ is a degree-one generator, not the scalar unit of $S$.
-If $d\ge L$ these forms are independent. If $d<L$, they span $W$
-with kernel of dimension $L-d=a-\rho-1<a$; the Koszul homology is
-the exterior algebra of that kernel and has no internal degree-$a$
-part. In both cases this degree-$a$ complex has no positive homology,
-and its degree-zero homology has dimension $\binom\rho a$. Hence
-\begin{equation}\label{eq:main-conditional-koszul-index}
- \dim_\C\mathcal R_p
- =\sum_{k=0}^a(-1)^k\binom Lk\nu_k(p)
- =\binom\rho a.
+This uses only the original partition sums. The stabilizer of $p$ is
+$G_p=\mathfrak S_a\times\mathfrak S_a$. It preserves the local good
+closure and acts freely on its generic points, because their
+coordinates are distinct. Its invariant algebra $B_p^{G_p}$ is finite
+free over $T$, and its rank is $\operatorname{rank}_T B_p/(a!)^2$.
+Therefore the finite algebra
+$\mathcal R_p=B_p^{G_p}/\varepsilon B_p^{G_p}$ satisfies
+\begin{equation}\label{eq:main-geometric-local-index}
+ \boxed{\sum_{k=0}^a(-1)^k\binom Lk\nu_k(p)
+       =\dim_\C\mathcal R_p\ge0.}
 \end{equation}
-In particular $\rho<a$ implies cancellation under this weighted
-hypothesis. The model matches the term dimensions; it does not give
-canonical module maps between the original local algebras.
+Thus the alternating sum is the local degree of the remaining
+components after passing to unordered configurations near $p$.
+
+\paragraph{What is removed, and what remains to prove.}
+Geometrically, delete the generic components contained in a collision
+diagonal $x_i=x_j$ or a site-pair locus
+\[
+ x_i=1-\theta_j,\qquad x_s=-1-\theta_j\quad (i\ne s),
+\]
+and then take the closure of what remains. The degree means the sum
+of the degrees of the remaining components over the parameter, rather
+than their number. These operations must be performed in the total
+family before specializing: a good component may meet a repeated
+singular configuration at $\theta=0$, and its contribution is retained
+there.
+
+Consequently this interpretation proves nonnegativity under the stated
+assumptions, but does not yet identify the degree with the physical
+weight. In particular, cancellation at a repeated singular point
+requires proving that no good generic branch specializes to it.
+At a physical point one must instead determine the required degree of
+the good closure. These are additional geometric statements, separate
+from the two inclusion--exclusion identities above.
 
 
 \begin{thebibliography}{99}
