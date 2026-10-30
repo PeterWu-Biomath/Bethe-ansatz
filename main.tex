@@ -119,8 +119,7 @@ X=\{x^1,\ldots,x^s\}\subseteq\C^n
 \]
 for this set. In the target count, physical solutions have pairwise
 distinct coordinates and yield nonzero Bethe vectors, using
-regularization at singular solutions. Each physical permutation orbit
-therefore has $n!$ elements. Assign the target weights
+regularization at singular solutions. Assign the target weights
 \[
 w_i=\begin{cases}
 	1/n!,&x^i\text{ is a physical solution},\\
@@ -311,11 +310,11 @@ Here $\Pi(R)$ is the partition lattice of the remaining labels, that depermutati
 	zero-dimensional. The formal sum
 	\begin{equation}\label{eq:central-alternating-cycle}
 		\boxed{
-			\sum_{k=0}^{\lfloor n/2\rfloor}(-1)^k\binom Lk
+			\tilde{Z}=\sum_{k=0}^{\lfloor n/2\rfloor}(-1)^k\binom Lk
 			Z^{\mathrm{dep}}_k
 		}
 	\end{equation}
-	equals $Z_{Bethe}$
+	equals $Z_{Bethe}$.
 \end{conjecture}
 
 The projective intersection number is computed in Section~2.3. Its identification with the affine degree and the target physical weights requires the boundary and local arguments described below.
@@ -373,21 +372,44 @@ Define the \emph{generalized $TQ$ ideal}
 	J=(\rho_0,\ldots,\rho_{n-1})\subseteq\C[e_1,\ldots,e_n].
 \end{equation}
 
+\begin{proposition}[Simple zeros with repeated coordinates]
+\label{prop:simple-collision-tq}
+Let $I_F=(F_1,\ldots,F_n)$, and let $p\in V(I_F)$ be a simple zero,
+meaning that the Jacobian $(\partial F_i/\partial x_j)(p)$ is
+invertible. If $p_a=p_b$ for some $a\ne b$, then $q(p)\notin V(J)$.
+In particular, when $J$ is zero-dimensional, the weight of $q(p)$
+in $Z(J)$ is zero.
+\end{proposition}
+
+\begin{proof}
+Put $e^*=q(p)$ and $u=p_a=p_b$, and let $v$ be the nonzero tangent
+vector with $v_a=1$, $v_b=-1$, and all other entries zero.
+Since each elementary symmetric polynomial is invariant under
+interchanging $x_a$ and $x_b$, its two corresponding partial
+derivatives agree at $p$. Hence $dq_p(v)=0$.
+
+The construction of $\Phi$ gives the polynomial identities
+$F_i(x)=\Phi(x_i;q(x))$ for all $i$, including on the collision locus.
+Differentiating along $v$ therefore gives
+\[
+ (dF_i)_p(v)=\partial_t\Phi(p_i;e^*)v_i.
+\]
+Suppose $e^*\in V(J)$. Then $Q(t;e^*)\mid\Phi(t;e^*)$.
+Because $(t-u)^2\mid Q(t;e^*)$, we have
+$\partial_t\Phi(u;e^*)=0$. The displayed derivatives thus vanish
+for $i=a,b$, and also for every other $i$ since $v_i=0$.
+Consequently $v$ lies in the kernel of the Jacobian of $I_F$ at $p$,
+contradicting its invertibility. Thus $q(p)\notin V(J)$, so
+$\ell_{q(p)}(J)=0$ whenever the local length is defined as above.
+\end{proof}
+
 The formal sum associated to the $TQ$ ideal is the pushforward of the
 depermutation sum to $\Sym^n(\A^1)$:
 \[
 q_*Z^{\mathrm{dep}}=Z(J).
 \]
 Here we assume the relevant ideals are zero-dimensional. Informally,
-one can see this by perturbing all equations coherently as
-$F_i\mapsto F_i+h(x_i)$, where $h$ is a generic small polynomial of
-degree less than $n$. The local intersection lengths are conserved
-under this perturbation. For generic $h$, the nearby solutions are
-simple, and M\"obius inversion cancels those with repeated coordinates.
-Each remaining unordered configuration corresponds to one solution of
-the perturbed $TQ$ ideal and has $n!$ ordered representatives, each of
-weight $1/n!$. This proves the identity for the perturbed systems;
-specializing back recovers the local lengths on both sides, provided the local families are finite and flat. This is a proof outline: finite flatness for all partition and remainder families and generic transversality for this coherent perturbation still require justification.
+one can see this by perturb the $F$ that all zeros are simple.
 
 For the XXX system, we use the following additional input.
 
@@ -415,7 +437,7 @@ singular roots, as an assumption rather than a proved result.
 Together with the pushforward identity, it rules out collisions away
 from $\pm1$ in the support of $Z^{\mathrm{dep}}$. The same conclusion
 holds for the reduced balanced fixed-pair systems: if $H$ satisfies
-their $TQ$ relation after fixing $k$ pairs, then
+the $TQ$ relation after fixing $k$ pairs, then
 $Q=(t^2-1)^kH$ satisfies~\eqref{eq:xxx-tq-relation}.
 
 \subsection{Projective intersection numbers and the combinatorial identity}
@@ -425,31 +447,25 @@ We compactify the ordered root space by
 x\longmapsto[1:x_1:\cdots:x_n].
 \]
 Write $[z:x_1:\cdots:x_n]$ for homogeneous coordinates; $z=0$ is
-the boundary. Put $r=n-|A|-|B|$ and $D=L+r-2$. The fixed-root
-equations become $x_a-z=0$ and $x_b+z=0$. Together with the block
-equalities they define a linear subspace
-$\Lambda_{A,B;\pi}\simeq\mathbb P^m$, where $m=|\pi|$.
-Homogenize each reduced Bethe equation to degree $D$ before restriction
-to this subspace, retaining this degree even when restriction causes
-cancellation. For the hyperplane class $H$ of $\mathbb P^n$, the
-intersection number is
-\[
-\int_{\mathbb P^n}H^{n-m}(DH)^m=D^m.
-\]
-Below, $\deg_{\mathbb P^n}$ denotes this intersection number, extended
-linearly to weighted sums. The notation $\deg$ continues to denote
-affine total weight. Identifying these quantities requires accounting
-for boundary contributions.
-
+the boundary. Define homogenized $P$ be 
+\[\hat{P}(z,x_1,\dots,x_n)=\frac{1}{z}\big(
+(x_1+z)^L\prod_{j\ne1}(x_1-x_j-2z)
+-
+(x_1-z)^L\prod_{j\ne1}(x_1-x_j+2z),\big)\] this is well defined as a polynomial, with degree $L+n-2$. The homogenization of reduced $P$ are defined similarly. Then we can compute the degree of $Z_{A,B;\pi}$ in this compactification.
 
 \begin{definition}[Projective intersection number]
 	\label{def:projective-degree}
 	For a partition $\pi$ of $[n]\setminus(A\cup B)$ with $m$ blocks, set
 	\begin{equation}\label{eq:projective-partition-degree}
 		\boxed{\deg_{\mathbb P^n}Z_{A,B;\pi}=(L+r-2)^m.}
-	\end{equation}
-	When $r=0$, assign degree one.
+	\end{equation}.
 \end{definition}
+
+Below, $\deg_{\mathbb P^n}$ denotes this intersection number, extended
+linearly to weighted sums. The notation $\deg$ continues to denote
+affine total weight. We will show that the $\tilde{Z}$ defined with formal sums in projectives space has vanishing weights in boundary points.
+
+\begin{remark}[Agreement of compactifications]
 
 The assignment has the following BKK interpretation. Put
 $r=n-|A|-|B|$ and $D=L+r-2$. For $r\ge1$, retain the ambient monomial
@@ -474,38 +490,11 @@ $\operatorname{MV}(\Delta_m,\ldots,\Delta_m)=1$. Monotonicity gives
 	\le\operatorname{MV}(D\Delta_m,\ldots,D\Delta_m)=D^m.
 \end{aligned}
 \]
-Thus the mixed volume equals $D^m$. BKK identifies this with the generic
-solution count when all monomials at lattice points of the enlarged
-polytopes are allowed independent coefficients; generically the
-solutions have no zero coordinates, so this is also the affine count
-\cite[Chapter~3]{Sturmfels}.
-
-\begin{remark}[Agreement of compactifications]
-The compactification associated with the enlarged Newton polytopes
-above has intersection number $D^m$, coinciding with the intersection
-number in $\mathbb P^n$. Restricting to
-$\Lambda_{A,B;\pi}\simeq\mathbb P^m$ gives the same number,
-$\int_{\mathbb P^m}(DH)^m=D^m$. Boundary contributions need not be
-represented in the same way in these compactifications.
+Thus the mixed volume equals $D^m$. Thus coincides with the intersection number from projective space compactification.
 \end{remark}
-This mixed-volume count agrees with the B\'ezout number $D^m$ for
-$m$ hypersurfaces of degree $D$ in $\mathbb P^m$. We may therefore use
-the standard compactification $\mathbb A^m\subset\mathbb P^m$ to
-study the projective intersection number. For a block equation $G_\alpha(y)$, use its
-degree-$D$ homogenization
-\[
-\widehat G_\alpha(Y_1,\ldots,Y_m,T)
-=T^D G_\alpha(Y_1/T,\ldots,Y_m/T),
-\]
-retaining degree $D$ even when cancellation lowers the actual affine
-degree. The hyperplane $T=0$ then records the contribution at infinity.
-If the homogenized equations have a finite common zero set, their
-total length is $D^m$, including local lengths at infinity. If they
-have a positive-dimensional common set at infinity, $D^m$ remains the
-projective intersection number obtained by a generic degree-$D$ deformation, rather than
-a sum of isolated local lengths for the special equations.
 
-\begin{proposition}[Projective completeness count]
+
+\begin{proposition}
 	\label{prop:projective-completeness}
 	For $|A|=|B|=k$ and $r=n-2k$,
 	\begin{equation}\label{eq:projective-depermutation-degree}
@@ -516,7 +505,7 @@ a sum of isolated local lengths for the special equations.
 	Consequently,
 	\begin{equation}\label{eq:projective-completeness-degree}
 		\boxed{
-			\deg_{\mathbb P^n}Z^{\mathrm{cand}}_{L,n}
+			\deg_{\mathbb P^n}\tilde Z_{L,n}
 			=\sum_{k=0}^{\lfloor n/2\rfloor}(-1)^k\binom Lk
 			\binom{L+n-2k-2}{n-2k}
 			=\binom Ln-\binom L{n-1}.}
@@ -575,7 +564,7 @@ $w_k(p)$ for the weight of $p$ in $Z^{\mathrm{dep}}_k$, and set $w(p)=w_i$ when 
 
 The following steps are needed to prove the conjecture:
 \begin{enumerate}
-	\item Solution at infinity: there are some cancellation such that $P$ do not have desired degree when you make a series of substitution like $x_i=x_j$. As an example, when $L=6,n=3$, $P(x,x,x)=48x^5+160x^3+48x$ but the expected degree is $7$. We claimed those "solution at infinity" will be cancelled at depermutation.
+	\item \textbf{Boundary points.} Show that every point on the boundary has zero weight in $\tilde{Z}$. Thus the total weight of $\tilde{Z}$ is supported entirely in the affine chart.
 	\item Every $Z^{\mathrm{dep}}_k$ has zero weight at configurations with collisions outside $\pm1$, so its support has $\pi(p)=\hat0$. 
 	\item Every $Z^{dep}_{k}$ contains only points with $a=b$.
 \item For distinct nonsingular solutions, establish local length one for $(P_1,\ldots,P_n)$ and a nonzero Bethe vector. Only $k=0$ contributes, giving weight $1/n!$.
@@ -612,19 +601,7 @@ every affine configuration with a collision outside $\pm1$, for the
 full system and for each reduced balanced fixed-pair system. Thus only
 configurations with $\pi(p)=\hat0$ need further consideration.
 
-At infinity, the expected cancellation has a similar interpretation:
-several roots tend to the same point $\infty\in\mathbb P^1$.
-Indeed, in the unpartitioned reduced system with $r\ge1$ free roots,
-the coefficient of the pure term $x_i^{L+r-2}$ in its own equation is
-$2(L-2n+2)\ne0$. Hence its projective equations have no boundary
-solution with just one nonzero root coordinate. Every boundary
-solution therefore has at least two coordinates representing roots
-at infinity. If the distinct-root exclusion and the
-$TQ$/depermutation correspondence extend to a compatible
-compactification, these repeated infinite roots have zero depermuted
-weight as well. This extension remains a boundary claim to justify:
-the affine distinct-root assumption alone does not establish
-cancellation at infinity.
+At infinity, the expected cancellation has a similar interpretation: assume the distinct-root assumption at infinity point. We will prove that if in homogenized coordinate $z=0$, then there is distinct $i,j$ s.t. $x_i=x_j\not=0$. This will implies the desired cancellation.
 
 For the remaining affine configurations, the $TQ$ relation also
 excludes unequal singular multiplicities $a\ne b$, by comparing
@@ -634,6 +611,73 @@ $0\le k\le\min(a,b)$ at an unbalanced configuration.
 Consequently, among singular affine configurations, only
 the balanced cases $a=b$ remain: the physical-weight identity for
 $a=b=1$ and the alternating cancellation for $a=b\ge2$.
+
+\section{Exactly one singular pair: $a=b=1$}
+\label{sec:simple-reduced-one-pair}
+Let $n\ge2$, $L\ge2n$, and let
+$p=(1,-1,z_3,\ldots,z_n)$ have pairwise distinct coordinates. Set
+\[
+I_{\mathrm{full}}=(P_1,\ldots,P_n),\qquad
+I_{\mathrm{red}}=I_{\{1\},\{2\};\hat0}.
+\]
+We prove an weaker version of \eqref{eq:single-pair-length-criterion}:
+\begin{proposition}\label{prop:simple-reduced-one-pair}
+	Suppose $p=(1,-1,z_3,\ldots,z_n)$ is a simple zero of
+	$I_{\mathrm{red}}$. Then
+	$\ell_p(I_{\mathrm{full}})
+		\ge L+1$ if $p$  satisfies \eqref{eq:physical} and $\ell_p(I_{\mathrm{full}})
+		=L$ otherwise.
+
+\end{proposition}
+
+\begin{proof}
+	Write $x_1=1+u$, $x_2=-1+v$, and $x_j=y_j$ for $j\ge3$.
+    Define
+    \[
+    C(u,y)=\prod_{j=3}^n(u-1-y_j),\qquad
+    D(u,y)=\prod_{j=3}^n(u+3-y_j).
+    \]
+    Since $C(0,z)\ne0$, the equation $P_1=0$ determines
+    \[
+    v=u-\frac{4u^LD(u,y)}{(2+u)^LC(u,y)-u^LD(u,y)}
+      =u+O(u^L).
+    \]
+    After this substitution, write $P_2=u^LH(u,y)$ and
+    $P_j=G_j(u,y)$ for $3\le j\le n$. These functions are regular
+    near $(u,y)=(0,z)$. At $u=0$,
+    $G_j(0,y)=(y_j^2-1)P_j^{\mathrm{red}}(y)$. The Jacobian of
+	$(G_3,\ldots,G_n)$ in the $y$ variables is invertible at $(0,z)$:
+	its rows are the reduced Jacobian rows multiplied by the nonzero
+	factors $z_j^2-1$. The implicit function theorem therefore gives a
+	unique local curve $y=y(u)$ solving these equations. The full local
+	algebra becomes
+	\[
+	\C[[u]]/(u^Lh(u)),\qquad h(u)=H(u,y(u)).
+	\]
+	To determine $h(0)$, direct substitution gives
+    \[
+    H(0,y)=4(-1)^{n-2}\left[
+    -\prod_{j=3}^n(y_j+3)
+    +(-1)^L\prod_{j=3}^n\frac{(y_j-1)(y_j-3)}{y_j+1}
+    \right].
+    \]
+    A distinct-root solution has no exact strings other than
+    the singular pair; in particular, $z_j\ne\pm3$ and
+    $z_i-z_j\ne\pm2$ for $i,j\ge3$; see
+    \cite[Lemma~1]{GJ2020}. Multiplying the reduced equations
+    therefore gives
+    \[
+    \left(\prod_{j=3}^n\frac{z_j+1}{z_j-1}\right)^{L-1}
+    =\prod_{j=3}^n\frac{z_j+3}{z_j-3}.
+    \]
+    Consequently,
+    \begin{equation}\label{eq:one-pair-compatibility}
+    h(0)=0\quad\Longleftrightarrow\quad
+    \left[-\prod_{j=3}^n\frac{z_j+1}{z_j-1}\right]^L=1.
+    \end{equation}
+    If $p$ is nonphysical, $h(0)\ne0$ and the length is $L$, otherwise the length is greater than $L$, which proves our claim. 
+	
+\end{proof}
 
 
 \begin{thebibliography}{99}
