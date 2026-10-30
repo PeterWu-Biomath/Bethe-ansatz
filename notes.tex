@@ -26,7 +26,10 @@ spin-$1/2$ XXX chain. A partition-lattice formula defines depermutation
 with local intersection multiplicities, and a binomial alternating sum
 corrects the singular-pair contributions. Normalized inhomogeneous
 families give a local complex proving nonnegativity of the corrected
-lengths without spectral input. Finite flatness of the remainder
+lengths without spectral input. At a simple fully reduced zero, direct
+cluster elimination also identifies this index with the length of an
+explicit residual ideal; a weighted local hypothesis gives a jet-space
+Koszul model for that length. Finite flatness of the remainder
 families also proves the affine degree formula under the partition-ideal
 finiteness hypotheses. A spectral resolution further identifies the
 corrected sum with the normalized ordered-root pullback of the
@@ -1714,6 +1717,509 @@ $\nu_k=\binom{M+1}s$. The same two binomial identities prove
 \eqref{eq:balanced-remainder-length-identity}, hence the required
 zero weight.
 \end{proof}
+
+\subsection{A jet-space Koszul model without deforming the equations}
+\label{sec:jet-koszul-model}
+
+We now assume that the remaining roots are distinct and that the fully
+reduced zero is simple. Write
+\[
+ A_k=\mathcal O_{V(J_k),Q_k},\qquad \nu_k=\dim_\C A_k,
+ \qquad A_a=\C.
+\]
+The construction below uses the completed local equations at the
+homogeneous point. It does not use a deformation of the Bethe equations
+or a spectral comparison. This particular Koszul model depends on an
+explicit weighted initial-form hypothesis, proved below on a locus
+described by the reduced Jacobian. Section~\ref{sec:direct-residual-ideal}
+then gives a residual-length interpretation without that weighted
+hypothesis, using an auxiliary intersection argument.
+
+\paragraph{The residual one-pair multiplicity.}
+Put $m=L-a+1$. In the system $J_{a-1}$ one singular pair remains free.
+The cluster factorization and simplicity of $A_a$ allow the ordinary
+roots and one member of this pair to be eliminated. As in the one-pair
+calculation, the remaining equation is $u^m h(u)=0$: the factor $u^m$
+comes from the vacuum exponent $L-(a-1)$. Thus
+\begin{equation}\label{eq:jet-residual-order}
+ A_{a-1}\simeq\C[[u]]/(u^m h(u)),\qquad
+ q=\ord_0h\ge0,\qquad D=m+q=\nu_{a-1}.
+\end{equation}
+Finiteness ensures $h\ne0$; a unit has order zero. In particular,
+$A_{a-1}\simeq\C[[u]]/(u^D)$. The integer $q$ is defined by the actual
+one-pair local equations, before any hypothesis about the other lengths.
+
+For $k<a$, set $s=a-k$ and factor the variable polynomial near $Q_k$ as
+\[
+ Q(t)=C_s(t-1)B_s(t+1)H_y(t),\qquad
+ C_s(u)=u^s-c_1u^{s-1}+\cdots+(-1)^sc_s.
+\]
+The first cluster congruence solves for $B_s$, and simplicity of $A_a$
+solves the ordinary-root equations for $y$. Hence
+\[
+ A_k\simeq\C[[c_1,\ldots,c_s]]/(G_{k,1},\ldots,G_{k,s}).
+\]
+Give $c_j$ weight $j$ and take initial forms of smallest weight.
+
+\begin{definition}[Weighted local hypothesis]\label{def:jet-weighted-hypothesis}
+With $D$ determined by~\eqref{eq:jet-residual-order}, suppose that, for
+every $k<a$, the generators can be chosen so that their weighted
+initial forms are a regular sequence of degrees
+\begin{equation}\label{eq:jet-initial-degrees}
+ D,D+1,\ldots,D+s-1,\qquad s=a-k.
+\end{equation}
+For $s=1$ this follows from~\eqref{eq:jet-residual-order}; the additional
+condition concerns the higher collision strata.
+\end{definition}
+
+This is a condition on leading local equations, stronger than simplicity
+of $A_a$. We do not assert that it holds at every Bethe configuration.
+In particular, it must not be replaced by an unproved assertion that
+$q$ is always zero or one.
+
+\begin{proposition}[Conditional jet-space index]\label{prop:jet-koszul-index}
+Assume the weighted local hypothesis. Then
+\begin{equation}\label{eq:jet-local-lengths}
+ \nu_k=\binom{L+q-k}{a-k},\qquad 0\le k\le a.
+\end{equation}
+There is an explicit finite complex of vector spaces with term
+dimensions $\binom Lk\nu_k$, no positive homology, and degree-zero
+homology $M_p$ satisfying
+\begin{equation}\label{eq:jet-koszul-index}
+ \boxed{\sum_{k=0}^a(-1)^k\binom Lk\nu_k
+       =\dim_\C M_p=\binom qa.}
+\end{equation}
+Here $\binom qa=0$ for $q<a$. In particular, $q<a$ implies the desired
+balanced cancellation; $q\le1$ suffices when $a\ge2$.
+\end{proposition}
+
+\begin{proof}
+The filtered Koszul argument for a regular sequence of initial forms
+identifies the associated graded quotient with that initial complete
+intersection. Its Hilbert series and length are
+\[
+ \frac{\prod_{j=1}^s(1-z^{D+j-1})}
+      {\prod_{j=1}^s(1-z^j)},\qquad
+ \nu_k=\prod_{j=1}^s\frac{D+j-1}{j}
+       =\binom{D+s-1}s.
+\]
+This proves~\eqref{eq:jet-local-lengths}, including $\nu_a=1$.
+
+Let $W=\C[u]/(u^D)$ as a vector space and $S=\Sym_\C(W)$, with all
+elements of $W$ placed in polynomial degree one. Define the linear map
+\[
+ \lambda:\C^L\longrightarrow W,\qquad
+ \lambda(\varepsilon_i)=[u^{i-1}],\quad 1\le i\le L.
+\]
+In this formula $[1]\in W$ is a degree-one generator of $S$, not the
+scalar unit of $S$. The map has rank $\min(L,D)$. Take the internal
+degree-$a$ part of the ordinary Koszul complex on these $L$ linear
+forms:
+\[
+ C_k=S_{a-k}\otimes\bigwedge^k\C^L,\qquad
+ d(f\otimes\varepsilon_{i_1}\wedge\cdots\wedge\varepsilon_{i_k})
+ =\sum_{j=1}^k(-1)^{j-1}[u^{i_j-1}]f\otimes
+       \varepsilon_{i_1}\wedge\cdots\widehat{\varepsilon_{i_j}}
+                      \cdots\wedge\varepsilon_{i_k}.
+\]
+Its term dimensions are
+\[
+ \dim C_k=\binom Lk\dim\Sym^{a-k}W
+          =\binom Lk\binom{D+a-k-1}{a-k}
+          =\binom Lk\nu_k.
+\]
+
+If $D\ge L$, the linear forms are independent and form a regular
+sequence. Thus positive homology vanishes and
+\[
+ M_p=H_0(C_\bullet)=\Sym^a(\operatorname{coker}\lambda).
+\]
+For $D>L$, the cokernel has dimension $D-L=q-a+1$, so this space has
+dimension $\binom qa$; for $D=L$ it is zero, since $a\ge1$.
+
+If $D<L$, split the domain into a complement mapping isomorphically
+onto $W$ and $\ker\lambda$. The full Koszul homology is then
+$\bigwedge^j\ker\lambda$ in internal degree $j$. However,
+\[
+ \dim\ker\lambda=L-D=a-q-1<a.
+\]
+Its internal degree-$a$ part is therefore zero in every homological
+degree. This also gives $M_p=0$ and $\binom qa=0$. Taking the Euler
+characteristic proves~\eqref{eq:jet-koszul-index}.
+\end{proof}
+
+This realizes the index as a dimension under the weighted hypothesis.
+It does not construct canonical maps between the actual algebras $A_k$:
+the terms are symmetric powers of a jet space with the required
+dimensions. In particular, the differentials are not $A_0$-linear maps
+between $A_k^{\binom Lk}$, so the socle obstruction discussed in
+Section~\ref{sec:normalized-local-complex} does not apply. For $a=1$
+the index is $q$, agreeing with the residual one-pair length; for $a=2$
+it is $q(q-1)/2$.
+
+\paragraph{An explicit first-weight criterion.}
+The weighted hypothesis can be proved without spectral input under
+nonvanishing conditions expressed in the fully reduced Jacobian.
+For the ordinary roots set
+\[
+ \mathcal B_j(y)=
+ \frac{(y_j+1)^{L-a}(y_j-3)^a}
+      {(y_j-1)^{L-a}(y_j+3)^a}
+ \prod_{\ell\ne j}\frac{y_j-y_\ell-2}{y_j-y_\ell+2},\qquad
+ \mathcal J_{j\ell}=\partial_{y_\ell}\log\mathcal B_j(z).
+\]
+These logarithmic derivatives are rational functions; no choice of a
+logarithm is needed. At the solution $\mathcal B_j(z)=1$, and simplicity
+of the fully reduced system makes $\mathcal J$ invertible. Define
+\begin{equation}\label{eq:jet-alpha-beta}
+ \begin{aligned}
+ \gamma_j&=\frac1{z_j+1}+\frac1{z_j+3}
+                 -\frac1{z_j-1}-\frac1{z_j-3},\\
+ \alpha&=\frac{5a-2L}{2}+\sum_j\gamma_j,\qquad
+ \beta=-\frac52+\gamma^{\mathsf T}\mathcal J^{-1}\gamma.
+ \end{aligned}
+\end{equation}
+The transpose here is algebraic, not a conjugate transpose. For no
+ordinary roots the sum and quadratic expression are zero.
+
+\begin{proposition}\label{prop:jet-first-weight-criterion}
+Retain the finiteness and simplicity assumptions above.
+If $\Xi(p)\ne0$, the weighted hypothesis holds with $q=0$.
+If
+\begin{equation}\label{eq:jet-resonant-open-conditions}
+ \Xi(p)=0,\qquad \alpha\ne0,\qquad \alpha+\beta\ne0,
+\end{equation}
+it holds with $q=1$. Thus the conditional index theorem applies on
+these loci, and its index vanishes for every $a\ge2$ there.
+\end{proposition}
+
+\begin{proof}
+Put $s=a-k$ and $M=L-k$. The cluster congruences take the form
+\[
+ B_s(u)+u^MU(u)\equiv0\pmod{C_s(u)},\qquad
+ C_s(v)+v^MV(v)\equiv0\pmod{B_s(v)}.
+\]
+The units are those in the proof of
+Proposition~\ref{prop:pure-balanced-pairs}, multiplied respectively by
+$H_y(u+3)/H_y(u-1)$ and $H_y(v-3)/H_y(v+1)$.
+Eliminating $B_s$ changes its $j$th elementary coefficient from $c_j$
+only in weights at least $M-s+j=L-a+j$. These changes do not affect
+the constant or first weighted terms. The equations at the ordinary
+roots have linear terms
+\[
+ \mathcal J(y-z)+\gamma c_1=0,
+ \qquad y=z-\mathcal J^{-1}\gamma c_1+O_{\mathrm w}(2).
+\]
+Both statements are independent of $k$, since the fixed and variable
+cluster factors have total multiplicity $a$ at each sign.
+
+The constant term of $U+V$ is $2^{2a-L}\Xi(p)$. If it is nonzero,
+the initial equations are the coefficients of
+$\operatorname{rem}_{C_s}u^M$. Their degrees are
+$M-s+1,\ldots,M$, and they have only the zero solution. This proves
+the $q=0$ assertion, also recovering the simple-reduced case of
+Proposition~\ref{prop:balanced-nonresonant}.
+
+Suppose $\Xi(p)=0$. The nonzero constant terms of $U,V$ are opposite.
+After division by the first of these constants, their first weighted
+sum is
+\[
+ \alpha u+\beta c_1.
+\]
+For completeness, the pure-cluster contributions to the difference of
+their logarithmic derivatives are $(5a-2L)/2$ in $u$ and $-5/2$ in
+$c_1$. The $H_y$ factors add $\sum_j\gamma_j$ to the former. Their
+relative derivative in $y$ is $-\gamma^{\mathsf T}$, so substitution
+of $y-z=-\mathcal J^{-1}\gamma c_1+O_{\mathrm w}(2)$ adds
+$\gamma^{\mathsf T}\mathcal J^{-1}\gamma$ to the latter. This gives
+exactly~\eqref{eq:jet-alpha-beta}.
+
+Consequently the initial equations are the coefficients of
+\[
+ \operatorname{rem}_{C_s}
+       \bigl[u^M(\alpha u+\beta c_1)\bigr].
+\]
+They have only the zero solution under
+\eqref{eq:jet-resonant-open-conditions}. Indeed, any nonzero root
+$\rho$ of $C_s$ must be the unique simple nonzero root of the linear
+factor, forcing $C_s=u^{s-1}(u-\rho)$ and $c_1=\rho$. This would give
+$(\alpha+\beta)\rho=0$, a contradiction. The initial sequence is
+therefore regular, with degrees $M-s+2,\ldots,M+1$. When $s=1$ its
+leading equation is $(\alpha+\beta)c_1^{M+1}$, so the residual order
+in~\eqref{eq:jet-residual-order} is $q=1$. The same degrees for all
+$s$ are precisely~\eqref{eq:jet-initial-degrees} with
+$D=L-a+2$, proving the assertion.
+\end{proof}
+
+\paragraph{The remaining exceptional loci.}
+The coefficient $\alpha$ is the negative of the second residue
+obstruction $K$ in~\eqref{eq:balanced-second-obstruction}.
+Thus the criterion also computes every individual length on the
+simple-reduced part of the locus $\Xi=0$, $K\ne0$ where
+$\alpha+\beta\ne0$. It recovers the two pure-cluster parities and
+the resonant one-additional-root calculation above.
+The unresolved first-weight cases are
+\[
+ \Xi=0,\quad\alpha=0,
+ \qquad\text{or}\qquad
+ \Xi=0,\quad\alpha+\beta=0.
+\]
+In the first case with $\beta\ne0$ and $s\ge2$, the candidate initial
+equations vanish on $c_1=0$ and are not isolated, even though the
+one-pair residual order is still $q=1$. In the second case a nonzero
+root $\rho$ is no longer excluded by the initial divisibility equation,
+and the one-pair residual order is at least two. Higher weighted terms
+must be analyzed at these loci; simplicity of $A_a$ does not justify
+discarding them. Neither the weighted hypothesis nor a bound $q<a$
+has been proved there.
+
+\subsection{A residual ideal from the homogeneous cluster equations}
+\label{sec:direct-residual-ideal}
+
+Under the same simple-reduced assumption, the alternating sum has a
+meaning without the weighted hypothesis: it is the length of an
+explicit residual ideal. The following general local intersection
+identity is the main ingredient. Its proof separates a fixed divisor
+in an auxiliary space; no twist, site inhomogeneities, or transfer
+matrix is introduced.
+
+\begin{proposition}[Local divisor subtraction]
+\label{prop:local-divisor-subtraction}
+Let $L\ge a\ge1$ and
+\[
+ C(t)=t^a-c_1t^{a-1}+\cdots+(-1)^ac_a.
+\]
+Let $W(t;c)$ be a convergent power series near $(t,c)=(0,0)$.
+Suppose the ideal of coefficients of
+$\operatorname{rem}_C(t^LW(t;c))$ has finite colength at $c=0$.
+For $0\le k\le a$, write $C=t^kC_s$, $s=a-k$, and let $\mu_k$
+be the local length of
+\[
+ \operatorname{rem}_{C_s}
+ \bigl(t^{L-k}W(t;t^kC_s)\bigr)=0
+ \quad\text{at }C_s=t^s.
+\]
+Here $W(t;t^kC_s)$ denotes substitution of the coefficients of $t^kC_s$
+for $c$, and $\mu_a=1$. Then the residual ideal
+\[
+ I_{\mathrm{res}}=
+ \bigl(\text{coefficients of }\operatorname{rem}_C W(t;c)\bigr)
+ \subseteq\C\{c_1,\ldots,c_a\}
+\]
+has finite colength, allowing the unit ideal, and
+\begin{equation}\label{eq:local-divisor-subtraction}
+ \boxed{\sum_{k=0}^a(-1)^k\binom Lk\mu_k
+        =\length\bigl(\C\{c\}/I_{\mathrm{res}}\bigr).}
+\end{equation}
+The same lengths are obtained in the completed local rings.
+\end{proposition}
+
+\begin{proof}
+The residual ideal contains the original remainder ideal: multiplication
+by $t^L$ in the free rank-$a$ algebra $\C\{c\}[t]/(C)$ expresses the
+original remainder coefficients as linear combinations of the residual
+ones. Thus the residual quotient is finite. Likewise, restriction to
+$C=t^kC_s$ identifies the original remainder with $t^k$ times the
+smaller remainder in the statement. Hence all the $\mu_k$ are finite.
+
+Here is a local intersection proof of the identity. Replace the fixed
+factor $t^L$ by
+\[
+ P_\delta(t)=\prod_{i=1}^L(t-\delta_i)
+\]
+and replace $W$ by $W+h_b$, where $h_b(t)=\sum_{j=0}^{a-1}b_jt^j$.
+For $I\subseteq[L]$, $|I|=k\le a$, put
+$P_I=\prod_{i\in I}(t-\delta_i)$ and impose $C=P_IC_s$. The smaller
+remainder equations are
+\[
+ \operatorname{rem}_{C_s}
+ \left(P_{[L]\setminus I}(t)
+             \bigl(W(t;P_IC_s)+h_b(t)\bigr)\right)=0.
+\]
+Their central fibers have lengths $\mu_k$. They have $s$ equations in
+$s$ coefficient variables, so conservation of isolated complete-
+intersection multiplicity counts $\mu_k$ nearby points for generic
+small $(\delta,b)$. The same applies to the residual equations
+$C\mid W+h_b$.
+
+We justify choosing the parameters so that these counts are ordinary
+counts of simple points. Take distinct $\delta_i$ and stratify by the
+exact subset $T$ of their roots contained in $C$. Write $C=P_TH$,
+initially allowing $H$ to contain selected nodes again, but requiring
+it to avoid the nodes outside $T$. Since $P_{[L]\setminus T}$ is a
+unit modulo $H$, the remaining condition is
+\[
+ H\mid W(t;P_TH)+h_b(t).
+\]
+Variation of $h_b$ maps surjectively to $\C[t]/(H)$, including when
+$H$ has repeated roots. The residual incidence scheme is therefore
+smooth and projects smoothly onto the coefficients of $H$ and the
+$\delta_i$. Repeated roots of $H$, or a root of $H$ at a selected node,
+form proper hypersurfaces in this coefficient space and are absent
+for generic parameters. Thus repeated site roots are excluded as
+well, rather than being omitted from the stratification.
+For a selected site $i\in T$, the extra condition
+$(W+h_b)(\delta_i)=0$ is also avoidable: evaluation there and the
+remainder modulo $H$ are independent conditions, with
+$\deg H+1\le a$. The finite projections to the parameter space are
+generically etale. Thus, simultaneously for the finitely many strata,
+the residual roots are distinct, and the factors selected from
+$P_\delta$ are transverse simple roots of the product. The same
+argument covers $T=\varnothing$, whose residual polynomial is
+independent of $\delta$, so its roots avoid generic $\delta_i$.
+
+At any such nearby full solution, let $T$ be its exact selected subset.
+It is counted in the $I$-system precisely when $I\subseteq T$.
+Its total alternating contribution is
+\[
+ \sum_{I\subseteq T}(-1)^{|I|}
+ =\begin{cases}1,&T=\varnothing,\\0,&T\ne\varnothing.\end{cases}
+\]
+The surviving points are exactly the nearby residual solutions
+$C\mid W+h_b$. Conservation of their local intersection numbers gives
+\eqref{eq:local-divisor-subtraction}. This argument is an auxiliary
+separation of the fixed divisor, not an assertion about deformed Bethe
+solutions.
+\end{proof}
+
+\begin{proposition}[Compatible scalar cluster equation]
+\label{prop:scalar-cluster-equation}
+Assume $L\ge2n$, the standing local finiteness hypotheses, distinct
+ordinary roots, and simplicity of the fully reduced zero $A_a$.
+There is a convergent germ $W(u;c_1,\ldots,c_a)$ such that, after
+eliminating the negative cluster and ordinary roots,
+\begin{equation}\label{eq:scalar-full-cluster}
+ A_0\simeq\C[[c_1,\ldots,c_a]]/
+       \bigl(\text{coefficients of }\operatorname{rem}_C u^LW\bigr).
+\end{equation}
+For every $k$, the same germ restricted to $C=u^kC_s$ presents $A_k$
+by the coefficients of
+\begin{equation}\label{eq:scalar-reduced-cluster}
+ \operatorname{rem}_{C_s}
+          \bigl(u^{L-k}W(u;u^kC_s)\bigr),\qquad s=a-k.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Factor the full polynomial as $Q(t)=C(t-1)B(t+1)H_y(t)$, with $C,B$
+monic of degree $a$. Its cluster congruences are
+\[
+ B(u)+u^LU(u)\equiv0\pmod{C(u)},\qquad
+ C(u)+u^LV(u)\equiv0\pmod{B(u)},
+\]
+where the following are analytic units near the origin:
+\[
+ \begin{aligned}
+ U(u)&=\frac{C(u+2)B(u+4)H_y(u+3)}
+              {(u+2)^LC(u-2)H_y(u-1)},\\
+ V(u)&=\frac{C(u-4)B(u-2)H_y(u-3)}
+              {(u-2)^LB(u+2)H_y(u+1)}.
+ \end{aligned}
+\]
+The first remainder equations solve uniquely for $B$; their Jacobian
+in its coefficients is the identity at the origin. The ordinary-root
+equations then solve uniquely for $y$ by simplicity of the fully
+reduced system. Henceforth $B,y,U,V$ are analytic functions of $c$.
+
+The first congruence gives an exact Weierstrass division identity
+\[
+ B+u^LU=CE.
+\]
+Divide $C+u^LV$ by $B$ and write
+\[
+ C+u^LV=BF+R_B,\qquad \deg_uR_B<a.
+\]
+Both quotient germs $E,F$ have constant term one. Substituting the
+first identity into the second gives
+\[
+ R_B=C(1-EF)+u^L(V+UF).
+\]
+Taking the remainder modulo $C$ leaves $R_B$ itself, since its degree
+is less than $a$. Therefore, with
+\begin{equation}\label{eq:effective-cluster-W}
+ W=V+UF,
+\end{equation}
+we obtain the exact identity $R_B=\operatorname{rem}_C(u^LW)$.
+This proves~\eqref{eq:scalar-full-cluster} without discarding any
+higher weighted terms.
+
+It remains to check compatibility, which is essential for subtraction.
+Restrict to $C=u^kC_s$. The identity $B+u^LU=CE$ and $L\ge k$ force
+$B=u^kB_s$. The restrictions of the units $U,V$ are exactly the units
+of the reduced $k$-pair system: substituting $C=u^kC_s$, $B=u^kB_s$
+in their displayed formulas produces its factors $(u+4)^k,(u-2)^k$
+and their negative-cluster analogues. The ordinary equations also
+agree after cancelling units at the ordinary roots. Uniqueness in
+the implicit-function theorem identifies all eliminated functions
+with their reduced-system counterparts.
+
+Finally, dividing the two Weierstrass identities by $u^k$ gives
+\[
+ B_s+u^{L-k}U=C_sE,\qquad
+ C_s+u^{L-k}V=B_sF+R_s.
+\]
+Uniqueness of monic division gives $R_B=u^kR_s$ and leaves the same
+quotients $E,F$, hence the same restricted $W$. Taking the remainder
+modulo $C_s$ proves~\eqref{eq:scalar-reduced-cluster}.
+\end{proof}
+
+\begin{proposition}[Residual meaning of the alternating index]
+\label{prop:direct-residual-index}
+Under the hypotheses of Proposition~\ref{prop:scalar-cluster-equation},
+define the finite residual algebra
+\begin{equation}\label{eq:direct-residual-algebra}
+ \mathcal R_p=\C[[c_1,\ldots,c_a]]/
+       \bigl(\text{coefficients of }\operatorname{rem}_C W(u;c)\bigr).
+\end{equation}
+The zero algebra is allowed. Then
+\begin{equation}\label{eq:direct-residual-index}
+ \boxed{\sum_{k=0}^a(-1)^k\binom Lk\nu_k(p)
+                  =\length\mathcal R_p\ge0.}
+\end{equation}
+Consequently its corrected ordered weight is
+\[
+ \operatorname{coeff}_p Z^{\mathrm{cand}}_{L,n}
+       =\frac{(a!)^2}{n!}\length\mathcal R_p.
+\]
+No weighted initial-form or spectral assumption is required.
+\end{proposition}
+
+\begin{proof}
+Apply Proposition~\ref{prop:local-divisor-subtraction} to the compatible
+scalar equations in Proposition~\ref{prop:scalar-cluster-equation}.
+The local lengths $\mu_k$ in that proposition are exactly $\nu_k(p)$.
+The weight formula follows from~\eqref{eq:balanced-local-normalization}.
+\end{proof}
+
+The presentation of $\mathcal R_p$ uses the indicated choices of local
+coordinates and elimination; its length is independent of those choices
+by~\eqref{eq:direct-residual-index}. For one pair it recovers the
+residual algebra $\C[[u]]/(h)$. Under the weighted hypothesis its length
+is $\binom qa$, so the jet-space Koszul model computes this residual
+length. Without that hypothesis, $q$ alone need not determine the index.
+For example, in the abstract divisor problem with $a=2$ and
+$W(u;c)=u^2+c_1$, the residual ideal is $(c_1-c_2,c_1)$ and has length
+one, although the one-pair residual order is $q=1$. This is not asserted
+to be a Bethe configuration; it shows why the weighted hypothesis cannot
+be inferred solely from that order.
+
+At a Bethe point the constant term of $W$ is $2^{2a-L}\Xi(p)$.
+When $\Xi=0$, its first weighted part is a nonzero scalar times
+$\alpha u+\beta c_1$, with $\alpha,\beta$ as above, because $F-1$ has
+weight at least $L-a$. Thus $\Xi\ne0$ makes the residual ideal the unit
+ideal. If $a\ge2$, $\Xi=0$ and $\alpha\ne0$ also make it the unit
+ideal: the coefficient of $u$ in $\operatorname{rem}_C W$ has nonzero
+constant term. This proves cancellation there even without assuming
+$\alpha+\beta\ne0$; that extra condition was needed for the explicit
+length pattern, not for residual vanishing.
+
+The remaining balanced problem has now become a concrete local ideal
+problem: show that $\mathcal R_p=0$ for $a\ge2$. The exceptional case
+$\Xi=\alpha=0$ is not settled by the first weighted terms. The argument
+does not prove that a nonzero residual algebra has length one, nor remove
+the simple-reduced hypothesis. Its only deformation is the auxiliary
+divisor separation in the general intersection lemma; a completely
+deformation-free homological proof of that lemma is not supplied here.
 
 \subsection{A local geometric complex from normalized deformations}
 \label{sec:normalized-local-complex}
