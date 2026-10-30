@@ -107,7 +107,7 @@ additional regularization condition
 \end{equation}
 As an example for $n=2$, the empty product is $1$,
 and the condition requires $L$ to be even.
-See \cite{NW2013} for regularizations and
+See \cite{NW2013,NW2014} for regularizations and
 \cite{HNS2013} for the completeness counting problem.
 
 \section{The counting strategy}
@@ -246,7 +246,7 @@ Z_{\text{Bethe}}=\sum_{A,B,\pi}w_{A,B;\pi}^{\mathrm{aux}}Z_{A,B;\pi}.
 
 \subsection{Depermutation}
 The general principle for removing collisions is M\"obius inversion on the
-partition lattice. To illustrate it, let $\Omega$ be a finite set and
+partition lattice; see \cite[Section~3.7]{Stanley2012}. To illustrate it, let $\Omega$ be a finite set and
 $S\subseteq\Omega^n$ be invariant under coordinate permutations. For a
 partition $\pi$ of $[n]$, let $S_\pi$ consist of the tuples in $S$ satisfying
 $x_i=x_j$ whenever $i,j$ belong to the same block of $\pi$; coordinates in
@@ -453,7 +453,8 @@ the boundary. The homogenization of $P$ is
 (x_1-z)^L\prod_{j\ne1}(x_1-x_j+2z)\big)\]
 This is a polynomial of degree $L+n-2$. The reduced Bethe polynomials
 are homogenized similarly. We compute the projective intersection
-number associated with $Z_{A,B;\pi}$ in this compactification.
+number associated with $Z_{A,B;\pi}$ in this compactification
+\cite{Fulton1998}.
 
 \begin{definition}[Projective intersection number]
 	\label{def:projective-degree}
@@ -469,7 +470,8 @@ affine total weight. We will show that the projective formal sum $\tilde{Z}$ has
 
 \begin{remark}[Agreement of compactifications]
 
-The assignment has the following BKK interpretation. Put
+The intersection number has the following BKK interpretation
+\cite[Chapter~3]{Sturmfels}. Put
 $r=n-|A|-|B|$ and $D=L+r-2$. For $r\ge1$, retain the ambient monomial
 supports of the reduced equations when identifying coordinates within
 each block, before combining coefficients that may cancel. Let
@@ -706,6 +708,16 @@ projective intersection count with the affine total weight.
 
 \section{Exactly one singular pair: $a=b=1$}
 \label{sec:simple-reduced-one-pair}
+
+The case of one singular pair has been studied through regularization
+of the Bethe vector by Nepomechie and Wang
+\cite[Section~3]{NW2013}, including twist regularization
+\cite[Section~2]{NW2014}. Granet and Jacobsen
+\cite[Sections~2--4]{GJ2020} relate physical singular solutions to
+polynomial companions and additional zero-remainder conditions.
+Here we study the same configurations through the local lengths of
+the full and reduced polynomial ideals.
+
 Let $n\ge2$, $L\ge2n$, and let
 $p=(1,-1,z_3,\ldots,z_n)$ have pairwise distinct coordinates. Set
 \[
@@ -1011,62 +1023,21 @@ In particular $\rho<a$ implies cancellation under this weighted
 hypothesis. The model matches the term dimensions; it does not give
 canonical module maps between the original local algebras.
 
-The residual-length statement above requires no such weighted
-hypothesis. Its proof uses only cluster elimination and an auxiliary
-divisor-separation argument, without MTV's spectral results. A
-deformation-free homological proof, the removal of the simple-reduced
-assumption, and uniform vanishing of the repeated-pair residual ideal
-remain open in this approach.
 
 \begin{thebibliography}{99}
-\bibitem{Stacks}
-The Stacks Project Authors,
-\emph{The Stacks Project},
-\href{https://stacks.math.columbia.edu/tag/062F}{Tag~062F},
-\href{https://stacks.math.columbia.edu/tag/035E}{Tag~035E}, and
-\href{https://stacks.math.columbia.edu/tag/0DW6}{Section~47.21}.
 
-\bibitem{MTV2011}
-E.~Mukhin, V.~Tarasov, and A.~Varchenko,
-\emph{Reality property of discrete Wronski map with imaginary step},
-Lett.\ Math.\ Phys.\ \textbf{100}, 151--160 (2012),
-\href{https://arxiv.org/abs/1102.5368}{arXiv:1102.5368}.
+\bibitem{NW2013}
+R.~I.~Nepomechie and C.~Wang,
+\emph{Algebraic Bethe ansatz for singular solutions},
+J.\ Phys.\ A: Math.\ Theor.\ \textbf{46}, 325002 (2013),
+\href{https://arxiv.org/abs/1304.7978}{arXiv:1304.7978}.
 
-\bibitem{PS1999}
-G.~P.~Pronko and Yu.~G.~Stroganov,
-\emph{Bethe equations ``on the wrong side of the equator''},
-J.\ Phys.\ A: Math.\ Gen.\ \textbf{32}, 2333--2340 (1999),
-\href{https://arxiv.org/abs/hep-th/9808153}{arXiv:hep-th/9808153}.
-
-\bibitem{MTV2009}
-E.~Mukhin, V.~Tarasov, and A.~Varchenko,
-\emph{Bethe algebra of homogeneous XXX Heisenberg model has simple spectrum},
-Commun.\ Math.\ Phys.\ \textbf{288}, 1--42 (2009),
-\href{https://arxiv.org/abs/0706.0688}{arXiv:0706.0688}.
-
-\bibitem{BK2016}
-L.~Bus\'e and A.~Karasoulou,
-\emph{Resultant of an equivariant polynomial system with respect to the symmetric group},
-J.\ Symbolic Comput.\ \textbf{76}, 142--157 (2016),
-\href{https://arxiv.org/abs/1407.2799}{arXiv:1407.2799}.
-
-\bibitem{GJ2020}
-E.~Granet and J.~L.~Jacobsen,
-\emph{On zero-remainder conditions in the Bethe ansatz},
-JHEP \textbf{03}, 178 (2020),
-\href{https://arxiv.org/abs/1910.07797}{arXiv:1910.07797}.
-
-\bibitem{HJJ2024}
-J.~Hou, Y.~Jiang, and R.-D.~Zhu,
-\emph{Spin-$s$ Rational $Q$-system},
-SciPost Phys.\ \textbf{16}, 113 (2024),
-\href{https://arxiv.org/abs/2303.07640}{arXiv:2303.07640}.
-
-\bibitem{Sturmfels}
-B.~Sturmfels,
-\emph{Solving Systems of Polynomial Equations},
-CBMS Regional Conference Series in Mathematics \textbf{97}, AMS (2002),
-\href{https://web.math.berkeley.edu/~bernd/cbms.pdf}{author's manuscript}.
+\bibitem{NW2014}
+R.~I.~Nepomechie and C.~Wang,
+\emph{Twisting singular solutions of Bethe's equations},
+J.\ Phys.\ A: Math.\ Theor.\ \textbf{47}, 505004 (2014),
+\href{https://doi.org/10.1088/1751-8113/47/50/505004}{doi:10.1088/1751-8113/47/50/505004},
+\href{https://arxiv.org/abs/1409.7382}{arXiv:1409.7382}.
 
 \bibitem{HNS2013}
 W.~Hao, R.~I.~Nepomechie, and A.~J.~Sommese,
@@ -1074,11 +1045,43 @@ W.~Hao, R.~I.~Nepomechie, and A.~J.~Sommese,
 Phys.\ Rev.\ E \textbf{88}, 052113 (2013),
 \href{https://arxiv.org/abs/1308.4645}{arXiv:1308.4645}.
 
-\bibitem{NW2013}
-R.~I.~Nepomechie and C.~Wang,
-\emph{Algebraic Bethe ansatz for singular solutions},
-J.\ Phys.\ A \textbf{46}, 325002 (2013),
-\href{https://arxiv.org/abs/1304.7978}{arXiv:1304.7978}.
+\bibitem{Stanley2012}
+R.~P.~Stanley,
+\emph{Enumerative Combinatorics}, Vol.~1, 2nd ed.,
+Cambridge Studies in Advanced Mathematics \textbf{49},
+Cambridge University Press (2012),
+\href{https://www.cambridge.org/core/books/enumerative-combinatorics/3155CDE1D973D49F873BDE2EAF8D7651}{publisher's webpage}.
+
+\bibitem{HJJ2024}
+J.~Hou, Y.~Jiang, and R.-D.~Zhu,
+\emph{Spin-$s$ Rational $Q$-system},
+SciPost Phys.\ \textbf{16}, 113 (2024),
+\href{https://arxiv.org/abs/2303.07640}{arXiv:2303.07640}.
+
+\bibitem{Fulton1998}
+W.~Fulton,
+\emph{Intersection Theory}, 2nd ed.,
+Ergebnisse der Mathematik und ihrer Grenzgebiete, 3.\ Folge,
+Vol.~2, Springer (1998),
+\href{https://doi.org/10.1007/978-1-4612-1700-8}{doi:10.1007/978-1-4612-1700-8}.
+
+\bibitem{Sturmfels}
+B.~Sturmfels,
+\emph{Solving Systems of Polynomial Equations},
+CBMS Regional Conference Series in Mathematics \textbf{97}, AMS (2002),
+\href{https://web.math.berkeley.edu/~bernd/cbms.pdf}{author's manuscript}.
+
+\bibitem{GJ2020}
+E.~Granet and J.~L.~Jacobsen,
+\emph{On zero-remainder conditions in the Bethe ansatz},
+JHEP \textbf{03}, 178 (2020),
+\href{https://arxiv.org/abs/1910.07797}{arXiv:1910.07797}.
+
+\bibitem{MTV2009}
+E.~Mukhin, V.~Tarasov, and A.~Varchenko,
+\emph{Bethe algebra of homogeneous XXX Heisenberg model has simple spectrum},
+Commun.\ Math.\ Phys.\ \textbf{288}, 1--42 (2009),
+\href{https://arxiv.org/abs/0706.0688}{arXiv:0706.0688}.
 
 \end{thebibliography}
 \end{document}
