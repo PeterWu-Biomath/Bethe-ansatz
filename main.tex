@@ -601,7 +601,12 @@ every affine configuration with a collision outside $\pm1$, for the
 full system and for each reduced balanced fixed-pair system. Thus only
 configurations with $\pi(p)=\hat0$ need further consideration.
 
-At infinity, the expected cancellation has a similar interpretation: assume the distinct-root assumption at infinity point. We will prove that if in homogenized coordinate $z=0$, then there is distinct $i,j$ s.t. $x_i=x_j\not=0$. This will implies the desired cancellation.
+At infinity, Section~\ref{sec:general-infinity} proves directly that
+every boundary solution has two equal nonzero homogeneous root
+coordinates. This locates the boundary support on collision diagonals.
+It does not by itself prove cancellation of the local multiplicities;
+that requires a comparison of the full and partition intersections at
+the boundary.
 
 For the remaining affine configurations, the $TQ$ relation also
 excludes unequal singular multiplicities $a\ne b$, by comparing
@@ -611,6 +616,90 @@ $0\le k\le\min(a,b)$ at an unbalanced configuration.
 Consequently, among singular affine configurations, only
 the balanced cases $a=b$ remain: the physical-weight identity for
 $a=b=1$ and the alternating cancellation for $a=b\ge2$.
+
+\section{Roots at infinity}
+\label{sec:general-infinity}
+
+We first locate the boundary solutions of the projective equations.
+Use coordinates $[z:X_1:\cdots:X_n]$ on $\mathbb P^n$, with
+$x_i=X_i/z$ in the affine chart. The homogenization of $P_i$ to
+degree $L+n-2$ is
+\[
+ \widehat P_i(z,X)=\frac1z\left(
+ (X_i+z)^L\prod_{j\ne i}(X_i-X_j-2z)
+ -(X_i-z)^L\prod_{j\ne i}(X_i-X_j+2z)\right).
+\]
+The numerator vanishes identically at $z=0$, so this is a polynomial.
+Expanding its numerator to first order in $z$ gives the boundary
+equations
+\begin{equation}\label{eq:leading-equations-infinity}
+ \widehat P_i(0,X)=2X_i^{L-1}\left(
+ L\prod_{j\ne i}(X_i-X_j)
+ -2X_i\sum_{j\ne i}\prod_{h\ne i,j}(X_i-X_h)
+ \right).
+\end{equation}
+
+\begin{proposition}[Collisions at infinity]
+\label{prop:collisions-infinity}
+Assume $L\ge2n$ and $n\ge1$. Every common zero
+$[0:X_1:\cdots:X_n]$ of the projective Bethe equations has
+\[
+ X_i=X_j\ne0
+ \quad\text{for some distinct }i,j.
+\]
+In particular, every boundary solution lies on a collision diagonal.
+\end{proposition}
+
+\begin{proof}
+Suppose the nonzero coordinates were pairwise distinct. Let
+$S=\{i:X_i\ne0\}$ and $s=|S|\ge1$. For $i\in S$ all factors
+$X_i-X_j$ are nonzero, so dividing
+\eqref{eq:leading-equations-infinity} by
+$2X_i^{L-1}\prod_{j\ne i}(X_i-X_j)$ gives
+\[
+ L=2\sum_{j\ne i}\frac{X_i}{X_i-X_j}
+   =2(n-s)+2\sum_{\substack{j\in S\\j\ne i}}
+                         \frac{X_i}{X_i-X_j}.
+\]
+Sum over $i\in S$. Each unordered pair contributes one to the
+double sum, because
+\[
+ \frac{X_i}{X_i-X_j}+\frac{X_j}{X_j-X_i}=1.
+\]
+It follows that
+\[
+ Ls=2s(n-s)+s(s-1),\qquad
+ L=2n-s-1\le2n-2,
+\]
+contradicting $L\ge2n$.
+\end{proof}
+
+The argument also applies after fixing $k$ balanced singular pairs.
+There are $r=n-2k$ free roots, and their reduced equations are
+\[
+ \begin{aligned}
+ &(x_i+1)^{L-k}(x_i-3)^k
+                   \prod_{j\ne i}(x_i-x_j-2)\\
+ &\qquad{}-(x_i-1)^{L-k}(x_i+3)^k
+                   \prod_{j\ne i}(x_i-x_j+2)=0,
+ \end{aligned}
+\]
+where the products run over the other free roots. Homogenize them
+to degree $L+r-2$ in the free-root space $\mathbb P^r$. Their leading
+forms are~\eqref{eq:leading-equations-infinity} with $r$ free
+coordinates and $L-4k$ in place of the coefficient $L$ inside the
+parentheses. The prefactor remains $2X_i^{L-1}$.
+Since $L-4k\ge2r$, the same proof forces two equal nonzero free-root
+coordinates at every boundary solution. For $r=1$ there are no boundary
+solutions; for $r=0$ there is no free-root boundary.
+
+This collision statement uses no distinct-root assumption. However,
+support on collision diagonals is weaker than vanishing of the
+depermutation weight. The homogenized equations may have nontrivial
+local multiplicities, or even positive-dimensional intersections at
+infinity. Comparing those contributions across the partition systems,
+and proving their cancellation, remains necessary to identify the
+projective intersection count with the affine total weight.
 
 \section{Exactly one singular pair: $a=b=1$}
 \label{sec:simple-reduced-one-pair}
