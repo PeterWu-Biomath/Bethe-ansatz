@@ -45,6 +45,17 @@ thereby proving its nonnegativity.
 
 \section{Background: the XXX Bethe ansatz}
 
+The Bethe ansatz originated in Bethe's 1931 study of the
+one-dimensional Heisenberg chain \cite{Bethe1931}, where he constructed
+eigenfunctions by a special ansatz for their coordinate dependence.
+The method subsequently developed into a central tool for quantum
+integrable systems, encompassing the XXX, XXZ, and XYZ spin chains
+and their relations to the six- and eight-vertex models of statistical
+mechanics. Standard accounts of this broader setting include Baxter's
+book \cite{Baxter1982} and the treatment of the quantum inverse
+scattering method by Korepin, Bogoliubov, and Izergin \cite{KBI1993}.
+
+
 Let $L$ be the length of the periodic spin-$1/2$ XXX chain, with state space
 $\mathcal H=(\C^2)^{\otimes L}$. One normalization of its Hamiltonian is
 \[
@@ -73,8 +84,10 @@ sector, counted with their vector-space dimensions, is
 \end{equation}
 %Indeed, each irreducible $\mathfrak{sl}_2$ summand contributes one state to each of its weight spaces; taking the difference of two consecutive sector dimensions extracts the number of highest-weight states of the specified weight. This is a target dimension for completeness, rather than a count of distinct energy eigenvalues.
 
-The Bethe ansatz is expected to reconstruct all highest-weight
-vectors. For simplicity, rescale the parameters by
+The Bethe ansatz is that we can construct reconstruct all highest-weight
+vectors from solutions of Bethe equations satisfying certain conditions. 
+
+For simplicity, rescale the parameters by
 \[
 \lambda_j=\frac{\ii}{2}x_j,
 \qquad x_j=\frac{2\lambda_j}{\ii}.
@@ -96,8 +109,8 @@ P_i(x)=P(x_i,x_1,\ldots,\widehat{x_i},\ldots,x_n).
 The periodic Bethe equations are $P_i=0$ for $i=1,\ldots,n$.
 
 Physical solutions are required to have distinct coordinates; repeated coordinates are called
-\emph{collisions}. The Bethe creation operators commute, so we also
-identify configurations differing by a permutation. Solutions containing
+\emph{collisions}. We also
+identify configurations differing by a permutation as the Bethe creation operators commutes. Solutions containing
 $x_1=1$ and $x_2=-1$ are called \emph{singular}. For distinct remaining
 roots, physical singular solutions of the periodic system require the
 additional regularization condition
@@ -109,6 +122,29 @@ As an example for $n=2$, the empty product is $1$,
 and the condition requires $L$ to be even.
 See \cite{NW2013,NW2014} for regularizations and
 \cite{HNS2013} for the completeness counting problem.
+
+Completeness for the homogeneous periodic spin-$1/2$ XXX chain has a
+rigorous mathematical foundation in the work of Mukhin, Tarasov, and
+Varchenko (MTV) \cite[Section~12]{MTV2009}. They proved that the Bethe
+algebra has simple joint spectrum on the highest-weight subspace and
+identified its spectrum with second-order difference operators having
+a two-dimensional polynomial kernel. In particular, their result gives
+exactly $d(L,n)$ polynomial-kernel solutions. Thus completeness is
+rigorously established in this polynomial formulation; identifying its
+solutions with ordinary Bethe roots requires care at singular
+configurations. Nepomechie and Wang \cite{NW2013,NW2014} developed
+regularizations and physicality conditions for singular solutions,
+while Granet and Jacobsen \cite{GJ2020} connected their regularization
+with polynomial companions and characterized physical distinct-root
+solutions by two zero-remainder conditions.
+
+The purpose of this note is to give an intersection-theoretic
+explanation of the completeness count. We express the expected count
+as a weighted combination of intersection numbers and study the
+associated local weights. The conjectural local and boundary
+identifications below concern this counting construction, rather than
+the established polynomial formulation of completeness.
+
 
 \section{The counting strategy}
 Assume that the set of ordered solutions of $P_1=\cdots=P_n=0$ is finite,
@@ -1026,6 +1062,38 @@ canonical module maps between the original local algebras.
 
 \begin{thebibliography}{99}
 
+\bibitem{BT1977}
+D.~G.~Babbitt and L.~E.~Thomas,
+\emph{Explicit Plancherel theorem for ground state representation of the
+Heisenberg chain},
+Proc.\ Natl.\ Acad.\ Sci.\ USA \textbf{74}, 816--817 (1977),
+\href{https://doi.org/10.1073/pnas.74.3.816}{doi:10.1073/pnas.74.3.816}.
+
+\bibitem{KE1987}
+T.~Koma and H.~Ezawa,
+\emph{Completeness of the Two-Down-Spin Bethe States in the
+One-Dimensional Heisenberg Model},
+Prog.\ Theor.\ Phys.\ \textbf{78}, 1009--1021 (1987),
+\href{https://doi.org/10.1143/PTP.78.1009}{doi:10.1143/PTP.78.1009}.
+
+
+\bibitem{Bethe1931}
+H.~Bethe,
+\emph{Zur Theorie der Metalle. I. Eigenwerte und Eigenfunktionen der
+linearen Atomkette},
+Z.\ Phys.\ \textbf{71}, 205--226 (1931).
+
+\bibitem{Baxter1982}
+R.~J.~Baxter,
+\emph{Exactly Solved Models in Statistical Mechanics},
+Academic Press, London (1982).
+
+\bibitem{KBI1993}
+V.~E.~Korepin, N.~M.~Bogoliubov, and A.~G.~Izergin,
+\emph{Quantum Inverse Scattering Method and Correlation Functions},
+Cambridge University Press (1993).
+
+
 \bibitem{NW2013}
 R.~I.~Nepomechie and C.~Wang,
 \emph{Algebraic Bethe ansatz for singular solutions},
@@ -1044,6 +1112,18 @@ W.~Hao, R.~I.~Nepomechie, and A.~J.~Sommese,
 \emph{Completeness of solutions of Bethe's equations},
 Phys.\ Rev.\ E \textbf{88}, 052113 (2013),
 \href{https://arxiv.org/abs/1308.4645}{arXiv:1308.4645}.
+
+\bibitem{MTV2009}
+E.~Mukhin, V.~Tarasov, and A.~Varchenko,
+\emph{Bethe algebra of homogeneous XXX Heisenberg model has simple spectrum},
+Commun.\ Math.\ Phys.\ \textbf{288}, 1--42 (2009),
+\href{https://arxiv.org/abs/0706.0688}{arXiv:0706.0688}.
+
+\bibitem{GJ2020}
+E.~Granet and J.~L.~Jacobsen,
+\emph{On zero-remainder conditions in the Bethe ansatz},
+JHEP \textbf{03}, 178 (2020),
+\href{https://arxiv.org/abs/1910.07797}{arXiv:1910.07797}.
 
 \bibitem{Stanley2012}
 R.~P.~Stanley,
@@ -1070,18 +1150,6 @@ B.~Sturmfels,
 \emph{Solving Systems of Polynomial Equations},
 CBMS Regional Conference Series in Mathematics \textbf{97}, AMS (2002),
 \href{https://web.math.berkeley.edu/~bernd/cbms.pdf}{author's manuscript}.
-
-\bibitem{GJ2020}
-E.~Granet and J.~L.~Jacobsen,
-\emph{On zero-remainder conditions in the Bethe ansatz},
-JHEP \textbf{03}, 178 (2020),
-\href{https://arxiv.org/abs/1910.07797}{arXiv:1910.07797}.
-
-\bibitem{MTV2009}
-E.~Mukhin, V.~Tarasov, and A.~Varchenko,
-\emph{Bethe algebra of homogeneous XXX Heisenberg model has simple spectrum},
-Commun.\ Math.\ Phys.\ \textbf{288}, 1--42 (2009),
-\href{https://arxiv.org/abs/0706.0688}{arXiv:0706.0688}.
 
 \end{thebibliography}
 \end{document}
