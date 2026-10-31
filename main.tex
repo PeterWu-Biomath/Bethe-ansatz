@@ -877,7 +877,7 @@ and work in $T\times\A^n$. We assume that the relevant local families
 are finite and flat over $T$. Barred symbols $\bar Z$ denote the
 corresponding formal sums of families, retaining their scheme-theoretic
 multiplicities. Their specialization at $\theta=0$ is the formal sum
-of points associated to the special fiber.
+of points associated to the special fiber. Again define $\bar X$ be the set of irreducible components of zeros of $P_i=0$
 
 \begin{definition}[Averaged fixed-pair family]
 \label{def:averaged-fixed-pair-family}
@@ -924,18 +924,35 @@ $\bar Z_{f,g;\pi}$ be its associated formal sum of families. Set
         \bar Z_{f,g;\pi}.
  }
 \end{equation}
-For $k=0$, the labelings and their common image are empty, and the
-denominator is one.
+
 \end{definition}
 
-The common-image condition pairs every pinned positive endpoint with
-the negative endpoint at the same site. Thus the original equations at
-the pinned coordinates vanish automatically, and the family is
-supported on the deformed Bethe solution set. No correspondence between
-$A$ and $B$ is chosen beforehand: it is determined by $g^{-1}\circ f$.
 
-There are $\binom Lk(k!)^2$ pairs of labelings: choose $J$, then
-independently biject $A$ and $B$ onto it. At $\theta=0$, every ideal
+\begin{remark}[Non-injective labelings]
+One may also allow non-injective maps $f:A\to[L]$ and $g:B\to[L]$
+with the same image $J$. The pinned equations still vanish
+automatically: every positive endpoint has a negative partner at the
+same site, and conversely. For the free equations, divide by the
+product in \eqref{eq:inhomogeneous-reduced-equation}, with each
+distinct site $j\in J$ occurring once. The resulting family is still
+supported on the deformed Bethe solution locus and specializes to
+points of $X$.
+
+However, non-injectivity forces two pinned coordinates of the same
+sign to coincide. On a simple generic fiber, full depermutation over
+all $n$ labels cancels such a point: if $\sigma$ is its nontrivial
+equality partition, its unnormalized weight is
+\[
+ \sum_{\rho\le\sigma}\mu(\hat0,\rho)=0.
+\]
+This concerns full depermutation of the ambient Bethe system.
+Depermutation over the free labels $R$ alone does not remove
+collisions among pinned coordinates. We therefore omit non-injective
+labelings from \eqref{eq:averaged-fixed-pair-family}.
+\end{remark}
+
+
+There are $\binom Lk(k!)^2$ pairs of labelings. Thus at $\theta=0$, every ideal
 $\bar I_{f,g;\pi}$ specializes to $I_{A,B;\pi}$, so the normalization
 gives
 \[
@@ -949,9 +966,6 @@ $\bar Z_{A,B;\pi}$ in
        (-1)^k\binom Lk\bar Z_k^{\mathrm{dep}}\right|_{\theta=0}
  =\tilde Z.
 \]
-The average in \eqref{eq:averaged-fixed-pair-family} preserves the
-homogeneous normalization; the outer factor $\binom Lk$ supplies the
-sum over site subsets required for inclusion--exclusion.
 
 
 \begin{thebibliography}{99}
