@@ -881,16 +881,23 @@ of points associated to the special fiber. Write $\bar X$ for the set
 of irreducible components of the deformed solution locus
 $P_1^\theta=\cdots=P_n^\theta=0$.
 
-\begin{definition}[Averaged fixed-pair family]
+For the barred fixed-pair families, assume $|A|=|B|$ and prescribe a
+one-to-one correspondence between $A$ and $B$. We average over all
+assignments of site labels to these matched pairs, allowing repeated
+site labels.
+\begin{definition}[Average over matched site labelings]
 \label{def:averaged-fixed-pair-family}
 Let $A,B\subseteq[n]$ be disjoint, with $|A|=|B|=k$, and let
 $\pi=\{S_1,\ldots,S_m\}$ be a partition of
-$R=[n]\setminus(A\cup B)$. Choose a representative $r_\alpha$ of each
-block. Take injective labelings
+$R=[n]\setminus(A\cup B)$. Fix a bijection $\tau:A\to B$ and choose
+a representative $r_\alpha$ of each block. For every map $f:A\to[L]$,
+set
 \[
- f:A\hookrightarrow[L],\qquad g:B\hookrightarrow[L],\qquad
- \operatorname{im}f=\operatorname{im}g=:J.
+ g=f\circ\tau^{-1}:B\longrightarrow[L],\qquad J=\operatorname{im}f.
 \]
+Thus $g(\tau(a))=f(a)$: the two members of each matched pair carry the
+same site label. Neither map is required to be injective, and both
+have image $J$.
 The labelings prescribe the pinned coordinates
 \[
  x_a=1-\theta_{f(a)}\quad(a\in A),\qquad
@@ -902,8 +909,10 @@ For $t\in R$, define
  \frac{\left.P_t^\theta(x)\right|_{\text{pinned coordinates}}}
  {\displaystyle\prod_{j\in J}\bigl((x_t+\theta_j)^2-1\bigr)}.
 \end{equation}
-This is a polynomial: each selected site occurs once in each labeling,
-and its two factors divide both terms of the substituted equation.
+The denominator contains each distinct site $j\in J$ once, regardless
+of how many matched pairs carry that label. The quotient is a
+polynomial, since the two factors for each selected site divide both
+terms of the substituted equation.
 Define
 \[
  \begin{aligned}
@@ -919,20 +928,22 @@ in $\C[[\theta_1,\ldots,\theta_L]][x_1,\ldots,x_n]$, and let
 $\bar Z_{f,g;\pi}$ be its associated formal sum of families. Set
 \begin{equation}\label{eq:averaged-fixed-pair-family}
  \boxed{
- \bar Z_{A,B;\pi}
- =\frac{1}{\binom Lk(k!)^2}
-   \sum_{\substack{f:A\hookrightarrow[L],\ g:B\hookrightarrow[L]\\
-                    \operatorname{im}f=\operatorname{im}g}}
-        \bar Z_{f,g;\pi}.
+ \bar Z_{A,B;\pi}^{\tau}
+ =\frac{1}{L^k}\sum_{f:A\to[L]}
+        \bar Z_{f,\,f\circ\tau^{-1};\pi}.
  }
 \end{equation}
-
+We suppress $\tau$ when the prescribed matching is understood.
+There are exactly $L^k$ labelings, hence $L^k$ summands in this
+average. A summand need not be a single irreducible component, and
+different summands may have components in common. For $k=0$, the
+labeling is empty and the normalization is one.
 \end{definition}
 
 
 \begin{remark}[Non-injective labelings]
-One may also allow non-injective maps $f:A\to[L]$ and $g:B\to[L]$
-with the same image $J$. The pinned equations still vanish
+Non-injective labelings are included in the average above. The pinned
+equations still vanish
 automatically: every positive endpoint has a negative partner at the
 same site, and conversely. For the free equations, divide by the
 product in \eqref{eq:inhomogeneous-reduced-equation}, with each
@@ -949,29 +960,33 @@ equality partition, its unnormalized weight is
 \]
 This concerns full depermutation of the ambient Bethe system.
 Depermutation over the free labels $R$ alone does not remove
-collisions among pinned coordinates. We therefore omit non-injective
-labelings from \eqref{eq:averaged-fixed-pair-family}.
+collisions among pinned coordinates. Thus their inclusion in the
+average is not, by itself, a justification for discarding them in a
+sum depermuted only over $R$.
 \end{remark}
 
 
-There are $\binom Lk(k!)^2$ pairs of labelings. Thus at $\theta=0$, every ideal
-$\bar I_{f,g;\pi}$ specializes to $I_{A,B;\pi}$, so the normalization
-gives
+\begin{remark}[Specialization of the uniform average]
+The normalization $L^{-k}$ averages all labelings of the prescribed
+pairs. For an injective labeling, $|J|=k$ and the corresponding ideal
+specializes to $I_{A,B;\pi}$. For a non-injective labeling with
+$d=|J|<k$, however,
 \[
- \left.\bar Z_{A,B;\pi}\right|_{\theta=0}=Z_{A,B;\pi}.
+ \left.P_t^{f,g}\right|_{\theta=0}
+ =(x_t^2-1)^{k-d}P_t^{\mathrm{red}},\qquad t\in R,
 \]
-Define $\bar Z_k^{\mathrm{dep}}$ by replacing $Z_{A,B;\pi}$ with
-$\bar Z_{A,B;\pi}$ in
-\eqref{eq:reduced-fixed-pair-depermutation}. Then
-\[
- \left.\sum_{k=0}^{\lfloor n/2\rfloor}
-       (-1)^k\binom Lk\bar Z_k^{\mathrm{dep}}\right|_{\theta=0}
- =\tilde Z.
-\]
+where $P_t^{\mathrm{red}}$ is the homogeneous reduced polynomial for
+the fixed sets $A,B$. Hence these summands can have different special
+fibers. In general we cannot identify
+$\left.\bar Z_{A,B;\pi}^{\tau}\right|_{\theta=0}$ with
+$Z_{A,B;\pi}$ from the normalization alone. Compatibility with the
+original alternating formula requires a further argument; it is not
+part of this definition.
+\end{remark}
 
 \begin{definition}[Site labels of a component]
 \label{def:component-site-labels}
-Fix a homogeneous solution
+Fix a solution of Bethe equations
 \[
  p=(1^k,-1^k,z_1,\ldots,z_{n-2k}),\qquad z_j\ne\pm1,
 \]
