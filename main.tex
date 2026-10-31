@@ -869,206 +869,89 @@ The deformed original equations are
  P_i^\theta(x)=a_\theta(x_i)\prod_{s\ne i}(x_i-x_s-2)
              -d_\theta(x_i)\prod_{s\ne i}(x_i-x_s+2)=0.
 \]
-They specialize to $P_i=0$ at $\theta=0$. A \emph{site pair} at site
-$j$ means that two coordinates are $1-\theta_j$ and $-1-\theta_j$.
-The equations at these two coordinates vanish automatically: in each
-term either a vacuum factor or an interaction factor is zero.
+They specialize to $P_i=0$ at $\theta=0$. Put
+\[
+ T=\operatorname{Spec}\C[[\theta_1,\ldots,\theta_L]],
+\]
+and work in $T\times\A^n$. We assume that the relevant local families
+are finite and flat over $T$. Barred symbols $\bar Z$ denote the
+corresponding formal sums of families, retaining their scheme-theoretic
+multiplicities. Their specialization at $\theta=0$ is the formal sum
+of points associated to the special fiber.
 
-For a subset $I\subseteq[L]$, fix one such pair for each $j\in I$,
-using different root labels. Call this assignment a \emph{placement}.
-Let $R$ be the remaining labels. After substitution, divide each free
-equation by
+\begin{definition}[Averaged fixed-pair family]
+\label{def:averaged-fixed-pair-family}
+Let $A,B\subseteq[n]$ be disjoint, with $|A|=|B|=k$, and let
+$\pi=\{S_1,\ldots,S_m\}$ be a partition of
+$R=[n]\setminus(A\cup B)$. Choose a representative $r_\alpha$ of each
+block. Take injective labelings
 \[
- \prod_{j\in I}\bigl((x_t+\theta_j)^2-1\bigr),\qquad t\in R.
+ f:A\hookrightarrow[L],\qquad g:B\hookrightarrow[L],\qquad
+ \operatorname{im}f=\operatorname{im}g=:J.
 \]
-The resulting polynomials are
+The labelings prescribe the pinned coordinates
 \[
- P_{t,I}^\theta
- =a_{\theta,I}(x_t)\prod_{s\in R\setminus\{t\}}(x_t-x_s-2)
- -d_{\theta,I}(x_t)\prod_{s\in R\setminus\{t\}}(x_t-x_s+2),
+ x_a=1-\theta_{f(a)}\quad(a\in A),\qquad
+ x_b=-1-\theta_{g(b)}\quad(b\in B).
 \]
-where
+For $t\in R$, define
+\begin{equation}\label{eq:inhomogeneous-reduced-equation}
+ P_t^{f,g}(x_R)=
+ \frac{\left.P_t^\theta(x)\right|_{\text{pinned coordinates}}}
+ {\displaystyle\prod_{j\in J}\bigl((x_t+\theta_j)^2-1\bigr)}.
+\end{equation}
+This is a polynomial: each selected site occurs once in each labeling,
+and its two factors divide both terms of the substituted equation.
+Define
 \[
  \begin{aligned}
- a_{\theta,I}(t)&=\prod_{j\notin I}(t+\theta_j+1)
-                  \prod_{j\in I}(t+\theta_j-3),\\
- d_{\theta,I}(t)&=\prod_{j\notin I}(t+\theta_j-1)
-                  \prod_{j\in I}(t+\theta_j+3).
+ \bar I_{f,g;\pi}=\bigl(&x_a-1+\theta_{f(a)}\ (a\in A),\quad
+                       x_b+1+\theta_{g(b)}\ (b\in B),\\
+                      &P_{r_\alpha}^{f,g}\ (1\le\alpha\le m),\\
+                      &x_t-x_{r_\alpha}\quad
+                       (1\le\alpha\le m,\ t\in S_\alpha\setminus\{r_\alpha\})
+                       \bigr)
  \end{aligned}
 \]
-For $\theta=0$ and $|I|=k$, these are precisely the reduced equations
-used in $I_{A,B;\pi}$, where $A,B$ are the labels of the fixed positive
-and negative roots.
-
-\paragraph{Distinct coordinates and simple zeros: the assumptions.}
-Fix an isolated homogeneous root $p$, and restrict to a generic
-line $\theta_j=c_j\varepsilon$ through $0$. Work locally near $p$ over
-$T=\C[[\varepsilon]]$. We assume the following for this family and all
-its fixed-pair systems.
-\begin{enumerate}
- \item The local partition families specializing to $p$ are finite
- and flat over $T$. Thus each central local multiplicity equals the degree
- of its nearby fiber, counted with multiplicity.
- \item For generic $\varepsilon\ne0$, every zero of each system of
- free equations $P_{t,I}^\theta=0$ is simple. Explicitly, the Jacobian
- with respect to its $|R|$ free coordinates is invertible, or,
- equivalently, the root has multiplicity one. The empty system is
- assigned multiplicity one.
- \item For generic $\varepsilon\ne0$, the site endpoints are pairwise
- distinct. In each fixed-pair reduced system the free roots avoid
- all endpoints already fixed by its placement.
-\end{enumerate}
-These are hypotheses about the particular inhomogeneous family;
-we do not establish them here for all $L,n$.
-
-Distinctness and simplicity play different roles. A simple zero may
-have repeated coordinates, and such zeros are allowed in the auxiliary
-systems. Depermutation cancels them. The configurations retained after
-this cancellation must have pairwise distinct coordinates. For a
-fixed-pair system this means distinct free coordinates, together with
-the endpoint avoidance in the third assumption. The homogeneous point
-$p$ itself may have repeated coordinates and local multiplicity greater than
-one. In particular, simplicity of a fully reduced homogeneous zero,
-when available, does not by itself imply all the genericity assumptions
-above.
-
-\paragraph{Deforming the original formal sum.}
-For a placement of $I$ and a partition $\pi$ of $R$, let
-$Z^\theta_{I,\mathrm{placement};\pi}$ be the formal sum defined by
-fixing its endpoints, retaining one reduced equation per block, and
-imposing the equalities inside each block. Define
-\[
- \mathcal Z_I(\theta)=\frac1{n!}
- \sum_{\mathrm{placements}}\ \sum_{\pi\in\Pi(R)}
-       \mu(\hat0,\pi)Z^\theta_{I,\mathrm{placement};\pi}.
-\]
-All sums here are restricted to the local families specializing to
-$p$. At $\theta=0$, each choice of $A,B$ occurs $(k!)^2$ times,
-because the $k$ sites can be assigned independently to its positive
-and negative labels. Thus the normalization in
-\eqref{eq:reduced-fixed-pair-depermutation} gives
-\[
- \mathcal Z_I(0)=Z_k^{\mathrm{dep}}\quad (|I|=k),\qquad
- \mathcal Z(\theta):=\sum_{|I|\le\lfloor n/2\rfloor}
-                 (-1)^{|I|}\mathcal Z_I(\theta),\qquad
- \mathcal Z(0)=\tilde Z.
-\]
-The equalities at $0$ are understood locally at $p$.
-
-\begin{proposition}[Component interpretation under genericity assumptions]
-\label{prop:main-component-index}
-Under the assumptions above, call a nearby ordered root
-\emph{good} if its coordinates are pairwise distinct and it contains
-no site pair. Then
-\begin{equation}\label{eq:main-component-count}
- \boxed{w_p(\tilde Z)=\frac1{n!}
-       \#\{\text{good nearby ordered roots specializing to }p\}
-       \ge0.}
+in $\C[[\theta_1,\ldots,\theta_L]][x_1,\ldots,x_n]$, and let
+$\bar Z_{f,g;\pi}$ be its associated formal sum of families. Set
+\begin{equation}\label{eq:averaged-fixed-pair-family}
+ \boxed{
+ \bar Z_{A,B;\pi}
+ =\frac{1}{\binom Lk(k!)^2}
+   \sum_{\substack{f:A\hookrightarrow[L],\ g:B\hookrightarrow[L]\\
+                    \operatorname{im}f=\operatorname{im}g}}
+        \bar Z_{f,g;\pi}.
+ }
 \end{equation}
-The count is the degree over the generic parameter, including all
-sheets of a component.
+For $k=0$, the labelings and their common image are empty, and the
+denominator is one.
+\end{definition}
 
-More precisely, let $\mathcal Y_p$ be the scheme-theoretic closure of
-these good generic points in the finite local family, and let $B_p$
-be its coordinate algebra. Then $B_p$ is finite free over $T$, and
-\begin{equation}\label{eq:main-component-length}
- \boxed{w_p(\tilde Z)=\frac{\operatorname{rank}_T B_p}{n!}
-       =\frac{\dim_\C(B_p/\varepsilon B_p)}{n!}.}
-\end{equation}
-The empty closure has the zero algebra.
-\end{proposition}
+The common-image condition pairs every pinned positive endpoint with
+the negative endpoint at the same site. Thus the original equations at
+the pinned coordinates vanish automatically, and the family is
+supported on the deformed Bethe solution set. No correspondence between
+$A$ and $B$ is chosen beforehand: it is determined by $g^{-1}\circ f$.
 
-\begin{proof}
-First fix $I$ and a placement. At a generic simple zero of the free
-system, let $\sigma$ be the equality partition of its free coordinates.
-A partition $\pi$ contributes exactly when $\pi\le\sigma$. Its local
-multiplicity is one: imposing its block equalities on the full free ideal
-gives the partition ideal, and the full local algebra is already
-$\C$. Consequently its total M\"obius contribution is
+There are $\binom Lk(k!)^2$ pairs of labelings: choose $J$, then
+independently biject $A$ and $B$ onto it. At $\theta=0$, every ideal
+$\bar I_{f,g;\pi}$ specializes to $I_{A,B;\pi}$, so the normalization
+gives
 \[
- \sum_{\pi\le\sigma}\mu(\hat0,\pi)
- =\begin{cases}1,&\sigma=\hat0,\\0,&\sigma\ne\hat0.\end{cases}
+ \left.\bar Z_{A,B;\pi}\right|_{\theta=0}=Z_{A,B;\pi}.
 \]
-Thus only distinct free roots remain. By endpoint avoidance, the full
-configuration then has distinct coordinates. Every such reduced
-root satisfies the original equations, including the automatically
-vanishing equations at the pinned pairs.
-
-Now let $q$ be a distinct-coordinate root of the generic original
-system, and set
+Define $\bar Z_k^{\mathrm{dep}}$ by replacing $Z_{A,B;\pi}$ with
+$\bar Z_{A,B;\pi}$ in
+\eqref{eq:reduced-fixed-pair-depermutation}. Then
 \[
- S(q)=\{j:\text{both }1-\theta_j\text{ and }-1-\theta_j
-                         \text{ occur among the coordinates of }q\}.
+ \left.\sum_{k=0}^{\lfloor n/2\rfloor}
+       (-1)^k\binom Lk\bar Z_k^{\mathrm{dep}}\right|_{\theta=0}
+ =\tilde Z.
 \]
-It occurs in the $I$-system exactly when $I\subseteq S(q)$, with a
-unique placement. Indeed, all factors divided out of its free
-equations are units at $q$, so the reduced and original free equations
-are equivalent there. Its weight in each such $\mathcal Z_I$ is
-$1/n!$. Its alternating weight is therefore
-\[
- \frac1{n!}\sum_{I\subseteq S(q)}(-1)^{|I|}
- =\begin{cases}1/n!,&S(q)=\varnothing,\\0,&S(q)\ne\varnothing.\end{cases}
-\]
-Collision configurations contribute nothing to any $\mathcal Z_I$:
-they either violate endpoint avoidance or have a free collision, whose
-M\"obius sum vanishes. Hence $\mathcal Z(\theta)$ is exactly the
-normalized sum of good generic roots. Conservation of local
-multiplicities in every auxiliary family gives
-\eqref{eq:main-component-count} on specializing to $p$.
-
-For the algebraic formulation, take the image of the finite local
-coordinate algebra in the product of the generic fields corresponding
-to good points. This image is $B_p$, the algebra of their closure.
-It is finite and torsion-free over the discrete valuation ring $T$,
-hence free. Its rank counts the good generic points, including the
-degrees of their residue fields. Its central fiber has the same
-vector-space dimension, proving \eqref{eq:main-component-length}.
-\end{proof}
-
-\paragraph{Meaning of the alternating sum of $\nu_k(p)$.}
-For comparison with the unordered local index, suppose
-\[
- p=(1^a,-1^a,z_1,\ldots,z_r),\qquad n=2a+r,
-\]
-where the $z_j$ are distinct and different from $\pm1$. Define the
-unordered reduced depermutation multiplicities by the normalization
-\[
- \nu_k(p)=\frac{n!}{(a!)^2}w_k(p),\qquad 0\le k\le a.
-\]
-This uses only the original partition sums. The stabilizer of $p$ is
-$G_p=\mathfrak S_a\times\mathfrak S_a$. It preserves the local good
-closure and acts freely on its generic points, because their
-coordinates are distinct. Its invariant algebra $B_p^{G_p}$ is finite
-free over $T$, and its rank is $\operatorname{rank}_T B_p/(a!)^2$.
-Therefore the finite algebra
-$\mathcal R_p=B_p^{G_p}/\varepsilon B_p^{G_p}$ satisfies
-\begin{equation}\label{eq:main-geometric-local-index}
- \boxed{\sum_{k=0}^a(-1)^k\binom Lk\nu_k(p)
-       =\dim_\C\mathcal R_p\ge0.}
-\end{equation}
-Thus the alternating sum is the local degree of the remaining
-components after passing to unordered configurations near $p$.
-
-\paragraph{What is removed, and what remains to prove.}
-Geometrically, delete the generic components contained in a collision
-diagonal $x_i=x_j$ or a site-pair locus
-\[
- x_i=1-\theta_j,\qquad x_s=-1-\theta_j\quad (i\ne s),
-\]
-and then take the closure of what remains. The degree means the sum
-of the degrees of the remaining components over the parameter, rather
-than their number. These operations must be performed in the total
-family before specializing: a good component may meet a repeated
-singular configuration at $\theta=0$, and its contribution is retained
-there.
-
-Consequently this interpretation proves nonnegativity under the stated
-assumptions, but does not yet identify the degree with the physical
-weight. In particular, cancellation at a repeated singular point
-requires proving that no good generic branch specializes to it.
-At a physical point one must instead determine the required degree of
-the good closure. These are additional geometric statements, separate
-from the two inclusion--exclusion identities above.
+The average in \eqref{eq:averaged-fixed-pair-family} preserves the
+homogeneous normalization; the outer factor $\binom Lk$ supplies the
+sum over site subsets required for inclusion--exclusion.
 
 
 \begin{thebibliography}{99}
