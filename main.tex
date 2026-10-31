@@ -127,21 +127,26 @@ See \cite{NW2013,NW2014} for regularization procedures.
 
 
 
-By completeness of the Bethe ansatz, we mean that the Bethe vectors
-obtained from physical roots, with singular solutions appropriately
-regularized, span the full highest-weight space. Early rigorous results on completeness include the eigenfunction
-expansion of Babbitt and Thomas \cite{BT1977} for the infinite
-Heisenberg chain in its ground-state representation, and the
-finite-chain two-down-spin result of Koma and Ezawa \cite{KE1987},
-obtained by modifying the periodic boundary condition and taking a
-limit.
+By completeness of the Bethe ansatz, we mean that Bethe vectors
+obtained from physical roots, with singular roots appropriately
+regularized, span the highest-weight space. Early spectral results
+include Babbitt--Thomas's infinite-chain expansion \cite{BT1977} and
+Koma--Ezawa's two-down-spin analysis \cite{KE1987}. Combinatorial counts
+were developed by Kirillov \cite{Kirillov1985} and Kirillov--Liskova
+\cite{KL1997}, the latter assuming the string hypothesis. Baxter
+\cite{Baxter2002} examined exceptional roots and completeness for the
+six- and eight-vertex models. Algebraic-geometric approaches include
+Langlands--Saint-Aubin \cite{LS1995} and the quotient-ring counting
+methods of Jiang--Zhang \cite{JZ2018}.
 
-A rigorous mathematical foundation has been given by Mukhin, Tarasov, and
-Varchenko (MTV) \cite[Section~12]{MTV2009} for completeness of spin-$1/2$ XXX chain. Nepomechie and Wang \cite{NW2013,NW2014} developed
-regularizations and physicality conditions for singular solutions,
-while Granet and Jacobsen \cite{GJ2020} related these regularizations
-to polynomial companions and characterized physical distinct-root
-solutions by two zero-remainder conditions.
+For the homogeneous spin-$1/2$ XXX chain, Mukhin, Tarasov, and
+Varchenko \cite[Section~12]{MTV2009} established completeness in the
+polynomial-kernel formulation. The relation to physical roots was
+further clarified by Nepomechie--Wang's regularization criteria
+\cite{NW2013,NW2014}, numerical root counts by Hao, Nepomechie, and
+Sommese \cite{HNS2013}, and Granet--Jacobsen's characterization of
+physical distinct-root configurations through polynomial companions
+and two zero-remainder conditions \cite{GJ2020}.
 
 This note seeks an intersection-theoretic explanation of the
 completeness count. We express the expected count as a weighted
@@ -152,21 +157,19 @@ formulation is already established.
 
 
 \section{The counting strategy}
-Assume that the set of ordered solutions of $P_1=\cdots=P_n=0$ is finite,
+Assume that the set of roots of $P_1=\cdots=P_n=0$ is finite,
 and write
 \[
 X=\{x^1,\ldots,x^s\}\subseteq\C^n
 \]
-for this set. In the target count, physical solutions have pairwise
-distinct coordinates and yield nonzero Bethe vectors, using
-regularization at singular solutions. Assign the target weights
+for this set. Assign the target weights
 \[
 w_i=\begin{cases}
-	1/n!,&x^i\text{ is a physical solution},\\
+	1/n!,&x^i\text{ is a physical roots},\\
 	0,&\text{otherwise}.
 \end{cases}
 \]
-The desired completeness statement is
+As physical roots has distinct components, the desired completeness statement is
 \begin{equation}\label{eq:target-weights}
 	\sum_{i=1}^s w_i=d(L,n).
 \end{equation}
@@ -175,10 +178,8 @@ We work with formal sums of points with rational weights:
 \[
 Z=\sum_i w_i(Z)[x^i],\qquad w_i(Z)\in\mathbb Q.
 \]
-Here $[x^i]$ is a formal symbol for the point $x^i$, and equality of
-such sums means equality of the weight at every point. We write
-$\deg Z=\sum_i w_i(Z)$ for the total weight, allowing negative weights.
-All operations below are operations on these formal sums.
+Here $[x^i]$ is a formal symbol for the point $x^i$. We write
+$\deg Z=\sum_i w_i(Z)$ for the total weight.
 For a map $\phi$ of point sets, we use the notation
 \[
 \phi_*\!\left(\sum_p w_p[p]\right)=\sum_p w_p[\phi(p)],
@@ -1139,6 +1140,37 @@ B.~Sturmfels,
 \emph{Solving Systems of Polynomial Equations},
 CBMS Regional Conference Series in Mathematics \textbf{97}, AMS (2002),
 \href{https://web.math.berkeley.edu/~bernd/cbms.pdf}{author's manuscript}.
+
+
+\bibitem{Kirillov1985}
+A.~N.~Kirillov,
+\emph{Combinatorial identities, and completeness of eigenstates for the
+Heisenberg magnet},
+J.\ Sov.\ Math.\ \textbf{30}, 2298--2310 (1985).
+
+\bibitem{KL1997}
+A.~N.~Kirillov and N.~A.~Liskova,
+\emph{Completeness of Bethe's states for the generalized XXZ model},
+J.\ Phys.\ A: Math.\ Gen.\ \textbf{30}, 1209--1226 (1997),
+\href{https://arxiv.org/abs/hep-th/9403107}{arXiv:hep-th/9403107}.
+
+\bibitem{Baxter2002}
+R.~J.~Baxter,
+\emph{Completeness of the Bethe ansatz for the six and eight-vertex models},
+J.\ Stat.\ Phys.\ \textbf{108}, 1--48 (2002),
+\href{https://arxiv.org/abs/cond-mat/0111188}{arXiv:cond-mat/0111188}.
+
+\bibitem{LS1995}
+R.~P.~Langlands and Y.~Saint-Aubin,
+\emph{Algebro-geometric aspects of the Bethe equations},
+in \emph{Strings and Symmetries}, Springer (1995), pp.~40--53,
+\href{https://publications.ias.edu/sites/default/files/feza-ps.pdf}{author's manuscript}.
+
+\bibitem{JZ2018}
+Y.~Jiang and Y.~Zhang,
+\emph{Algebraic geometry and Bethe ansatz (I): The quotient ring for BAE},
+JHEP \textbf{03}, 087 (2018),
+\href{https://arxiv.org/abs/1710.04693}{arXiv:1710.04693}.
 
 \end{thebibliography}
 \end{document}
