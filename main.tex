@@ -14,28 +14,29 @@
 \newcommand{\length}{\operatorname{length}}
 \newcommand{\Sym}{\operatorname{Sym}}
 \newcommand{\ord}{\operatorname{ord}}
-\title{Completeness of the Bethe Ansatz from Intersection Number in $\mathbb{P}^N$}
+\title{Completeness of the Bethe Ansatz through Intersection Numbers in $\mathbb P^N$}
 \author{}
 \date{}
 \begin{document}
 \maketitle
 
 \begin{abstract}
-We develop an intersection-theoretic framework for counting solutions of
-the Bethe equations for the spin-$1/2$ XXX chain. Completeness in the highest-weight
-sector requires the number of physical solutions, counted up to
-permutation and with singular solutions appropriately regularized, to
-equal $\binom Ln-\binom L{n-1}$, where $L$ is the length of state and $N$ is the number of flipped spins. 
-To count them, we generalize the inclusion--exclusion
-principle by constructing a family of auxiliary polynomial systems and
-assigning to each ordered solution of the Bethe equations a local index,
-defined as a weighted sum of the local lengths of the auxiliary ideals
-at that solution. We conjecture that this index equals $1/n!$ at every
-physical solution and vanishes at every unphysical solution. With some non-degeneracy assumptions,
-we establish the for configurations with collisions among nonsingular roots, configurations
-with different numbers of roots at $\ii/2$ and $-\ii/2$, and configurations
-containing exactly one singular pair. For configurations with multiple
-copies of the singular pair, we express the index as number of non-singular solutions in deformed Bethe equations, with some combinatorial factors. 
+We develop an approach based on intersection numbers to study the
+completeness of the Bethe ansatz for the periodic spin-$1/2$ XXX chains.
+The completeness of the Bethe ansatz predicts that the number of
+solutions of the Bethe equations, after removing collisions, identifying
+permutations, and appropriately regularizing singular solutions, is
+expected to equal $\binom LN-\binom L{N-1}$, where $L$ is the length of chain and $N$ is the number of flipped spins. 
+We propose a counting strategy that starts from original Bethe equations and introduce a series of system of polynomial equations as corrections. 
+Then for each system of polynomial equations every solutions of Bethe equations is assigned a local index given by the local lengths of the corresponding ideals. Our target is that after proper weighted sum
+this index equals $1/N!$ at physical solutions and vanishes otherwise.
+Then taking global count, the weighted sum of intersection numbers would then
+yield the desired count. This claim is resolved for several cases conditionally: the 
+configuration of solutions with collisions among nonsingular roots, unequal
+numbers of roots at $\ii/2$ and $-\ii/2$ are implied by distinct-root assumption of $Q$-polynomial satisfying $TQ$-relation. For configurations containing repeated singular pairs, we
+interpret the index geometrically through an deformation 
+as a normalized count of nearby irreducible components with distinct
+coordinates and no site singular pair. It is unclear why such components only exists when the number of roots at $\ii/2$ and $-\ii/2$ is $1$.
 \end{abstract}
 
 \section{Background: the XXX Bethe ansatz}
