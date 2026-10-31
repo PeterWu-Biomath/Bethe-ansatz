@@ -881,67 +881,22 @@ of points associated to the special fiber. Write $\bar X$ for the set
 of irreducible components of the deformed solution locus
 $P_1^\theta=\cdots=P_n^\theta=0$.
 
-We extend the notion of $Z_{A,B;\pi}$ to $\bar Z_{A,B;\pi}$, only when $|A|=|B|$ and there is a prescribed one-to one correspondence between $A$ and $B$. We average over all
-assignments of site labels to these matched pairs.
-\begin{definition}
-\label{def:averaged-fixed-pair-family}
-Let $A,B\subseteq[n]$ be disjoint, with $|A|=|B|=k$, and let
-$\pi=\{S_1,\ldots,S_m\}$ be a partition of
-$R=[n]\setminus(A\cup B)$. Fix a bijection $\tau:A\to B$ and choose
-a representative $r_\alpha$ of each block. For every map $f:A\to[L]$,
-set
+Work locally at a homogeneous solution
 \[
- g=f\circ\tau^{-1}:B\longrightarrow[L],\qquad J=\operatorname{im}f.
+ p=(1^k,-1^k,z_1,\ldots,z_{n-2k}),
+ \qquad z_i\ne\pm1,\quad z_i\ne z_j\ (i\ne j).
 \]
-Thus $g(\tau(a))=f(a)$: the two members of each matched pair carry the
-same site label. Neither map is required to be injective, and both
-have image $J$.
-The labelings prescribe the pinned coordinates
-\[
- x_a=1-\theta_{f(a)}\quad(a\in A),\qquad
- x_b=-1-\theta_{g(b)}\quad(b\in B).
-\]
-For $t\in R$, define
-\begin{equation}\label{eq:inhomogeneous-reduced-equation}
- P_t^{f,g}(x_R)=
- \frac{\left.P_t^\theta(x)\right|_{\text{pinned coordinates}}}
- {\displaystyle\prod_{j\in J}\bigl((x_t+\theta_j)^2-1\bigr)}.
-\end{equation}
-The denominator contains each distinct site $j\in J$ once, regardless
-of how many matched pairs carry that label. The quotient is a
-polynomial, since the two factors for each selected site divide both
-terms of the substituted equation.
-Define
-\[
- \begin{aligned}
- \bar I_{f,g;\pi}=\bigl(&x_a-1+\theta_{f(a)}\ (a\in A),\quad
-                       x_b+1+\theta_{g(b)}\ (b\in B),\\
-                      &P_{r_\alpha}^{f,g}\ (1\le\alpha\le m),\\
-                      &x_t-x_{r_\alpha}\quad
-                       (1\le\alpha\le m,\ t\in S_\alpha\setminus\{r_\alpha\})
-                       \bigr)
- \end{aligned}
-\]
-in $\C[[\theta_1,\ldots,\theta_L]][x_1,\ldots,x_n]$, and let
-$\bar Z_{f,g;\pi}$ be its associated formal sum of families. Set
-\begin{equation}\label{eq:averaged-fixed-pair-family}
- \boxed{
- \bar Z_{A,B;\pi}^{\tau}
- =\frac{1}{L^k}\sum_{f:A\to[L]}
-        \bar Z_{f,\,f\circ\tau^{-1};\pi}.
- }
-\end{equation}
-\end{definition}
+We assume that the generic zeros of the deformed system and the
+auxiliary systems used in depermutation are simple. Here simplicity
+means that the Jacobian in the free root variables is invertible,
+so the corresponding local algebra has length one. It does not mean
+that the coordinates are distinct: simple collision zeros are allowed.
+Neither simplicity nor distinctness is assumed at $p$ itself.
 
-
-\begin{definition}[Site labels of a component]
-\label{def:component-site-labels}
-Fix a solution of Bethe equations
-\[
- p=(1^k,-1^k,z_1,\ldots,z_{n-2k}),\qquad z_j\ne\pm1,
-\]
-and let $C\in\bar X$ be an irreducible component through $(0,p)$
-that dominates $T$. Define two labelings
+\begin{definition}[Labels and equality partitions of a component]
+\label{def:component-labels-and-partitions}
+Let $C\in\bar X$ be a component of the local family through $(0,p)$
+that dominates $T$. Define
 \[
  f_C,g_C:[k]\longrightarrow[L]\cup\{\mathcal E\}
 \]
@@ -960,38 +915,104 @@ by
  \end{cases}
  \end{aligned}
 \]
-The identities are understood in the function field of $C$.
-Dominance over $T$ makes the site label unique, since distinct site
-parameters remain distinct at the generic point. The symbol
-$\mathcal E$ means that the coordinate is not pinned to any site
-endpoint along $C$, although it tends to $1$ or $-1$ at $p$.
+These identities are taken in the function field of $C$. Since $C$
+dominates $T$, distinct site parameters remain distinct generically,
+so a site label is unique. The symbol $\mathcal E$ records a coordinate
+that specializes to $1$ or $-1$ but is not pinned to a site endpoint
+along $C$.
+
+Put $E_C^+=f_C^{-1}(\mathcal E)$ and
+$E_C^-=g_C^{-1}(\mathcal E)$. Let $\pi_1(C)$ be the partition of
+$E_C^+$ in which $a,a'$ belong to the same block exactly when
+$x_a=x_{a'}$ identically on $C$. Define $\pi_2(C)$ on $E_C^-$ in
+the same way, using the coordinates $x_{k+b}$. Call $C$ \emph{good} if
+\[
+ f_C=g_C\equiv\mathcal E,
+ \qquad \pi_1(C)=\pi_2(C)=\hat0,
+\]
+where $\hat0$ denotes the partition into singletons.
 \end{definition}
 
-Write
+The labels belong to the component, rather than to $p$: several
+components through the same homogeneous point may have different
+labels. The equations at a pinned endpoint force its partner at the
+same site, so
 \[
- J_C^+=f_C([k])\cap[L],\qquad
- J_C^-=g_C([k])\cap[L].
+ f_C([k])\cap[L]=g_C([k])\cap[L]=:J_C.
 \]
-At a generic parameter value, the equation at a pinned root
-$1-\theta_j$ forces another root to be $-1-\theta_j$, and conversely.
-Indeed, one vacuum factor vanishes and the other is nonzero, so the
-remaining interaction product must vanish. Such partners specialize
-to the opposite singular cluster at $p$. Consequently
+Non-injective site labels force pinned collisions; repeated occurrences
+of $\mathcal E$ impose no equality by themselves. Since the remaining
+$z_j$ are distinct and different from $\pm1$, their coordinates cannot
+collide with one another or with the singular clusters in this local
+family. Hence a good component has generically distinct coordinates
+and carries no site pair. If the $z_j$ repeat, their equality partitions
+must also be included in the singleton condition.
+
+Let $K=\operatorname{Frac}\C[[\theta_1,\ldots,\theta_L]]$ and let
+$\Gamma_p$ be the finite set of geometric generic solutions in the
+local family specializing to $p$. For $I\subseteq[L]$, let $N_I(p)$
+count the points of $\Gamma_p$ with distinct coordinates that contain
+both $1-\theta_j$ and $-1-\theta_j$ for every $j\in I$. Additional site
+pairs are allowed. Write $N_{\mathrm{good}}(p)$ for the number with
+distinct coordinates and no site pair. Equivalently,
 \[
- J_C^+=J_C^-=:J_C.
+ N_{\mathrm{good}}(p)=\sum_{C\text{ good}}d_C,
+ \qquad d_C=[K(C):K].
 \]
-Thus $J_C$ records exactly the site pairs carried identically by $C$.
-If the generic coordinates on $C$ are pairwise distinct, the
-restrictions of $f_C$ and $g_C$ to their site-labeled arguments are
-injective, and
+These are degrees of components in the local family, not just their
+number; one component can contain several geometric generic points.
+
+\begin{proposition}[Generic inclusion--exclusion]
+\label{prop:generic-component-inclusion-exclusion}
+Under the finiteness and simplicity assumptions above,
 \[
- \#f_C^{-1}(\mathcal E)=\#g_C^{-1}(\mathcal E)=k-|J_C|.
+ \boxed{N_{\mathrm{good}}(p)
+       =\sum_{I\subseteq[L]}(-1)^{|I|}N_I(p).}
 \]
-Repeated occurrences of $\mathcal E$ impose no equality between the
-corresponding coordinates. In particular, all labels being
-$\mathcal E$ means that $C$ carries no site pair; it does not by
-itself exclude collisions or establish physicality of its special
-point $p$.
+\end{proposition}
+\begin{proof}
+Depermutation assigns a generic simple solution with equality partition
+$\sigma$ the unnormalized weight
+$\sum_{\rho\le\sigma}\mu(\hat0,\rho)$, which is one for distinct
+coordinates and zero for a collision. For a surviving point $q$, let
+$J(q)$ be its set of site pairs. It occurs in $N_I(p)$ exactly when
+$I\subseteq J(q)$, and its alternating contribution is
+\[
+ \sum_{I\subseteq J(q)}(-1)^{|I|}
+ =\begin{cases}1,&J(q)=\varnothing,\\0,&J(q)\ne\varnothing.\end{cases}
+\]
+Summing over the generic points proves the identity.
+\end{proof}
+
+\begin{conjecture}[Compatibility with the homogeneous local index]
+\label{conj:local-component-count}
+The homogeneous local weights and the generic counts satisfy
+\begin{equation}\label{eq:local-component-compatibility}
+ \sum_{\substack{I\subseteq[L]\\|I|=s}}N_I(p)
+ =n!\binom Ls w_s(p),\qquad 0\le s\le k.
+\end{equation}
+Consequently, the local index counts precisely the good generic
+solutions, with the ordered-root normalization:
+\begin{equation}\label{eq:local-index-good-components}
+ \boxed{
+ w_p(\tilde Z)
+ =\sum_{s=0}^k(-1)^s\binom Ls w_s(p)
+ =\frac{N_{\mathrm{good}}(p)}{n!}
+ =\frac1{n!}\sum_{C\text{ good}}d_C\ge0.
+ }
+\end{equation}
+\end{conjecture}
+
+The implication from \eqref{eq:local-component-compatibility} to
+\eqref{eq:local-index-good-components} is the preceding
+inclusion--exclusion identity; terms with $|I|>k$ vanish locally.
+The compatibility statement itself remains to be proved. It requires
+auxiliary families whose generic depermutation counts the specified
+distinct-coordinate solutions and whose special fibers recover the
+homogeneous reduced local lengths. Finiteness and flatness alone do
+not establish this identification. Even after this comparison,
+vanishing of the index for $k\ge2$ would require proving that no good
+component specializes to such a point.
 
 \begin{thebibliography}{99}
 
