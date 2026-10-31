@@ -362,14 +362,20 @@ The projective intersection number is computed in Section~2.3. Its identificatio
 \begin{remark}[Sums of functions of Bethe roots]
 Many computations require sums of functions evaluated at Bethe roots,
 rather than just their number. The proposed pointwise weight identity
-extends directly to such sums. Let $h$ be a symmetric polynomial on $N$ variables. If
+extends directly to such sums. Let $h$ be a symmetric polynomial on $n$ variables. If
 Conjecture~\ref{conj:alternating-completeness} holds, then
 \begin{equation}\label{eq:weighted-root-function-sum}
  \sum_{[p]\,\mathrm{physical}}h(p)
  =\sum_{k=0}^{\lfloor n/2\rfloor}(-1)^k\binom Lk
- \sum_{[p]}w_k(p)h(p)
+ \sum_{p\in X}w_k(p)h(p).
 \end{equation}
-where $w_k(p)$ is the multiplicity of $p$ in $Z^{\mathrm{dep}}_k$, the left-hand sum contains one representative of each physical permutation orbit. The counting formula is the case $h=1$. One can further expand it to $Z_{A,B;\pi}$
+Here $w_k(p)$ is the weight of the ordered point $p$ in
+$Z^{\mathrm{dep}}_k$. The left-hand sum contains one representative
+of each physical permutation orbit, whereas the right-hand inner sum
+runs over all ordered points of $X$. Thus the weights of all ordered
+representatives are added before passing to an orbit. The counting
+formula is the case $h=1$. Expanding the depermutation sums expresses
+the right-hand side in terms of the auxiliary sums $Z_{A,B;\pi}$.
 
 The inner sum can be computed numerically in the finite
 quotient algebra $A_j=\C[x_1,\ldots,x_n]/I_j$ as
