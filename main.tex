@@ -11,7 +11,6 @@
 \newcommand{\ii}{\mathrm i}
 \newcommand{\A}{\mathbb A}
 \newcommand{\C}{\mathbb C}
-\newcommand{\length}{\operatorname{length}}
 \newcommand{\Sym}{\operatorname{Sym}}
 \newcommand{\ord}{\operatorname{ord}}
 \title{Completeness of the Bethe Ansatz through Intersection Numbers in $\mathbb P^N$}
@@ -25,7 +24,7 @@ We develop an approach based on intersection numbers to study the
 completeness of the Bethe ansatz for periodic spin-$1/2$ XXX chains.
 Completeness of the Bethe ansatz predicts that the number of
 roots of the Bethe equations, after removing collisions, identifying
-permutations, and appropriately regularizing singular solutions,
+permutations, and appropriately regularizing singular roots,
 equals $\binom LN-\binom L{N-1}$, where $L$ is the length of the
 chain and $N$ is the number of flipped spins.
 We propose a counting strategy that starts from the original Bethe
@@ -33,9 +32,9 @@ equations and introduces a series of systems of polynomial equations
 as corrections. For each system, every root of the Bethe equations
 is assigned a local index given by its multiplicity. Our aim is that,
 after taking an appropriate weighted sum, this index equals $1/N!$
-at physical solutions and vanishes otherwise. Taking the global count,
+at physical roots and vanishes otherwise. Taking the global count,
 the weighted sum of intersection numbers would then yield the desired
-count. This claim is resolved conditionally: the case of solutions
+count. This claim is resolved conditionally: the case of roots
 with collisions among nonsingular components follows from the
 distinct-root assumption for the $Q$-polynomial satisfying the $TQ$
 relation. The case of unequal numbers of components at $\ii/2$ and
@@ -115,7 +114,7 @@ for $i=1,\ldots,N$.
 Physical roots are required to have distinct coordinates; repeated
 coordinates are called \emph{collisions}. Since the Bethe creation
 operator commutes, we identify configurations differing by a
-permutation. Solutions containing both $1$ and $-1$, which we may label
+permutation. Roots containing both $1$ and $-1$, which we may label
 as $x_1=1$ and $x_2=-1$, are called \emph{singular}. When the remaining
 roots are distinct and different from $\pm1$, physical singular
 roots require the additional regularization condition
@@ -191,7 +190,8 @@ $\Sym^r(\A^1)$ for the set of unordered configurations of $r$ complex
 numbers, allowing repetitions.
 
 For a zero-dimensional ideal $I\subseteq\C[x_1,\ldots,x_n]$, define
-its global and local multiplicities by
+the total number of its roots counted with multiplicity and the
+multiplicity at an isolated root $p$, respectively, by
 \[
 \begin{aligned}
 	\ell(I)&=\dim_\C\bigl(\C[x_1,\ldots,x_n]/I\bigr),\\
@@ -440,7 +440,7 @@ $\partial_t\Phi(u;e^*)=0$. The displayed derivatives thus vanish
 for $i=a,b$, and also for every other $i$ since $v_i=0$.
 Consequently $v$ lies in the kernel of the Jacobian of $I_F$ at $p$,
 contradicting its invertibility. Thus $q(p)\notin V(J)$, so
-$\ell_{q(p)}(J)=0$ whenever the local length is defined as above.
+$\ell_{q(p)}(J)=0$ whenever the local multiplicity is defined as above.
 \end{proof}
 
 The formal sum associated to the $TQ$ ideal is the pushforward of the
@@ -592,7 +592,7 @@ number in the projective compactification.
 
 Thus the projective intersection calculation gives the desired number. To prove
 Conjecture~\ref{conj:alternating-completeness}, we must connect this
-projective intersection number with the affine solutions and establish the prescribed
+projective intersection number with the affine roots and establish the prescribed
 weight at every point.
 
 \subsection{Plan for a proof of Conjecture~\ref{conj:alternating-completeness}}\label{section:plan}
@@ -613,15 +613,15 @@ The following steps are needed to prove the conjecture:
 	\item \textbf{Boundary points.} Show that every point on the boundary has zero weight in $\tilde{Z}$. Thus the total weight of $\tilde{Z}$ is supported entirely in the affine chart.
 	\item Every $Z^{\mathrm{dep}}_k$ has zero weight at configurations with collisions outside $\pm1$, so its support has $\pi(p)=\hat0$. 
 	\item Every $Z^{\mathrm{dep}}_{k}$ contains only points with $a=b$.
-\item For distinct nonsingular solutions, establish local length one for $(P_1,\ldots,P_n)$ and a nonzero Bethe vector. Only $k=0$ contributes, giving weight $1/n!$.
+\item For distinct nonsingular roots, establish local multiplicity one for $(P_1,\ldots,P_n)$ and a nonzero Bethe vector. Only $k=0$ contributes, giving weight $1/n!$.
 	\item \textbf{Exactly one singular pair: $a=b=1$ and $\pi=\hat 0$.}
 	Only $k=0,1$ can contribute, so prove
 	\begin{equation}\label{eq:singular_weight}
 		w_0(p)-Lw_1(p)=w(p)
 	\end{equation}
 	where $w(p)$ is the target weight above.
-	Writing $e_p=\ell_p(I_{A(p),B(p);\hat0})$ for the local length of the reduced fixed-pair
-	system, the precise local-length claim is
+	Writing $e_p=\ell_p(I_{A(p),B(p);\hat0})$ for the local multiplicity of the reduced fixed-pair
+	system, the precise local-multiplicity claim is
 	\begin{equation}\label{eq:single-pair-length-criterion}
 		\ell_p((P_1,\ldots,P_n))=
 		\begin{cases}
@@ -629,7 +629,7 @@ The following steps are needed to prove the conjecture:
 			Le_p,&\text{otherwise}.
 		\end{cases}
 	\end{equation}
-	For a simple reduced solution, $e_p=1$.
+	For a simple reduced root, $e_p=1$.
 	
 	\item \textbf{Multiple balanced singular pairs: $a=b\ge2$ and $\pi=\hat 0$.}
 	These points have repeated coordinates and hence target weight zero.
@@ -648,9 +648,9 @@ full system and for each reduced balanced fixed-pair system. Thus only
 configurations with $\pi(p)=\hat0$ need further consideration.
 
 At infinity, Section~\ref{sec:general-infinity} proves directly that
-every boundary solution has two equal nonzero homogeneous root
+every boundary root has two equal nonzero homogeneous root
 coordinates. This locates the boundary support on collision diagonals.
-It does not by itself prove cancellation of the local lengths;
+It does not by itself prove cancellation of the local multiplicities;
 that requires a comparison of the full and partition intersections at
 the boundary.
 
@@ -666,7 +666,7 @@ $a=b=1$ and the alternating cancellation for $a=b\ge2$.
 \section{Roots at infinity}
 \label{sec:general-infinity}
 
-We first locate the boundary solutions of the projective equations.
+We first locate the boundary roots of the projective equations.
 Use coordinates $[z:X_1:\cdots:X_n]$ on $\mathbb P^n$, with
 $x_i=X_i/z$ in the affine chart. The homogenization of $P_i$ to
 degree $L+n-2$ is
@@ -693,7 +693,7 @@ $[0:X_1:\cdots:X_n]$ of the projective Bethe equations has
  X_i=X_j\ne0
  \quad\text{for some distinct }i,j.
 \]
-In particular, every boundary solution lies on a collision diagonal.
+In particular, every boundary root lies on a collision diagonal.
 \end{proposition}
 
 \begin{proof}
@@ -736,13 +736,13 @@ forms are~\eqref{eq:leading-equations-infinity} with $r$ free
 coordinates and $L-4k$ in place of the coefficient $L$ inside the
 parentheses. The prefactor remains $2X_i^{L-1}$.
 Since $L-4k\ge2r$, the same proof forces two equal nonzero free-root
-coordinates at every boundary solution. For $r=1$ there are no boundary
-solutions; for $r=0$ there is no free-root boundary.
+coordinates at every boundary root. For $r=1$ there are no boundary
+roots; for $r=0$ there is no free-root boundary.
 
 This collision statement uses no distinct-root assumption. However,
 support on collision diagonals is weaker than vanishing of the
 depermutation weight. The homogenized equations may have nontrivial
-local lengths, or even positive-dimensional intersections at
+local multiplicities, or even positive-dimensional intersections at
 infinity. Comparing those contributions across the partition systems,
 and proving their cancellation, remains necessary to identify the
 projective intersection count with the affine total weight.
@@ -754,10 +754,10 @@ The case of one singular pair has been studied through regularization
 of the Bethe vector by Nepomechie and Wang
 \cite[Section~3]{NW2013}, including twist regularization
 \cite[Section~2]{NW2014}. Granet and Jacobsen
-\cite[Sections~2--4]{GJ2020} relate physical singular solutions to
+\cite[Sections~2--4]{GJ2020} relate physical singular roots to
 polynomial companions and additional zero-remainder conditions.
-Here we study the same configurations through the local lengths of
-the full and reduced polynomial ideals.
+Here we study the same configurations through their multiplicities
+in the full and reduced polynomial systems.
 
 Let $n\ge2$, $L\ge2n$, and let
 $p=(1,-1,z_3,\ldots,z_n)$ have pairwise distinct coordinates. Set
@@ -806,7 +806,7 @@ We prove a weaker version of \eqref{eq:single-pair-length-criterion}:
     +(-1)^L\prod_{j=3}^n\frac{(y_j-1)(y_j-3)}{y_j+1}
     \right].
     \]
-    A distinct-root solution has no exact strings other than
+    A distinct-root root has no exact strings other than
     the singular pair; in particular, $z_j\ne\pm3$ and
     $z_i-z_j\ne\pm2$ for $i,j\ge3$; see
     \cite[Lemma~1]{GJ2020}. Multiplying the reduced equations
@@ -820,8 +820,8 @@ We prove a weaker version of \eqref{eq:single-pair-length-criterion}:
     h(0)=0\quad\Longleftrightarrow\quad
     \left[-\prod_{j=3}^n\frac{z_j+1}{z_j-1}\right]^L=1.
     \end{equation}
-    If $p$ is nonphysical, then $h(0)\ne0$ and the length is $L$.
-    Otherwise, $h(0)=0$ and the length is greater than $L$, proving the claim. 
+    If $p$ is nonphysical, then $h(0)\ne0$ and the multiplicity is $L$.
+    Otherwise, $h(0)=0$ and the multiplicity is greater than $L$, proving the claim. 
 	
 \end{proof}
 
@@ -879,19 +879,19 @@ used in $I_{A,B;\pi}$, where $A,B$ are the labels of the fixed positive
 and negative roots.
 
 \paragraph{Distinct coordinates and simple zeros: the assumptions.}
-Fix an isolated homogeneous solution $p$, and restrict to a generic
+Fix an isolated homogeneous root $p$, and restrict to a generic
 line $\theta_j=c_j\varepsilon$ through $0$. Work locally near $p$ over
 $T=\C[[\varepsilon]]$. We assume the following for this family and all
 its fixed-pair systems.
 \begin{enumerate}
  \item The local partition families specializing to $p$ are finite
- and flat over $T$. Thus each central local length equals the degree
+ and flat over $T$. Thus each central local multiplicity equals the degree
  of its nearby fiber, counted with multiplicity.
  \item For generic $\varepsilon\ne0$, every zero of each system of
  free equations $P_{t,I}^\theta=0$ is simple. Explicitly, the Jacobian
  with respect to its $|R|$ free coordinates is invertible, or,
- equivalently, its local algebra has length one. The empty system is
- assigned length one.
+ equivalently, the root has multiplicity one. The empty system is
+ assigned multiplicity one.
  \item For generic $\varepsilon\ne0$, the site endpoints are pairwise
  distinct. In each fixed-pair reduced system the free roots avoid
  all endpoints already fixed by its placement.
@@ -905,7 +905,7 @@ systems. Depermutation cancels them. The configurations retained after
 this cancellation must have pairwise distinct coordinates. For a
 fixed-pair system this means distinct free coordinates, together with
 the endpoint avoidance in the third assumption. The homogeneous point
-$p$ itself may have repeated coordinates and local length greater than
+$p$ itself may have repeated coordinates and local multiplicity greater than
 one. In particular, simplicity of a fully reduced homogeneous zero,
 when available, does not by itself imply all the genericity assumptions
 above.
@@ -935,12 +935,12 @@ The equalities at $0$ are understood locally at $p$.
 
 \begin{proposition}[Component interpretation under genericity assumptions]
 \label{prop:main-component-index}
-Under the assumptions above, call a nearby ordered solution
+Under the assumptions above, call a nearby ordered root
 \emph{good} if its coordinates are pairwise distinct and it contains
 no site pair. Then
 \begin{equation}\label{eq:main-component-count}
  \boxed{w_p(\tilde Z)=\frac1{n!}
-       \#\{\text{good nearby ordered solutions specializing to }p\}
+       \#\{\text{good nearby ordered roots specializing to }p\}
        \ge0.}
 \end{equation}
 The count is the degree over the generic parameter, including all
@@ -960,7 +960,7 @@ The empty closure has the zero algebra.
 First fix $I$ and a placement. At a generic simple zero of the free
 system, let $\sigma$ be the equality partition of its free coordinates.
 A partition $\pi$ contributes exactly when $\pi\le\sigma$. Its local
-length is one: imposing its block equalities on the full free ideal
+multiplicity is one: imposing its block equalities on the full free ideal
 gives the partition ideal, and the full local algebra is already
 $\C$. Consequently its total M\"obius contribution is
 \[
@@ -969,10 +969,10 @@ $\C$. Consequently its total M\"obius contribution is
 \]
 Thus only distinct free roots remain. By endpoint avoidance, the full
 configuration then has distinct coordinates. Every such reduced
-solution satisfies the original equations, including the automatically
+root satisfies the original equations, including the automatically
 vanishing equations at the pinned pairs.
 
-Now let $q$ be a distinct-coordinate solution of the generic original
+Now let $q$ be a distinct-coordinate root of the generic original
 system, and set
 \[
  S(q)=\{j:\text{both }1-\theta_j\text{ and }-1-\theta_j
@@ -990,8 +990,8 @@ $1/n!$. Its alternating weight is therefore
 Collision configurations contribute nothing to any $\mathcal Z_I$:
 they either violate endpoint avoidance or have a free collision, whose
 M\"obius sum vanishes. Hence $\mathcal Z(\theta)$ is exactly the
-normalized sum of good generic solutions. Conservation of local
-lengths in every auxiliary family gives
+normalized sum of good generic roots. Conservation of local
+multiplicities in every auxiliary family gives
 \eqref{eq:main-component-count} on specializing to $p$.
 
 For the algebraic formulation, take the image of the finite local
