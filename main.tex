@@ -879,19 +879,20 @@ corresponding formal sums of families, retaining their scheme-theoretic
 multiplicities. Their specialization at $\theta=0$ is the formal sum
 of points associated to the special fiber. Write $\bar X$ for the set
 of irreducible components of the deformed solution locus
-$P_1^\theta=\cdots=P_n^\theta=0$.
+$P_1^\theta=\cdots=P_n^\theta=0$. We assume that the deformed Bethe
+scheme is generically reduced along every irreducible component
+dominating $T$. Since the family is finite and the base field has
+characteristic zero, this means that its geometric generic fiber
+consists of simple zeros: the Jacobian of the $n$ original equations
+in the $n$ root variables is invertible at every generic solution.
+The homogeneous special fiber may still have nontrivial multiplicities.
 
 Work locally at a homogeneous solution
 \[
  p=(1^k,-1^k,z_1,\ldots,z_{n-2k}),
  \qquad z_i\ne\pm1,\quad z_i\ne z_j\ (i\ne j).
 \]
-We assume that the generic zeros of the deformed system and the
-auxiliary systems used in depermutation are simple. Here simplicity
-means that the Jacobian in the free root variables is invertible,
-so the corresponding local algebra has length one. It does not mean
-that the coordinates are distinct: simple collision zeros are allowed.
-Neither simplicity nor distinctness is assumed at $p$ itself.
+
 
 \begin{definition}[Labels and equality partitions of a component]
 \label{def:component-labels-and-partitions}
@@ -925,7 +926,7 @@ Put $E_C^+=f_C^{-1}(\mathcal E)$ and
 $E_C^-=g_C^{-1}(\mathcal E)$. Let $\pi_1(C)$ be the partition of
 $E_C^+$ in which $a,a'$ belong to the same block exactly when
 $x_a=x_{a'}$ identically on $C$. Define $\pi_2(C)$ on $E_C^-$ in
-the same way, using the coordinates $x_{k+b}$. Call $C$ \emph{good} if
+the same way, using the coordinates $x_{k+b}$. Call $C$ \emph{exceptional} if
 \[
  f_C=g_C\equiv\mathcal E,
  \qquad \pi_1(C)=\pi_2(C)=\hat0,
@@ -933,86 +934,158 @@ the same way, using the coordinates $x_{k+b}$. Call $C$ \emph{good} if
 where $\hat0$ denotes the partition into singletons.
 \end{definition}
 
-The labels belong to the component, rather than to $p$: several
-components through the same homogeneous point may have different
-labels. The equations at a pinned endpoint force its partner at the
-same site, so
-\[
- f_C([k])\cap[L]=g_C([k])\cap[L]=:J_C.
-\]
-Non-injective site labels force pinned collisions; repeated occurrences
-of $\mathcal E$ impose no equality by themselves. Since the remaining
-$z_j$ are distinct and different from $\pm1$, their coordinates cannot
-collide with one another or with the singular clusters in this local
-family. Hence a good component has generically distinct coordinates
-and carries no site pair. If the $z_j$ repeat, their equality partitions
-must also be included in the singleton condition.
-
 Let $K=\operatorname{Frac}\C[[\theta_1,\ldots,\theta_L]]$ and let
 $\Gamma_p$ be the finite set of geometric generic solutions in the
-local family specializing to $p$. For $I\subseteq[L]$, let $N_I(p)$
-count the points of $\Gamma_p$ with distinct coordinates that contain
-both $1-\theta_j$ and $-1-\theta_j$ for every $j\in I$. Additional site
-pairs are allowed. Write $N_{\mathrm{good}}(p)$ for the number with
-distinct coordinates and no site pair. Equivalently,
+local family specializing to $p$. For a component $C$, put
 \[
- N_{\mathrm{good}}(p)=\sum_{C\text{ good}}d_C,
+ J_C=f_C([k])\cap[L]=g_C([k])\cap[L],\qquad m_C=|J_C|,
  \qquad d_C=[K(C):K].
 \]
-These are degrees of components in the local family, not just their
-number; one component can contain several geometric generic points.
-
-\begin{proposition}[Generic inclusion--exclusion]
-\label{prop:generic-component-inclusion-exclusion}
-Under the finiteness and simplicity assumptions above,
+The two site images agree because the equation at a pinned endpoint
+forces its partner at the same site. Define
 \[
- \boxed{N_{\mathrm{good}}(p)
-       =\sum_{I\subseteq[L]}(-1)^{|I|}N_I(p).}
+ D_m(p)=\sum_{\substack{C\text{ has generically distinct coordinates}\\
+                         m_C=m}}d_C,\qquad 0\le m\le k.
 \]
-\end{proposition}
-\begin{proof}
-Depermutation assigns a generic simple solution with equality partition
-$\sigma$ the unnormalized weight
-$\sum_{\rho\le\sigma}\mu(\hat0,\rho)$, which is one for distinct
-coordinates and zero for a collision. For a surviving point $q$, let
-$J(q)$ be its set of site pairs. It occurs in $N_I(p)$ exactly when
-$I\subseteq J(q)$, and its alternating contribution is
+A component contributes its degree, rather than just one: it can
+contain several geometric generic points. In particular,
 \[
- \sum_{I\subseteq J(q)}(-1)^{|I|}
- =\begin{cases}1,&J(q)=\varnothing,\\0,&J(q)\ne\varnothing.\end{cases}
+ D_0(p)=\sum_{C\text{ exceptional}}d_C.
 \]
-Summing over the generic points proves the identity.
-\end{proof}
+The distinctness of the ordinary coordinates at $p$ ensures that no
+additional equality partitions are needed outside the two singular
+clusters.
 
-\begin{conjecture}[Compatibility with the homogeneous local index]
-\label{conj:local-component-count}
-The homogeneous local weights and the generic counts satisfy
-\begin{equation}\label{eq:local-component-compatibility}
+For $I\subseteq[L]$, let $N_I(p)$ count the points of $\Gamma_p$ with
+distinct coordinates that contain the site pairs at every $j\in I$.
+Additional site pairs are allowed. Then
+\begin{equation}\label{eq:generic-pair-counts}
  \sum_{\substack{I\subseteq[L]\\|I|=s}}N_I(p)
- =n!\binom Ls w_s(p),\qquad 0\le s\le k.
+ =\sum_{m=s}^k\binom msD_m(p).
 \end{equation}
-Consequently, the local index counts precisely the good generic
-solutions, with the ordered-root normalization:
+Indeed, a distinct-coordinate solution carrying $m$ site pairs admits
+exactly $\binom ms$ choices of $s$ of them.
+
+\paragraph{The auxiliary families used for comparison.}
+For disjoint root-label sets $A,B$ with $|A|=|B|=s$, choose a site
+subset $I\subseteq[L]$ of size $s$ and bijections
+\[
+ f:A\longrightarrow I,\qquad g:B\longrightarrow I.
+\]
+Pin $x_a=1-\theta_{f(a)}$ and $x_b=-1-\theta_{g(b)}$. Divide each
+remaining original equation by
+\[
+ D_t(x_t)=\prod_{j\in I}\bigl((x_t+\theta_j)^2-1\bigr),
+\]
+which gives a polynomial $G_t$. For each partition $\pi$ of the free
+labels, retain one $G_t$ per block and impose its block equalities.
+Together with the pinned equations these define the auxiliary family.
+Its special fiber is exactly $I_{A,B;\pi}$, because the labelings are
+injective and $D_t|_{\theta=0}=(x_t^2-1)^s$. We include all these local
+partition families in the standing finite-flatness assumption. No
+matching between $A$ and $B$ is fixed: both bijections are summed over.
+
+\begin{proposition}[Component formula for the local weights]
+\label{prop:local-component-count}
+Under the finite-flatness and generic reducedness assumptions above,
+\begin{equation}\label{eq:local-component-compatibility}
+ \boxed{
+ w_s(p)=\frac{1}{n!\binom Ls}
+          \sum_{m=s}^k\binom msD_m(p),\qquad 0\le s\le k.
+ }
+\end{equation}
+In particular,
+\[
+ w_k(p)=\frac{D_k(p)}{n!\binom Lk}.
+\]
+Consequently the local index retains precisely the exceptional
+components:
 \begin{equation}\label{eq:local-index-good-components}
  \boxed{
  w_p(\tilde Z)
  =\sum_{s=0}^k(-1)^s\binom Ls w_s(p)
- =\frac{N_{\mathrm{good}}(p)}{n!}
- =\frac1{n!}\sum_{C\text{ good}}d_C\ge0.
+ =\frac{D_0(p)}{n!}
+ =\frac1{n!}\sum_{C\text{ exceptional}}d_C\ge0.
  }
 \end{equation}
-\end{conjecture}
+Equivalently, the weights satisfy the generating identity
+\[
+ n!\sum_{s=0}^k\binom Ls w_s(p)t^s
+ =\sum_{m=0}^kD_m(p)(1+t)^m.
+\]
+\end{proposition}
 
-The implication from \eqref{eq:local-component-compatibility} to
-\eqref{eq:local-index-good-components} is the preceding
-inclusion--exclusion identity; terms with $|I|>k$ vanish locally.
-The compatibility statement itself remains to be proved. It requires
-auxiliary families whose generic depermutation counts the specified
-distinct-coordinate solutions and whose special fibers recover the
-homogeneous reduced local lengths. Finiteness and flatness alone do
-not establish this identification. Even after this comparison,
-vanishing of the index for $k\ge2$ would require proving that no good
-component specializes to such a point.
+\begin{proof}
+\emph{First, generic simplicity excludes free roots at pinned endpoints.}
+Let $q$ be a generic solution of an auxiliary reduced system. It is
+also a solution of the original equations, since the equations at the
+pinned roots vanish automatically. Suppose a free coordinate $x_t$
+equals a pinned coordinate $x_b$ at $q$. The equation $P_b^\theta$
+vanishes identically after pinning its site pair, so
+\[
+ \frac{\partial P_b^\theta}{\partial x_t}(q)=0.
+\]
+On the pinned locus, $P_t^\theta=D_tG_t$. Since $D_t(q)=G_t(q)=0$,
+\[
+ \frac{\partial P_t^\theta}{\partial x_t}(q)=0.
+\]
+Permutation symmetry at $x_b=x_t$ gives the same vanishing for the
+other two entries of the corresponding two-by-two Jacobian block.
+For every other row, the derivatives in columns $b,t$ agree. Hence
+\[
+ DP^\theta(q)(e_b-e_t)=0,
+\]
+contradicting simplicity of the original generic zero. Thus the free
+coordinates avoid every pinned endpoint.
+
+\emph{Second, depermutation counts the distinct free roots.}
+At such a solution, all $D_t$ are units. The local auxiliary ideal
+therefore equals the original Bethe ideal together with the pinning
+equations. Since the original local algebra at $q$ is a field, the
+auxiliary solution is simple. Imposing any compatible block equalities
+still gives local length one. If $\sigma$ is the equality partition of
+the free coordinates, their unnormalized depermutation weight is
+\[
+ \sum_{\pi\le\sigma}\mu(\hat0,\pi)
+ =\begin{cases}1,&\sigma=\hat0,\\0,&\sigma\ne\hat0.\end{cases}
+\]
+Together with endpoint avoidance, this retains exactly the solutions
+whose full $n$ coordinates are distinct.
+
+\emph{Finally, compare degrees and keep track of the labelings.}
+Fix $I$ with $|I|=s$. Every solution counted by $N_I(p)$ has a unique
+placement of those site endpoints among the ordered root labels.
+Thus summing the unnormalized auxiliary depermutation counts over
+all $A,B$ and bijections $f,g$ gives $N_I(p)$. For a fixed $A,B$, there
+are $(s!)^2$ pairs of bijections onto $I$. Every corresponding partition
+family has central local length $\ell_p(I_{A,B;\pi})$, preserved by
+flatness. Consequently
+\[
+ \begin{aligned}
+ \sum_{|I|=s}N_I(p)
+ &=\binom Ls(s!)^2
+   \sum_{\substack{A\cap B=\varnothing\\|A|=|B|=s}}
+   \ \sum_{\pi\in\Pi([n]\setminus(A\cup B))}
+       \mu(\hat0,\pi)\ell_p(I_{A,B;\pi})\\
+ &=n!\binom Ls w_s(p),
+ \end{aligned}
+\]
+where the last equality is exactly the normalization in
+\eqref{eq:reduced-fixed-pair-depermutation}.
+Combining this with \eqref{eq:generic-pair-counts} proves
+\eqref{eq:local-component-compatibility}. Taking the alternating sum
+and using $\sum_{s=0}^m(-1)^s\binom ms=0$ for $m>0$ gives
+\eqref{eq:local-index-good-components}; the generating identity follows
+from the binomial theorem.
+\end{proof}
+
+The proposition is conditional on finite flatness of the specified
+injectively labeled auxiliary families and generic reducedness of the
+full Bethe scheme. It requires no separate generic simplicity
+assumption for the auxiliary systems. It does not yet establish the
+physical interpretation of the remaining degree: for $k\ge2$, the
+desired vanishing still requires proving that no exceptional component
+specializes to $p$.
 
 \begin{thebibliography}{99}
 
