@@ -51,16 +51,15 @@ at each of $\ii/2$ and $-\ii/2$ is $1$.
 
 The Bethe ansatz originated in Bethe's 1931 study of the
 one-dimensional Heisenberg chain \cite{Bethe1931}, where he constructed
-eigenfunctions by a special ansatz for their coordinate dependence.
-The method subsequently developed into a central tool for quantum
-integrable systems, encompassing the XXX, XXZ, and XYZ spin chains
-and their relations to the six- and eight-vertex models of statistical
-mechanics. Standard accounts of this broader setting include Baxter's
+eigenfunctions using an ansatz for their coordinate dependence.
+The method and its extensions became central tools in the study of
+quantum integrable systems, including the XXX, XXZ, and XYZ spin chains
+and the related six- and eight-vertex models of statistical mechanics. Standard accounts of this broader setting include Baxter's
 book \cite{Baxter1982} and the treatment of the quantum inverse
 scattering method by Korepin, Bogoliubov, and Izergin \cite{KBI1993}.
 
 
-Let $L$ be the length of the periodic spin-$1/2$ XXX chain, with state space
+Consider the periodic spin-$1/2$ XXX chain of length $L$, with state space
 $\mathcal H=(\C^2)^{\otimes L}$. One normalization of its Hamiltonian is
 \[
 H=\frac14\sum_{\ell=1}^L
@@ -68,96 +67,88 @@ H=\frac14\sum_{\ell=1}^L
 \boldsymbol{\sigma}_{\ell+1}-1\bigr),
 \qquad \boldsymbol{\sigma}_{L+1}=\boldsymbol{\sigma}_1.
 \]
-The sector with $n$ down spins has dimension $\binom Ln$.
+The sector with $N$ down spins has dimension $\binom LN$. The state space carries a natural $\mathfrak{sl}_2$ action
+that commutes with $H$. The highest-weight subspace in the sector with
+$N$ down spins has dimension
+\begin{equation}\label{eq:target}
+	d(L,N)=\binom LN-\binom L{N-1}.
+\end{equation}
+
 The algebraic Bethe ansatz constructs candidate eigenvectors
 \[
-B(\lambda_1)\cdots B(\lambda_n)|0\rangle
+B(\lambda_1)\cdots B(\lambda_N)|0\rangle
 \]
 from parameters satisfying
 \begin{equation}\label{eq:bethe}
 	\left(\frac{\lambda_k+\ii/2}{\lambda_k-\ii/2}\right)^L
 	=
 	\prod_{j\ne k}\frac{\lambda_k-\lambda_j+\ii}{\lambda_k-\lambda_j-\ii},
-	\qquad k=1,\ldots,n.
+	\qquad k=1,\ldots,N.
 \end{equation}
-Throughout this paper we assume $L\ge2n$, where $n$ is the number of
-Bethe roots. The number of highest-weight states in this
-sector, counted with their vector-space dimensions, is
-\begin{equation}\label{eq:target}
-	d(L,n)=\binom Ln-\binom L{n-1},
-\end{equation}
-%Indeed, each irreducible $\mathfrak{sl}_2$ summand contributes one state to each of its weight spaces; taking the difference of two consecutive sector dimensions extracts the number of highest-weight states of the specified weight. This is a target dimension for completeness, rather than a count of distinct energy eigenvalues.
+Throughout this paper we assume $L\ge2N$, where $N$ is the number of
+flipped spins. 
 
-Completeness means that physical solutions of the Bethe equations,
-with singular solutions appropriately regularized, yield a basis of
-highest-weight eigenvectors. Applying the global spin-lowering
-operator then recovers a basis of the full state space. The target
-count is therefore $d(L,n)$ independent nonzero Bethe vectors.
 
-For simplicity, rescale the parameters by
+
+
+It is convenient to rescale the parameters by
 \[
 \lambda_j=\frac{\ii}{2}x_j,
 \qquad x_j=\frac{2\lambda_j}{\ii}.
 \]
-The singular values $\lambda_j=\pm\ii/2$ become $x_j=\pm1$, and the
-interaction shifts $\pm\ii$ become $\pm2$.
-Clearing denominators and discarding a nonzero common scalar gives
+
+Define:
 \begin{equation}\label{eq:polynomial}
-	P(x_1,\ldots,x_n)=
+	P(x_1,\ldots,x_N)=
 	(x_1+1)^L\prod_{j\ne1}(x_1-x_j-2)
 	-
 	(x_1-1)^L\prod_{j\ne1}(x_1-x_j+2).
 \end{equation}
 We call $P$ the \emph{Bethe polynomial};
-it is symmetric in its last $n-1$ arguments. Set
+it is symmetric in its last $N-1$ arguments. Set
 \[
-P_i(x)=P(x_i,x_1,\ldots,\widehat{x_i},\ldots,x_n).
+P_i(x)=P(x_i,x_1,\ldots,\widehat{x_i},\ldots,x_N).
 \]
-The periodic Bethe equations are $P_i=0$ for $i=1,\ldots,n$.
+The polynomial form of the periodic Bethe equations is $P_i=0$
+for $i=1,\ldots,N$.
 
-Physical solutions are required to have distinct coordinates; repeated
+Physical roots are required to have distinct coordinates; repeated
 coordinates are called \emph{collisions}. Since the Bethe creation
-operators commute, we identify configurations differing by a permutation. Solutions containing
-$x_1=1$ and $x_2=-1$ are called \emph{singular}. For distinct remaining
-roots, physical singular solutions of the periodic system require the
-additional regularization condition
+operator commutes, we identify configurations differing by a
+permutation. Solutions containing both $1$ and $-1$, which we may label
+as $x_1=1$ and $x_2=-1$, are called \emph{singular}. When the remaining
+roots are distinct and different from $\pm1$, physical singular
+solutions require the additional regularization condition
 \begin{equation}\label{eq:physical}
-	\left[-\prod_{j=3}^n
+	\left[-\prod_{j=3}^N
 	\frac{x_j+1}{x_j-1}\right]^L=1.
 \end{equation}
-As an example for $n=2$, the empty product is $1$,
-and the condition requires $L$ to be even.
-See \cite{NW2013,NW2014} for regularizations and
-\cite{HNS2013} for the completeness counting problem.
+See \cite{NW2013,NW2014} for regularization procedures.
 
-Early rigorous results on completeness include the eigenfunction
+
+
+By completeness of the Bethe ansatz, we mean that the Bethe vectors
+obtained from physical roots, with singular solutions appropriately
+regularized, span the full highest-weight space. Early rigorous results on completeness include the eigenfunction
 expansion of Babbitt and Thomas \cite{BT1977} for the infinite
 Heisenberg chain in its ground-state representation, and the
 finite-chain two-down-spin result of Koma and Ezawa \cite{KE1987},
 obtained by modifying the periodic boundary condition and taking a
 limit.
 
-Then the completeness for the homogeneous periodic spin-$1/2$ XXX chain has a
-rigorous mathematical foundation in the work of Mukhin, Tarasov, and
-Varchenko (MTV) \cite[Section~12]{MTV2009}. They proved that the Bethe
-algebra has simple joint spectrum on the highest-weight subspace and
-identified its spectrum with second-order difference operators having
-a two-dimensional polynomial kernel. In particular, their result gives
-exactly $d(L,n)$ polynomial-kernel solutions. Thus completeness is
-rigorously established in this polynomial formulation; identifying its
-solutions with ordinary Bethe roots requires care at singular
-configurations. Nepomechie and Wang \cite{NW2013,NW2014} developed
+A rigorous mathematical foundation has been given by Mukhin, Tarasov, and
+Varchenko (MTV) \cite[Section~12]{MTV2009} for completeness of spin-$1/2$ XXX chain. Nepomechie and Wang \cite{NW2013,NW2014} developed
 regularizations and physicality conditions for singular solutions,
-while Granet and Jacobsen \cite{GJ2020} connected their regularization
-with polynomial companions and characterized physical distinct-root
+while Granet and Jacobsen \cite{GJ2020} related these regularizations
+to polynomial companions and characterized physical distinct-root
 solutions by two zero-remainder conditions.
 
-The purpose of this note is to give an intersection-theoretic
-explanation of the completeness count. We express the expected count
-as a weighted combination of intersection numbers and study the
-associated local weights. The conjectural local and boundary
-identifications below concern this counting construction, rather than
-the established polynomial formulation of completeness.
+This note seeks an intersection-theoretic explanation of the
+completeness count. We express the expected count as a weighted
+combination of intersection numbers and study the associated local
+weights. The conjectural local and boundary identifications below
+concern this counting construction; completeness in the polynomial
+formulation is already established.
 
 
 \section{The counting strategy}
