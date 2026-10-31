@@ -877,7 +877,9 @@ and work in $T\times\A^n$. We assume that the relevant local families
 are finite and flat over $T$. Barred symbols $\bar Z$ denote the
 corresponding formal sums of families, retaining their scheme-theoretic
 multiplicities. Their specialization at $\theta=0$ is the formal sum
-of points associated to the special fiber. Again define $\bar X$ be the set of irreducible components of zeros of $P_i=0$
+of points associated to the special fiber. Write $\bar X$ for the set
+of irreducible components of the deformed solution locus
+$P_1^\theta=\cdots=P_n^\theta=0$.
 
 \begin{definition}[Averaged fixed-pair family]
 \label{def:averaged-fixed-pair-family}
@@ -967,6 +969,64 @@ $\bar Z_{A,B;\pi}$ in
  =\tilde Z.
 \]
 
+\begin{definition}[Site labels of a component]
+\label{def:component-site-labels}
+Fix a homogeneous solution
+\[
+ p=(1^k,-1^k,z_1,\ldots,z_{n-2k}),\qquad z_j\ne\pm1,
+\]
+and let $C\in\bar X$ be an irreducible component through $(0,p)$
+that dominates $T$. Define two labelings
+\[
+ f_C,g_C:[k]\longrightarrow[L]\cup\{\mathcal E\}
+\]
+by
+\[
+ \begin{aligned}
+ f_C(a)&=
+ \begin{cases}
+ j,&x_a=1-\theta_j\text{ identically on }C,\\
+ \mathcal E,&\text{no such }j\text{ exists},
+ \end{cases}\\[4pt]
+ g_C(b)&=
+ \begin{cases}
+ j,&x_{k+b}=-1-\theta_j\text{ identically on }C,\\
+ \mathcal E,&\text{no such }j\text{ exists}.
+ \end{cases}
+ \end{aligned}
+\]
+The identities are understood in the function field of $C$.
+Dominance over $T$ makes the site label unique, since distinct site
+parameters remain distinct at the generic point. The symbol
+$\mathcal E$ means that the coordinate is not pinned to any site
+endpoint along $C$, although it tends to $1$ or $-1$ at $p$.
+\end{definition}
+
+Write
+\[
+ J_C^+=f_C([k])\cap[L],\qquad
+ J_C^-=g_C([k])\cap[L].
+\]
+At a generic parameter value, the equation at a pinned root
+$1-\theta_j$ forces another root to be $-1-\theta_j$, and conversely.
+Indeed, one vacuum factor vanishes and the other is nonzero, so the
+remaining interaction product must vanish. Such partners specialize
+to the opposite singular cluster at $p$. Consequently
+\[
+ J_C^+=J_C^-=:J_C.
+\]
+Thus $J_C$ records exactly the site pairs carried identically by $C$.
+If the generic coordinates on $C$ are pairwise distinct, the
+restrictions of $f_C$ and $g_C$ to their site-labeled arguments are
+injective, and
+\[
+ \#f_C^{-1}(\mathcal E)=\#g_C^{-1}(\mathcal E)=k-|J_C|.
+\]
+Repeated occurrences of $\mathcal E$ impose no equality between the
+corresponding coordinates. In particular, all labels being
+$\mathcal E$ means that $C$ carries no site pair; it does not by
+itself exclude collisions or establish physicality of its special
+point $p$.
 
 \begin{thebibliography}{99}
 
