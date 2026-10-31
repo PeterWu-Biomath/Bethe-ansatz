@@ -881,11 +881,9 @@ of points associated to the special fiber. Write $\bar X$ for the set
 of irreducible components of the deformed solution locus
 $P_1^\theta=\cdots=P_n^\theta=0$.
 
-For the barred fixed-pair families, assume $|A|=|B|$ and prescribe a
-one-to-one correspondence between $A$ and $B$. We average over all
-assignments of site labels to these matched pairs, allowing repeated
-site labels.
-\begin{definition}[Average over matched site labelings]
+We extend the notion of $Z_{A,B;\pi}$ to $\bar Z_{A,B;\pi}$, only when $|A|=|B|$ and there is a prescribed one-to one correspondence between $A$ and $B$. We average over all
+assignments of site labels to these matched pairs.
+\begin{definition}
 \label{def:averaged-fixed-pair-family}
 Let $A,B\subseteq[n]$ be disjoint, with $|A|=|B|=k$, and let
 $\pi=\{S_1,\ldots,S_m\}$ be a partition of
@@ -933,56 +931,8 @@ $\bar Z_{f,g;\pi}$ be its associated formal sum of families. Set
         \bar Z_{f,\,f\circ\tau^{-1};\pi}.
  }
 \end{equation}
-We suppress $\tau$ when the prescribed matching is understood.
-There are exactly $L^k$ labelings, hence $L^k$ summands in this
-average. A summand need not be a single irreducible component, and
-different summands may have components in common. For $k=0$, the
-labeling is empty and the normalization is one.
 \end{definition}
 
-
-\begin{remark}[Non-injective labelings]
-Non-injective labelings are included in the average above. The pinned
-equations still vanish
-automatically: every positive endpoint has a negative partner at the
-same site, and conversely. For the free equations, divide by the
-product in \eqref{eq:inhomogeneous-reduced-equation}, with each
-distinct site $j\in J$ occurring once. The resulting family is still
-supported on the deformed Bethe solution locus and specializes to
-points of $X$.
-
-However, non-injectivity forces two pinned coordinates of the same
-sign to coincide. On a simple generic fiber, full depermutation over
-all $n$ labels cancels such a point: if $\sigma$ is its nontrivial
-equality partition, its unnormalized weight is
-\[
- \sum_{\rho\le\sigma}\mu(\hat0,\rho)=0.
-\]
-This concerns full depermutation of the ambient Bethe system.
-Depermutation over the free labels $R$ alone does not remove
-collisions among pinned coordinates. Thus their inclusion in the
-average is not, by itself, a justification for discarding them in a
-sum depermuted only over $R$.
-\end{remark}
-
-
-\begin{remark}[Specialization of the uniform average]
-The normalization $L^{-k}$ averages all labelings of the prescribed
-pairs. For an injective labeling, $|J|=k$ and the corresponding ideal
-specializes to $I_{A,B;\pi}$. For a non-injective labeling with
-$d=|J|<k$, however,
-\[
- \left.P_t^{f,g}\right|_{\theta=0}
- =(x_t^2-1)^{k-d}P_t^{\mathrm{red}},\qquad t\in R,
-\]
-where $P_t^{\mathrm{red}}$ is the homogeneous reduced polynomial for
-the fixed sets $A,B$. Hence these summands can have different special
-fibers. In general we cannot identify
-$\left.\bar Z_{A,B;\pi}^{\tau}\right|_{\theta=0}$ with
-$Z_{A,B;\pi}$ from the normalization alone. Compatibility with the
-original alternating formula requires a further argument; it is not
-part of this definition.
-\end{remark}
 
 \begin{definition}[Site labels of a component]
 \label{def:component-site-labels}
