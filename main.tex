@@ -13,6 +13,8 @@
 \newcommand{\C}{\mathbb C}
 \newcommand{\Sym}{\operatorname{Sym}}
 \newcommand{\ord}{\operatorname{ord}}
+\DeclareMathOperator{\Ima}{Im}
+
 \title{Completeness of the Bethe Ansatz through Intersection Numbers in $\mathbb P^N$}
 \author{Pei Wu\\\small\href{mailto:wupei5060309031@gmail.com}{\texttt{wupei5060309031@gmail.com}}}
 \date{October 31, 2026}
@@ -903,7 +905,7 @@ Introduce site parameters $\theta_1,\ldots,\theta_L$ and put
  a_\theta(t)=\prod_{j=1}^L(t+\theta_j+1),\qquad
  d_\theta(t)=\prod_{j=1}^L(t+\theta_j-1).
 \]
-The deformed original equations are
+The deformed Bethe equations are
 \[
  P_i^\theta(x)=a_\theta(x_i)\prod_{s\ne i}(x_i-x_s-2)
              -d_\theta(x_i)\prod_{s\ne i}(x_i-x_s+2)=0.
@@ -912,14 +914,20 @@ They specialize to $P_i=0$ at $\theta=0$. Put
 \[
  T=\operatorname{Spec}\C[[\theta_1,\ldots,\theta_L]],
 \]
-and work in $T\times\A^n$. %We assume that the relevant local families are finite and flat over $T$. Barred symbols $\bar Z$ denote the corresponding formal sums of families, retaining their scheme-theoretic multiplicities. Their specialization at $\theta=0$ is the formal sum of points associated to the special fiber. Write $\bar X$ for the set of irreducible components of the deformed solution locus $P_1^\theta=\cdots=P_n^\theta=0$. We assume that the deformed Bethe scheme is generically reduced along every irreducible component dominating $T$. Since the family is finite and the base field has characteristic zero, this means that its geometric generic fiber consists of simple zeros: the Jacobian of the $n$ original equations in the $n$ root variables is invertible at every generic solution. The homogeneous special fiber may still have nontrivial multiplicities.
+and work in $T\times\A^N$.
 
 Work locally at a root
 \[
  p=(1^k,-1^k,z_{2k+1},\ldots,z_N),
  \qquad z_i\ne\pm1,\quad z_i\ne z_j\ (i\ne j).
 \]
- Write $\bar X$ for the set of irreducible components of the deformed solution locus $P_1^\theta=\cdots=P_n^\theta=0$, for simplicity assume they are reduced. Let $\bar X_p$ be those pass through $p$. 
+Write $\bar X$ for the multiset of irreducible components of the deformed
+Bethe locus $P_1^\theta=\cdots=P_N^\theta=0$. Each component that
+dominates $T$ and is generically finite over $T$ occurs in this multiset
+as many times as its degree over $T$, counted with scheme-theoretic
+multiplicity. 
+Let $\bar X_p$ consist of the components
+passing through $(0,p)$.
 
 \begin{definition}[Labels and equality partitions of a component]
 \label{def:component-labels-and-partitions}
@@ -943,7 +951,8 @@ by
  \end{cases}
  \end{aligned}
 \]
-These identities are taken in the function field of $C$. The symbol $\mathcal E$ records a coordinate
+These identities are taken in the function field of $C$. The symbol
+$\mathcal E$ records a coordinate
 that specializes to $1$ or $-1$ but is not pinned to a site endpoint
 along $C$.
 
@@ -956,18 +965,227 @@ the same way, using the coordinates $x_{k+b}$. Call $C$ \emph{exceptional} if
  f_C=g_C\equiv\mathcal E,
  \qquad \pi_1(C)=\pi_2(C)=\hat0,
 \]
-where $\hat0$ denotes the partition into singletons.
+where each occurrence of $\hat0$ denotes the singleton partition of
+the corresponding label set.
 \end{definition}
 
-Then we can express multiplicity of $p$ in $Z_{A,B;\pi}$, for our purpose we only need those with $|A|=|B|=r$, by symmetry we can assume $\{1,\dots,r\}$ and $B=\{k+1,\dots,k+r\}$, and $\pi$ is the union of two partitions of $\{r+1,\dots,k\}$ and $\{r+k+1,\dots,2k\}$, and singletons $\{2k+1\},\dots,\{N\}$. Then the multiplicities of $p$ in $Z_{A,B;\pi}$ is the number of components with label $f,g$ satisfying:
- \begin{enumerate}
- 	\item $f(i)=i,\,i=1,\dots,r$
- 	\item $g(i)=i,\,i=1,\dots,r$
- 	\item If $i$ and $j$ are in same block in $\pi$, then $f(i)=f(j)$
- 	\item If $k+i$ and $k+j$ are in same block in $\pi$, then $g(i)=g(j)$
- \end{enumerate}
+The positive and negative clusters have the same set of site labels:
+\[
+ \Ima f_C\cap[L]=\Ima g_C\cap[L].
+\]
+Indeed, at a coordinate $x_a=1-\theta_j$, the factor $d_\theta(x_a)$
+vanishes, whereas $a_\theta(x_a)$ is nonzero over the generic point of
+$T$. The equation $P_a^\theta=0$ therefore forces another coordinate
+to equal $-1-\theta_j$. Specialization places this coordinate in the
+negative cluster. The converse follows in the same way. Coordinates
+with the same site label coincide identically; equalities among
+coordinates labeled $\mathcal E$ are recorded by $\pi_1(C)$ and
+$\pi_2(C)$.
+
+We seek to recover the multiplicity of $p$ in $Z_{A,B;\pi}$ from
+these components. For our purposes, it suffices to consider
+$|A|=|B|=r$, with $0\le r\le k$. By symmetry, we may take
+\[
+ A=\{1,\ldots,r\},\qquad B=\{k+1,\ldots,k+r\}.
+\]
+Only partitions $\pi$ consisting of blocks within
+$\{r+1,\ldots,k\}$ and $\{k+r+1,\ldots,2k\}$, together with the
+singletons $\{2k+1\},\ldots,\{N\}$, can contribute at $p$.
+Choose the deformation that pins the $i$th positive and negative
+coordinates to the endpoints of site $i$, for $1\le i\le r$.
+A component $C$ compatible with these fixed coordinates and block
+equalities must satisfy the following conditions:
+\begin{enumerate}
+ \item $f_C(i)=g_C(i)=i$ for $1\le i\le r$.
+ \item If $i,j\in\{r+1,\ldots,k\}$ lie in the same block of $\pi$,
+ then $f_C(i)=f_C(j)$. If this common label is $\mathcal E$, then
+ $i,j$ must also lie in the same block of $\pi_1(C)$.
+ \item If $k+i,k+j$ lie in the same block of $\pi$, then
+ $g_C(i)=g_C(j)$. If this common label is $\mathcal E$, then
+ $i,j$ must also lie in the same block of $\pi_2(C)$.
+\end{enumerate}
+For this placement, the deformed ideal is defined as
+follows. Put
+\[
+ S=\C[[\theta_1,\ldots,\theta_L]][x_1,\ldots,x_N],\qquad
+ R=[N]\setminus(A\cup B),
+\]
+and write $\pi=\{S_1,\ldots,S_m\}$, choosing a representative
+$r_\alpha\in S_\alpha$ for each block. Let $\sigma_r$ denote the
+substitution
+\[
+ x_i=1-\theta_i,\qquad x_{k+i}=-1-\theta_i,
+ \qquad 1\le i\le r.
+\]
+For $t\in R$, define the reduced polynomial
+\[
+ P_t^{\theta,\mathrm{red}}(x_R)
+ :=\frac{\sigma_r(P_t^\theta)}
+              {\prod_{j=1}^r\bigl((x_t+\theta_j)^2-1\bigr)}.
+\]
+This is a polynomial: the denominator divides both terms after the
+fixed endpoints are substituted. Equivalently, it is
+\[
+ P_t^{\theta,\mathrm{red}}
+ =a_{\theta,r}(x_t)\prod_{s\in R\setminus\{t\}}(x_t-x_s-2)
+ -d_{\theta,r}(x_t)\prod_{s\in R\setminus\{t\}}(x_t-x_s+2),
+\]
+where
+\[
+ \begin{aligned}
+ a_{\theta,r}(u)&=\prod_{j=r+1}^L(u+\theta_j+1)
+                  \prod_{j=1}^r(u+\theta_j-3),\\
+ d_{\theta,r}(u)&=\prod_{j=r+1}^L(u+\theta_j-1)
+                  \prod_{j=1}^r(u+\theta_j+3).
+ \end{aligned}
+\]
+Define
+\begin{equation}\label{eq:deformed-fixed-partition-ideal}
+ \begin{aligned}
+ \bar I_{A,B;\pi}=\bigl(&x_i-1+\theta_i,\ x_{k+i}+1+\theta_i
+                         \quad(1\le i\le r),\\
+                       &P_{r_\alpha}^{\theta,\mathrm{red}}
+                         \quad(1\le\alpha\le m),\\
+                       &x_t-x_{r_\alpha}
+                         \quad(1\le\alpha\le m,\
+                          t\in S_\alpha\setminus\{r_\alpha\})
+                       \bigr)\subseteq S.
+ \end{aligned}
+\end{equation}
+As in the homogeneous case, the ideal is independent of the chosen
+block representatives. Its special fiber is the original auxiliary
+ideal:
+\[
+ \frac{\bar I_{A,B;\pi}+(\theta_1,\ldots,\theta_L)}
+      {(\theta_1,\ldots,\theta_L)}=I_{A,B;\pi}
+ \quad\text{in }\C[x_1,\ldots,x_N].
+\]
+Let $\bar Z_{A,B;\pi}$ denote the relative formal sum associated with
+$\operatorname{Spec}(S/\bar I_{A,B;\pi})$, retaining its
+scheme-theoretic multiplicities. We work locally near $(0,p)$ and
+assume that the relevant family is finite and flat over $T$.
+
+The intended counting rule is to sum the degrees over $T$ of the
+compatible components that satisfy the reduced free equations.
+Identifying this sum with the central multiplicity requires the
+corresponding family to be finite and flat, with a reduced
+geometric generic fiber.
+
+For the component count below, assume that all auxiliary partition
+families, for every choice of fixed sites and root labels, are finite
+and flat near $(0,p)$. Assume also that the original and reduced
+free-root systems have simple geometric generic roots, and that free
+roots in each reduced system avoid its fixed site endpoints. These
+are genericity assumptions on the deformation.
+
+Under these assumptions, depermutation retains the components with
+pairwise distinct free coordinates. Let $\mathcal C_r(p)$ denote the
+multiset of such components in the fixed-pair family with
+$A=[r]$ and $B=\{k+1,\ldots,k+r\}$. They satisfy
+$f_C(i)=g_C(i)=i$ for $1\le i\le r$. By endpoint avoidance, their full
+root configurations have distinct coordinates. In terms of the labels,
+each site label occurs at most once in each of $f_C,g_C$, and
+$\pi_1(C),\pi_2(C)$ are singleton partitions. The label $\mathcal E$
+may occur several times, provided its coordinates are distinct.
+
+In this count, each component is repeated according to its degree over $T$. Put
+$D_r(p)=\#\mathcal C_r(p)$.
+
+There are $\binom kr^2$ choices of the fixed positive and negative
+labels that can contribute at $p$. By symmetry, they give the same
+count $D_r(p)$. Combining the depermutation normalization with the
+averaging factor in~\eqref{eq:reduced-fixed-pair-depermutation} gives
+\begin{equation}\label{eq:fixed-pair-component-weight}
+ \boxed{w_r(p)
+ =\frac{(r!)^2}{N!}\binom kr^2D_r(p)
+ =\frac{(k!)^2}{N!\,((k-r)!)^2}D_r(p),\qquad 0\le r\le k.}
+\end{equation}
+
+To refine the count, let $\tilde D_r(p)$ be the cardinality of the
+multiset of components with labels
+\[
+ f_C(i)=g_C(i)=
+ \begin{cases}
+ i,&1\le i\le r,\\
+ \mathcal E,&r<i\le k,
+ \end{cases}
+ \qquad \pi_1(C)=\pi_2(C)=\hat0,
+\]
+using the same degree convention as for $D_r(p)$. The number of exceptional components are $\tilde D_0(p)$. Thus these
+components carry exactly the $r$ prescribed site pairs and no others.
+Grouping the components counted by $D_r(p)$ according to their total
+number $s$ of site pairs gives
+\begin{equation}\label{eq:component-count-refinement}
+ \boxed{D_r(p)=\sum_{s=r}^k
+ \binom{L-r}{s-r}\binom{k-r}{s-r}^{\!2}((s-r)!)^2
+ \tilde D_s(p)
+ =\sum_{s=r}^k\binom{L-r}{s-r}
+       \left(\frac{(k-r)!}{(k-s)!}\right)^2\tilde D_s(p).}
+\end{equation}
+Indeed, the additional $s-r$ sites can be chosen in
+$\binom{L-r}{s-r}$ ways. Their positive and negative root labels can
+be chosen independently in $\binom{k-r}{s-r}^2$ ways, and assigned to
+those sites in $((s-r)!)^2$ ways. Permuting the remaining root labels
+and site parameters identifies each resulting count with
+$\tilde D_s(p)$. These cases are disjoint and exhaust the components
+counted by $D_r(p)$.
+
+\begin{proposition}[Cancellation of nonexceptional components]
+\label{prop:exceptional-component-cancellation}
+Under the finite-flatness, simplicity, and endpoint-avoidance
+assumptions above,
+\begin{equation}\label{eq:exceptional-component-weight}
+ \boxed{w_p(\tilde Z)
+ =\sum_{r=0}^k(-1)^r\binom Lr w_r(p)
+ =\frac1{N!}\tilde D_0(p)}
+\end{equation}
+The right-hand side is a multiset count: each component contributes
+its degree over $T$.
+\end{proposition}
+
+\begin{proof}
+Terms with $r>k$ have zero weight at $p$, since $p$ contains only
+$k$ copies of each singular value. Substituting
+\eqref{eq:fixed-pair-component-weight} and
+\eqref{eq:component-count-refinement} into the alternating sum and
+interchanging the finite sums gives
+\[
+\begin{aligned}
+ w_p(\tilde Z)
+ &=\sum_{r=0}^k(-1)^r\binom Lr
+       \frac{(k!)^2}{N!\,((k-r)!)^2}D_r(p)\\
+ &=\frac{(k!)^2}{N!}\sum_{s=0}^k
+       \frac{\tilde D_s(p)}{((k-s)!)^2}
+       \sum_{r=0}^s(-1)^r\binom Lr\binom{L-r}{s-r}.
+\end{aligned}
+\]
+The identity
+\[
+ \binom Lr\binom{L-r}{s-r}=\binom Ls\binom sr
+\]
+therefore reduces the coefficient of $\tilde D_s(p)$ to
+\[
+ \frac{(k!)^2}{N!\,((k-s)!)^2}\binom Ls
+       \sum_{r=0}^s(-1)^r\binom sr.
+\]
+By the binomial theorem, the final sum is zero for $s\ge1$ and one
+for $s=0$. All terms corresponding to components carrying at least
+one site pair cancel, leaving
+\[
+ w_p(\tilde Z)=\frac{\tilde D_0(p)}{N!}.
+\]
+By definition, $\tilde D_0(p)$ counts precisely the exceptional
+components, with their degrees over $T$.
+\end{proof}
+
+Thus the alternating sum removes all nonexceptional components under
+the stated deformation assumptions. An exceptional component may
+still specialize to a repeated singular root; the combinatorial
+cancellation alone does not exclude that possibility.
+
+
 \section*{Disclosure of AI assistance}
-The main ideas of this work originate with the author. AI tools were
+AI tools were
 used to assist with writing, language editing, and locating relevant
 references. The author is responsible for the mathematical content,
 the accuracy of the references, and the final text.
