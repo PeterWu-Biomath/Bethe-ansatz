@@ -1,0 +1,305 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=28mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{definition}{Definition}[section]
+\newcommand{\C}{\mathbb C}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\ind}{\operatorname{ind}}
+\newcommand{\coeff}{\operatorname{coeff}}
+\title{Local multiplicities at balanced singular configurations\\
+\large Definitions and the alternating local index}
+\author{}
+\date{November 1, 2026}
+\begin{document}
+\maketitle
+\vspace{-2em}
+
+This note sets up the local multiplicity question for the auxiliary
+cycles $Z_{A,B;\pi}$ of \texttt{../main.tex}.
+We use its rescaled coordinates, in which the singular values are
+$1,-1$ (equivalently, $\lambda=\ii x/2$ has singular values
+$\ii/2,-\ii/2$). We stop at the definition of the alternating index.
+In particular, no interpretation of this index as a count of deformed
+components is assumed.
+
+\section{The polynomial equations and the point}
+
+Fix integers $N\geq 2$ and $L\geq 2N$, and write $[N]=\{1,\ldots,N\}$.
+The ordered Bethe polynomials are
+\begin{equation}\label{eq:bethe}
+ P_i(x)=(x_i+1)^L\prod_{j\ne i}(x_i-x_j-2)
+       -(x_i-1)^L\prod_{j\ne i}(x_i-x_j+2),
+ \qquad i\in[N].
+\end{equation}
+Fix $1\leq k\leq\lfloor N/2\rfloor$ and put $r=N-2k$. Our point is
+\[
+ p=(\underbrace{1,\ldots,1}_{k},
+    \underbrace{-1,\ldots,-1}_{k},z_1,\ldots,z_r),
+ \qquad z_u\ne\pm1,\quad z_u\ne z_v\ (u\ne v).
+\]
+The notation $1^k,-1^k$ means repeated coordinates, not powers.
+Its singular label sets are
+\[
+ A_0=\{1,\ldots,k\},\qquad B_0=\{k+1,\ldots,2k\},
+ \qquad R_0=[N]\setminus(A_0\cup B_0).
+\]
+All coordinates and multiplicities below are ordered; we do not pass
+to permutation orbits.
+
+\section{Fixing singular coordinates and imposing a partition}
+
+Take disjoint subsets $A,B\subseteq[N]$, where either both are empty
+or both are nonempty. Set $a=|A|$, $b=|B|$, and
+$R=[N]\setminus(A\cup B)$. For $t\in R$, define
+\begin{equation}\label{eq:reduced}
+\begin{aligned}
+ P_t^{A,B}(x_R)
+ &=
+ \frac{P_t(x)|_{x_\alpha=1\ (\alpha\in A),\,x_\beta=-1\ (\beta\in B)}}
+      {(x_t+1)^a(x_t-1)^b}\\
+ &=(x_t+1)^{L-a}(x_t-3)^a
+       \prod_{\substack{u\in R\\u\ne t}}(x_t-x_u-2)\\
+ &\quad -(x_t-1)^{L-b}(x_t+3)^b
+       \prod_{\substack{u\in R\\u\ne t}}(x_t-x_u+2).
+\end{aligned}
+\end{equation}
+The quotient is a polynomial identity, including at $x_t=\pm1$.
+Thus this definition removes a common polynomial factor;
+it is not division of numerical values at $p$.
+
+Let $\pi=\{S_1,\ldots,S_m\}$ be a set partition of $R$, and choose
+$t_\alpha\in S_\alpha$. Define
+\begin{equation}\label{eq:ideal}
+\begin{aligned}
+ I_{A,B;\pi}=\bigl(&x_\alpha-1\ (\alpha\in A),\
+                    x_\beta+1\ (\beta\in B),\\
+                 &P_{t_\alpha}^{A,B}\ (1\leq\alpha\leq m),\\
+                 &x_u-x_{t_\alpha}\
+                   (u\in S_\alpha\setminus\{t_\alpha\},
+                    \ 1\leq\alpha\leq m)\bigr).
+\end{aligned}
+\end{equation}
+After imposing the block equalities, equations indexed by labels in
+one block agree. The ideal is therefore independent of the chosen
+representatives. There are $N$ displayed generators in total.
+Write $\hat0_R$ for the partition of $R$ into singletons.
+
+Equivalently, replace all $x_u$ in $S_\alpha$ by a single variable
+$y_\alpha$ in $P_{t_\alpha}^{A,B}$. If the resulting polynomial is
+$H_\alpha(y)$, the quotient algebra in \eqref{eq:ideal} is
+\[
+ \C[x_1,\ldots,x_N]/I_{A,B;\pi}
+ \simeq \C[y_1,\ldots,y_m]/(H_1,\ldots,H_m).
+\]
+The fixed coordinates and block equalities have already been eliminated
+in this presentation.
+
+\section{Local multiplicity and the meaning of a simple zero}
+
+Assume the auxiliary ideals used below are zero-dimensional.
+For a point $q$, let $\mathfrak m_q$ be its maximal ideal and define
+\begin{equation}\label{eq:local-length}
+ m_{A,B;\pi}(q)=
+ \dim_\C\left(\C[x_1,\ldots,x_N]/I_{A,B;\pi}\right)_{\mathfrak m_q},
+\end{equation}
+with value zero if $q\notin V(I_{A,B;\pi})$.
+The associated cycle is
+\[
+ Z_{A,B;\pi}=\sum_q m_{A,B;\pi}(q)[q].
+\]
+Thus the multiplicity of $p$ in $Z_{A,B;\pi}$ means exactly the
+integer $m_{A,B;\pi}(p)$.
+
+For the point above, fix all its singular coordinates and use the
+singleton partition on the ordinary labels. The remaining equations,
+in variables $y_1,\ldots,y_r$, are
+\begin{equation}\label{eq:fully-reduced}
+\begin{aligned}
+ F_u(y)&=(y_u+1)^{L-k}(y_u-3)^k
+                  \prod_{v\ne u}(y_u-y_v-2)\\
+       &\quad -(y_u-1)^{L-k}(y_u+3)^k
+                  \prod_{v\ne u}(y_u-y_v+2),
+ \qquad 1\leq u\leq r.
+\end{aligned}
+\end{equation}
+We assume $F_u(z)=0$ for every $u$. This implies that $p$ solves
+the original equations \eqref{eq:bethe}: the singular equations vanish
+automatically, and the removed factors at ordinary coordinates are
+nonzero.
+
+\begin{definition}[Simple fully reduced zero]\label{def:simple}
+The configuration $p$ is called simple for the fully reduced system if
+\[
+ \det\left(\frac{\partial F_u}{\partial y_v}(z)\right)_{u,v=1}^r
+ \ne0.
+\]
+Equivalently,
+$m_{A_0,B_0;\hat0_{R_0}}(p)=1$.
+For $r=0$, the system is empty, the determinant is $1$ by convention,
+and its local algebra is $\C$.
+\end{definition}
+
+This is the precise meaning of a simple zero used in this note.
+It concerns the ordinary coordinates after \emph{all} $k$ pairs have
+been fixed. It does not assert that $p$ is a simple zero of the full
+Bethe ideal or of every $I_{A,B;\pi}$.
+
+For a particular compatible partition ideal, its multiplicity can be
+computed instead as
+\[
+ m_{A,B;\pi}(p)
+ =
+ \dim_\C
+ \frac{\C[[u_1,\ldots,u_m]]}
+ {(H_1(c+u),\ldots,H_m(c+u))},
+ \qquad c_\alpha=p_{t_\alpha}.
+\]
+This explains why simply counting compatible partitions
+does not compute their local multiplicities.
+
+\section{Which labels and partitions can contribute?}
+
+A necessary condition for $m_{A,B;\pi}(p)\ne0$ is
+\begin{equation}\label{eq:compatible}
+ A\subseteq A_0,\qquad B\subseteq B_0,\qquad
+ \pi\leq \sigma_{A,B}(p),
+\end{equation}
+where $\sigma_{A,B}(p)$ is the equality partition of the remaining
+coordinates and $\leq$ denotes refinement.
+Explicitly, its blocks are $A_0\setminus A$, $B_0\setminus B$
+when nonempty, and the singleton ordinary labels.
+No block of $\pi$ can mix these groups.
+
+For balanced choices $|A|=|B|=s\leq k$, compatibility is also
+sufficient for $p$ to solve the auxiliary equations.
+If $s<k$, the remaining opposite singular cluster makes each
+singular reduced equation vanish; at an ordinary coordinate,
+\eqref{eq:reduced} specializes to
+$(z_u^2-1)^{k-s}F_u(z)=0$.
+For $s=k$, only \eqref{eq:fully-reduced} remains.
+These statements give membership, not the value of the local length.
+
+Under Definition~\ref{def:simple}, fixing all $k$ pairs leaves just
+one compatible choice:
+\[
+ A=A_0,\qquad B=B_0,\qquad \pi=\hat0_{R_0},
+ \qquad m_{A_0,B_0;\hat0_{R_0}}(p)=1.
+\]
+For $s<k$, the multiplicities remain the local algebra lengths
+in \eqref{eq:local-length}; we impose no formula for them.
+
+\section{Depermutation weights}
+
+For a partition $\pi$ define its partition-lattice weight by
+\[
+ \mu(\hat0,\pi)=\prod_{S\in\pi}(-1)^{|S|-1}(|S|-1)!.
+\]
+For balanced $A,B$, put $s=|A|=|B|$ and $r_s=N-2s$. Define
+\[
+ Z^{\mathrm{dep}}_{A,B}
+ =\frac1{r_s!}\sum_{\pi\in\Pi(R)}
+                  \mu(\hat0,\pi)Z_{A,B;\pi},
+\]
+and then
+\[
+ Z_s^{\mathrm{dep}}
+ =\frac{(s!)^2r_s!}{N!}
+   \sum_{\substack{A\cap B=\varnothing\\|A|=|B|=s}}
+     Z^{\mathrm{dep}}_{A,B}.
+\]
+Here $\Pi(R)$ is the set of partitions of $R$.
+For an empty set there is one partition, with weight $1$.
+These are rational weighted cycles; their coefficients need not be
+individual local lengths.
+
+Let $w_s(p)=\coeff_p Z_s^{\mathrm{dep}}$. Cancelling the two
+$r_s!$ factors gives the explicit definition
+\begin{equation}\label{eq:weight}
+ \boxed{
+ w_s(p)=\frac{(s!)^2}{N!}
+ \sum_{\substack{A\cap B=\varnothing\\|A|=|B|=s}}
+ \ \sum_{\pi\in\Pi([N]\setminus(A\cup B))}
+       \mu(\hat0,\pi)m_{A,B;\pi}(p).}
+\end{equation}
+Only the compatible terms in \eqref{eq:compatible} contribute.
+In particular, $w_s(p)=0$ for $s>k$, and simplicity gives
+\begin{equation}\label{eq:top}
+ w_k(p)=\frac{(k!)^2}{N!}.
+\end{equation}
+
+For bookkeeping, choose one compatible pair $A_s\subseteq A_0$,
+$B_s\subseteq B_0$ of size $s$ and set
+\[
+ M_s(p)=\sum_{\pi\leq\sigma_{A_s,B_s}(p)}
+          \mu(\hat0,\pi)m_{A_s,B_s;\pi}(p).
+\]
+Permuting the $k$ plus labels and the $k$ minus labels fixes $p$,
+so this sum is independent of the choice of $A_s,B_s$.
+There are $\binom ks^2$ such choices. Consequently
+\begin{equation}\label{eq:Ms}
+ w_s(p)=\frac{(s!)^2\binom ks^2}{N!}M_s(p)
+       =\frac{(k!)^2}{N!((k-s)!)^2}M_s(p),
+ \qquad M_k(p)=1.
+\end{equation}
+This is a symmetry and normalization identity, not a determination
+of the unknown lengths inside $M_s(p)$.
+
+\section{The alternating local index}
+
+Define the candidate corrected cycle by
+\[
+ \widetilde Z=
+ \sum_{s=0}^{\lfloor N/2\rfloor}
+        (-1)^s\binom Ls Z_s^{\mathrm{dep}}.
+\]
+\begin{definition}[Local index]
+The index at the ordered configuration $p$ is its coefficient in this
+cycle:
+\begin{equation}\label{eq:index}
+ \boxed{
+ \ind_p=\coeff_p\widetilde Z
+       =\sum_{s=0}^k(-1)^s\binom Ls w_s(p)
+       =\frac{(k!)^2}{N!}
+          \sum_{s=0}^k
+          \frac{(-1)^s\binom Ls}{((k-s)!)^2}M_s(p).}
+\end{equation}
+\end{definition}
+
+For $k=1$, every compatible partition is the singleton partition.
+Writing $\ell_{\mathrm{full}}(p)$ for the local length of
+$(P_1,\ldots,P_N)$, the definition reduces to
+\[
+ M_0(p)=\ell_{\mathrm{full}}(p),\qquad M_1(p)=1,\qquad
+ \ind_p=\frac{\ell_{\mathrm{full}}(p)-L}{N!}.
+\]
+Even here, reduced simplicity alone is not a definition of
+$\ell_{\mathrm{full}}(p)$.
+
+For $k=2$, take $A_0=\{1,2\}$, $B_0=\{3,4\}$.
+With no fixed labels, let $\ell_{00}$ denote the full local length,
+$\ell_{10}$ the length with $\{1,2\}$ merged,
+$\ell_{01}$ the length with $\{3,4\}$ merged, and
+$\ell_{11}$ the length with both blocks merged.
+All other blocks are singletons. With one fixed pair, let
+$\ell_{\mathrm{one}}$ be the local length for any one compatible
+choice and the singleton partition. Then
+\[
+ M_0=\ell_{00}-\ell_{10}-\ell_{01}+\ell_{11},\qquad
+ M_1=\ell_{\mathrm{one}},\qquad M_2=1,
+\]
+so
+\[
+ \ind_p=
+ \frac{\ell_{00}-\ell_{10}-\ell_{01}+\ell_{11}
+       -4L\ell_{\mathrm{one}}+4\binom L2}{N!}.
+\]
+The factors $4$ come from the fixed-label normalization and the
+four choices of one plus label and one minus label.
+
+The local question is therefore to determine the lengths
+$m_{A,B;\pi}(p)$, or the combinations $M_s(p)$, under the fully
+reduced simplicity assumption. Formula~\eqref{eq:index} defines
+the index but does not establish its positivity, a component-degree
+interpretation, or its expected vanishing for $k\geq2$.
+\end{document}

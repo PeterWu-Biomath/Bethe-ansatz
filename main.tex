@@ -28,10 +28,10 @@ permutations, and appropriately regularizing singular roots,
 equals $\binom LN-\binom L{N-1}$, where $L$ is the length of the
 chain and $N$ is the number of flipped spins.
 We propose a counting strategy that starts from the original Bethe
-equations and introduces a series of systems of polynomial equations
+equations and introduces a series of systems of polynomial equations with weights
 as corrections. For each system, every root of the Bethe equations
 is assigned a local index given by its multiplicity. Our aim is that,
-after taking an appropriate weighted sum, this index equals $1/N!$
+the weighted sum of these index equals $1/N!$
 at physical roots and vanishes otherwise. Taking the global count,
 the weighted sum of intersection numbers would then yield the desired
 count. This claim is resolved conditionally: the case of roots
@@ -130,9 +130,7 @@ By completeness of the Bethe ansatz, we mean that Bethe vectors
 obtained from physical roots, with singular roots appropriately
 regularized, span the highest-weight space. Early spectral results
 include Babbitt--Thomas's infinite-chain expansion \cite{BT1977} and
-Koma--Ezawa's two-down-spin analysis \cite{KE1987}. Combinatorial counts
-were developed by Kirillov \cite{Kirillov1985} and Kirillov--Liskova
-\cite{KL1997}, the latter assuming the string hypothesis. Baxter
+Koma--Ezawa's two-down-spin analysis \cite{KE1987}. Baxter
 \cite{Baxter2002} examined exceptional roots and completeness for the
 six- and eight-vertex models. Algebraic-geometric approaches include
 Langlands--Saint-Aubin \cite{LS1995} and the quotient-ring counting
@@ -147,8 +145,38 @@ Sommese \cite{HNS2013}, and Granet--Jacobsen's characterization of
 physical distinct-root configurations through polynomial companions
 and two zero-remainder conditions \cite{GJ2020}.
 
+Closely related in spirit are the combinatorial counts developed by
+Kirillov \cite{Kirillov1985} and Kirillov--Liskova \cite{KL1997}.
+For the spin-$1/2$ XXX chain, the corresponding identity takes the form
+\[
+\sum_{\substack{m_1,m_2,\ldots\ge0\\
+                         \sum_{j\ge1}j\,m_j=N}}
+              \prod_{j\ge1}\binom{v_j+m_j}{m_j}=d(L,N),
+ \qquad
+ v_j=L-2\sum_{k\ge1}\min(j,k)m_k.
+\]
+Here $m_j$ records the number of strings of length $j$, and $v_j$ is
+the associated vacancy number. The binomial factors count admissible
+integer labels attached to the strings. The string hypothesis models
+Bethe roots as groups with approximately equal real parts and equally
+spaced imaginary parts. Interpreting the combinatorial labels as a
+complete parametrization of physical roots requires additional care:
+finite-chain roots can deviate from ideal strings, so the counting
+identity alone does not establish this correspondence. In particular,
+Kirillov--Liskova's generalized XXZ interpretation assumes the string
+hypothesis \cite{KL1997}.
+
 This note seeks an intersection-theoretic explanation of the
-completeness count. We express the expected count as a weighted
+completeness count. In constrast to Kirillov/Kirillov--Liskova's approach,
+we starts from roots of Bethe polynomial, remove all collision. Then first starts
+from removing the multiplicity of roots with one $(1,-1)$, the roots with more than one pair of $(1,-1)$ would have their multiplicities over-subtracted, then we compensate to balance the    multiplicity of roots with two pairs of $(1,-1)$, doing this till   multiplicity of roots with $\lfloor L/2\rfloor$ pairs of $(1,-1)$ being balance. Which results in an alternating sum:
+\begin{equation}\label{eq:projective-completeness-degree}
+	\boxed{
+		\sum_{k=0}^{\lfloor n/2\rfloor}(-1)^k\binom Lk
+		\binom{L+n-2k-2}{n-2k}
+		=d(L,N).}
+\end{equation}
+This allow us to   express the expected count as a weighted
 combination of intersection numbers and study the associated local
 weights. The conjectural local and boundary identifications below
 concern this counting construction; completeness in the polynomial
