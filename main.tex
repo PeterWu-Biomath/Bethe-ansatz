@@ -167,20 +167,25 @@ Kirillov--Liskova's generalized XXZ interpretation assumes the string
 hypothesis \cite{KL1997}.
 
 This note seeks an intersection-theoretic explanation of the
-completeness count. In constrast to Kirillov/Kirillov--Liskova's approach,
-we starts from roots of Bethe polynomial, remove all collision. Then first starts
-from removing the multiplicity of roots with one $(1,-1)$, the roots with more than one pair of $(1,-1)$ would have their multiplicities over-subtracted, then we compensate to balance the    multiplicity of roots with two pairs of $(1,-1)$, doing this till   multiplicity of roots with $\lfloor L/2\rfloor$ pairs of $(1,-1)$ being balance. Which results in an alternating sum:
-\begin{equation}\label{eq:projective-completeness-degree}
-	\boxed{
-		\sum_{k=0}^{\lfloor n/2\rfloor}(-1)^k\binom Lk
-		\binom{L+n-2k-2}{n-2k}
-		=d(L,N).}
+completeness count. Rather than organizing Bethe roots into strings,
+we start from the roots of the Bethe polynomial system and account for
+collisions through inclusion--exclusion. We then correct the excess
+multiplicity associated with a single singular pair $(1,-1)$. This
+subtraction may overcorrect configurations containing several singular
+pairs, requiring a compensating contribution from configurations with
+two fixed pairs. Continuing this process up to $\lfloor N/2\rfloor$
+pairs leads to the alternating sum
+\begin{equation}\label{eq:intro-alternating-count}
+ \boxed{
+ \sum_{k=0}^{\lfloor N/2\rfloor}(-1)^k\binom Lk
+       \binom{L+N-2k-2}{N-2k}
+ =d(L,N).}
 \end{equation}
-This allow us to   express the expected count as a weighted
-combination of intersection numbers and study the associated local
-weights. The conjectural local and boundary identifications below
-concern this counting construction; completeness in the polynomial
-formulation is already established.
+This construction expresses the expected count as a weighted
+combination of intersection numbers and allows us to study the
+associated local weights. The conjectural local and boundary
+identifications below concern this counting construction; completeness
+in the polynomial formulation is already established.
 
 
 \section{The counting strategy}
@@ -812,8 +817,8 @@ of the Bethe vector by Nepomechie and Wang
 \cite[Section~2]{NW2014}. Granet and Jacobsen
 \cite[Sections~2--4]{GJ2020} relate physical singular roots to
 polynomial companions and additional zero-remainder conditions.
-Here we study the same configurations through their multiplicities
-in the full and reduced polynomial systems.
+The \eqref{eq:single-pair-length-criterion} has already known combining \cite{NW2013} and \cite{MTV2009}.
+Here we only present a proof of a simple case:
 
 Let $n\ge2$, $L\ge2n$, and let
 $p=(1,-1,z_3,\ldots,z_n)$ have pairwise distinct coordinates. Set
@@ -882,15 +887,10 @@ We prove a weaker version of \eqref{eq:single-pair-length-criterion}:
 \end{proof}
 
 
-\section{The local index as a degree of remaining components}
+\section{The local index as a degree of exceptional components}
 \label{sec:residual-local-index}
 
-We give a geometric interpretation of the alternating sum using the
-original partition ideals. The argument uses an inhomogeneous family
-and two inclusion--exclusion operations: depermutation removes
-collisions, and the alternating sum removes components carrying a
-site singular pair. The conclusion is conditional on the genericity
-assumptions stated below; no $TQ$ relation is needed.
+We give a deformation of Bethe equations that a root $(1^k,-1^k,z_{2k+1},\dots,z_{N})$ splits into several orbits, and its multiplicity in $Z_{A,B,\pi}$ can be determined by number of orbits lies in certain hyperplanes. Then the index can be interpreted as number of orbits did not lies in those hyperplanes, multiplied by a combinatorial factor. 
 
 \paragraph{The family and its fixed-pair systems.}
 Introduce site parameters $\theta_1,\ldots,\theta_L$ and put
