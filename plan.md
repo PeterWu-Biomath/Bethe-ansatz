@@ -31,7 +31,7 @@ Preserve the author's decisions:
 - [x] Add a compact notation guide before the component count: D_r counts configurations containing the prescribed r site pairs; tilde D_r counts configurations carrying exactly those pairs and no others. In particular, D_0 and tilde D_0 are different counts.
 - [x] Explain once that a component is counted with its degree over the parameter space. The multiset convention already includes this degree; do not multiply by it again.
 - [x] Distinguish ordered nearby root configurations, their permutation orbits, and irreducible components. Avoid using these interchangeably in the opening paragraph of Section 5.
-- [ ] Keep the calculation of the normalization explicit:
+- [x] Keep the calculation of the normalization explicit:
 
   `w_r(p) = (k!)^2 D_r(p) / [N! ((k-r)!)^2]`.
 

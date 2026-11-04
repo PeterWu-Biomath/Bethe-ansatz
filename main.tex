@@ -898,10 +898,10 @@ We prove a weaker version of \eqref{eq:single-pair-length-criterion}:
 \section{The local index as a degree of exceptional components}
 \label{sec:residual-local-index}
 
-We deform the Bethe equations and follow the ordered solutions near
- a root $p=(1^k,-1^k,z_{2k+1},\ldots,z_N)$. Its
-multiplicity in $Z_{A,B;\pi}$ can then be determined by counting the
-orbits lying in certain hyperplanes. The alternating sum removes the components on those hyperplanes thus the  index can be interpreted
+Throughout this section we count ordered roots. We deform the Bethe
+equations that a root $p=(1^k,-1^k,z_{2k+1},\ldots,z_N)$ would split to several traces, and local
+multiplicities of $p$ in $Z_{A,B;\pi}$ can be decided by counting traces lies in certain hyperplane under the assumptions
+below. The alternating sum removes weights from traces on those hyperplanes. Thus the index can be interpreted
 as the number of orbits outside these hyperplanes, multiplied by a
 combinatorial factor.
 
@@ -1115,8 +1115,10 @@ its degree over $T$. In particular, $\tilde D_0(p)$ is the number of exceptional
 
 There are $\binom kr^2$ choices of the fixed positive and negative
 labels that can contribute at $p$. By symmetry, they give the same
-count $D_r(p)$. Combining the depermutation normalization with the
-averaging factor in~\eqref{eq:reduced-fixed-pair-depermutation} gives
+count $D_r(p)$. For each choice, depermutation contributes the factor
+$1/(N-2r)!$, while the averaging factor
+in~\eqref{eq:reduced-fixed-pair-depermutation} is
+$(r!)^2(N-2r)!/N!$. Their product is $(r!)^2/N!$, giving
 \begin{equation}\label{eq:fixed-pair-component-weight}
  \boxed{w_r(p)
  =\frac{(r!)^2}{N!}\binom kr^2D_r(p)
@@ -1189,10 +1191,7 @@ components, with their degrees over $T$.
 \end{proof}
 
 Thus the alternating sum removes all nonexceptional components under
-the stated deformation assumptions. An exceptional component may
-still specialize to a repeated singular root; the combinatorial
-cancellation alone does not exclude that possibility.
-
+the stated deformation assumptions. It is unclear why exceptional components exists only when $k=1$.
 
 \section*{Disclosure of AI assistance}
 AI tools were
