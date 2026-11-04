@@ -1134,13 +1134,30 @@ number $s$ of site pairs gives
  =\sum_{s=r}^k\binom{L-r}{s-r}
        \left(\frac{(k-r)!}{(k-s)!}\right)^2\tilde D_s(p).}
 \end{equation}
-Indeed, the additional $s-r$ sites can be chosen in
-$\binom{L-r}{s-r}$ ways. Their positive and negative root labels can
-be chosen independently in $\binom{k-r}{s-r}^2$ ways, and assigned to
-those sites in $((s-r)!)^2$ ways. Permuting the remaining root labels
-and site parameters identifies each resulting count with
-$\tilde D_s(p)$. These cases are disjoint and exhaust the components
-counted by $D_r(p)$.
+To obtain a component carrying exactly $s$ site pairs, keep the first
+$r$ prescribed pairs and make three further choices:
+\begin{enumerate}
+ \item Choose $s-r$ additional sites among the $L-r$ unused sites:
+ $\binom{L-r}{s-r}$ choices.
+ \item Choose $s-r$ of the $k-r$ remaining positive root labels and,
+ independently, $s-r$ of the remaining negative root labels:
+ $\binom{k-r}{s-r}^2$ choices.
+ \item Assign the chosen positive labels bijectively to the chosen
+ sites, and do the same for the negative labels: $((s-r)!)^2$ choices.
+\end{enumerate}
+For each choice, the roots not assigned to sites have label
+$\mathcal E$. Permutations of the unused sites and of the remaining
+positive and negative root labels take these prescriptions to the
+standard one defining $\tilde D_s(p)$, while leaving the first $r$
+prescribed pairs fixed. The site permutations act on the parameter
+space $T$, and the root permutations preserve the central point $p$.
+The deformed equations and reduced families are carried to their
+corresponding relabelled versions, so these identifications preserve
+degrees over $T$. Thus every choice has the same count
+$\tilde D_s(p)$. Distinct prescriptions are disjoint because each
+component has definite site labels, and they exhaust the components
+counted by $D_r(p)$. Multiplying the three factors and summing over
+$s$ proves~\eqref{eq:component-count-refinement}.
 
 \begin{proposition}[Cancellation of nonexceptional components]
 \label{prop:exceptional-component-cancellation}
