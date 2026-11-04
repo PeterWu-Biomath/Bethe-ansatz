@@ -37,7 +37,7 @@ Preserve the author's decisions:
 
   Check the limiting cases r=0 and r=k and one small example.
 - [x] Keep the refinement factors visible: choose s-r additional sites, choose their positive and negative root labels, and assign those labels to the sites. Explain that permutation symmetry makes the resulting degree counts equal.
-- [ ] Summarize the cancellation in one sentence: the alternating sum removes configurations with one or more pinned site pairs and retains generically distinct configurations with no pinned pair.
+- [x] Summarize the cancellation in one sentence: the alternating sum removes configurations with one or more pinned site pairs and retains generically distinct configurations with no pinned pair.
 
 ## Priority 2: give the deformation assumptions a short physical explanation
 
