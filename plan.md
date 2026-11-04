@@ -1,109 +1,90 @@
-# Rewrite plan: a physics-style note on Bethe completeness
+# Revision plan for the updated Bethe ansatz note
 
-## Aim and level of rigor
+Planning basis: `main.tex` as reviewed on November 4, 2026.
 
-Rewrite the note as a short, readable explanation of the weighted-counting mechanism for the periodic spin-1/2 XXX chain. Physicist-level rigor is sufficient: give explicit equations, explain why each operation should work, verify the combinatorial factors, and support the picture with examples. A full scheme-theoretic treatment is not a prerequisite.
+## Aim and agreed level of rigor
 
-The central story is:
+Prepare a readable physics-style research note explaining the weighted-counting mechanism for the periodic spin-1/2 XXX chain. The aim is a convincing derivation under stated working assumptions, with exact combinatorial factors and informative examples. A complete scheme-theoretic proof of every deformation statement is not a prerequisite.
 
-1. Replace the physical count by a weighted sum of polynomial-system multiplicities.
-2. Use depermutation to organize collisions and permutation redundancy.
-3. Compute the corresponding ambient intersection number by a short combinatorial identity.
-4. Use an inhomogeneous deformation to interpret the local alternating index as the degree-weighted count of exceptional components.
-5. Explain which additional physical identifications remain open.
+Preserve the author's decisions:
 
-## Author's choices to preserve
+- Keep **depermutation**, the setting L >= 2N, and the existing weighted formal sums.
+- Keep the generalized TQ/depermutation correspondence heuristic. Do not require a full proof as part of this revision.
+- Retain the updated Section 5 and its notation D_r and tilde D_r; refine the exposition rather than replace it with the older counting convention.
+- Preserve the current author information, email, and displayed manuscript date unless asked to change them.
+- This task updates the plan only. Apply manuscript revisions separately in the existing `main.tex` and commit completed changes.
 
-- [x] Keep the generalized TQ/depermutation explanation heuristic. Do not turn its full proof into a rewrite requirement.
-- [x] Retain the term **depermutation** and the setting L >= 2N.
-- [x] Preserve the corrected observable-sum normalization: ordered points on the weighted side, unordered physical configurations on the physical side.
-- [x] Preserve the current author information and email. Revisit the displayed date only when preparing the rewritten version.
-- [ ] Rewrite `main.tex` in place when proceeding with the manuscript; this planning task changes only `plan.md`.
+## What the current draft already contains
 
-## What “physicist rigorous” means here
+- [x] The proposed alternating count is displayed in the introduction, with a comparison to string-based counting.
+- [x] The observable-sum formula uses ordered points on the weighted side and unordered physical configurations on the physical side.
+- [x] The ambient intersection-number calculation and its generating-function identity are written out.
+- [x] The boundary argument locates roots at infinity on collision diagonals and distinguishes this from cancellation.
+- [x] The one-pair calculation gives length L for a nonphysical simple reduced root and at least L+1 for a physical one.
+- [x] Section 5 defines degree-weighted component multisets, site labels, and equality partitions of escaping coordinates.
+- [x] Section 5 constructs the reduced deformation with distinct fixed sites and states the working genericity assumptions.
+- [x] The formulas for w_r(p), the refinement of D_r by tilde D_s, and the binomial cancellation leaving tilde D_0(p)/N! are present.
 
-- State the genericity assumptions together in a short paragraph, then use the picture of roots splitting under deformation.
-- Explain conservation of multiplicity as the conservation of the number of nearby roots, counted appropriately.
-- Count a component with its degree over the deformation parameters. Say explicitly that the multiset convention already includes this degree, so it must not be multiplied in again.
-- Use a common symmetric perturbation as the explanation of the TQ/depermutation correspondence; retain a clear indication that this is heuristic.
-- Keep exact normalization factors, signs, and polynomial divisions correct. Heuristic presentation does not justify a false equality.
-- Separate an assumed generic behavior from an observed example and from an unresolved physical interpretation, without repeating lengthy qualifications after every equation.
+## Priority 1: make the existing counting argument easy to follow
 
-## Proposed manuscript structure
+- [ ] Standardize N as the number of roots throughout. In the local discussion, use k for the number of copies of each singular value, r for fixed pairs, and s for total site pairs. Use a separate symbol for the number of free coordinates where necessary.
+- [ ] Add a compact notation guide before the component count: D_r counts configurations containing the prescribed r site pairs; tilde D_r counts configurations carrying exactly those pairs and no others. In particular, D_0 and tilde D_0 are different counts.
+- [ ] Explain once that a component is counted with its degree over the parameter space. The multiset convention already includes this degree; do not multiply by it again.
+- [ ] Distinguish ordered nearby root configurations, their permutation orbits, and irreducible components. Avoid using these interchangeably in the opening paragraph of Section 5.
+- [ ] Keep the calculation of the normalization explicit:
 
-### 1. The question and the proposed answer
+  `w_r(p) = (k!)^2 D_r(p) / [N! ((k-r)!)^2]`.
 
-- [ ] Introduce the XXX Bethe equations, the rescaling to singular values +/-1, and the physical target binom(L,N) - binom(L,N-1).
-- [ ] Explain the three difficulties: permutations, collisions, and singular solutions.
-- [ ] Display the proposed alternating sum early, before the detailed notation.
-- [ ] Explain the contribution relative to existing completeness results: an intersection-counting and local-multiplicity picture, rather than a claim that completeness itself is new.
-- [ ] Keep the historical discussion short and use only the references needed for the argument.
+  Check the limiting cases r=0 and r=k and one small example.
+- [ ] Keep the refinement factors visible: choose s-r additional sites, choose their positive and negative root labels, and assign those labels to the sites. Explain that permutation symmetry makes the resulting degree counts equal.
+- [ ] Summarize the cancellation in one sentence: the alternating sum removes configurations with one or more pinned site pairs and retains generically distinct configurations with no pinned pair.
 
-### 2. Weighted roots and depermutation
+## Priority 2: give the deformation assumptions a short physical explanation
 
-- [ ] Introduce local multiplicity, formal sums of points, and total weight in plain language.
-- [ ] Define the balanced fixed-pair partition ideals and their reduced equations.
-- [ ] Explain the partition-lattice Mobius formula with one small example.
-- [ ] Define the normalized Z_r^dep and the candidate alternating sum once; avoid reintroducing them in later sections.
-- [ ] Explain why weighted depermutation is useful at a collision even though it need not cancel every collision before the singular correction.
-- [ ] Keep the observable-sum extension as a brief remark, including the multiplication-trace interpretation and the restriction on rational denominators.
+- [ ] Gather the working assumptions into one paragraph: multiplicity is conserved under the chosen deformation; the relevant generic roots split simply; free roots avoid already fixed endpoints; the label/site permutations preserve the counts being compared.
+- [ ] Explain finite flatness as conservation of the number of nearby solutions, including multiplicities. Formal local algebra details can be deferred.
+- [ ] Explain that distinct coordinates and a simple zero are different notions. Generic simple collision solutions are allowed and are cancelled by depermutation.
+- [ ] Either keep endpoint avoidance as a stated working assumption, as in the current draft, or include the short Jacobian explanation. A separate technical theorem is optional.
+- [ ] Retain distinct sites for the fixed-pair deformation and division once per selected site. Do not reintroduce an average over repeated site labels as though it specialized to the same reduced ideal.
+- [ ] Make clear that an exceptional component is a surviving generic branch, not an already established physical homogeneous solution.
 
-### 3. Why the global number is the expected one
+## Priority 3: align the claims with what the note establishes
 
-- [ ] Present the ambient degree D = L + N - 2r - 2 for N - 2r free roots.
-- [ ] Give the partition identity that turns D^m into a binomial coefficient after depermutation.
-- [ ] Give the short generating-function derivation of the final alternating binomial identity.
-- [ ] Describe this as the ambient/projective intersection count, distinguished from the actual affine root count.
-- [ ] Keep BKK as an optional short explanation for enlarged supports; do not let it obscure the simpler degree calculation or identify enlarged supports with the actual specialized Newton supports.
-- [ ] Summarize the boundary result: roots at infinity lie on collision diagonals. State that cancellation of the boundary contributions is a further step, not a consequence of their location alone.
-- [ ] Retain the elementary boundary proof if it reads naturally; defer excess-intersection formalism rather than develop it solely for submission.
+- [ ] Revise the abstract to foreground the proposed alternating count and the conditional explanation by exceptional components.
+- [ ] State the remaining physical questions briefly: exact excess one at a physical single-pair root, and absence of exceptional branches at repeated balanced singular limits.
+- [ ] State the distinct-root property away from +/-1 as an input, retaining the intended heuristic TQ discussion.
+- [ ] Keep the weaker one-pair result accurate: h(0)=0 establishes positive excess; exact excess one needs a simple zero of the residual germ h.
+- [ ] Remove the sentence promising that every boundary weight will be proved to vanish, since the current boundary section does not establish this.
+- [ ] Describe the projective number as an ambient intersection count. Explain that its equality with the affine total weight needs boundary cancellation, especially when the boundary intersection is not isolated.
+- [ ] Keep the BKK discussion short and explicit that it uses retained/enlarged supports. Do not identify that generic count with the specialized affine solution count without the boundary comparison.
+- [ ] Use a brief concluding paragraph to separate the explained mechanism from the remaining physical and boundary identifications. Do not require those open problems to be solved before a clearly scoped conjectural note can be posted.
 
-### 4. The local mechanism: deformation and exceptional components
+## Priority 4: add two useful checks
 
-- [ ] Introduce the site parameters theta_j and the exact site pairs 1-theta_j, -1-theta_j.
-- [ ] Use the current degree-weighted multiset of components near p = (1^k,-1^k,z), with the ordinary z coordinates distinct and away from +/-1.
-- [ ] Define the labels f,g and the equality partitions of escaping coordinates. Explain E as “not pinned to a site endpoint”, not “already physical”.
-- [ ] Define D_r and tilde D_r as in the current note, with a concrete interpretation of the fixed sites and root labels.
-- [ ] State finite flatness, generic simplicity, and endpoint avoidance as the working deformation assumptions. If useful, retain the short Jacobian argument showing endpoint avoidance from full generic simplicity; a separate technical theorem is optional.
-- [ ] Explain that fixing r pairs uses r distinct sites. Divide the reduced equations once for each selected site. Do not revive the L^r average over repeated labels as a deformation of the same homogeneous reduced ideal.
-- [ ] Derive the normalization
-      w_r(p) = (k!)^2 D_r(p) / [N! ((k-r)!)^2].
-- [ ] Derive the refinement of D_r by the total number of site pairs, carefully checking the site choices, positive and negative label choices, and factorials.
-- [ ] Show explicitly how the binomial identity cancels every term with at least one site pair, leaving tilde D_0(p)/N!.
-- [ ] Emphasize the interpretation: the surviving count is of generically distinct configurations with no pinned site pair, even if their homogeneous limit has collisions.
+- [ ] Restore a short N=2 calculation for both parities of L, showing the singular multiplicity and its correction. This is the first normalization check.
+- [ ] Choose one further example: N=3, L=6 for the affine/ambient comparison, or N=4 at (1,1,-1,-1) for the multiple-pair correction. Include whichever calculation can be checked most transparently.
+- [ ] State whether each example is analytic or computational, record the parameters, and use the current normalization consistently.
+- [ ] Prefer a short table or a one-page worked example to a large computation. Generic reducedness and conservation assumptions may remain working assumptions; a general proof is not needed for this stage.
 
-### 5. Physical interpretation, examples, and remaining questions
+## Priority 5: final presentation and submission pass
 
-- [ ] Give the TQ viewpoint briefly: it explains the role of depermutation and the exclusion of unbalanced singular clusters. Keep the discussion heuristic where intended.
-- [ ] State the distinct-root assumption away from +/-1 explicitly as an input, with the appropriate reference and its scope.
-- [ ] Explain the one-pair calculation through the local algebra C[[u]]/(u^L h(u)). Nonphysical means h(0) != 0; physical means h(0) = 0. Exact excess one additionally needs a simple zero of h.
-- [ ] State the remaining physical claim precisely: repeated balanced singular limits should receive no exceptional branches, and physical one-pair limits should receive the required degree.
-- [ ] Do not describe these remaining identifications as proved by inclusion-exclusion alone.
-- [ ] Finish with a concise account of what the picture explains and what still needs an argument.
+- [ ] Polish draft grammar, especially the abstract, the start of Section 2, and the description of component counts.
+- [ ] Replace hard-coded section numbers with LaTeX references.
+- [ ] Describe the contribution relative to MTV and Jiang–Zhang concisely: the local weighted/intersection-counting picture, rather than completeness or multiplication traces themselves being new.
+- [ ] Check the references actually used for physicality and repeated-root inputs. Add a comparison with equivariant-system/resultant work only if it clarifies the method; an exhaustive survey is unnecessary.
+- [ ] Review the title, abstract, conclusion, and AI-assistance disclosure for consistency with the final text.
+- [ ] Compile `main.tex` with the editor's compiler, inspect the PDF for long formulas and unresolved references, and commit the completed revision.
 
-## Examples to prioritize
+## Optional later work
 
-- [ ] N=2: compute the singular multiplicity for both parities of L, then show the correction gives the physical weight.
-- [ ] N=3, L=6: one small global count illustrating affine versus ambient counts and the boundary cancellation in this example.
-- [ ] N=4: use (1,1,-1,-1) to illustrate the parity-dependent intermediate multiplicities and parity-independent alternating cancellation, if the calculation remains verified under the current normalization.
-- [ ] Prefer two clear worked examples to a long table. Label numerical checks and analytic calculations accurately.
+These are research directions, not requirements for the present physics-style revision:
 
-## Final revision pass
+- Prove the genericity assumptions for all relevant Bethe families.
+- Supply a fully rigorous local-length proof of the generalized TQ/depermutation identity.
+- Prove general boundary cancellation, including nonproper intersections.
+- Prove exact physical one-pair excess and exclusion of exceptional branches at repeated singular limits.
+- Develop explicit sums of observables from the weighted formal sums.
 
-- [ ] Use N for the number of roots consistently. Keep k for the singular multiplicity at p, r for the number of fixed pairs, and m for the number of free blocks; flag any local exceptions.
-- [ ] Make the abstract match the actual scope: a proposed weighted count and a deformation explanation under working assumptions, with the physical and boundary gaps stated briefly.
-- [ ] Remove promises of results not delivered in the note, and fix draft grammar and hard-coded references.
-- [ ] Keep the distinction between an ordered-point weight and an unordered-orbit contribution visible where needed.
-- [ ] Check the reference details and state the relation to MTV and Jiang–Zhang accurately. Consider a short comparison with symmetric-system/resultant work if it illuminates the partition method; no exhaustive literature survey is required.
-- [ ] Review the AI-assistance disclosure for accuracy.
-- [ ] Compile the existing source, inspect the final PDF, and commit completed changes.
+## Completion criterion
 
-## Longer-term research, not prerequisites for this rewrite
-
-- Prove the genericity assumptions in full generality.
-- Give a complete local-length proof of the generalized TQ/depermutation correspondence.
-- Prove the general boundary cancellation, including nonproper intersections.
-- Prove the exact one-pair excess and exclusion of exceptional branches at repeated balanced singular limits.
-- Develop explicit sums of observables using the weighted formal sums.
-
-The rewrite should explain the mechanism convincingly at physics level. These research tasks may remain open, provided the claims made in the text reflect that status.
+The revised note should let a reader reconstruct the coefficients and cancellation, understand what is assumed about the deformation, follow at least two checks, and identify the remaining physical questions. It need not settle every open claim, but heuristic explanations must remain distinguishable from established identities.
