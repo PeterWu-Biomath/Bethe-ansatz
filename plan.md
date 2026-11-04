@@ -29,7 +29,7 @@ Preserve the author's decisions:
 
 - [x] Standardize N as the number of roots throughout. In the local discussion, use k for the number of copies of each singular value, r for fixed pairs, and s for total site pairs. Use M for the number of free coordinates and m for the number of free blocks.
 - [x] Add a compact notation guide before the component count: D_r counts configurations containing the prescribed r site pairs; tilde D_r counts configurations carrying exactly those pairs and no others. In particular, D_0 and tilde D_0 are different counts.
-- [ ] Explain once that a component is counted with its degree over the parameter space. The multiset convention already includes this degree; do not multiply by it again.
+- [x] Explain once that a component is counted with its degree over the parameter space. The multiset convention already includes this degree; do not multiply by it again.
 - [ ] Distinguish ordered nearby root configurations, their permutation orbits, and irreducible components. Avoid using these interchangeably in the opening paragraph of Section 5.
 - [ ] Keep the calculation of the normalization explicit:
 
