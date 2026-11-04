@@ -1084,29 +1084,36 @@ free-root systems have simple geometric generic roots, and that free
 roots in each reduced system avoid its fixed site endpoints. These
 are genericity assumptions on the deformation.
 
-\paragraph{Notation for the component counts.}
-The two counts below differ by whether additional site pairs are
-allowed. The count $D_r(p)$ includes components containing the $r$
-prescribed site pairs, possibly together with further site pairs.
-The refined count $\tilde D_r(p)$ includes only components carrying
-exactly those prescribed pairs and no others. Both counts retain
-distinct root coordinates and use the degree-weighted multiset
-convention. In particular, $D_0(p)$ counts all retained components
-near $p$, whereas $\tilde D_0(p)$ counts only those with no site pair,
-that is, the exceptional components. These counts need not agree.
-
 Under these assumptions, depermutation retains the components with
-pairwise distinct free coordinates. Let $\mathcal C_r(p)$ denote the
-multiset of such components in the fixed-pair family with
-$A=[r]$ and $B=\{k+1,\ldots,k+r\}$. They satisfy
-$f_C(i)=g_C(i)=i$ for $1\le i\le r$. By endpoint avoidance, their full
-root configurations have distinct coordinates. In terms of the labels,
-each site label occurs at most once in each of $f_C,g_C$, and
-$\pi_1(C),\pi_2(C)$ are singleton partitions. The label $\mathcal E$
-may occur several times, provided its coordinates are distinct.
-
-In this count, each component is repeated according to its degree over $T$. Put
-$D_r(p)=\#\mathcal C_r(p)$.
+pairwise distinct free coordinates. For $0\le r\le k$, prescribe the
+pairs
+\[
+ x_i=1-\theta_i,\qquad x_{k+i}=-1-\theta_i,
+ \qquad 1\le i\le r.
+\]
+We use the following two counts, taken locally over $p$:
+\begin{itemize}
+ \item $D_r(p)$ is the degree-weighted number of components of the
+ reduced fixed-pair family satisfying these prescriptions and having
+ generically distinct full root coordinates. Additional site pairs
+ are allowed. In terms of the labels, $f_C(i)=g_C(i)=i$ for
+ $1\le i\le r$; each site label occurs at most once in each map, and
+ $\pi_1(C)=\pi_2(C)=\hat0$.
+ \item $\tilde D_r(p)$ counts only those components included in
+ $D_r(p)$ with no additional site pairs. Thus their labels satisfy
+ \[
+ f_C(i)=g_C(i)=
+ \begin{cases}
+ i,&1\le i\le r,\\
+ \mathcal E,&r<i\le k,
+ \end{cases}
+ \qquad \pi_1(C)=\pi_2(C)=\hat0.
+ \]
+\end{itemize}
+Both counts use the multiset convention above: a component contributes
+its degree over $T$ once. In particular, $D_0(p)$ counts all retained
+components, whereas $\tilde D_0(p)$ counts only exceptional components,
+with no site pair. These two counts need not agree.
 
 There are $\binom kr^2$ choices of the fixed positive and negative
 labels that can contribute at $p$. By symmetry, they give the same
@@ -1118,18 +1125,6 @@ averaging factor in~\eqref{eq:reduced-fixed-pair-depermutation} gives
  =\frac{(k!)^2}{N!\,((k-r)!)^2}D_r(p),\qquad 0\le r\le k.}
 \end{equation}
 
-To refine the count, let $\tilde D_r(p)$ be the cardinality of the
-multiset of components with labels
-\[
- f_C(i)=g_C(i)=
- \begin{cases}
- i,&1\le i\le r,\\
- \mathcal E,&r<i\le k,
- \end{cases}
- \qquad \pi_1(C)=\pi_2(C)=\hat0,
-\]
-using the same degree convention as for $D_r(p)$. The number of exceptional components are $\tilde D_0(p)$. Thus these
-components carry exactly the $r$ prescribed site pairs and no others.
 Grouping the components counted by $D_r(p)$ according to their total
 number $s$ of site pairs gives
 \begin{equation}\label{eq:component-count-refinement}
@@ -1156,8 +1151,8 @@ assumptions above,
  =\sum_{r=0}^k(-1)^r\binom Lr w_r(p)
  =\frac1{N!}\tilde D_0(p)}
 \end{equation}
-The right-hand side is a multiset count: each component contributes
-its degree over $T$.
+Thus the corrected weight is the normalized count of exceptional
+components, with the degree convention in the definition above.
 \end{proposition}
 
 \begin{proof}
