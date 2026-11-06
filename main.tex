@@ -1,23 +1,32 @@
 \documentclass[11pt]{article}
-\usepackage[a4paper,margin=28mm]{geometry}
+\usepackage[a4paper,margin=25mm]{geometry}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
-\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{xcolor}
+\definecolor{primary}{RGB}{0,51,153}
+\usepackage[colorlinks=true,linkcolor=primary,citecolor=primary,urlcolor=primary]{hyperref}
+
+\setlength{\parskip}{4pt plus 1pt minus 1pt}
+
 \newtheorem{proposition}{Proposition}[section]
 \newtheorem{conjecture}[proposition]{Conjecture}
 \theoremstyle{definition}
 \newtheorem{definition}[proposition]{Definition}
 \newtheorem{example}[proposition]{Example}
 \newtheorem{remark}[proposition]{Remark}
-\newcommand{\ii}{\mathrm i}
-\newcommand{\A}{\mathbb A}
-\newcommand{\C}{\mathbb C}
+
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\C}{\mathbb{C}}
 \newcommand{\Sym}{\operatorname{Sym}}
 \newcommand{\ord}{\operatorname{ord}}
 \DeclareMathOperator{\Ima}{Im}
 
-\title{Completeness of the Bethe Ansatz through Intersection Numbers in $\mathbb P^N$}
-\author{Pei Wu\\\small\href{mailto:wupei5060309031@gmail.com}{\texttt{wupei5060309031@gmail.com}}}
+\title{Completeness of the Bethe Ansatz through Intersection Numbers in $\mathbb{P}^N$}
+\author{Pei Wu\\\small[\texttt{wupei5060309031@gmail.com}]}
 \date{October 31, 2026}
+
 \begin{document}
 \maketitle
 
@@ -25,284 +34,263 @@
 We develop an approach based on intersection numbers to study the
 completeness of the Bethe ansatz for periodic spin-$1/2$ XXX chains.
 Completeness of the Bethe ansatz predicts that the number of
-roots of the Bethe equations, after removing collisions, identifying
-permutations, and appropriately regularizing singular roots,
-equals $\binom LN-\binom L{N-1}$, where $L$ is the length of the
+solutions to the Bethe equations---after removing collisions, identifying
+permutations, and appropriately regularizing singular roots---equals
+$\binom{L}{N}-\binom{L}{N-1}$, where $L$ is the length of the
 chain and $N$ is the number of flipped spins.
 We propose a counting strategy that starts from the original Bethe
-equations and introduces a series of systems of polynomial equations with weights
+equations and introduces a family of weighted polynomial systems
 as corrections. For each system, every root of the Bethe equations
-is assigned a local index given by its multiplicity. Our aim is that,
-the weighted sum of these index equals $1/N!$
-at physical roots and vanishes otherwise. Taking the global count,
-the weighted sum of intersection numbers would then yield the desired
-count. This claim is resolved conditionally: the case of roots
-with collisions among nonsingular components follows from the
-distinct-root assumption for the $Q$-polynomial satisfying the $TQ$
-relation. The case of unequal numbers of components at $\ii/2$ and
-$-\ii/2$ is resolved subsequently. For configurations containing
-singular pairs, we interpret the index geometrically through a
-deformation as a normalized count of nearby irreducible components
-with distinct coordinates and no site singular pair. It remains
-unclear why such components exist only when the number of components
-at each of $\ii/2$ and $-\ii/2$ is $1$.
+is assigned a local index given by its intersection multiplicity. Our aim is for
+the weighted sum of these local indices to equal $1/N!$
+at physical roots and to vanish otherwise; globally,
+the weighted sum of projective intersection numbers then yields the desired
+completeness count. We establish several parts of this program conditionally:
+the vanishing of weights at roots
+with collisions among nonsingular coordinates follows from a
+distinct-root assumption for the $Q$-polynomial in Baxter's $TQ$
+relation, and configurations with unequal numbers of roots at $\ii/2$ and
+$-\ii/2$ are ruled out by comparing vanishing orders in the $TQ$ relation.
+For configurations containing balanced singular pairs, we use an inhomogeneity
+deformation to interpret the local weight geometrically as a normalized count of nearby
+exceptional irreducible components with distinct coordinates and no site-pinned singular pairs.
+It remains an open question why such exceptional components exist only when a root contains
+at most one copy of each singular value $\ii/2$ and $-\ii/2$.
 \end{abstract}
 
 \section{Background: the XXX Bethe ansatz}
+\label{sec:background}
 
 The Bethe ansatz originated in Bethe's 1931 study of the
 one-dimensional Heisenberg chain \cite{Bethe1931}, where he constructed
-eigenfunctions using an ansatz for their coordinate dependence.
-The method and its extensions became central tools in the study of
+eigenfunctions using an explicit ansatz for their coordinate dependence.
+The method and its extensions have since become central tools in the theory of
 quantum integrable systems, including the XXX, XXZ, and XYZ spin chains
 and the related six- and eight-vertex models of statistical mechanics. Standard accounts of this broader setting include Baxter's
-book \cite{Baxter1982} and the treatment of the quantum inverse
+monograph \cite{Baxter1982} and the treatment of the quantum inverse
 scattering method by Korepin, Bogoliubov, and Izergin \cite{KBI1993}.
 
-
 Consider the periodic spin-$1/2$ XXX chain of length $L$, with state space
-$\mathcal H=(\C^2)^{\otimes L}$. One normalization of its Hamiltonian is
+$\mathcal{H}=(\C^2)^{\otimes L}$. Up to an additive constant and overall scale, its Hamiltonian is
 \[
-H=\frac14\sum_{\ell=1}^L
+H=\frac{1}{4}\sum_{\ell=1}^L
 \bigl(\boldsymbol{\sigma}_{\ell}\cdot
 \boldsymbol{\sigma}_{\ell+1}-1\bigr),
 \qquad \boldsymbol{\sigma}_{L+1}=\boldsymbol{\sigma}_1.
 \]
-The sector with $N$ down spins has dimension $\binom LN$. The state space carries a natural $\mathfrak{sl}_2$ action
-that commutes with $H$. The highest-weight subspace in the sector with
+The sector with $N$ down (flipped) spins has dimension $\binom{L}{N}$. The state space carries a natural $\mathfrak{sl}_2$ action
+that commutes with $H$, and the highest-weight subspace in the sector with
 $N$ down spins has dimension
 \begin{equation}\label{eq:target}
-	d(L,N)=\binom LN-\binom L{N-1}.
+	d(L,N)=\binom{L}{N}-\binom{L}{N-1}.
 \end{equation}
 
 The algebraic Bethe ansatz constructs candidate eigenvectors
 \[
 B(\lambda_1)\cdots B(\lambda_N)|0\rangle
 \]
-from parameters satisfying
+from rapidities $\lambda_1,\ldots,\lambda_N$ satisfying the Bethe equations
 \begin{equation}\label{eq:bethe}
 	\left(\frac{\lambda_k+\ii/2}{\lambda_k-\ii/2}\right)^L
 	=
 	\prod_{j\ne k}\frac{\lambda_k-\lambda_j+\ii}{\lambda_k-\lambda_j-\ii},
 	\qquad k=1,\ldots,N.
 \end{equation}
-Throughout this paper we assume $L\ge2N$, where $N$ is the number of
-flipped spins.
+Throughout this paper we assume $L\ge 2N$.
 
-
-
-
-It is convenient to rescale the parameters by
+It is convenient to rescale the parameters by setting
 \[
 \lambda_j=\frac{\ii}{2}x_j,
-\qquad x_j=\frac{2\lambda_j}{\ii}.
+\qquad x_j=\frac{2\lambda_j}{\ii},
 \]
-
-Define:
+so that the singular rapidities $\lambda_j=\pm\ii/2$ correspond to $x_j=\mp 1$.
+Define the \emph{Bethe polynomial}
 \begin{equation}\label{eq:polynomial}
 	P(x_1,\ldots,x_N)=
-	(x_1+1)^L\prod_{j\ne1}(x_1-x_j-2)
+	(x_1+1)^L\prod_{j\ne 1}(x_1-x_j-2)
 	-
-	(x_1-1)^L\prod_{j\ne1}(x_1-x_j+2).
+	(x_1-1)^L\prod_{j\ne 1}(x_1-x_j+2),
 \end{equation}
-We call $P$ the \emph{Bethe polynomial};
-it is symmetric in its last $N-1$ arguments. Set
+which is symmetric in its last $N-1$ arguments, and set
 \[
 P_i(x)=P(x_i,x_1,\ldots,\widehat{x_i},\ldots,x_N).
 \]
-The polynomial form of the periodic Bethe equations is $P_i=0$
+The polynomial form of the periodic Bethe equations is then $P_i(x)=0$
 for $i=1,\ldots,N$.
 
-Physical roots are required to have distinct coordinates; repeated
+Physical roots are required to have pairwise distinct coordinates; repeated
 coordinates are called \emph{collisions}. Since the Bethe creation
-operator commutes, we identify configurations differing by a
-permutation. Roots containing both $1$ and $-1$, which we may label
-as $x_1=1$ and $x_2=-1$, are called \emph{singular}. When the remaining
-roots are distinct and different from $\pm1$, physical singular
-roots require the additional regularization condition
+operators $B(\lambda_j)$ commute, we identify root configurations that differ by a
+permutation of coordinates. Roots containing both $1$ and $-1$, which up to permutation may be labeled
+with $x_1=1$ and $x_2=-1$, are called \emph{singular}. When the remaining
+coordinates $x_3,\ldots,x_N$ are distinct and different from $\pm 1$, physical singular
+roots must satisfy the additional regularization condition
 \begin{equation}\label{eq:physical}
 	\left[-\prod_{j=3}^N
-	\frac{x_j+1}{x_j-1}\right]^L=1.
+	\frac{x_j+1}{x_j-1}\right]^L=1;
 \end{equation}
-See \cite{NW2013,NW2014} for regularization procedures.
+see \cite{NW2013,NW2014} for a detailed discussion of regularization procedures.
 
-
-
-By completeness of the Bethe ansatz, we mean that Bethe vectors
+By completeness of the Bethe ansatz, we mean that the Bethe vectors
 obtained from physical roots, with singular roots appropriately
-regularized, span the highest-weight space. Early spectral results
-include Babbitt--Thomas's infinite-chain expansion \cite{BT1977} and
-Koma--Ezawa's two-down-spin analysis \cite{KE1987}. Baxter
+regularized, span the highest-weight subspace of dimension $d(L,N)$. Early spectral results
+include the infinite-chain Plancherel theorem of Babbitt and Thomas \cite{BT1977} and
+the two-down-spin analysis of Koma and Ezawa \cite{KE1987}. Baxter
 \cite{Baxter2002} examined exceptional roots and completeness for the
-six- and eight-vertex models. Algebraic-geometric approaches include
-Langlands--Saint-Aubin \cite{LS1995} and the quotient-ring counting
-methods of Jiang--Zhang \cite{JZ2018}.
+six- and eight-vertex models, while algebro-geometric approaches were pursued by
+Langlands and Saint-Aubin \cite{LS1995} and through the quotient-ring counting
+methods of Jiang and Zhang \cite{JZ2018}.
 
 For the homogeneous spin-$1/2$ XXX chain, Mukhin, Tarasov, and
-Varchenko \cite[Section~12]{MTV2009} established completeness in the
-polynomial-kernel formulation. The relation to physical roots was
-further clarified by Nepomechie--Wang's regularization criteria
-\cite{NW2013,NW2014}, numerical root counts by Hao, Nepomechie, and
-Sommese \cite{HNS2013}, and Granet--Jacobsen's characterization of
+Varchenko \cite[Section~12]{MTV2009} proved completeness in the
+polynomial-kernel (Wronskian) formulation. The precise relation to physical solutions of the Bethe equations was
+further clarified by the regularization criteria of Nepomechie and Wang
+\cite{NW2013,NW2014}, homotopy-continuation root counts by Hao, Nepomechie, and
+Sommese \cite{HNS2013}, and the characterization by Granet and Jacobsen of
 physical distinct-root configurations through polynomial companions
 and two zero-remainder conditions \cite{GJ2020}.
 
-Closely related in spirit are the combinatorial counts developed by
-Kirillov \cite{Kirillov1985} and Kirillov--Liskova \cite{KL1997}.
-For the spin-$1/2$ XXX chain, the corresponding identity takes the form
+Closely related in spirit are the combinatorial completeness counts developed by
+Kirillov \cite{Kirillov1985} and Kirillov and Liskova \cite{KL1997}.
+For the spin-$1/2$ XXX chain, the corresponding combinatorial identity takes the form
 \[
-\sum_{\substack{m_1,m_2,\ldots\ge0\\
-                         \sum_{j\ge1}j\,m_j=N}}
-              \prod_{j\ge1}\binom{v_j+m_j}{m_j}=d(L,N),
+\sum_{\substack{m_1,m_2,\ldots\ge 0\\
+                         \sum_{j\ge 1}j\,m_j=N}}
+              \prod_{j\ge 1}\binom{v_j+m_j}{m_j}=d(L,N),
  \qquad
- v_j=L-2\sum_{k\ge1}\min(j,k)m_k.
+ v_j=L-2\sum_{k\ge 1}\min(j,k)m_k.
 \]
-Here $m_j$ records the number of strings of length $j$, and $v_j$ is
-the associated vacancy number. The binomial factors count admissible
-integer labels attached to the strings. The string hypothesis models
-Bethe roots as groups with approximately equal real parts and equally
-spaced imaginary parts. Interpreting the combinatorial labels as a
-complete parametrization of physical roots requires additional care:
-finite-chain roots can deviate from ideal strings, so the counting
-identity alone does not establish this correspondence. In particular,
-Kirillov--Liskova's generalized XXZ interpretation assumes the string
-hypothesis \cite{KL1997}.
+Here $m_j$ records the number of strings of length $j$, $v_j$ is
+the associated vacancy number, and the binomial factors count admissible
+integer quantum numbers attached to the strings. The string hypothesis models
+Bethe roots as clusters with approximately equal real parts and equally
+spaced imaginary parts. Interpreting these combinatorial labels as a
+complete parametrization of physical roots requires caution, however:
+finite-chain roots can deviate substantially from ideal strings, so the combinatorial
+identity alone does not establish completeness. In particular, the generalized XXZ analysis of
+Kirillov and Liskova relies on the string hypothesis \cite{KL1997}.
 
 This note seeks an intersection-theoretic explanation of the
-completeness count. Rather than organizing Bethe roots into strings,
-we start from the roots of the Bethe polynomial system and account for
-collisions through inclusion--exclusion. We then correct the excess
-multiplicity associated with a single singular pair $(1,-1)$. This
-subtraction may overcorrect configurations containing several singular
-pairs, requiring a compensating contribution from configurations with
-two fixed pairs. Continuing this process up to $\lfloor N/2\rfloor$
-pairs leads to the alternating sum
+completeness count $d(L,N)$. Rather than organizing Bethe roots into strings,
+we start directly from the polynomial system $P_1=\cdots=P_N=0$ and remove
+collision diagonals via inclusion--exclusion (M\"obius inversion on the partition lattice). We then subtract the excess
+multiplicity arising along the locus of a single singular pair $(1,-1)$. Because this
+subtraction overcorrects configurations containing multiple singular
+pairs, we introduce higher-order corrections supported on loci with
+$r$ fixed singular pairs for $0\le r\le\lfloor N/2\rfloor$. Taking projective intersection numbers leads to the alternating binomial identity
 \begin{equation}\label{eq:intro-alternating-count}
  \boxed{
- \sum_{r=0}^{\lfloor N/2\rfloor}(-1)^r\binom Lr
+ \sum_{r=0}^{\lfloor N/2\rfloor}(-1)^r\binom{L}{r}
        \binom{L+N-2r-2}{N-2r}
  =d(L,N).}
 \end{equation}
-This construction expresses the expected count as a weighted
-combination of intersection numbers and allows us to study the
-associated local weights. The conjectural local and boundary
-identifications below concern this counting construction; completeness
-in the polynomial formulation is already established.
+This construction expresses the target dimension $d(L,N)$ as a weighted
+sum of global intersection numbers in $\mathbb{P}^N$ and reduces completeness in the root picture to local multiplicity identities and boundary vanishing. We emphasize that the conjectural local and boundary
+identifications formulated below concern this direct intersection-theoretic counting scheme; completeness of the XXX Bethe algebra in the polynomial formulation is already proved in \cite{MTV2009}.
 
 
 \section{The counting strategy}
-Throughout, $N$ denotes the total number of Bethe roots. For a system
-with fixed roots, $M$ denotes the number of free coordinates and $m$
-the number of free blocks. In the local component count, $k$ denotes
-the number of copies of each singular value, $r$ the number of fixed
-pairs, and $s$ the total number of site pairs.
+\label{sec:counting-strategy}
 
-Assume that the set of roots of $P_1=\cdots=P_N=0$ is finite,
+Throughout, $N$ denotes the total number of Bethe roots. For an auxiliary system
+with fixed singular roots, $M$ denotes the number of free coordinates and $m$
+the number of free partition blocks. In the local component analysis of Section~\ref{sec:residual-local-index}, $k$ denotes
+the number of copies of each singular value $\pm 1$, $r$ the number of prescribed
+singular pairs, and $s$ the total number of site-pinned pairs.
+
+Assume that the common zero locus of $P_1=\cdots=P_N=0$ in $\C^N$ is finite,
 and write
 \[
 X=\{x^1,\ldots,x^{|X|}\}\subseteq\C^N
 \]
-for this set. Assign the target weights
+for this set of ordered roots. Assign to each $x^i\in X$ the target weight
 \[
 w_i=\begin{cases}
-	1/N!,&x^i\text{ is a physical roots},\\
-	0,&\text{otherwise}.
+	1/N!, & x^i\text{ is a physical root},\\
+	0, & \text{otherwise}.
 \end{cases}
 \]
-As physical roots has distinct components, the desired completeness statement is
+Since every physical root has pairwise distinct coordinates, its $S_N$-orbit consists of $N!$ ordered tuples in $X$. The desired completeness statement is therefore
 \begin{equation}\label{eq:target-weights}
 	\sum_{i=1}^{|X|} w_i=d(L,N).
 \end{equation}
 
-We work with formal sums of points with rational weights:
+We work with formal $\mathbb{Q}$-linear combinations of points (zero-cycles with rational coefficients):
 \[
-Z=\sum_i w_i(Z)[x^i],\qquad w_i(Z)\in\mathbb Q.
+Z=\sum_i w_i(Z)[x^i],\qquad w_i(Z)\in\mathbb{Q},
 \]
-Here $[x^i]$ is a formal symbol for the point $x^i$. We write
-$\deg Z=\sum_i w_i(Z)$ for the total weight.
-For a map $\phi$ of point sets, we use the notation
+where $[x^i]$ denotes the formal generator associated with $x^i$. We write
+$\deg Z=\sum_i w_i(Z)$ for the total affine weight of $Z$.
+For any map $\phi$ of point sets, the pushforward is defined linearly by
 \[
 \phi_*\!\left(\sum_p w_p[p]\right)=\sum_p w_p[\phi(p)],
 \]
-adding weights when several points have the same image. In
-particular, passing from ordered tuples to unordered configurations
-simply adds the weights over each permutation orbit. We write
-$\Sym^M(\A^1)$ for the set of unordered configurations of $M$ complex
+summing weights whenever several points share the same image. In
+particular, pushing forward under the quotient map from ordered tuples to unordered configurations
+sums the weights across each permutation orbit. We write
+$\Sym^M(\A^1)$ for the space of unordered configurations of $M$ complex
 numbers, allowing repetitions.
 
-For a zero-dimensional ideal $I\subseteq\C[x_1,\ldots,x_N]$, define
-the total number of its roots counted with multiplicity and the
-multiplicity at an isolated root $p$, respectively, by
+For a zero-dimensional ideal $I\subseteq\C[x_1,\ldots,x_N]$, we define
+its global colength (total number of roots counted with multiplicity) and its local
+multiplicity at an isolated point $p\in\C^N$, respectively, by
 \[
 \begin{aligned}
 	\ell(I)&=\dim_\C\bigl(\C[x_1,\ldots,x_N]/I\bigr),\\
-	\ell_p(I)&=\dim_\C\bigl(\C[x_1,\ldots,x_N]/I\bigr)_{\mathfrak m_p},
+	\ell_p(I)&=\dim_\C\bigl(\C[x_1,\ldots,x_N]/I\bigr)_{\mathfrak{m}_p},
 \end{aligned}
 \]
-where $\mathfrak m_p$ is the maximal ideal of the point $p$, and
-$\ell_p(I)=0$ if $p\notin V(I)$. The associated formal sum is
+where $\mathfrak{m}_p$ is the maximal ideal at $p$, with
+$\ell_p(I)=0$ if $p\notin V(I)$. The associated formal cycle is
 \[
-Z(I)=\sum_{p\in V(I)}\ell_p(I)[p]\]
-and
-\[
+Z(I)=\sum_{p\in V(I)}\ell_p(I)[p],
+\qquad
 \deg Z(I)=\ell(I).
 \]
 
-Our strategy is to seek ideals
-$I_j$ and weights $w_j^{\mathrm{aux}}\in\mathbb Q$ such that each $I_j$ is
-generated by $N$ polynomials, is zero-dimensional, and satisfies
-$V(I_j)\subseteq X$. Set $Z_j=Z(I_j)$ and write
+Our strategy is to construct zero-dimensional complete-intersection ideals
+$I_j\subseteq\C[x_1,\ldots,x_N]$, each generated by $N$ polynomials with
+$V(I_j)\subseteq X$, together with rational weights $w_j^{\mathrm{aux}}\in\mathbb{Q}$. Setting $Z_j=Z(I_j)$ and writing
 \[
 Z_j=\sum_{i=1}^{|X|} l_{ij}[x^i],\qquad
 l_{ij}=\ell_{x^i}(I_j),
 \]
-with $l_{ij}=0$ when $x^i\notin V(I_j)$. We require the formal sum
+we require that the weighted formal sum
 \begin{equation}\label{eq:weight-cycle}
-	Z_{\text{Bethe}}=\sum_jw_j^{\mathrm{aux}}Z_j
+	Z_{\mathrm{Bethe}}=\sum_j w_j^{\mathrm{aux}}Z_j
 \end{equation}
-to equal $\sum_iw_i[x^i]$; equivalently,
+coincide with the target cycle $\sum_i w_i[x^i]$, or equivalently that the pointwise identity
 \begin{equation}\label{eq:local-weight-decomposition}
-	\sum_j w_j^{\mathrm{aux}}l_{ij}=w_i\qquad\text{for every }i.
+	\sum_j w_j^{\mathrm{aux}}l_{ij}=w_i\qquad\text{for every }i=1,\ldots,|X|
 \end{equation}
-Taking degrees then gives
+hold. Taking global degrees then yields
 \begin{equation}\label{eq:global-weight-decomposition}
-	\sum_iw_i=\sum_jw_j^{\mathrm{aux}}\ell(I_j),\qquad
+	\sum_i w_i=\sum_j w_j^{\mathrm{aux}}\ell(I_j),\qquad
 	\ell(I_j)=\deg Z_j=\sum_i l_{ij}.
 \end{equation}
+The explicit polynomial generators of $I_j$ allow us to compute their projective
+intersection numbers via B\'ezout's theorem after compactifying $\A^N$ in $\mathbb{P}^N$ (Section~\ref{sec:projective-intersection}).
 
-The generators of $I_j$ allow us to study their global
-intersection numbers. We defer the compactification in $\mathbb P^N$
-and the analysis of contributions at infinity to a later section.
-
-The proposed approach has two steps:
+The construction proceeds in two stages:
 \begin{enumerate}
-	\item To remove collision and permutation redundancy we make use of M\"obius inversion on the partition lattice. We call this process {\em depermutation}.
-	\item Construct an excess formal sum on the singular-pair locus and subtract it.
-	The resulting formal sum should satisfy the pointwise identities
-	\eqref{eq:local-weight-decomposition} and hence the degree identity
-	\eqref{eq:target-weights}.
+	\item \textbf{Depermutation:} To eliminate collision diagonals and account for coordinate permutations, we apply M\"obius inversion on the partition lattice.
+	\item \textbf{Singular-locus correction:} We construct auxiliary cycles supported on loci with fixed singular pairs $(1,-1)$ and take an alternating sum to cancel excess multiplicities at singular roots, aiming to achieve the pointwise weight identity~\eqref{eq:local-weight-decomposition} and consequently the global count~\eqref{eq:target-weights}.
 \end{enumerate}
-The first step supplies explicit formal sums $Z_j$ and rational weights
-$w_j^{\mathrm{aux}}$ for depermutation. The second modifies these weights and adds
-formal sums on the singular locus so that the resulting local sums are the
-target weights $w_i$. The advantage is the passage from the local
-identities \eqref{eq:local-weight-decomposition} to the global calculation
-\eqref{eq:global-weight-decomposition}.
 
-We construct auxiliary ideals from the Bethe polynomials $P_i$. Let $A,B\subseteq[N]$ be disjoint, with either $A=B=\varnothing$ or
-both $A$ and $B$ nonempty. Let $\pi=\{S_1,\ldots,S_m\}$ be a partition
-of $R=[N]\setminus(A\cup B)$, and choose a representative $r_\alpha\in
+Concretely, we build the auxiliary ideals from the Bethe polynomials $P_i$ as follows. Let $A,B\subseteq[N]$ be disjoint index sets, with either $A=B=\varnothing$ or
+both $A$ and $B$ nonempty. Let $\pi=\{S_1,\ldots,S_m\}$ be a set partition
+of the remaining indices $R=[N]\setminus(A\cup B)$, and choose a representative $r_\alpha\in
 S_\alpha$ for each block. For $t\in R$, define
-the reduced polynomial by
+the reduced Bethe polynomial by
 \begin{equation}\label{eq:reduced-fixed-equation}
 	P_t^{\mathrm{red}}(x_R)
 	:=\frac{\left.P_t(x)\right|_{x_a=1\ (a\in A),\,
 			x_b=-1\ (b\in B)}}{(x_t+1)^{|A|}(x_t-1)^{|B|}}.
 \end{equation}
-This is well-defined: the two terms in the numerator are both divisible
-by $(x_t+1)^{|A|}(x_t-1)^{|B|}$, since $L\ge2N$.
-For $A=B=\varnothing$, set $P_t^{\mathrm{red}}=P_t$.
-The dependence on $A,B$ is suppressed in the notation. Define
+Because $L\ge 2N$, both terms in the numerator of $P_t$ are divisible
+by $(x_t+1)^{|A|}(x_t-1)^{|B|}$ upon specializing $x_a=1$ ($a\in A$) and $x_b=-1$ ($b\in B$), so $P_t^{\mathrm{red}}$ is a polynomial in the free variables $x_R$.
+When $A=B=\varnothing$, we simply set $P_t^{\mathrm{red}}=P_t$.
+Suppressing the dependence of $P_t^{\mathrm{red}}$ on $A$ and $B$ in the notation, we define the auxiliary ideal
 \begin{equation}\label{eq:fixed-partition-ideal}
 	\begin{aligned}
 		I_{A,B;\pi}=\bigl(&x_a-1\ (a\in A),\quad x_b+1\ (b\in B),\\
@@ -312,485 +300,435 @@ The dependence on $A,B$ is suppressed in the notation. Define
 		\bigr).
 	\end{aligned}
 \end{equation}
-The support is contained in the locus in $X$ with the specified fixed roots and block equalities. The reduced equations impose additional conditions on that locus. The ideal is independent
-of the chosen representatives. Let
+The zero locus $V(I_{A,B;\pi})$ is contained in the subset of $X$ where the coordinates in $A$ are pinned to $1$, those in $B$ are pinned to $-1$, and coordinates within each block of $\pi$ coincide. Moreover, the ideal $I_{A,B;\pi}$ is independent
+of the choice of block representatives $r_\alpha$. Assuming $I_{A,B;\pi}$ is zero-dimensional, we set
 \[
 Z_{A,B;\pi}=Z(I_{A,B;\pi})
 \]
-assuming $I_{A,B;\pi}$ is zero-dimensional. We abbreviate
-$Z_{\varnothing,\varnothing;\pi}$ to $Z_\pi$.
-
-Our aim is to find rational weights $w_{A,B;\pi}^{\mathrm{aux}}$ such that
+and abbreviate $Z_{\varnothing,\varnothing;\pi}$ to $Z_\pi$.
+Our goal is to determine explicit rational coefficients $w_{A,B;\pi}^{\mathrm{aux}}$ such that
 \[
-Z_{\text{Bethe}}=\sum_{A,B,\pi}w_{A,B;\pi}^{\mathrm{aux}}Z_{A,B;\pi}.
+Z_{\mathrm{Bethe}}=\sum_{A,B,\pi}w_{A,B;\pi}^{\mathrm{aux}}Z_{A,B;\pi}.
 \]
 
 
 \subsection{Depermutation}
-The general principle for removing collisions is M\"obius inversion on the
-partition lattice; see \cite[Section~3.7]{Stanley2012}. To illustrate it, let $\Omega$ be a finite set and
-$S\subseteq\Omega^N$ be invariant under coordinate permutations. For a
-partition $\pi$ of $[N]$, let $S_\pi$ consist of the tuples in $S$ satisfying
-$x_i=x_j$ whenever $i,j$ belong to the same block of $\pi$; coordinates in
-different blocks are still allowed to coincide. Order the partition lattice
-$\Pi_N$ by refinement, with $\hat0$ the partition into singletons. Then
-the number of permutation orbits in $S$ with pairwise distinct
+\label{sec:depermutation}
+
+The combinatorial mechanism for sieving out coordinate collisions is M\"obius inversion on the
+partition lattice $\Pi_N$; see \cite[Section~3.7]{Stanley2012}. To recall the set-theoretic prototype, let $\Omega$ be a finite set and let
+$S\subseteq\Omega^N$ be invariant under coordinate permutations. For each
+partition $\pi\in\Pi_N$ of $[N]$, let $S_\pi\subseteq S$ consist of all tuples satisfying
+$x_i=x_j$ whenever $i$ and $j$ belong to the same block of $\pi$ (coordinates in
+distinct blocks may still coincide). Ordering $\Pi_N$
+by refinement, with minimal element $\hat{0}$ given by the partition into singletons, M\"obius inversion shows that
+the number of $S_N$-orbits in $S$ with pairwise distinct
 coordinates is
 \[
-\frac{1}{N!}\sum_{\pi\in\Pi_N}\mu(\hat0,\pi)\,\#S_\pi,
+\frac{1}{N!}\sum_{\pi\in\Pi_N}\mu(\hat{0},\pi)\,\#S_\pi,
 \qquad
-\mu(\hat0,\pi)=\prod_{B\in\pi}(-1)^{|B|-1}(|B|-1)!.
+\mu(\hat{0},\pi)=\prod_{B\in\pi}(-1)^{|B|-1}(|B|-1)!.
 \]
 
-
-We now replace these finite sets by formal sums of points recording local multiplicities.
-Consider a general polynomial $F(x_1,\ldots,x_N)$ symmetric in
-its last $N-1$ arguments. Set
+We lift this sieve from finite sets to formal cycles recording local intersection multiplicities.
+Let $F(x_1,\ldots,x_N)$ be a polynomial symmetric in
+its last $N-1$ arguments, and set
 \[
 F_i(x)=F(x_i,x_1,\ldots,\widehat{x_i},\ldots,x_N).
 \]
-For a partition $\pi=\{S_1,\ldots,S_m\}$ choose a representative
-$r_a\in S_a$ for each block, and set
+For a partition $\pi=\{S_1,\ldots,S_m\}\in\Pi_N$ with chosen representatives
+$r_\alpha\in S_\alpha$, define
 \[
-I_{F;\pi}=\bigl(F_{r_a},\ x_b-x_{r_a}:
-1\le a\le m,\ b\in S_a\setminus\{r_a\}\bigr),
+I_{F;\pi}=\bigl(F_{r_\alpha},\ x_t-x_{r_\alpha} :
+1\le \alpha\le m,\ t\in S_\alpha\setminus\{r_\alpha\}\bigr)
 \]
-and set $Z_{F;\pi}=Z(I_{F;\pi})$.
+and $Z_{F;\pi}=Z(I_{F;\pi})$.
 
-\begin{definition}
+\begin{definition}[Depermutation sum]
 	\label{def:depermutation}
-	The {\em depermutation sum} of $F$ is
+	The \emph{depermutation sum} associated with $F$ is the formal cycle
 	\begin{equation}\label{eq:cycle}
 		Z^{\mathrm{dep}}_F=\frac{1}{N!}
 		\sum_{\pi\in\Pi_N}
-		\mu(\hat0,\pi)Z_{F;\pi}.
+		\mu(\hat{0},\pi)Z_{F;\pi}.
 	\end{equation}
 \end{definition}
 
-We now return to the XXX polynomial $F=P$. The $Z^{\mathrm{dep}}_P$ need further correction from singular roots.
-To formulate this singular correction, extend depermutation to systems
-with fixed singular roots. For $0\le r\le\lfloor N/2\rfloor$,
+Returning to the Bethe polynomial $F=P$, the depermutation sum $Z^{\mathrm{dep}}_P$ requires further correction along the singular locus.
+To formulate this correction, we apply depermutation to the reduced systems
+with $r$ fixed singular pairs. For $0\le r\le\lfloor N/2\rfloor$,
 let $A,B\subseteq[N]$ be disjoint subsets with $|A|=|B|=r$, and put
-$R=[N]\setminus(A\cup B)$ and $M=|R|=N-2r$. Set
+$R=[N]\setminus(A\cup B)$ and $M=|R|=N-2r$. Define
 \begin{equation}\label{eq:reduced-fixed-pair-depermutation}
 	\begin{aligned}
 		Z^{\mathrm{dep}}_{A,B}
-		&=\frac1{M!}\sum_{\pi\in\Pi(R)}
-		\mu(\hat0,\pi)Z_{A,B;\pi},\\
+		&=\frac{1}{M!}\sum_{\pi\in\Pi(R)}
+		\mu(\hat{0},\pi)Z_{A,B;\pi},\\
 		Z^{\mathrm{dep}}_r
 		&=
 		\frac{(r!)^2(N-2r)!}{N!}\sum_{\substack{A,B\subseteq[N],\ A\cap B=\varnothing\\
-				|A|=|B|=r}}Z^{\mathrm{dep}}_{A,B}.
+				|A|=|B|=r}}Z^{\mathrm{dep}}_{A,B},
 	\end{aligned}
 \end{equation}
-Here $\Pi(R)$ is the partition lattice of the remaining labels; depermutation acts only on the $M$ free coordinates. In particular, $Z^{\mathrm{dep}}_0=Z^{\mathrm{dep}}_P$.
+where $\Pi(R)$ denotes the partition lattice on the $M$ free labels, so that depermutation acts solely on the free coordinates. In particular, $Z^{\mathrm{dep}}_0=Z^{\mathrm{dep}}_P$.
 
 \begin{conjecture}[Alternating completeness formula]
 	\label{conj:alternating-completeness}
-	Assume $L\ge2N$ and that the reduced partition ideals are
-	zero-dimensional. The formal sum
+	Assume $L\ge 2N$ and that all reduced partition ideals $I_{A,B;\pi}$ are
+	zero-dimensional. Then the alternating formal sum
 	\begin{equation}\label{eq:central-alternating-cycle}
 		\boxed{
-			\tilde{Z}=\sum_{r=0}^{\lfloor N/2\rfloor}(-1)^r\binom Lr
+			\tilde{Z}=\sum_{r=0}^{\lfloor N/2\rfloor}(-1)^r\binom{L}{r}
 			Z^{\mathrm{dep}}_r
 		}
 	\end{equation}
-	equals $Z_{\text{Bethe}}$.
+	equals $Z_{\mathrm{Bethe}}=\sum_{i=1}^{|X|}w_i[x^i]$.
 \end{conjecture}
 
-The projective intersection number is computed in Section~2.3. Its identification with the affine degree and the target physical weights requires the boundary and local arguments described below.
+The projective intersection number of $\tilde{Z}$ is evaluated in Section~\ref{sec:projective-intersection}. Identifying that projective count with the affine degree $\deg Z_{\mathrm{Bethe}}$ requires the boundary-vanishing and local-multiplicity properties outlined in Section~\ref{section:plan}.
 
-\begin{remark}[Sums of functions of Bethe roots]
-Many computations require sums of functions evaluated at Bethe roots,
-rather than just their number. The proposed pointwise weight identity
-extends directly to such sums. Let $h$ be a symmetric polynomial on $N$ variables. If
+\begin{remark}[Sums of symmetric functions over physical Bethe roots]
+Many physical applications require summing symmetric functions over all physical Bethe roots
+rather than merely counting solutions. Because Conjecture~\ref{conj:alternating-completeness} is formulated as an equality of formal cycles, it extends immediately to such trace formulas. Let $h\in\C[x_1,\ldots,x_N]^{S_N}$ be a symmetric polynomial. If
 Conjecture~\ref{conj:alternating-completeness} holds, then
 \begin{equation}\label{eq:weighted-root-function-sum}
  \sum_{[p]\,\mathrm{physical}}h(p)
- =\sum_{r=0}^{\lfloor N/2\rfloor}(-1)^r\binom Lr
- \sum_{p\in X}w_r(p)h(p).
+ =\sum_{r=0}^{\lfloor N/2\rfloor}(-1)^r\binom{L}{r}
+ \sum_{p\in X}w_r(p)h(p),
 \end{equation}
-Here $w_r(p)$ is the weight of the ordered point $p$ in
-$Z^{\mathrm{dep}}_r$. The left-hand sum contains one representative
-of each physical permutation orbit, whereas the right-hand inner sum
-runs over all ordered points of $X$. Thus the weights of all ordered
-representatives are added before passing to an orbit. The counting
-formula is the case $h=1$. Expanding the depermutation sums expresses
-the right-hand side in terms of the  sums over $Z_{A,B;\pi}$.
+where $w_r(p)$ denotes the coefficient of the ordered tuple $p$ in
+$Z^{\mathrm{dep}}_r$, the left-hand sum runs over unordered physical root orbits $[p]$, and the right-hand sum
+runs over all ordered roots $p\in X$ (whose weights sum to $1$ across each physical $S_N$-orbit). Setting $h=1$ recovers the completeness count.
 
-The sums over $Z_{A,B;\pi}$ can be computed numerically in the finite
-quotient algebra $A_j=\C[x_1,\ldots,x_N]/I_j$ as
+Expanding $Z^{\mathrm{dep}}_r$ expresses the right-hand side of~\eqref{eq:weighted-root-function-sum} as a linear combination of sums over the zero-dimensional ideals $I_j=I_{A,B;\pi}$, each of which can be evaluated algebraically without solving for the individual roots via the quotient-algebra trace
 \[
  \sum_{p\in V(I_j)}\ell_p(I_j)h(p)
- =\operatorname{Tr}_{A_j}(M_h),\qquad M_h(a)=ha.
+ =\operatorname{Tr}_{A_j}(M_h),\qquad A_j=\C[x_1,\ldots,x_N]/I_j,\qquad M_h(a)=ha.
 \]
-The same formula applies to rational $h$ whose denominator is nonzero
-at every auxiliary root, see \cite{JZ2018}.  One also expect that in some case the sum can be decided explicitly, say for small $N$.
+The same trace formula extends to rational symmetric functions $h$ whose denominators do not vanish on $V(I_j)$; see \cite{JZ2018}. For small $N$, these quotient-algebra traces can be computed symbolically in closed form.
 \end{remark}
 
-\subsection{A generalized $TQ$ relation and depermutation}
+\subsection{A generalized \texorpdfstring{$TQ$}{TQ} relation and depermutation}
 \label{sec:general-tq}
 
-Fix a polynomial $F$ symmetric in its last $N-1$ arguments, and write
+Fix a polynomial $F(x_1,\ldots,x_N)$ symmetric in its last $N-1$ arguments, and write
 $F_i(x)=F(x_i,x_1,\ldots,\widehat{x_i},\ldots,x_N)$.
-Let $e_j$ and $\hat e_j$ denote the elementary symmetric polynomials
-in $x_1,\ldots,x_N$ and $x_2,\ldots,x_N$, respectively, and set $e_0=1$.
-The map from ordered roots to their elementary symmetric functions is
+Let $e_j$ and $\hat{e}_j$ denote the $j$th elementary symmetric polynomials
+in $x_1,\ldots,x_N$ and $x_2,\ldots,x_N$, respectively, with $e_0=1$.
+The quotient map from ordered roots to their elementary symmetric polynomials is
 \[
 q:\A^N\longrightarrow\Sym^N(\A^1)\simeq\A^N,
-\qquad x\longmapsto e(x).
+\qquad x\longmapsto e(x)=(e_1(x),\ldots,e_N(x)).
 \]
-Using $e_1,\ldots,e_N$ as coordinates on the target, define
+Using $e_1,\ldots,e_N$ as coordinates on $\Sym^N(\A^1)$, define the universal monic polynomial
 \[
-Q(t;e)=\sum_{j=0}^N(-1)^je_jt^{N-j}.
+Q(t;e)=\sum_{j=0}^N(-1)^j e_j t^{N-j}.
 \]
-Write $Z^{\mathrm{dep}}$ for the depermutation sum of this system.
+We write $Z^{\mathrm{dep}}$ for the depermutation sum $Z^{\mathrm{dep}}_F$ of this system.
 
-The $TQ$ relation transforms equations in the roots $x$ into equations
-in their elementary symmetric functions $e$. We construct a polynomial
-$\Phi(t;e)$ whose divisibility by $Q(t;e)$
-encodes the equations at distinct roots. By symmetry, there is a
+A generalized $TQ$ relation rewrites the system $F_1=\cdots=F_N=0$ in terms of the symmetric coordinates $e$. Specifically, we construct a polynomial
+$\Phi(t;e)$ whose divisibility by $Q(t;e)$ in $\C[e_1,\ldots,e_N][t]$
+encodes the equations $F_i(x)=0$ away from the collision locus. By the symmetry of $F$ in $x_2,\ldots,x_N$, there exists a unique
 polynomial $g$ such that
 \[
-F(x_1,\ldots,x_N)=g(x_1;\hat e_1,\ldots,\hat e_{N-1}).
+F(x_1,\ldots,x_N)=g(x_1;\hat{e}_1,\ldots,\hat{e}_{N-1}).
 \]
-Set
+Define
 \begin{align*}
-	E_j(t;e)&=\sum_{k=0}^j(-t)^ke_{j-k},\qquad 1\le j<N,\\
+	E_j(t;e)&=\sum_{k=0}^j(-t)^k e_{j-k},\qquad 1\le j<N,\\
 	\Phi(t;e)&=g\bigl(t;E_1(t;e),\ldots,E_{N-1}(t;e)\bigr).
 \end{align*}
-
-The elementary symmetric identities give
-$E_j(x_1;e(x))=\hat e_j$, hence
+From the recurrence relations among elementary symmetric polynomials, one has
+$E_j(x_1;e(x))=\hat{e}_j$, and hence by symmetry
 \[
-\Phi(x_1;e(x))=g(x_1;\hat e_1,\ldots,\hat e_{N-1})=F_1(x).
+\Phi(x_i;e(x))=F_i(x),\qquad i=1,\ldots,N.
 \]
-If the coordinates are distinct, the equations $F_i(x)=0$ therefore
-give $\Phi(x_i;e(x))=0$ for every $i$, by symmetry. Thus they are
-equivalent to $Q\mid\Phi$ on this locus.
+Whenever the coordinates $x_1,\ldots,x_N$ are pairwise distinct, the condition $F_i(x)=0$ for all $i$ is therefore equivalent to the polynomial divisibility $Q(t;e(x))\mid\Phi(t;e(x))$.
 
-Since $Q$ is monic, polynomial division gives unique polynomials $U,R$
-with coefficients in $\C[e_1,\ldots,e_N]$ such that
+Since $Q(t;e)$ is monic of degree $N$ in $t$, Euclidean division in $\C[e_1,\ldots,e_N][t]$ yields unique polynomials $U(t;e)$ and $R(t;e)$ such that
 \begin{equation}\label{eq:general-tq-division}
 	\Phi(t;e)=U(t;e)Q(t;e)+R(t;e),\qquad
 	R(t;e)=\sum_{j=0}^{N-1}\rho_j(e)t^j.
 \end{equation}
-
-Define the \emph{generalized $TQ$ ideal}
+We define the \emph{generalized $TQ$ ideal} by
 \begin{equation}\label{eq:general-tq-ideal}
 	J=(\rho_0,\ldots,\rho_{N-1})\subseteq\C[e_1,\ldots,e_N].
 \end{equation}
 
-\begin{proposition}[Simple zeros with repeated coordinates]
+\begin{proposition}[Exclusion of simple zeros with repeated coordinates]
 \label{prop:simple-collision-tq}
 Let $I_F=(F_1,\ldots,F_N)$, and let $p\in V(I_F)$ be a simple zero,
-meaning that the Jacobian $(\partial F_i/\partial x_j)(p)$ is
+meaning that the Jacobian matrix $(\partial F_i/\partial x_j)(p)$ is
 invertible. If $p_a=p_b$ for some $a\ne b$, then $q(p)\notin V(J)$.
-In particular, when $J$ is zero-dimensional, the weight of $q(p)$
+In particular, when $J$ is zero-dimensional, the local multiplicity of $q(p)$
 in $Z(J)$ is zero.
 \end{proposition}
 
 \begin{proof}
-Put $e^*=q(p)$ and $u=p_a=p_b$, and let $v$ be the nonzero tangent
-vector with $v_a=1$, $v_b=-1$, and all other entries zero.
-Since each elementary symmetric polynomial is invariant under
-interchanging $x_a$ and $x_b$, its two corresponding partial
-derivatives agree at $p$. Hence $dq_p(v)=0$.
+Put $e^*=q(p)$ and $u=p_a=p_b$, and consider the nonzero tangent
+vector $v\in\C^N$ with $v_a=1$, $v_b=-1$, and $v_i=0$ for $i\ne a,b$.
+Since every elementary symmetric polynomial $e_j$ is invariant under
+transposing $x_a$ and $x_b$, its partial derivatives with respect to $x_a$ and $x_b$ agree at $p$, which implies $dq_p(v)=0$.
 
-The construction of $\Phi$ gives the polynomial identities
-$F_i(x)=\Phi(x_i;q(x))$ for all $i$, including on the collision locus.
-Differentiating along $v$ therefore gives
+The identity $F_i(x)=\Phi(x_i;q(x))$ holds identically on $\A^N$, including along the collision locus.
+Differentiating $F_i$ at $p$ in the direction $v$ via the chain rule and using $dq_p(v)=0$ yields
 \[
  (dF_i)_p(v)=\partial_t\Phi(p_i;e^*)v_i.
 \]
-Suppose $e^*\in V(J)$. Then $Q(t;e^*)\mid\Phi(t;e^*)$.
-Because $(t-u)^2\mid Q(t;e^*)$, we have
-$\partial_t\Phi(u;e^*)=0$. The displayed derivatives thus vanish
-for $i=a,b$, and also for every other $i$ since $v_i=0$.
-Consequently $v$ lies in the kernel of the Jacobian of $I_F$ at $p$,
-contradicting its invertibility. Thus $q(p)\notin V(J)$, so
-$\ell_{q(p)}(J)=0$ whenever the local multiplicity is defined as above.
+Suppose toward a contradiction that $e^*\in V(J)$, so that $Q(t;e^*)\mid\Phi(t;e^*)$.
+Because $p_a=p_b=u$, the factor $(t-u)^2$ divides $Q(t;e^*)$ and hence also $\Phi(t;e^*)$, forcing
+$\partial_t\Phi(u;e^*)=0$. Consequently $(dF_i)_p(v)=0$
+for $i=a,b$, as well as for all $i\ne a,b$ since $v_i=0$.
+Thus $v\ne 0$ lies in the kernel of the Jacobian matrix $(\partial F_i/\partial x_j)(p)$,
+contradicting the assumption that $p$ is a simple zero of $I_F$. Therefore $q(p)\notin V(J)$, and
+$\ell_{q(p)}(J)=0$.
 \end{proof}
 
-The formal sum associated to the $TQ$ ideal is the pushforward of the
-depermutation sum to $\Sym^N(\A^1)$:
+Assuming the relevant ideals are zero-dimensional, pushing forward the
+depermutation sum to $\Sym^N(\A^1)$ recovers the cycle of the generalized $TQ$ ideal:
 \[
 q_*Z^{\mathrm{dep}}=Z(J).
 \]
-Here we assume the relevant ideals are zero-dimensional. Informally,
-the idea is to perturb $F$ so that all zeros are simple.
+Heuristically, this identity reflects the fact that after a generic perturbation of $F$ making all zeros of the partition systems simple, M\"obius inversion cancels all collision orbits while Proposition~\ref{prop:simple-collision-tq} removes simple collision roots from $V(J)$.
 
-For the XXX system, we use the following additional input.
+For the XXX Bethe system, we combine this relationship with the following structural hypothesis on solutions to Baxter's $TQ$ relation.
 
 \paragraph{Distinct-root assumption away from the singular values.}
-Let $L\ge2N$, and suppose a monic polynomial $Q$ of degree $N$ admits
-a polynomial $T$ satisfying Baxter's relation
+Let $L\ge 2N$, and suppose a monic polynomial $Q(t)$ of degree $N$ admits
+a polynomial companion $T(t)$ satisfying Baxter's $TQ$ relation
 \begin{equation}\label{eq:xxx-tq-relation}
-	T(t)Q(t)=(t+1)^LQ(t-2)+(t-1)^LQ(t+2).
+	T(t)Q(t)=(t+1)^L Q(t-2)+(t-1)^L Q(t+2).
 \end{equation}
-Write
+Factor $Q(t)$ as
 \[
-Q(t)=(t-1)^a(t+1)^bQ_{\mathrm{reg}}(t),
-\qquad Q_{\mathrm{reg}}(1)Q_{\mathrm{reg}}(-1)\ne0.
+Q(t)=(t-1)^a(t+1)^b Q_{\mathrm{reg}}(t),
+\qquad Q_{\mathrm{reg}}(1)Q_{\mathrm{reg}}(-1)\ne 0.
 \]
-We assume that $Q_{\mathrm{reg}}$ is squarefree. Equivalently, every
-root of $Q$ outside $\{1,-1\}$ is simple; repetitions at the singular
-values are allowed.
+We assume that $Q_{\mathrm{reg}}(t)$ is squarefree; equivalently, every
+root of $Q(t)$ outside $\{1,-1\}$ is simple, whereas arbitrary multiplicities $a,b\ge 0$ at the singular
+values $\pm 1$ are permitted.
 
-The exclusion of repeated roots through polynomiality of $T$ is
+The absence of repeated roots in $Q_{\mathrm{reg}}$ as a consequence of the polynomiality of $T$ is
 discussed in \cite[Introduction, eq.~(1.3) and footnote~2]{HJJ2024},
-where numerical evidence is reported and a rigorous proof for the
-spin-$1/2$ XXX chain is stated to be unavailable to the authors.
-We use the precise version above, including configurations with
-singular roots, as an assumption rather than a proved result.
-Together with the pushforward identity, it rules out collisions away
-from $\pm1$ in the support of $Z^{\mathrm{dep}}$. The same conclusion
-holds for the reduced balanced fixed-pair systems: if $H$ satisfies
-the $TQ$ relation after fixing $r$ pairs, then
-$Q=(t^2-1)^rH$ satisfies~\eqref{eq:xxx-tq-relation}.
+where extensive numerical verification is reported while noting that a complete proof for the
+spin-$1/2$ XXX chain remains open.
+Here we adopt the precise statement above---allowing singular roots at $\pm 1$---as an explicit working assumption.
+Combined with the pushforward relation $q_*Z^{\mathrm{dep}}=Z(J)$, this assumption implies that no root configuration with collisions outside
+$\{1,-1\}$ lies in the support of $Z^{\mathrm{dep}}_P$. The same conclusion
+applies to each reduced balanced fixed-pair system: if $H(t)$ satisfies
+the reduced $TQ$ relation obtained after fixing $r$ singular pairs $(1,-1)$, then
+$Q(t)=(t^2-1)^r H(t)$ satisfies Baxter's original $TQ$ relation~\eqref{eq:xxx-tq-relation}.
 
 \subsection{Projective intersection numbers and the combinatorial identity}
-We compactify the ordered root space by
+\label{sec:projective-intersection}
+
+We compactify the affine space of ordered roots via the standard embedding
 \[
-\A^N\hookrightarrow\mathbb P^N,\qquad
-x\longmapsto[1:x_1:\cdots:x_N].
+\A^N\hookrightarrow\mathbb{P}^N,\qquad
+(x_1,\ldots,x_N)\longmapsto[1:x_1:\cdots:x_N],
 \]
-Write $[z:x_1:\cdots:x_N]$ for homogeneous coordinates; $z=0$ is
-the boundary. The homogenization of $P$ is
-\[\hat{P}(z,x_1,\dots,x_N)=\frac{1}{z}\big(
-(x_1+z)^L\prod_{j\ne1}(x_1-x_j-2z)
+denoting homogeneous coordinates on $\mathbb{P}^N$ by $[z:X_1:\cdots:X_N]$, so that the hyperplane at infinity is $z=0$. Since the two products in $P(x_1,\ldots,x_N)$ agree at $z=0$, the homogenization of $P$ to degree $L+N-2$ is
+\[
+\widehat{P}(z,X_1,\dots,X_N)=\frac{1}{z}\Bigl(
+(X_1+z)^L\prod_{j\ne 1}(X_1-X_j-2z)
 -
-(x_1-z)^L\prod_{j\ne1}(x_1-x_j+2z)\big)\]
-This is a polynomial of degree $L+N-2$. The reduced Bethe polynomials
-are homogenized similarly. We compute the projective intersection
-number associated with $Z_{A,B;\pi}$ in this compactification
-\cite{Fulton1998}.
+(X_1-z)^L\prod_{j\ne 1}(X_1-X_j+2z)\Bigr),
+\]
+which is a homogeneous polynomial of degree $L+N-2$. The reduced Bethe polynomials $P_t^{\mathrm{red}}$ for a system with $|A|+|B|$ fixed singular coordinates and $M=N-|A|-|B|$ free coordinates homogenize similarly to degree $L+M-2$. Following Fulton \cite{Fulton1998}, B\'ezout's theorem motivates the following global degree for each auxiliary partition system.
 
 \begin{definition}[Projective intersection number]
 	\label{def:projective-degree}
-	Put $M=N-|A|-|B|$. For a partition $\pi$ of $[N]\setminus(A\cup B)$ with $m$ blocks, set
+	Put $M=N-|A|-|B|$. For a partition $\pi$ of $[N]\setminus(A\cup B)$ into $m=|\pi|$ blocks, we define the projective intersection number of $Z_{A,B;\pi}$ by
 	\begin{equation}\label{eq:projective-partition-degree}
-		\boxed{\deg_{\mathbb P^N}Z_{A,B;\pi}=(L+M-2)^m.}
+		\boxed{\deg_{\mathbb{P}^N}Z_{A,B;\pi}=(L+M-2)^m.}
 	\end{equation}
 \end{definition}
 
-Below, $\deg_{\mathbb P^N}$ denotes this intersection number, extended
-linearly to weighted sums. The notation $\deg$ continues to denote
-affine total weight. We will show that the projective formal sum $\tilde{Z}$ has zero weight at every boundary point.
+We extend $\deg_{\mathbb{P}^N}$ by $\mathbb{Q}$-linearity to all formal linear combinations of the cycles $Z_{A,B;\pi}$, while retaining $\deg$ for the affine degree. To equate $\deg_{\mathbb{P}^N}\tilde{Z}$ with $\deg\tilde{Z}$, one must verify that $\tilde{Z}$ has zero net weight along the boundary hyperplane $z=0$.
 
-\begin{remark}[Agreement of BKK theorem]
-
-The intersection number has the following BKK interpretation
-\cite[Chapter~3]{Sturmfels}. Put
-$M=N-|A|-|B|$ and $D=L+M-2$. For $M\ge1$, retain the ambient monomial
-supports of the reduced equations when identifying coordinates within
-each block, before combining coefficients that may cancel. Let
-$\mathcal N_\alpha\subseteq\mathbb R_{\ge0}^m$ be the downward closure of the
-convex hull of the retained exponents for block $\alpha$. The ambient
-equation has total degree at most $D$ and a nonzero pure term
-$x_{r_\alpha}^D$. Consequently,
+\begin{remark}[Agreement with the BKK theorem]
+The projective degree~\eqref{eq:projective-partition-degree} admits a natural polyhedral interpretation via the Bernstein--Khovanskii--Kushnirenko (BKK) theorem \cite[Chapter~3]{Sturmfels}. Put
+$M=N-|A|-|B|$ and $D=L+M-2$. For $M\ge 1$, consider the ambient monomial
+supports of the $m$ reduced equations upon identifying coordinates within
+each block of $\pi$, prior to any accidental coefficient cancellation. Let
+$\mathcal{N}_\alpha\subseteq\mathbb{R}_{\ge 0}^m$ denote the downward closure of the
+Newton polytope of block $\alpha$. Because the $\alpha$th reduced equation has total degree at most $D$ and contains the uncancelled pure power
+$x_{r_\alpha}^D$, its polytope satisfies the sandwiching inclusions
 \[
-[0,De_\alpha]\subseteq \mathcal N_\alpha\subseteq D\Delta_m,
+[0,De_\alpha]\subseteq \mathcal{N}_\alpha\subseteq D\Delta_m,
 \qquad
-\Delta_m=\{u\in\mathbb R_{\ge0}^m:\textstyle\sum_\alpha u_\alpha\le1\}.
+\Delta_m=\Bigl\{u\in\mathbb{R}_{\ge 0}^m:\sum_{\alpha=1}^m u_\alpha\le 1\Bigr\}.
 \]
-Normalize mixed volume by
-$\operatorname{MV}(\Delta_m,\ldots,\Delta_m)=1$. Monotonicity gives
+Normalizing the mixed volume on $\mathbb{R}^m$ so that
+$\operatorname{MV}(\Delta_m,\ldots,\Delta_m)=1$, monotonicity of mixed volumes yields
 \[
 \begin{aligned}
 	D^m
 	&=\operatorname{MV}([0,De_1],\ldots,[0,De_m])\\
-	&\le\operatorname{MV}(\mathcal N_1,\ldots,\mathcal N_m)
+	&\le\operatorname{MV}(\mathcal{N}_1,\ldots,\mathcal{N}_m)
 	\le\operatorname{MV}(D\Delta_m,\ldots,D\Delta_m)=D^m.
 \end{aligned}
 \]
-Thus the mixed volume equals $D^m$, agreeing with the intersection
-number in the projective compactification.
+Thus the BKK bound in $(\C^\times)^m$ equals $D^m=(L+M-2)^m$, matching the projective B\'ezout count~\eqref{eq:projective-partition-degree}.
 \end{remark}
 
-
-\begin{proposition}
+\begin{proposition}[Projective completeness count]
 	\label{prop:projective-completeness}
-	For $|A|=|B|=r$ and $M=N-2r$,
+	For disjoint subsets $A,B\subseteq[N]$ with $|A|=|B|=r$ and $M=N-2r$, one has
 	\begin{equation}\label{eq:projective-depermutation-degree}
-		\deg_{\mathbb P^N}Z^{\mathrm{dep}}_{A,B}
-		=\deg_{\mathbb P^N}Z^{\mathrm{dep}}_r
+		\deg_{\mathbb{P}^N}Z^{\mathrm{dep}}_{A,B}
+		=\deg_{\mathbb{P}^N}Z^{\mathrm{dep}}_r
 		=\binom{L+M-2}{M}.
 	\end{equation}
 	Consequently,
 	\begin{equation}\label{eq:projective-completeness-degree}
 		\boxed{
-			\deg_{\mathbb P^N}\tilde{Z}
-			=\sum_{r=0}^{\lfloor N/2\rfloor}(-1)^r\binom Lr
+			\deg_{\mathbb{P}^N}\tilde{Z}
+			=\sum_{r=0}^{\lfloor N/2\rfloor}(-1)^r\binom{L}{r}
 			\binom{L+N-2r-2}{N-2r}
-			=\binom LN-\binom L{N-1}.}
+			=\binom{L}{N}-\binom{L}{N-1}.}
 	\end{equation}
 \end{proposition}
 
 \begin{proof}
-	The partition-lattice identity
+	Writing $D=L+M-2$, the classical partition-lattice identity
 	\[
-	\sum_{\pi\in\Pi_M}\mu(\hat0,\pi)D^{|\pi|}
+	\sum_{\pi\in\Pi_M}\mu(\hat{0},\pi)D^{|\pi|}
 	=D(D-1)\cdots(D-M+1)
 	\]
-	follows by counting injective maps from $[M]$ to a set of $D$ elements:
-	there are $D^{|\pi|}$ maps constant on each block of $\pi$, and
-	M\"obius inversion removes all coincidences. Dividing by $M!$ gives
+	follows from M\"obius inversion applied to maps $[M]\to[D]$:
+	there are $D^{|\pi|}$ maps constant on the blocks of $\pi$, and
+	sieving over $\Pi_M$ isolates the injective maps. Dividing by $M!$ gives
 	\[
-	\deg_{\mathbb P^N}Z^{\mathrm{dep}}_{A,B}
-	=\frac1{M!}\sum_{\pi\in\Pi_M}\mu(\hat0,\pi)D^{|\pi|}
-	=\binom DM=\binom{L+M-2}{M}.
+	\deg_{\mathbb{P}^N}Z^{\mathrm{dep}}_{A,B}
+	=\frac{1}{M!}\sum_{\pi\in\Pi_M}\mu(\hat{0},\pi)D^{|\pi|}
+	=\binom{D}{M}=\binom{L+M-2}{M},
 	\]
-	For $M=0$, both sides are one. The average defining
-	$Z^{\mathrm{dep}}_r$ has $N!/((r!)^2M!)$ equal-degree terms, so its
-	projective intersection number is the same.
+	which also holds trivially for $M=0$. Since the average defining
+	$Z^{\mathrm{dep}}_r$ in~\eqref{eq:reduced-fixed-pair-depermutation} runs over $\binom{N}{r,r,M}=N!/((r!)^2 M!)$ pairs $(A,B)$ of identical projective degree, $\deg_{\mathbb{P}^N}Z^{\mathrm{dep}}_r=\binom{L+M-2}{M}$ as well.
 
-	For the final identity, use formal power series:
+	To evaluate the alternating sum in~\eqref{eq:projective-completeness-degree}, we compute the product of generating functions in $\mathbb{Q}[[t]]$:
 	\[
 	\begin{aligned}
-		\left(\sum_{r=0}^L(-1)^r\binom Lr t^{2r}\right)
-		\left(\sum_{M\ge0}\binom{L+M-2}{M}t^M\right)
+		\left(\sum_{r=0}^L(-1)^r\binom{L}{r} t^{2r}\right)
+		\left(\sum_{M\ge 0}\binom{L+M-2}{M}t^M\right)
 		&=\frac{(1-t^2)^L}{(1-t)^{L-1}}\\
 		&=(1-t)(1+t)^L.
 	\end{aligned}
 	\]
-	Taking the coefficient of $t^N$ proves
-	\eqref{eq:projective-completeness-degree}, with
-	$\binom L{-1}=0$ if $N=0$.
+	Extracting the coefficient of $t^N$ on both sides establishes~\eqref{eq:projective-completeness-degree}, with the convention $\binom{L}{-1}=0$ when $N=0$.
 \end{proof}
 
-Thus the projective intersection calculation gives the desired number. To prove
-Conjecture~\ref{conj:alternating-completeness}, we must connect this
-projective intersection number with the affine roots and establish the prescribed
-weight at every point.
+Proposition~\ref{prop:projective-completeness} shows that the global projective intersection number of $\tilde{Z}$ automatically reproduces the highest-weight dimension $d(L,N)$. Proving Conjecture~\ref{conj:alternating-completeness} therefore reduces to showing that no net weight escapes to infinity and that the local weight of $\tilde{Z}$ at every affine root $p\in X$ matches the target physical weight $w(p)$.
 
-\subsection{Plan for a proof of Conjecture~\ref{conj:alternating-completeness}}\label{section:plan}
-For $p\in X$, define its exact singular sets
+\subsection{Plan for a proof of Conjecture~\ref{conj:alternating-completeness}}
+\label{section:plan}
+
+For each affine root $p\in X$, define its exact singular index sets
 \[
-A(p)=\{j:p_j=1\},\qquad B(p)=\{j:p_j=-1\},
+A(p)=\{j\in[N]:p_j=1\},\qquad B(p)=\{j\in[N]:p_j=-1\},
 \]
-and let $\pi(p)$ be the equality partition of the remaining labels:
-two labels belong to the same block precisely when their coordinates
-are equal. Write $a=|A(p)|$ and $b=|B(p)|$. If one of $a,b$ is
-positive, the original Bethe equation at that fixed root forces the
-other to be positive as well. Hence either $a=b=0$ or $a,b\ge1$.
-These exact labels classify the affine configurations. Write
-$w_r(p)$ for the weight of $p$ in $Z^{\mathrm{dep}}_r$, and set $w(p)=w_i$ when $p=x^i$.
+and let $\pi(p)$ denote the equality partition of the remaining nonsingular labels $[N]\setminus(A(p)\cup B(p))$, so that
+two nonsingular indices belong to the same block of $\pi(p)$ if and only if their coordinates in $p$ coincide.
+Write $a=|A(p)|$ and $b=|B(p)|$. Note that if either $a$ or $b$ is positive, the Bethe equation $P_i(p)=0$ at that singular coordinate forces at least one coordinate to take the opposite singular value; hence either $a=b=0$ or $a,b\ge 1$.
+Write $w_r(p)$ for the weight of $p$ in $Z^{\mathrm{dep}}_r$, and set $w(p)=w_i$ when $p=x^i$.
 
-The following steps are needed to prove the conjecture:
+Completing the proof of Conjecture~\ref{conj:alternating-completeness} breaks down into the following six steps:
 \begin{enumerate}
-	\item \textbf{Boundary points.} Show that every point on the boundary has zero weight in $\tilde{Z}$. Thus the total weight of $\tilde{Z}$ is supported entirely in the affine chart.
-	\item Every $Z^{\mathrm{dep}}_r$ has zero weight at configurations with collisions outside $\pm1$, so its support has $\pi(p)=\hat0$.
-	\item Every $Z^{\mathrm{dep}}_{r}$ contains only points with $a=b$.
-\item For distinct nonsingular roots, establish local multiplicity one for $(P_1,\ldots,P_N)$ and a nonzero Bethe vector. Only $r=0$ contributes, giving weight $1/N!$.
-	\item \textbf{Exactly one singular pair: $a=b=1$ and $\pi=\hat 0$.}
-	Only $r=0,1$ can contribute, so prove
+	\item \textbf{Boundary vanishing:} Show that every boundary point on the hyperplane $z=0$ in $\mathbb{P}^N$ has zero net weight in $\tilde{Z}$, ensuring that $\deg_{\mathbb{P}^N}\tilde{Z}=\deg\tilde{Z}$.
+	\item \textbf{Nonsingular collisions:} Show that each $Z^{\mathrm{dep}}_r$ assigns zero weight to any affine configuration $p$ having collisions outside $\{1,-1\}$, so that the support of $Z^{\mathrm{dep}}_r$ is contained in the locus where $\pi(p)=\hat{0}$.
+	\item \textbf{Unbalanced singular roots:} Show that each $Z^{\mathrm{dep}}_{r}$ assigns zero weight to any configuration with $a\ne b$, restricting its support to balanced configurations with $a=b$.
+	\item \textbf{Distinct nonsingular roots ($a=b=0$, $\pi(p)=\hat{0}$):} Establish that $(P_1,\ldots,P_N)$ has local multiplicity $\ell_p=1$ at every distinct nonsingular root $p$ and that the associated Bethe vector is nonzero. Since only $r=0$ contributes, $p$ receives the target weight $1/N!$.
+	\item \textbf{Single singular pair ($a=b=1$, $\pi(p)=\hat{0}$):}
+	Here only $r=0$ and $r=1$ contribute, so one must verify that
 	\begin{equation}\label{eq:singular_weight}
-		w_0(p)-Lw_1(p)=w(p)
+		w_0(p)-Lw_1(p)=w(p).
 	\end{equation}
-	where $w(p)$ is the target weight above.
-	Writing $e_p=\ell_p(I_{A(p),B(p);\hat0})$ for the local multiplicity of the reduced fixed-pair
-	system, the precise local-multiplicity claim is
+	Writing $e_p=\ell_p(I_{A(p),B(p);\hat{0}})$ for the local multiplicity of the reduced fixed-pair
+	system at $p$, the required local-multiplicity relation is
 	\begin{equation}\label{eq:single-pair-length-criterion}
-		\ell_p((P_1,\ldots,P_N))=
+		\ell_p(P_1,\ldots,P_N)=
 		\begin{cases}
-			Le_p+1,&p\text{ satisfies the physical condition }\eqref{eq:physical},\\
-			Le_p,&\text{otherwise}.
+			Le_p+1, & \text{if }p\text{ satisfies the physical regularization condition~\eqref{eq:physical}},\\
+			Le_p, & \text{otherwise}.
 		\end{cases}
 	\end{equation}
-	For a simple reduced root, $e_p=1$.
-
-	\item \textbf{Multiple balanced singular pairs: $a=b\ge2$ and $\pi=\hat 0$.}
-	These points have repeated coordinates and hence target weight zero.
-	Prove
+	In particular, when $p$ is a simple root of the reduced system ($e_p=1$), $\ell_p(P_1,\ldots,P_N)$ equals $L+1$ at physical singular roots and $L$ at nonphysical singular roots.
+	\item \textbf{Multiple balanced singular pairs ($a=b\ge 2$, $\pi(p)=\hat{0}$):}
+	Because such configurations contain repeated coordinates ($\pm 1$ with multiplicity $a\ge 2$), they are nonphysical and have target weight $w(p)=0$. One must therefore prove the alternating cancellation
 	\[
-	\sum_{r=0}^{a}(-1)^r\binom Lr w_r(p)=0,
+	\sum_{r=0}^{a}(-1)^r\binom{L}{r} w_r(p)=0.
 	\]
-
 \end{enumerate}
 
-\paragraph{Reduction using the distinct-root assumption.}
-The distinct-root assumption substantially reduces these tasks.
-Together with the $TQ$ interpretation of depermutation, it excludes
-every affine configuration with a collision outside $\pm1$, for the
-full system and for each reduced balanced fixed-pair system. Thus only
-configurations with $\pi(p)=\hat0$ need further consideration.
+\paragraph{Reduction under the distinct-root assumption.}
+The distinct-root assumption of Section~\ref{sec:general-tq} immediately resolves Steps~2 and~3.
+Indeed, combined with the pushforward identity $q_*Z^{\mathrm{dep}}=Z(J)$, it excludes
+all affine configurations with collisions outside $\{1,-1\}$ both for the
+full Bethe system ($r=0$) and for each reduced balanced fixed-pair system ($r\ge 1$), leaving only configurations with $\pi(p)=\hat{0}$.
 
-At infinity, Section~\ref{sec:general-infinity} proves directly that
-every boundary root has two equal nonzero homogeneous root
-coordinates. This locates the boundary support on collision diagonals.
-It does not by itself prove cancellation of the local multiplicities;
-that requires a comparison of the full and partition intersections at
-the boundary.
+Furthermore, Baxter's $TQ$ relation~\eqref{eq:xxx-tq-relation} rules out unbalanced singular configurations ($a\ne b$) by comparing vanishing orders at $t=\pm 1$. Specifically, writing $Q(t)=(t-1)^a(t+1)^b Q_{\mathrm{reg}}(t)$ with $Q_{\mathrm{reg}}(\pm 1)\ne 0$, the left-hand side $T(t)Q(t)$ of~\eqref{eq:xxx-tq-relation} vanishes to order at least $a$ at $t=1$. Since $L\ge 2N>a$, the term $(t-1)^L Q(t+2)$ on the right-hand side vanishes to order at least $L>a$ at $t=1$, forcing $(t-1)^a$ to divide $(t+1)^L Q(t-2)$ and hence $Q(t-2)$, which means $(t+1)^a\mid Q(t)$ and thus $b\ge a$. Applying the symmetric argument at $t=-1$ gives $a\ge b$, so $a=b$. Because the same reasoning applies after factoring out $(t^2-1)^r$ for any $0\le r\le\min(a,b)$, every unbalanced configuration has $w_r(p)=0$ for all $r$.
 
-For the remaining affine configurations, the $TQ$ relation also
-excludes different numbers of roots at the two singular values, $a\ne b$, by comparing
-vanishing orders at $1$ and $-1$. The same argument applies after
-fixing any $r$ balanced pairs, so $w_r(p)=0$ for every
-$0\le r\le\min(a,b)$ at an unbalanced configuration.
-Consequently, among singular affine configurations, only
-the balanced cases $a=b$ remain: the physical-weight identity for
-$a=b=1$ and the alternating cancellation for $a=b\ge2$.
+At the boundary $z=0$ (Step~1), we prove unconditionally in Section~\ref{sec:general-infinity} that
+every common zero at infinity has at least two equal nonzero homogeneous coordinates, so the boundary support lies entirely on collision diagonals. Showing that the alternating depermutation weights cancel along these boundary collision loci requires comparing the local intersection multiplicities of the full and partitioned systems at infinity, which remains open.
+In the affine chart, the remaining open problems are therefore the local multiplicity analysis for a single singular pair $a=b=1$ (treated in the simple reduced case in Section~\ref{sec:simple-reduced-one-pair}) and the alternating cancellation for multiple balanced singular pairs $a=b\ge 2$ (interpreted via an inhomogeneity deformation in Section~\ref{sec:residual-local-index}).
 
 \section{Roots at infinity}
 \label{sec:general-infinity}
 
-We first locate the boundary roots of the projective equations.
-Use coordinates $[z:X_1:\cdots:X_N]$ on $\mathbb P^N$, with
-$x_i=X_i/z$ in the affine chart. The homogenization of $P_i$ to
+We now show that all projective roots of the Bethe equations on the boundary hyperplane $z=0$ lie on collision diagonals.
+Using homogeneous coordinates $[z:X_1:\cdots:X_N]$ on $\mathbb{P}^N$ with
+$x_i=X_i/z$ in the affine chart $z\ne 0$, the homogenization of $P_i$ to
 degree $L+N-2$ is
 \[
- \widehat P_i(z,X)=\frac1z\left(
+ \widehat{P}_i(z,X)=\frac{1}{z}\Bigl(
  (X_i+z)^L\prod_{j\ne i}(X_i-X_j-2z)
- -(X_i-z)^L\prod_{j\ne i}(X_i-X_j+2z)\right).
+ -(X_i-z)^L\prod_{j\ne i}(X_i-X_j+2z)\Bigr).
 \]
-The numerator vanishes identically at $z=0$, so this is a polynomial.
-Expanding its numerator to first order in $z$ gives the boundary
-equations
+Expanding the numerator to first order in $z$ and setting $z=0$ yields the boundary
+system
 \begin{equation}\label{eq:leading-equations-infinity}
- \widehat P_i(0,X)=2X_i^{L-1}\left(
+ \widehat{P}_i(0,X)=2X_i^{L-1}\Bigl(
  L\prod_{j\ne i}(X_i-X_j)
  -2X_i\sum_{j\ne i}\prod_{h\ne i,j}(X_i-X_h)
- \right).
+ \Bigr)=0,\qquad i=1,\ldots,N.
 \end{equation}
 
 \begin{proposition}[Collisions at infinity]
 \label{prop:collisions-infinity}
-Assume $L\ge2N$ and $N\ge1$. Every common zero
-$[0:X_1:\cdots:X_N]$ of the projective Bethe equations has
+Assume $L\ge 2N$ and $N\ge 1$. Every common zero
+$[0:X_1:\cdots:X_N]\in\mathbb{P}^N$ of the homogenized Bethe equations~\eqref{eq:leading-equations-infinity} satisfies
 \[
- X_i=X_j\ne0
- \quad\text{for some distinct }i,j.
+ X_i=X_j\ne 0
+ \qquad\text{for some distinct indices }i,j\in[N].
 \]
 In particular, every boundary root lies on a collision diagonal.
 \end{proposition}
 
 \begin{proof}
-Suppose the nonzero coordinates were pairwise distinct. Let
-$S=\{i:X_i\ne0\}$ and $h=|S|\ge1$. For $i\in S$ all factors
-$X_i-X_j$ are nonzero, so dividing
-\eqref{eq:leading-equations-infinity} by
-$2X_i^{L-1}\prod_{j\ne i}(X_i-X_j)$ gives
+Suppose toward a contradiction that the nonzero coordinates of $[0:X_1:\cdots:X_N]$ are pairwise distinct. Let
+$S=\{i\in[N]:X_i\ne 0\}$, so that $h=|S|\ge 1$. For each $i\in S$, all differences
+$X_i-X_j$ ($j\ne i$) are nonzero; dividing~\eqref{eq:leading-equations-infinity} by
+$2X_i^{L-1}\prod_{j\ne i}(X_i-X_j)$ therefore gives
 \[
  L=2\sum_{j\ne i}\frac{X_i}{X_i-X_j}
    =2(N-h)+2\sum_{\substack{j\in S\\j\ne i}}
                          \frac{X_i}{X_i-X_j}.
 \]
-Sum over $i\in S$. Each unordered pair contributes one to the
-double sum, because
+Summing this relation over all $i\in S$ and using the pairwise identity
 \[
- \frac{X_i}{X_i-X_j}+\frac{X_j}{X_j-X_i}=1.
+ \frac{X_i}{X_i-X_j}+\frac{X_j}{X_j-X_i}=1
 \]
-It follows that
+for each unordered pair $\{i,j\}\subseteq S$ yields
 \[
- Lh=2h(N-h)+h(h-1),\qquad
- L=2N-h-1\le2N-2,
+ Lh=2h(N-h)+h(h-1),\qquad\text{or equivalently}\qquad
+ L=2N-h-1\le 2N-2,
 \]
-contradicting $L\ge2N$.
+which contradicts the assumption $L\ge 2N$.
 \end{proof}
 
-The argument also applies after fixing $r$ balanced singular pairs.
-There are $M=N-2r$ free roots, and their reduced equations are
+The exact same argument extends to the reduced systems obtained after fixing $r$ balanced singular pairs $(1,-1)$.
+In that setting there are $M=N-2r$ free coordinates, satisfying the reduced affine equations
 \[
  \begin{aligned}
  &(x_i+1)^{L-r}(x_i-3)^r
@@ -799,240 +737,200 @@ There are $M=N-2r$ free roots, and their reduced equations are
                    \prod_{j\ne i}(x_i-x_j+2)=0,
  \end{aligned}
 \]
-where the products run over the other free roots. Homogenize them
-to degree $L+M-2$ in the free-root space $\mathbb P^M$. Their leading
-forms are~\eqref{eq:leading-equations-infinity} with $M$ free
-coordinates and $L-4r$ in place of the coefficient $L$ inside the
-parentheses. The prefactor remains $2X_i^{L-1}$.
-Since $L-4r\ge2M$, the same proof forces two equal nonzero free-root
-coordinates at every boundary root. For $M=1$ there are no boundary
-roots; for $M=0$ there is no free-root boundary.
+where the products run over the remaining $M-1$ free coordinates. Homogenizing these equations
+to degree $L+M-2$ in the projective space $\mathbb{P}^M$ of free coordinates produces the boundary system~\eqref{eq:leading-equations-infinity} with $M$ variables
+and with $L$ replaced by $L-4r$ inside the parentheses, while the prefactor remains $2X_i^{L-1}$.
+Since $L\ge 2N$ implies $L-4r\ge 2(N-2r)=2M$, the proof of Proposition~\ref{prop:collisions-infinity} again forces at least two equal nonzero free
+coordinates at every boundary root when $M\ge 2$ (for $M=1$ there are no boundary
+roots, and for $M=0$ the free space is a point).
 
-This collision statement uses no distinct-root assumption. However,
-support on collision diagonals is weaker than vanishing of the
-depermutation weight. The homogenized equations may have nontrivial
-local multiplicities, or even positive-dimensional intersections at
-infinity. Comparing those contributions across the partition systems,
-and proving their cancellation, remains necessary to identify the
-projective intersection count with the affine total weight.
+We note that Proposition~\ref{prop:collisions-infinity} is unconditional and does not rely on the distinct-root assumption of Section~\ref{sec:general-tq}. However, showing that all boundary roots lie on collision diagonals is weaker than proving that the depermutation sum assigns zero weight to the boundary: the homogenized systems may exhibit higher local multiplicities or even positive-dimensional excess components along $z=0$. Proving that these boundary contributions cancel across the partition lattice remains a key step toward establishing Conjecture~\ref{conj:alternating-completeness}.
 
-\section{Exactly one singular pair: $a=b=1$}
+\section{Exactly one singular pair: \texorpdfstring{$a=b=1$}{a=b=1}}
 \label{sec:simple-reduced-one-pair}
 
-The case of one singular pair has been studied through regularization
+Singular roots containing a single pair $(1,-1)$ have been extensively studied via regularization
 of the Bethe vector by Nepomechie and Wang
 \cite[Section~3]{NW2013}, including twist regularization
-\cite[Section~2]{NW2014}. Granet and Jacobsen
-\cite[Sections~2--4]{GJ2020} relate physical singular roots to
-polynomial companions and additional zero-remainder conditions.
-The \eqref{eq:single-pair-length-criterion} has already known combining \cite{NW2013} and \cite{MTV2009}.
-Here we only present a proof of a simple case:
+\cite[Section~2]{NW2014}, and by Granet and Jacobsen
+\cite[Sections~2--4]{GJ2020} through polynomial companions and zero-remainder conditions.
+The local multiplicity criterion~\eqref{eq:single-pair-length-criterion} follows from combining the results of \cite{NW2013} and \cite{MTV2009}.
+Here we give a self-contained elementary proof in the case where the reduced fixed-pair system has a simple zero.
 
-Let $N\ge2$, $L\ge2N$, and let
-$p=(1,-1,z_3,\ldots,z_N)$ have pairwise distinct coordinates. Set
+Let $N\ge 2$ and $L\ge 2N$, and let
+$p=(1,-1,z_3,\ldots,z_N)\in X$ have pairwise distinct coordinates. Set
 \[
 I_{\mathrm{full}}=(P_1,\ldots,P_N),\qquad
-I_{\mathrm{red}}=I_{\{1\},\{2\};\hat0}.
+I_{\mathrm{red}}=I_{\{1\},\{2\};\hat{0}}.
 \]
-We prove a weaker version of \eqref{eq:single-pair-length-criterion}:
-\begin{proposition}\label{prop:simple-reduced-one-pair}
-	Suppose $p=(1,-1,z_3,\ldots,z_N)$ is a simple zero of
-	$I_{\mathrm{red}}$. Then
-	$\ell_p(I_{\mathrm{full}})
-		\ge L+1$ if $p$ satisfies \eqref{eq:physical} and $\ell_p(I_{\mathrm{full}})
-		=L$ otherwise.
 
+\begin{proposition}[Simple reduced singular roots]
+\label{prop:simple-reduced-one-pair}
+	Suppose $p=(1,-1,z_3,\ldots,z_N)$ is a simple zero of
+	$I_{\mathrm{red}}$, so that $e_p=\ell_p(I_{\mathrm{red}})=1$. Then
+	\[
+	\ell_p(I_{\mathrm{full}})
+	\begin{cases}
+		\ge L+1, & \text{if }p\text{ satisfies the physical condition~\eqref{eq:physical}},\\
+		=L, & \text{otherwise}.
+	\end{cases}
+	\]
 \end{proposition}
 
 \begin{proof}
-	Write $x_1=1+u$, $x_2=-1+v$, and $x_j=y_j$ for $j\ge3$.
-    Define
+	Introduce local coordinates $u,v,y_3,\ldots,y_N$ near $p$ by setting $x_1=1+u$, $x_2=-1+v$, and $x_j=y_j$ for $j\ge 3$, and define
     \[
     C(u,y)=\prod_{j=3}^N(u-1-y_j),\qquad
     D(u,y)=\prod_{j=3}^N(u+3-y_j).
     \]
-    Since $C(0,z)\ne0$, the equation $P_1=0$ determines
+    Since $z_j\ne -1$ for all $j\ge 3$, we have $C(0,z)\ne 0$. Solving $P_1=0$ for $v$ in the formal power series ring near $(u,y)=(0,z)$ yields
     \[
-    v=u-\frac{4u^LD(u,y)}{(2+u)^LC(u,y)-u^LD(u,y)}
+    v=u-\frac{4u^L D(u,y)}{(2+u)^L C(u,y)-u^L D(u,y)}
       =u+O(u^L).
     \]
-    After this substitution, write $P_2=u^LH(u,y)$ and
-    $P_j=G_j(u,y)$ for $3\le j\le N$. These functions are regular
-    near $(u,y)=(0,z)$. At $u=0$,
-    $G_j(0,y)=(y_j^2-1)P_j^{\mathrm{red}}(y)$. The Jacobian of
-	$(G_3,\ldots,G_N)$ in the $y$ variables is invertible at $(0,z)$:
-	its rows are the reduced Jacobian rows multiplied by the nonzero
-	factors $z_j^2-1$. The implicit function theorem therefore gives a
-	unique local curve $y=y(u)$ solving these equations. The full local
-	algebra becomes
+    Substituting this expression for $v$ into the remaining Bethe polynomials gives $P_2=u^L H(u,y)$ and
+    $P_j=G_j(u,y)$ for $3\le j\le N$, where $H$ and $G_j$ are regular
+    at $(u,y)=(0,z)$. Evaluating at $u=0$, we find
+    $G_j(0,y)=(y_j^2-1)P_j^{\mathrm{red}}(y)$. Because $z_j\ne\pm 1$ and $p$ is a simple zero of $I_{\mathrm{red}}$, the Jacobian matrix of
+	$(G_3,\ldots,G_N)$ with respect to $(y_3,\ldots,y_N)$ at $(0,z)$---whose rows are those of the reduced Jacobian scaled by the nonzero factors $z_j^2-1$---is invertible. By the implicit function theorem, the equations $G_3=\cdots=G_N=0$ determine a
+	unique local curve $y=y(u)$ with $y(0)=z$, reducing the local quotient algebra of $I_{\mathrm{full}}$ at $p$ to
 	\[
-	\C[[u]]/(u^Lh(u)),\qquad h(u)=H(u,y(u)).
+	\C[[u]]/\bigl(u^L h(u)\bigr),\qquad h(u)=H\bigl(u,y(u)\bigr).
 	\]
-	To determine $h(0)$, direct substitution gives
+	A direct calculation at $u=0$ gives
     \[
     H(0,y)=4(-1)^{N-2}\left[
     -\prod_{j=3}^N(y_j+3)
     +(-1)^L\prod_{j=3}^N\frac{(y_j-1)(y_j-3)}{y_j+1}
     \right].
     \]
-    A distinct-root root has no exact strings other than
-    the singular pair; in particular, $z_j\ne\pm3$ and
-    $z_i-z_j\ne\pm2$ for $i,j\ge3$; see
-    \cite[Lemma~1]{GJ2020}. Multiplying the reduced equations
-    therefore gives
+    Since $p$ has pairwise distinct coordinates, it contains no exact strings other than
+    the singular pair $(1,-1)$; in particular, $z_j\ne\pm 3$ and
+    $z_i-z_j\ne\pm 2$ for $3\le i,j\le N$ \cite[Lemma~1]{GJ2020}. Multiplying the reduced Bethe equations $P_j^{\mathrm{red}}(z)=0$ over $j=3,\ldots,N$
+    therefore yields
     \[
     \left(\prod_{j=3}^N\frac{z_j+1}{z_j-1}\right)^{L-1}
     =\prod_{j=3}^N\frac{z_j+3}{z_j-3}.
     \]
-    Consequently,
+    Substituting this product identity into $h(0)=H(0,z)$ shows that
     \begin{equation}\label{eq:one-pair-compatibility}
     h(0)=0\quad\Longleftrightarrow\quad
     \left[-\prod_{j=3}^N\frac{z_j+1}{z_j-1}\right]^L=1.
     \end{equation}
-    If $p$ is nonphysical, then $h(0)\ne0$ and the multiplicity is $L$.
-    Otherwise, $h(0)=0$ and the multiplicity is greater than $L$, proving the claim.
-
+    Consequently, if $p$ is nonphysical, then $h(0)\ne 0$ and $\ell_p(I_{\mathrm{full}})=L$;
+    if $p$ satisfies the physical regularization condition~\eqref{eq:physical}, then $h(0)=0$ and $\ell_p(I_{\mathrm{full}})\ge L+1$.
 \end{proof}
 
 
 \section{The local index as a degree of exceptional components}
 \label{sec:residual-local-index}
 
-Throughout this section we count ordered roots. We deform the Bethe
-equations that a root $p=(1^k,-1^k,z_{2k+1},\ldots,z_N)$ would split to several traces, and local
-multiplicities of $p$ in $Z_{A,B;\pi}$ can be decided by counting traces lies in certain hyperplane under the assumptions
-below. The alternating sum removes weights from traces on those hyperplanes. Thus the index can be interpreted
-as the number of orbits outside these hyperplanes, multiplied by a
-combinatorial factor.
+Throughout this section we work with ordered roots and study balanced singular configurations $p=(1^k,-1^k,z_{2k+1},\ldots,z_N)$ with $k\ge 1$. By introducing site inhomogeneities, we deform the Bethe
+equations so that $p$ splits into a collection of local branches (irreducible components over the deformation base). Under natural flatness and genericity assumptions, the local
+multiplicity of $p$ in each auxiliary cycle $Z_{A,B;\pi}$ is governed by the degrees of the branches lying along specific site-endpoint hyperplanes, and the alternating sum in $\tilde{Z}$ cancels all branches that remain pinned to at least one site pair. The local weight $w_p(\tilde{Z})$ is thereby identified with the normalized degree count of \emph{exceptional} components that avoid all site-endpoint hyperplanes.
 
-\paragraph{The deformation of Bethe equation}
-Introduce site parameters $\theta_1,\ldots,\theta_L$ and put
+\paragraph{Deformation of the Bethe equations.}
+Introduce formal site inhomogeneity parameters $\theta_1,\ldots,\theta_L$ and set
 \[
  a_\theta(t)=\prod_{j=1}^L(t+\theta_j+1),\qquad
  d_\theta(t)=\prod_{j=1}^L(t+\theta_j-1).
 \]
-The deformed Bethe equations are
+The inhomogeneous Bethe polynomials are
 \[
  P_i^\theta(x)=a_\theta(x_i)\prod_{j\ne i}(x_i-x_j-2)
-             -d_\theta(x_i)\prod_{j\ne i}(x_i-x_j+2)=0.
+             -d_\theta(x_i)\prod_{j\ne i}(x_i-x_j+2),\qquad i=1,\ldots,N,
 \]
-They specialize to $P_i=0$ at $\theta=0$. Put
+which specialize to the homogeneous Bethe polynomials $P_i(x)$ at $\theta=0$. Let
 \[
  T=\operatorname{Spec}\C[[\theta_1,\ldots,\theta_L]],
 \]
-and work in $T\times\A^N$.
-
-Work locally at a root
+and work inside the relative affine space $T\times\A^N$ locally near $(0,p)$, where
 \[
  p=(1^k,-1^k,z_{2k+1},\ldots,z_N),
- \qquad z_i\ne\pm1,\quad z_i\ne z_j\ (i\ne j).
+ \qquad z_i\ne\pm 1,\qquad z_i\ne z_j\ (i\ne j).
 \]
-Write $\bar X$ for the multiset of irreducible components of the deformed
-Bethe locus $P_1^\theta=\cdots=P_N^\theta=0$. Each component that
-dominates $T$ and is generically finite over $T$ occurs in this multiset
-as many times as its degree over $T$, counted with scheme-theoretic
-multiplicity.
-Let $\bar X_p$ consist of the components
-passing through $(0,p)$.
+Let $\bar{X}_p$ denote the multiset of irreducible components of the deformed
+Bethe scheme $P_1^\theta=\cdots=P_N^\theta=0$ passing through $(0,p)$ that
+dominate $T$ and are generically finite over $T$, where each such component appears in $\bar{X}_p$
+with multiplicity equal to its degree over $T$ (counted with scheme-theoretic multiplicity).
 
-\begin{definition}[Labels and equality partitions of a component]
+\begin{definition}[Site labels and equality partitions of a local component]
 \label{def:component-labels-and-partitions}
-Let $C\in\bar X_p$ be a component of the local family through $(0,p)$
-that dominates $T$. Define
+Let $C\in\bar{X}_p$ be a local component through $(0,p)$
+dominating $T$. Define its positive and negative site-label maps
 \[
- f_C,g_C:[k]\longrightarrow[L]\cup\{\mathcal E\}
+ f_C,g_C:[k]\longrightarrow[L]\cup\{\mathcal{E}\}
 \]
 by
 \[
  \begin{aligned}
  f_C(a)&=
  \begin{cases}
- j,&x_a=1-\theta_j\text{ identically on }C,\\
- \mathcal E,&\text{no such }j\text{ exists},
+ j, & \text{if }x_a=1-\theta_j\text{ identically in the function field of }C,\\
+ \mathcal{E}, & \text{if no such }j\in[L]\text{ exists},
  \end{cases}\\[4pt]
  g_C(b)&=
  \begin{cases}
- j,&x_{k+b}=-1-\theta_j\text{ identically on }C,\\
- \mathcal E,&\text{no such }j\text{ exists}.
+ j, & \text{if }x_{k+b}=-1-\theta_j\text{ identically in the function field of }C,\\
+ \mathcal{E}, & \text{if no such }j\in[L]\text{ exists}.
  \end{cases}
  \end{aligned}
 \]
-These identities are taken in the function field of $C$. The symbol
-$\mathcal E$ records a coordinate
-that specializes to $1$ or $-1$ but is not pinned to a site endpoint
-along $C$.
+Here the symbol $\mathcal{E}$ designates an \emph{exceptional} coordinate
+that specializes to $1$ or $-1$ at $\theta=0$ without being identically pinned to any site hyperplane $x= \pm 1-\theta_j$ along $C$.
 
-Put $E_C^+=f_C^{-1}(\mathcal E)$ and
-$E_C^-=g_C^{-1}(\mathcal E)$. Let $\pi_1(C)$ be the partition of
-$E_C^+$ in which $a,a'$ belong to the same block exactly when
-$x_a=x_{a'}$ identically on $C$. Define $\pi_2(C)$ on $E_C^-$ in
-the same way, using the coordinates $x_{k+b}$. Call $C$ \emph{exceptional} if
+Put $E_C^+=f_C^{-1}(\mathcal{E})\subseteq[k]$ and
+$E_C^-=g_C^{-1}(\mathcal{E})\subseteq[k]$. Let $\pi_1(C)$ be the partition of
+$E_C^+$ placing $a,a'\in E_C^+$ in the same block if and only if
+$x_a=x_{a'}$ identically on $C$, and define $\pi_2(C)$ on $E_C^-$ analogously
+using the negative coordinates $x_{k+b}$. We call the component $C$ \emph{exceptional} if
 \[
- f_C=g_C\equiv\mathcal E,
- \qquad \pi_1(C)=\pi_2(C)=\hat0,
+ f_C=g_C\equiv\mathcal{E}
+ \qquad\text{and}\qquad \pi_1(C)=\pi_2(C)=\hat{0},
 \]
-where each occurrence of $\hat0$ denotes the singleton partition of
-the corresponding label set.
+where $\hat{0}$ denotes the singleton partition on $[k]$.
 \end{definition}
 
-The positive and negative clusters have the same set of site labels:
+Observe that the positive and negative coordinate clusters carry the exact same set of site labels in $[L]$:
 \[
  \Ima f_C\cap[L]=\Ima g_C\cap[L].
 \]
-Indeed, at a coordinate $x_a=1-\theta_j$, the factor $d_\theta(x_a)$
-vanishes, whereas $a_\theta(x_a)$ is nonzero over the generic point of
-$T$. The equation $P_a^\theta=0$ therefore forces another coordinate
-to equal $-1-\theta_j$. Specialization places this coordinate in the
-negative cluster. The converse follows in the same way. Coordinates
-with the same site label coincide identically; equalities among
-coordinates labeled $\mathcal E$ are recorded by $\pi_1(C)$ and
-$\pi_2(C)$.
+Indeed, if $x_a=1-\theta_j$ identically on $C$, then $d_\theta(x_a)=0$ while $a_\theta(x_a)\ne 0$ at the generic point of $C$; the deformed Bethe equation $P_a^\theta=0$ then forces $\prod_{m\ne a}(x_a-x_m-2)=0$, so some coordinate $x_{k+b}$ (which must specialize to $-1$ at $\theta=0$) satisfies $x_{k+b}=-1-\theta_j$ identically on $C$, and conversely.
 
-We seek to recover the multiplicity of $p$ in $Z_{A,B;\pi}$ from
-these components. For our purposes, it suffices to consider
-$|A|=|B|=r$, with $0\le r\le k$. By symmetry, we may take
+We now express the local multiplicity of $p$ in $Z_{A,B;\pi}$ in terms of
+these components. For $|A|=|B|=r$ with $0\le r\le k$, symmetry allows us to take
 \[
  A=\{1,\ldots,r\},\qquad B=\{k+1,\ldots,k+r\}.
 \]
-Only partitions $\pi$ consisting of blocks within
-$\{r+1,\ldots,k\}$ and $\{k+r+1,\ldots,2k\}$, together with the
-singletons $\{2k+1\},\ldots,\{N\}$, can contribute at $p$.
-Choose the deformation that pins the $i$th positive and negative
-coordinates to the endpoints of site $i$, for $1\le i\le r$.
-A component $C$ compatible with these fixed coordinates and block
-equalities must satisfy the following conditions:
+At $(0,p)$, only partitions $\pi$ of $R=[N]\setminus(A\cup B)$ whose blocks do not mix the subsets
+$\{r+1,\ldots,k\}$, $\{k+r+1,\ldots,2k\}$, and the singletons $\{2k+1\},\ldots,\{N\}$ can contribute.
+We deform $I_{A,B;\pi}$ by pinning the $i$th fixed singular pair to site $i$:
+\[
+ x_i=1-\theta_i,\qquad x_{k+i}=-1-\theta_i,\qquad 1\le i\le r.
+\]
+A component $C\in\bar{X}_p$ compatible with these $r$ pinned pairs and the block equalities of $\pi$ must satisfy:
 \begin{enumerate}
- \item $f_C(i)=g_C(i)=i$ for $1\le i\le r$.
- \item If $i,j\in\{r+1,\ldots,k\}$ lie in the same block of $\pi$,
- then $f_C(i)=f_C(j)$. If this common label is $\mathcal E$, then
- $i,j$ must also lie in the same block of $\pi_1(C)$.
- \item If $k+i,k+j$ lie in the same block of $\pi$, then
- $g_C(i)=g_C(j)$. If this common label is $\mathcal E$, then
- $i,j$ must also lie in the same block of $\pi_2(C)$.
+ \item $f_C(i)=g_C(i)=i$ for $1\le i\le r$;
+ \item if $i,j\in\{r+1,\ldots,k\}$ belong to the same block of $\pi$,
+ then $f_C(i)=f_C(j)$, and if this common value is $\mathcal{E}$, then
+ $i$ and $j$ belong to the same block of $\pi_1(C)$;
+ \item if $k+i,k+j\in\{k+r+1,\ldots,2k\}$ belong to the same block of $\pi$, then
+ $g_C(i)=g_C(j)$, and if this common value is $\mathcal{E}$, then
+ $i$ and $j$ belong to the same block of $\pi_2(C)$.
 \end{enumerate}
-For this placement, the deformed ideal is defined as
-follows. Put
+
+Algebraically, put
 \[
  S=\C[[\theta_1,\ldots,\theta_L]][x_1,\ldots,x_N],\qquad
  R=[N]\setminus(A\cup B),
 \]
-and write $\pi=\{S_1,\ldots,S_m\}$, choosing a representative
-$r_\alpha\in S_\alpha$ for each block. Let $\sigma_r$ denote the
-substitution
-\[
- x_i=1-\theta_i,\qquad x_{k+i}=-1-\theta_i,
- \qquad 1\le i\le r.
-\]
-For $t\in R$, define the reduced polynomial
+write $\pi=\{S_1,\ldots,S_m\}$ with representatives
+$r_\alpha\in S_\alpha$, and let $\sigma_r$ denote the substitution $x_i=1-\theta_i$, $x_{k+i}=-1-\theta_i$ ($1\le i\le r$).
+For $t\in R$, the deformed reduced Bethe polynomial is
 \[
  P_t^{\theta,\mathrm{red}}(x_R)
  :=\frac{\sigma_r(P_t^\theta)}
-              {\prod_{j=1}^r\bigl((x_t+\theta_j)^2-1\bigr)}.
-\]
-This is a polynomial: the denominator divides both terms after the
-fixed endpoints are substituted. Equivalently, it is
-\[
- P_t^{\theta,\mathrm{red}}
+              {\prod_{j=1}^r\bigl((x_t+\theta_j)^2-1\bigr)}
  =a_{\theta,r}(x_t)\prod_{j\in R\setminus\{t\}}(x_t-x_j-2)
  -d_{\theta,r}(x_t)\prod_{j\in R\setminus\{t\}}(x_t-x_j+2),
 \]
@@ -1045,172 +943,113 @@ where
                   \prod_{j=1}^r(u+\theta_j+3).
  \end{aligned}
 \]
-Define
+The deformed auxiliary ideal is then
 \begin{equation}\label{eq:deformed-fixed-partition-ideal}
  \begin{aligned}
- \bar I_{A,B;\pi}=\bigl(&x_i-1+\theta_i,\ x_{k+i}+1+\theta_i
+ \bar{I}_{A,B;\pi}=\bigl(&x_i-1+\theta_i,\ x_{k+i}+1+\theta_i
                          \quad(1\le i\le r),\\
                        &P_{r_\alpha}^{\theta,\mathrm{red}}
                          \quad(1\le\alpha\le m),\\
                        &x_t-x_{r_\alpha}
                          \quad(1\le\alpha\le m,\
                           t\in S_\alpha\setminus\{r_\alpha\})
-                       \bigr)\subseteq S.
+                       \bigr)\subseteq S,
  \end{aligned}
 \end{equation}
-As in the homogeneous case, the ideal is independent of the chosen
-block representatives. Its special fiber is the original auxiliary
-ideal:
+whose special fiber at $\theta=0$ recovers $I_{A,B;\pi}$:
 \[
- \frac{\bar I_{A,B;\pi}+(\theta_1,\ldots,\theta_L)}
+ \frac{\bar{I}_{A,B;\pi}+(\theta_1,\ldots,\theta_L)}
       {(\theta_1,\ldots,\theta_L)}=I_{A,B;\pi}
  \quad\text{in }\C[x_1,\ldots,x_N].
 \]
-Let $\bar Z_{A,B;\pi}$ denote the relative formal sum associated with
-$\operatorname{Spec}(S/\bar I_{A,B;\pi})$, retaining its
-scheme-theoretic multiplicities. We work locally near $(0,p)$ and
-assume that the relevant family is finite and flat over $T$.
 
-The intended counting rule is to sum the degrees over $T$ of the
-compatible components that satisfy the reduced free equations.
-Identifying this sum with the central multiplicity requires the
-corresponding family to be finite and flat, with a reduced
-geometric generic fiber.
+To equate the special-fiber multiplicity $\ell_p(I_{A,B;\pi})$ with the sum of generic degrees over $T$ of the compatible components, we assume that near $(0,p)$ all deformed partition
+schemes $\operatorname{Spec}(S/\bar{I}_{A,B;\pi})$ are finite and flat over $T$, that the full and reduced
+free-root systems have geometrically reduced generic fibers (simple generic roots), and that the free
+roots of each reduced system do not identically coincide with the fixed site endpoints $\pm 1-\theta_j$ ($1\le j\le r$).
 
-For the component count below, assume that all auxiliary partition
-families, for every choice of fixed sites and root labels, are finite
-and flat near $(0,p)$. Assume also that the original and reduced
-free-root systems have simple geometric generic roots, and that free
-roots in each reduced system avoid its fixed site endpoints. These
-are genericity assumptions on the deformation.
-
-Under these assumptions, depermutation retains the components with
-pairwise distinct free coordinates. For $0\le r\le k$, prescribe the
-pairs
-\[
- x_i=1-\theta_i,\qquad x_{k+i}=-1-\theta_i,
- \qquad 1\le i\le r.
-\]
-We use the following two counts, taken locally over $p$:
+Under these flatness and genericity assumptions, depermutation over $\Pi(R)$ retains precisely the components whose $N-2r$ free coordinates are generically pairwise distinct. For $0\le r\le k$, with the first $r$ pairs pinned to sites $1,\ldots,r$, we introduce two local degree-weighted component counts at $p$:
 \begin{itemize}
- \item $D_r(p)$ is the degree-weighted number of components of the
- reduced fixed-pair family satisfying these prescriptions and having
- generically distinct full root coordinates. Additional site pairs
- are allowed. In terms of the labels, $f_C(i)=g_C(i)=i$ for
- $1\le i\le r$; each site label occurs at most once in each map, and
- $\pi_1(C)=\pi_2(C)=\hat0$.
- \item $\tilde D_r(p)$ counts only those components included in
- $D_r(p)$ with no additional site pairs. Thus their labels satisfy
+ \item $D_r(p)$ denotes the degree-weighted count of components $C\in\bar{X}_p$ of the
+ reduced fixed-pair family having generically distinct coordinates (so that $f_C(i)=g_C(i)=i$ for
+ $1\le i\le r$, each site label in $[L]$ appears at most once in $f_C$ and in $g_C$, and
+ $\pi_1(C)=\pi_2(C)=\hat{0}$), allowing additional site-pinned pairs among the remaining $k-r$ singular pairs.
+ \item $\tilde{D}_r(p)$ denotes the degree-weighted count of those components in
+ $D_r(p)$ that carry \emph{no} additional site-pinned pairs beyond the prescribed $r$ sites:
  \[
  f_C(i)=g_C(i)=
  \begin{cases}
- i,&1\le i\le r,\\
- \mathcal E,&r<i\le k,
+ i, & 1\le i\le r,\\
+ \mathcal{E}, & r<i\le k,
  \end{cases}
- \qquad \pi_1(C)=\pi_2(C)=\hat0.
+ \qquad \pi_1(C)=\pi_2(C)=\hat{0}.
  \]
 \end{itemize}
-Both counts use the multiset convention above: a component contributes
-its degree over $T$. In particular, $\tilde D_0(p)$ is the number of exceptional components.
+In particular, $\tilde{D}_0(p)$ is the degree-weighted number of exceptional components at $p$.
 
-There are $\binom kr^2$ choices of the fixed positive and negative
-labels that can contribute at $p$. By symmetry, they give the same
-count $D_r(p)$. For each choice, depermutation contributes the factor
-$1/(N-2r)!$, while the averaging factor
-in~\eqref{eq:reduced-fixed-pair-depermutation} is
-$(r!)^2(N-2r)!/N!$. Their product is $(r!)^2/N!$, giving
+Because $p$ has $k$ coordinates equal to $1$ and $k$ coordinates equal to $-1$, there are $\binom{k}{r}^2$ subsets $(A,B)$ with $A\subseteq A(p)$, $B\subseteq B(p)$, and $|A|=|B|=r$ that contribute at $p$, each yielding the same count $D_r(p)$ by permutation symmetry. Multiplying the depermutation prefactor $1/(N-2r)!$ by the averaging factor $(r!)^2(N-2r)!/N!$ from~\eqref{eq:reduced-fixed-pair-depermutation} gives
 \begin{equation}\label{eq:fixed-pair-component-weight}
  \boxed{w_r(p)
- =\frac{(r!)^2}{N!}\binom kr^2D_r(p)
+ =\frac{(r!)^2}{N!}\binom{k}{r}^2 D_r(p)
  =\frac{(k!)^2}{N!\,((k-r)!)^2}D_r(p),\qquad 0\le r\le k.}
 \end{equation}
 
-Grouping the components counted by $D_r(p)$ according to their total
-number $s$ of site pairs gives
+Stratifying the components counted by $D_r(p)$ according to their total
+number $s=\#(\Ima f_C\cap[L])\in\{r,\ldots,k\}$ of site-pinned pairs yields the refinement identity
 \begin{equation}\label{eq:component-count-refinement}
  \boxed{D_r(p)=\sum_{s=r}^k
  \binom{L-r}{s-r}\binom{k-r}{s-r}^{\!2}((s-r)!)^2
- \tilde D_s(p)
+ \tilde{D}_s(p)
  =\sum_{s=r}^k\binom{L-r}{s-r}
-       \left(\frac{(k-r)!}{(k-s)!}\right)^2\tilde D_s(p).}
+       \left(\frac{(k-r)!}{(k-s)!}\right)^2\tilde{D}_s(p).}
 \end{equation}
-To obtain a component carrying exactly $s$ site pairs, keep the first
-$r$ prescribed pairs and make three further choices:
+Indeed, any component in $D_r(p)$ carrying $s$ site-pinned pairs is uniquely specified beyond the first $r$ pinned pairs by:
 \begin{enumerate}
- \item Choose $s-r$ additional sites among the $L-r$ unused sites:
- $\binom{L-r}{s-r}$ choices.
- \item Choose $s-r$ of the $k-r$ remaining positive root labels and,
- independently, $s-r$ of the remaining negative root labels:
- $\binom{k-r}{s-r}^2$ choices.
- \item Assign the chosen positive labels bijectively to the chosen
- sites, and do the same for the negative labels: $((s-r)!)^2$ choices.
+ \item choosing $s-r$ additional sites from the $L-r$ remaining sites in $\binom{L-r}{s-r}$ ways;
+ \item choosing $s-r$ of the $k-r$ remaining positive indices and $s-r$ of the $k-r$ remaining negative indices in $\binom{k-r}{s-r}^2$ ways; and
+ \item assigning the chosen positive and negative indices bijectively to the $s-r$ chosen sites in $((s-r)!)^2$ ways, while all remaining $k-s$ positive and negative indices carry the label $\mathcal{E}$.
 \end{enumerate}
-For each choice, the roots not assigned to sites have label
-$\mathcal E$. Permutations of the unused sites and of the remaining
-positive and negative root labels take these prescriptions to the
-standard one defining $\tilde D_s(p)$, while leaving the first $r$
-prescribed pairs fixed. The site permutations act on the parameter
-space $T$, and the root permutations preserve the central point $p$.
-The deformed equations and reduced families are carried to their
-corresponding relabelled versions, so these identifications preserve
-degrees over $T$. Thus every choice has the same count
-$\tilde D_s(p)$. Distinct prescriptions are disjoint because each
-component has definite site labels, and they exhaust the components
-counted by $D_r(p)$. Multiplying the three factors and summing over
-$s$ proves~\eqref{eq:component-count-refinement}.
+Simultaneously permuting the unused sites in $T$ and the unpinned singular coordinates (which fixes the special fiber point $p$) identifies each such stratum isomorphically with the standard stratum counted by $\tilde{D}_s(p)$, establishing~\eqref{eq:component-count-refinement}.
 
 \begin{proposition}[Cancellation of nonexceptional components]
 \label{prop:exceptional-component-cancellation}
-Under the finite-flatness, simplicity, and endpoint-avoidance
-assumptions above,
+Under the flatness, generic simplicity, and endpoint-avoidance
+assumptions above, the local weight of $p=(1^k,-1^k,z_{2k+1},\ldots,z_N)$ in $\tilde{Z}$ is given by
 \begin{equation}\label{eq:exceptional-component-weight}
- \boxed{w_p(\tilde Z)
- =\sum_{r=0}^k(-1)^r\binom Lr w_r(p)
- =\frac1{N!}\tilde D_0(p)}
+ \boxed{w_p(\tilde{Z})
+ =\sum_{r=0}^k(-1)^r\binom{L}{r} w_r(p)
+ =\frac{1}{N!}\tilde{D}_0(p).}
 \end{equation}
-Thus the corrected weight is the normalized count of exceptional
-components, with the degree convention in the definition above.
+Thus the alternating sum cancels all site-pinned components and retains only the normalized degree count of exceptional
+components at $p$.
 \end{proposition}
 
 \begin{proof}
-Terms with $r>k$ have zero weight at $p$, since $p$ contains only
-$k$ copies of each singular value. Substituting
-\eqref{eq:fixed-pair-component-weight} and
-\eqref{eq:component-count-refinement} into the alternating sum and
-interchanging the finite sums gives
+Since $p$ contains only $k$ copies of $\pm 1$, terms with $r>k$ vanish at $p$. Substituting~\eqref{eq:fixed-pair-component-weight} and~\eqref{eq:component-count-refinement} into the alternating sum and
+interchanging the order of summation gives
 \[
 \begin{aligned}
- w_p(\tilde Z)
- &=\sum_{r=0}^k(-1)^r\binom Lr
+ w_p(\tilde{Z})
+ &=\sum_{r=0}^k(-1)^r\binom{L}{r}
        \frac{(k!)^2}{N!\,((k-r)!)^2}D_r(p)\\
  &=\frac{(k!)^2}{N!}\sum_{s=0}^k
-       \frac{\tilde D_s(p)}{((k-s)!)^2}
-       \sum_{r=0}^s(-1)^r\binom Lr\binom{L-r}{s-r}.
+       \frac{\tilde{D}_s(p)}{((k-s)!)^2}
+       \sum_{r=0}^s(-1)^r\binom{L}{r}\binom{L-r}{s-r}.
 \end{aligned}
 \]
-The identity
+Using the binomial identity $\binom{L}{r}\binom{L-r}{s-r}=\binom{L}{s}\binom{s}{r}$, the coefficient of $\tilde{D}_s(p)$ simplifies to
 \[
- \binom Lr\binom{L-r}{s-r}=\binom Ls\binom sr
+ \frac{(k!)^2}{N!\,((k-s)!)^2}\binom{L}{s}
+       \sum_{r=0}^s(-1)^r\binom{s}{r}.
 \]
-therefore reduces the coefficient of $\tilde D_s(p)$ to
+The inner sum equals $(1-1)^s=0$ for every $s\ge 1$ and $1$ for $s=0$, leaving only the $s=0$ term
 \[
- \frac{(k!)^2}{N!\,((k-s)!)^2}\binom Ls
-       \sum_{r=0}^s(-1)^r\binom sr.
+ w_p(\tilde{Z})=\frac{\tilde{D}_0(p)}{N!}.\qedhere
 \]
-By the binomial theorem, the final sum is zero for $s\ge1$ and one
-for $s=0$. All terms corresponding to components carrying at least
-one site pair cancel, leaving
-\[
- w_p(\tilde Z)=\frac{\tilde D_0(p)}{N!}.
-\]
-By definition, $\tilde D_0(p)$ counts precisely the exceptional
-components, with their degrees over $T$.
 \end{proof}
 
-Under the stated deformation assumptions, the alternating sum removes
-components lies on one or more hyperplanes $x_i+\theta_j-1=0$ or $x_{r+1}+\theta_j-1=0$ and retains only exceptional components,
-counted with their degrees and normalized by $1/N!$.
-It remains unclear why exceptional components should exist only when $k=1$.
+Proposition~\ref{prop:exceptional-component-cancellation} shows that under the stated deformation hypotheses, the alternating sum over fixed singular pairs cancels every component lying along one or more site-endpoint hyperplanes $x_a+\theta_j-1=0$ or $x_{k+b}+\theta_j+1=0$ ($1\le a,b\le k$, $1\le j\le L$) and isolates $\tilde{D}_0(p)/N!$.
+In light of Steps~5 and~6 in Section~\ref{section:plan}, Conjecture~\ref{conj:alternating-completeness} predicts that $\tilde{D}_0(p)=1$ at physical singular roots with $k=1$ and $\tilde{D}_0(p)=0$ whenever $k\ge 2$ (or when $k=1$ is nonphysical). Understanding conceptually why exceptional components exist only for $k=1$ remains an interesting open problem.
 
 \section*{Disclosure of AI assistance}
 AI tools were
@@ -1225,15 +1064,18 @@ D.~G.~Babbitt and L.~E.~Thomas,
 \emph{Explicit Plancherel theorem for ground state representation of the
 Heisenberg chain},
 Proc.\ Natl.\ Acad.\ Sci.\ USA \textbf{74}, 816--817 (1977),
-\href{https://doi.org/10.1073/pnas.74.3.816}{doi:10.1073/pnas.74.3.816}.
+[doi:10.1073/pnas.74.3.816].
 
-\bibitem{KE1987}
-T.~Koma and H.~Ezawa,
-\emph{Completeness of the Two-Down-Spin Bethe States in the
-One-Dimensional Heisenberg Model},
-Prog.\ Theor.\ Phys.\ \textbf{78}, 1009--1021 (1987),
-\href{https://doi.org/10.1143/PTP.78.1009}{doi:10.1143/PTP.78.1009}.
+\bibitem{Baxter1982}
+R.~J.~Baxter,
+\emph{Exactly Solved Models in Statistical Mechanics},
+Academic Press, London (1982).
 
+\bibitem{Baxter2002}
+R.~J.~Baxter,
+\emph{Completeness of the Bethe ansatz for the six and eight-vertex models},
+J.\ Stat.\ Phys.\ \textbf{108}, 1--48 (2002),
+[arXiv:cond-mat/0111188].
 
 \bibitem{Bethe1931}
 H.~Bethe,
@@ -1241,74 +1083,36 @@ H.~Bethe,
 linearen Atomkette},
 Z.\ Phys.\ \textbf{71}, 205--226 (1931).
 
-\bibitem{Baxter1982}
-R.~J.~Baxter,
-\emph{Exactly Solved Models in Statistical Mechanics},
-Academic Press, London (1982).
-
-\bibitem{KBI1993}
-V.~E.~Korepin, N.~M.~Bogoliubov, and A.~G.~Izergin,
-\emph{Quantum Inverse Scattering Method and Correlation Functions},
-Cambridge University Press (1993).
-
-
-\bibitem{NW2013}
-R.~I.~Nepomechie and C.~Wang,
-\emph{Algebraic Bethe ansatz for singular solutions},
-J.\ Phys.\ A: Math.\ Theor.\ \textbf{46}, 325002 (2013),
-\href{https://arxiv.org/abs/1304.7978}{arXiv:1304.7978}.
-
-\bibitem{NW2014}
-R.~I.~Nepomechie and C.~Wang,
-\emph{Twisting singular solutions of Bethe's equations},
-J.\ Phys.\ A: Math.\ Theor.\ \textbf{47}, 505004 (2014),
-\href{https://doi.org/10.1088/1751-8113/47/50/505004}{doi:10.1088/1751-8113/47/50/505004},
-\href{https://arxiv.org/abs/1409.7382}{arXiv:1409.7382}.
-
-\bibitem{HNS2013}
-W.~Hao, R.~I.~Nepomechie, and A.~J.~Sommese,
-\emph{Completeness of solutions of Bethe's equations},
-Phys.\ Rev.\ E \textbf{88}, 052113 (2013),
-\href{https://arxiv.org/abs/1308.4645}{arXiv:1308.4645}.
-
-\bibitem{MTV2009}
-E.~Mukhin, V.~Tarasov, and A.~Varchenko,
-\emph{Bethe algebra of homogeneous XXX Heisenberg model has simple spectrum},
-Commun.\ Math.\ Phys.\ \textbf{288}, 1--42 (2009),
-\href{https://arxiv.org/abs/0706.0688}{arXiv:0706.0688}.
-
-\bibitem{GJ2020}
-E.~Granet and J.~L.~Jacobsen,
-\emph{On zero-remainder conditions in the Bethe ansatz},
-JHEP \textbf{03}, 178 (2020),
-\href{https://arxiv.org/abs/1910.07797}{arXiv:1910.07797}.
-
-\bibitem{Stanley2012}
-R.~P.~Stanley,
-\emph{Enumerative Combinatorics}, Vol.~1, 2nd ed.,
-Cambridge Studies in Advanced Mathematics \textbf{49},
-Cambridge University Press (2012),
-\href{https://www.cambridge.org/core/books/enumerative-combinatorics/3155CDE1D973D49F873BDE2EAF8D7651}{publisher's webpage}.
-
-\bibitem{HJJ2024}
-J.~Hou, Y.~Jiang, and R.-D.~Zhu,
-\emph{Spin-$s$ Rational $Q$-system},
-SciPost Phys.\ \textbf{16}, 113 (2024),
-\href{https://arxiv.org/abs/2303.07640}{arXiv:2303.07640}.
-
 \bibitem{Fulton1998}
 W.~Fulton,
 \emph{Intersection Theory}, 2nd ed.,
 Ergebnisse der Mathematik und ihrer Grenzgebiete, 3.\ Folge,
 Vol.~2, Springer (1998),
-\href{https://doi.org/10.1007/978-1-4612-1700-8}{doi:10.1007/978-1-4612-1700-8}.
+[doi:10.1007/978-1-4612-1700-8].
 
-\bibitem{Sturmfels}
-B.~Sturmfels,
-\emph{Solving Systems of Polynomial Equations},
-CBMS Regional Conference Series in Mathematics \textbf{97}, AMS (2002),
-\href{https://web.math.berkeley.edu/~bernd/cbms.pdf}{author's manuscript}.
+\bibitem{GJ2020}
+E.~Granet and J.~L.~Jacobsen,
+\emph{On zero-remainder conditions in the Bethe ansatz},
+JHEP \textbf{03}, 178 (2020),
+[arXiv:1910.07797].
 
+\bibitem{HNS2013}
+W.~Hao, R.~I.~Nepomechie, and A.~J.~Sommese,
+\emph{Completeness of solutions of Bethe's equations},
+Phys.\ Rev.\ E \textbf{88}, 052113 (2013),
+[arXiv:1308.4645].
+
+\bibitem{HJJ2024}
+J.~Hou, Y.~Jiang, and R.-D.~Zhu,
+\emph{Spin-$s$ rational $Q$-system},
+SciPost Phys.\ \textbf{16}, 113 (2024),
+[arXiv:2303.07640].
+
+\bibitem{JZ2018}
+Y.~Jiang and Y.~Zhang,
+\emph{Algebraic geometry and Bethe ansatz (I): The quotient ring for BAE},
+JHEP \textbf{03}, 087 (2018),
+[arXiv:1710.04693].
 
 \bibitem{Kirillov1985}
 A.~N.~Kirillov,
@@ -1320,25 +1124,57 @@ J.\ Sov.\ Math.\ \textbf{30}, 2298--2310 (1985).
 A.~N.~Kirillov and N.~A.~Liskova,
 \emph{Completeness of Bethe's states for the generalized XXZ model},
 J.\ Phys.\ A: Math.\ Gen.\ \textbf{30}, 1209--1226 (1997),
-\href{https://arxiv.org/abs/hep-th/9403107}{arXiv:hep-th/9403107}.
+[arXiv:hep-th/9403107].
 
-\bibitem{Baxter2002}
-R.~J.~Baxter,
-\emph{Completeness of the Bethe ansatz for the six and eight-vertex models},
-J.\ Stat.\ Phys.\ \textbf{108}, 1--48 (2002),
-\href{https://arxiv.org/abs/cond-mat/0111188}{arXiv:cond-mat/0111188}.
+\bibitem{KE1987}
+T.~Koma and H.~Ezawa,
+\emph{Completeness of the two-down-spin Bethe states in the
+one-dimensional Heisenberg model},
+Prog.\ Theor.\ Phys.\ \textbf{78}, 1009--1021 (1987),
+[doi:10.1143/PTP.78.1009].
+
+\bibitem{KBI1993}
+V.~E.~Korepin, N.~M.~Bogoliubov, and A.~G.~Izergin,
+\emph{Quantum Inverse Scattering Method and Correlation Functions},
+Cambridge University Press (1993).
 
 \bibitem{LS1995}
 R.~P.~Langlands and Y.~Saint-Aubin,
 \emph{Algebro-geometric aspects of the Bethe equations},
-in \emph{Strings and Symmetries}, Springer (1995), pp.~40--53,
-\href{https://publications.ias.edu/sites/default/files/feza-ps.pdf}{author's manuscript}.
+in \emph{Strings and Symmetries}, Lecture Notes in Physics, Vol.~447, Springer (1995), pp.~40--53,
+[author's manuscript].
 
-\bibitem{JZ2018}
-Y.~Jiang and Y.~Zhang,
-\emph{Algebraic geometry and Bethe ansatz (I): The quotient ring for BAE},
-JHEP \textbf{03}, 087 (2018),
-\href{https://arxiv.org/abs/1710.04693}{arXiv:1710.04693}.
+\bibitem{MTV2009}
+E.~Mukhin, V.~Tarasov, and A.~Varchenko,
+\emph{Bethe algebra of homogeneous XXX Heisenberg model has simple spectrum},
+Commun.\ Math.\ Phys.\ \textbf{288}, 1--42 (2009),
+[arXiv:0706.0688].
+
+\bibitem{NW2013}
+R.~I.~Nepomechie and C.~Wang,
+\emph{Algebraic Bethe ansatz for singular solutions},
+J.\ Phys.\ A: Math.\ Theor.\ \textbf{46}, 325002 (2013),
+[arXiv:1304.7978].
+
+\bibitem{NW2014}
+R.~I.~Nepomechie and C.~Wang,
+\emph{Twisting singular solutions of Bethe's equations},
+J.\ Phys.\ A: Math.\ Theor.\ \textbf{47}, 505004 (2014),
+[doi:10.1088/1751-8113/47/50/505004],
+[arXiv:1409.7382].
+
+\bibitem{Stanley2012}
+R.~P.~Stanley,
+\emph{Enumerative Combinatorics}, Vol.~1, 2nd ed.,
+Cambridge Studies in Advanced Mathematics \textbf{49},
+Cambridge University Press (2012),
+[publisher's webpage].
+
+\bibitem{Sturmfels}
+B.~Sturmfels,
+\emph{Solving Systems of Polynomial Equations},
+CBMS Regional Conference Series in Mathematics \textbf{97}, AMS (2002),
+[author's manuscript].
 
 \end{thebibliography}
 \end{document}
