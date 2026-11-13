@@ -2,6 +2,8 @@
 
 LaTeX source for **Completeness of the Bethe Ansatz through Intersection Numbers in $\mathbb{P}^N$**, by **Pei Wu**.
 
+A version of the manuscript is also available on [Zenodo](https://zenodo.org/records/24079321). This repository will be kept up to date and should be consulted for the latest revisions.
+
 This note studies the completeness count for the homogeneous periodic spin-$1/2$ XXX chain from an intersection-theoretic perspective. It constructs weighted auxiliary polynomial systems, uses Möbius inversion on the partition lattice to account for permutations and collisions, and introduces an alternating correction on the singular-pair locus.
 
 ## The counting construction
